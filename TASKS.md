@@ -22,15 +22,18 @@ flowchart LR
 
 Tujuan: Menginisialisasi proyek fullstack terpadu di mana Payload CMS 3 berjalan secara native di dalam Next.js App Router dengan koneksi Supabase PostgreSQL.
 
-- [ ] **Task 1.1: Inisialisasi Repositori & Paket Inti**
-  - Jalankan inisialisasi menggunakan `npx create-payload-app@latest` dengan template `blank` atau setup Next.js App Router manual.
-  - Pasang dependensi utama versi terbaru:
-    ```bash
-    pnpm add next@latest react@latest react-dom@latest payload@^3.85.0 @payloadcms/next@^3.85.0 @payloadcms/ui@^3.85.0 @payloadcms/richtext-lexical@^3.85.0 @payloadcms/db-postgres@^3.85.0 @payloadcms/storage-s3@^3.85.0 sharp
-    ```
-  - Pasang devDependencies: `typescript@^5.5.0`, `@types/node`, `@types/react`, `@types/react-dom`.
+- [x] **Task 1.1: Inisialisasi Repositori & Paket Inti (SELESAI)**
+  - Menginisialisasi proyek menggunakan `create-payload-app@latest` dengan template `blank` dan `pnpm`.
+  - Terpasang versi resmi terbaru:
+    - `next`: **16.3.3**
+    - `react` & `react-dom`: **19.2.6**
+    - `payload`: **3.90.2**
+    - `@payloadcms/next`, `@payloadcms/ui`, `@payloadcms/richtext-lexical`: **3.90.2**
+    - `@payloadcms/db-postgres`: **3.90.2**
+    - `@payloadcms/storage-s3`: **3.90.2**
+    - `sharp`: **0.35.4**
 
-- [ ] **Task 1.2: Konfigurasi Struktur Folder Standar Next.js App Router**
+- [x] **Task 1.2: Konfigurasi Struktur Folder Standar Next.js App Router (SELESAI)**
   - Terapkan pemisahan rute (*Route Groups*) sesuai rekomendasi Context7:
     ```text
     src/
