@@ -2,6 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {
   /* Cobalt Theme Tokens (OKLCH Native) */
   --color-paper: oklch(98.5% 0.004 250);

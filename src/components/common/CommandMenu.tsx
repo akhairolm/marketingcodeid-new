@@ -2,12 +2,21 @@
 
 import React, { useState, useEffect } from 'react'
 import { getWhatsAppUrl, ConsultationContext } from '@/lib/whatsapp'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { Search, Sparkles, Laptop, Smartphone, TrendingUp, Compass, MessageSquare } from 'lucide-react'
 
 interface CommandItem {
   id: string
   title: string
   category: 'Layanan' | 'Aksi Cepat' | 'Navigasi'
   shortcut?: string
+  icon: React.ReactNode
   action: () => void
 }
 
@@ -20,8 +29,6 @@ export function CommandMenu() {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault()
         setIsOpen((prev) => !prev)
-      } else if (e.key === 'Escape') {
-        setIsOpen(false)
       }
     }
 
@@ -48,48 +55,56 @@ export function CommandMenu() {
       title: 'Konsultasi WhatsApp via Lead Developer',
       category: 'Aksi Cepat',
       shortcut: 'WA',
+      icon: <MessageSquare className="w-4 h-4 text-emerald-500" />,
       action: () => handleConsult('general'),
     },
     {
       id: 'wa-web',
-      title: 'Konsultasi Pembuatan Website Custom',
+      title: 'Konsultasi Pembuatan Website Custom (Next.js & Payload)',
       category: 'Layanan',
+      icon: <Laptop className="w-4 h-4 text-[var(--color-accent)]" />,
       action: () => handleConsult('website'),
     },
     {
       id: 'wa-mobile',
       title: 'Konsultasi Aplikasi Mobile (iOS / Android)',
       category: 'Layanan',
+      icon: <Smartphone className="w-4 h-4 text-purple-500" />,
       action: () => handleConsult('mobile'),
     },
     {
       id: 'wa-ads',
       title: 'Konsultasi Kampanye Facebook & Google Ads',
       category: 'Layanan',
+      icon: <TrendingUp className="w-4 h-4 text-amber-500" />,
       action: () => handleConsult('ads'),
     },
     {
       id: 'nav-bento',
       title: 'Lihat Layanan & Solusi Utama (Bento Grid)',
       category: 'Navigasi',
+      icon: <Compass className="w-4 h-4 text-gray-500" />,
       action: () => scrollTo('services'),
     },
     {
       id: 'nav-case-studies',
       title: 'Lihat Studi Kasus Portofolio Terpilih',
       category: 'Navigasi',
+      icon: <Sparkles className="w-4 h-4 text-amber-500" />,
       action: () => scrollTo('portfolio'),
     },
     {
       id: 'nav-protocol',
       title: 'Lihat Protokol Pengerjaan & Alur Proyek',
       category: 'Navigasi',
+      icon: <Compass className="w-4 h-4 text-gray-500" />,
       action: () => scrollTo('protocol'),
     },
     {
       id: 'nav-faq',
       title: 'Tanya Jawab Seputar Harga & Kepemilikan Kode',
       category: 'Navigasi',
+      icon: <Compass className="w-4 h-4 text-gray-500" />,
       action: () => scrollTo('faq'),
     },
   ]
@@ -101,72 +116,74 @@ export function CommandMenu() {
 
   return (
     <>
-      <button
-        type="button"
-        className="cmd-trigger-btn"
+      <Button
+        variant="outline"
+        size="sm"
+        className="cmd-trigger-btn h-9 gap-2 border-[var(--color-rule)] bg-[var(--color-paper-subtle)] text-[var(--color-ink-muted)] hover:border-[var(--color-accent)]"
         onClick={() => setIsOpen(true)}
-        aria-label="Buka Command Menu"
       >
-        <span className="cmd-search-icon">⌘</span>
-        <span className="cmd-label">Cari aksi cepat...</span>
-        <kbd className="cmd-kbd">⌘K</kbd>
-      </button>
+        <Search className="w-3.5 h-3.5" />
+        <span className="cmd-label text-xs">Cari aksi cepat...</span>
+        <kbd className="cmd-kbd text-[10px]">⌘K</kbd>
+      </Button>
 
-      {isOpen && (
-        <div className="cmd-backdrop" onClick={() => setIsOpen(false)}>
-          <div
-            className="cmd-dialog"
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="cmd-header">
-              <span className="cmd-icon">⚡</span>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-lg p-0 overflow-hidden bg-[var(--color-paper-card)] border-[var(--color-rule)] shadow-2xl">
+          <DialogHeader className="p-0 border-b border-[var(--color-rule)]">
+            <div className="flex items-center px-4 py-3 gap-2">
+              <Search className="w-4 h-4 text-[var(--color-accent)] shrink-0" />
               <input
                 type="text"
-                className="cmd-input"
+                className="w-full bg-transparent border-0 outline-none text-sm text-[var(--color-ink)] placeholder:text-[var(--color-ink-faint)]"
                 placeholder="Ketik layanan, navigasi, atau hubungi dev..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 autoFocus
               />
-              <button
-                type="button"
-                className="cmd-close"
-                onClick={() => setIsOpen(false)}
-              >
-                ESC
-              </button>
             </div>
+            <DialogTitle className="sr-only">Command Menu MarketingCode ID</DialogTitle>
+          </DialogHeader>
 
-            <div className="cmd-list">
-              {filteredItems.length === 0 ? (
-                <div className="cmd-empty">Tidak ada aksi yang sesuai.</div>
-              ) : (
-                filteredItems.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className="cmd-item"
-                    onClick={item.action}
-                  >
-                    <span className="cmd-item-category">{item.category}</span>
-                    <span className="cmd-item-title">{item.title}</span>
-                    {item.shortcut && (
-                      <span className="cmd-item-shortcut">{item.shortcut}</span>
-                    )}
-                  </button>
-                ))
-              )}
-            </div>
-
-            <div className="cmd-footer">
-              <span>MarketingCode ID · Direct WhatsApp Pipeline</span>
-              <span>Gunakan ESC untuk menutup</span>
-            </div>
+          <div className="max-h-[340px] overflow-y-auto p-2 flex flex-col gap-1">
+            {filteredItems.length === 0 ? (
+              <div className="p-6 text-center text-sm text-[var(--color-ink-muted)]">
+                Tidak ada aksi yang sesuai.
+              </div>
+            ) : (
+              filteredItems.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="flex items-center justify-between p-2.5 rounded-md hover:bg-[var(--color-accent-subtle)] text-left transition-colors group cursor-pointer border border-transparent hover:border-[var(--color-accent)]/20"
+                  onClick={item.action}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="shrink-0">{item.icon}</span>
+                    <div>
+                      <span className="text-xs uppercase font-mono tracking-wider text-[var(--color-accent)] block mb-0.5">
+                        {item.category}
+                      </span>
+                      <span className="text-sm font-medium text-[var(--color-ink)] block">
+                        {item.title}
+                      </span>
+                    </div>
+                  </div>
+                  {item.shortcut && (
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-[var(--color-paper-subtle)] border border-[var(--color-rule)] text-[var(--color-ink-muted)]">
+                      {item.shortcut}
+                    </span>
+                  )}
+                </button>
+              ))
+            )}
           </div>
-        </div>
-      )}
+
+          <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--color-rule)] bg-[var(--color-paper-subtle)] text-[11px] font-mono text-[var(--color-ink-faint)]">
+            <span>MarketingCode ID · Direct WhatsApp Pipeline</span>
+            <span>Tekan ESC untuk menutup</span>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }
