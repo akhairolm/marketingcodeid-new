@@ -122,28 +122,22 @@ Tujuan: Membuat skema collection yang terstruktur, aman, dan mudah dikelola mela
 
 ---
 
-## Fase 3: Fondasi Frontend & Sistem Desain (Modular & Skimmable)
+## Fase 3: Fondasi Frontend & Sistem Desain (Modular & Skimmable - SELESAI)
 
 Tujuan: Menyiapkan tata letak responsif, palet visual, dan komponen CTA WhatsApp yang fleksibel sebelum dipasang styling kustom.
 
-- [ ] **Task 3.1: Typography & Global Tokens**
-  - Konfigurasikan font variable pada Next.js `next/font/google` (misal: Geist, Inter, atau JetBrains Mono).
-  - Tentukan variabel CSS untuk warna identitas (Primary, Accent, Background Neutral, Surface, Text Color).
+- [x] **Task 3.1: Typography & Global Tokens (SELESAI)**
+  - Terapkan standar desain **Hallmark Cobalt**: Space Grotesk (display), Inter (body), dan JetBrains Mono (labels/code).
+  - Tentukan variabel CSS native OKLCH: `--color-paper`, `--color-ink`, `--color-accent` (Electric Cobalt), dan `--color-graphite`.
 
-- [ ] **Task 3.2: Reusable Layout Components**
-  - Buat `src/components/layout/Navbar.tsx`: Navigasi responsif (Desktop link + Mobile drawer menu) dengan CTA WhatsApp.
-  - Buat `src/components/layout/Footer.tsx`: Info agensi, tautan navigasi, daftar layanan, dan hak cipta.
-  - Buat `src/components/ui/Badge.tsx`, `src/components/ui/Button.tsx`, `src/components/ui/Card.tsx`.
+- [x] **Task 3.2: Reusable Layout Components (SELESAI)**
+  - `src/components/layout/Navbar.tsx`: Navigasi responsif (Desktop + Mobile drawer) dengan trigger ⌘K Command Menu dan CTA WhatsApp.
+  - `src/components/layout/Footer.tsx`: Colophon teknis, tautan layanan, live operational badge, dan copyright.
+  - `src/components/common/CommandMenu.tsx`: Interactive command palette ⌘K dengan filter cepat.
 
-- [ ] **Task 3.3: Utilitas & Komponen WhatsApp Call-to-Action**
-  - Buat helper generator URL WhatsApp: `src/lib/whatsapp.ts`:
-    ```ts
-    export function getWhatsAppUrl(phone: string, message: string) {
-      return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-    }
-    ```
-  - Buat `src/components/common/FloatingWhatsApp.tsx`: Tombol mengambang di pojok kanan bawah dengan animasi halus dan badge notifikasi visual.
-  - Buat `src/components/common/ConsultationBanner.tsx`: Section CTA besar di akhir setiap halaman.
+- [x] **Task 3.3: Utilitas & Komponen WhatsApp Call-to-Action (SELESAI)**
+  - `src/lib/whatsapp.ts`: Helper URL generator dengan pesan kontekstual per layanan dan studi kasus.
+  - `src/components/common/FloatingWhatsApp.tsx`: Tombol melayang sudut kanan bawah dengan pulse live dan hover tooltip.
 
 ---
 
@@ -151,12 +145,14 @@ Tujuan: Menyiapkan tata letak responsif, palet visual, dan komponen CTA WhatsApp
 
 Tujuan: Mengintegrasikan data Payload CMS 3 ke halaman website Next.js App Router menggunakan *Local API (`getPayload`)* tanpa latensi HTTP.
 
-- [ ] **Task 4.1: Homepage (`/`)**
-  - **Hero Section:** Judul persuasif, value proposition, dan tombol CTA utama ke WhatsApp.
-  - **Service Highlights:** Kartu 3 layanan utama (Website Custom, Mobile App, Ads).
-  - **Featured Case Studies:** 3–6 studi kasus portofolio pilihan.
-  - **Latest Insights (Blog):** 3 artikel terbaru untuk pancingan SEO.
-  - **Agency Values / Why Choose Us:** Kelebihan agensi (custom code, performa tinggi, support terdedikasi).
+- [x] **Task 4.1: Homepage (`/`) (SELESAI)**
+  - **Hero Section:** Asymmetric layout dengan `<HeroBlueprint />` terminal interaktif tabbed (Next.js 16, Mobile, Ads).
+  - **Audience Problem-Solution Bridges:** 3 kartu spesifik (Bisnis tanpa web, Pebisnis bingung ads, Instansi butuh aplikasi custom).
+  - **The Bento Grid (Macrostructure 01):** Modular tiles 2x2, 2x1, 1x1 untuk kapabilitas agensi.
+  - **Featured Case Studies:** 3 studi kasus nyata lengkap dengan badge tech stack dan tombol konsultasi WA spesifik.
+  - **Dark Graphite Band:** Protokol pengerjaan 4 fase transparan.
+  - **Conversational FAQ:** Transparansi harga, waktu, garansi, dan 100% kepemilikan source code.
+  - **Final CTA Banner:** Saluran kontak langsung WhatsApp tanpa sales rep.
 
 - [ ] **Task 4.2: Halaman Layanan (`/services` & `/services/[slug]`)**
   - Query data dari koleksi `Services`.
