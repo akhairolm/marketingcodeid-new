@@ -2,13 +2,11 @@
 
 import React, { useState } from 'react'
 import {
-  Layers,
   Menu,
   X,
   ArrowRight,
   CheckCircle2,
   Play,
-  Sparkles,
   Code2,
   Smartphone,
   TrendingUp,
@@ -33,7 +31,6 @@ import {
   Film,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
-import { FloatingWhatsApp } from '@/components/common/FloatingWhatsApp'
 
 function InstagramIcon({ className = 'w-4 h-4' }: { className?: string }) {
   return (
@@ -108,7 +105,7 @@ export default function HomePage() {
         ? 'Digital Marketing (Ads & SEO)'
         : 'Solusi Komprehensif (Web + App + Marketing)'
 
-    const waText = `Halo NexaCraft / MarketingCode ID, saya ${formData.name} (${formData.email}) ingin konsultasi terkait ${serviceName}. Detail rencana: ${formData.notes || '-'}`
+    const waText = `Halo MarketingCode.ID, saya ${formData.name} (${formData.email}) ingin konsultasi terkait ${serviceName}. Detail rencana: ${formData.notes || '-'}`
 
     // Automatically trigger WhatsApp redirect after brief moment
     setTimeout(() => {
@@ -308,12 +305,12 @@ export default function HomePage() {
       <header className="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
         <nav className="w-full max-w-4xl bg-[#1A1A1E]/90 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 transition-all duration-300">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shadow-glow group-hover:scale-105 transition-transform">
-              <Layers className="w-4 h-4" />
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] flex items-center justify-center text-white font-extrabold text-sm shadow-glow group-hover:scale-105 transition-transform tracking-tight">
+              M
             </div>
             <span className="font-bold tracking-tight text-base text-white">
-              Nexa<span className="text-[#FF5C28]">Craft</span>
+              MarketingCode<span className="text-[#FF5C28]">.ID</span>
             </span>
           </a>
 
@@ -479,24 +476,6 @@ export default function HomePage() {
                 >
                   <Play className="w-7 h-7 fill-[#FF5C28] text-[#FF5C28] translate-x-0.5" />
                 </button>
-              </div>
-
-              {/* Floating Micro Badges inside Video Preview */}
-              <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between text-white text-xs gap-3">
-                <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Sedang Mengerjakan 12 Proyek Aktif</span>
-                </div>
-                <div className="hidden sm:flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-                  <span>Stack: Next.js 16 • Payload CMS 3 • Meta & Google Ads</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Center Floating Brand Icon Beneath Video */}
-            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-              <div className="w-12 h-12 rounded-full bg-white shadow-md border border-neutral-100 flex items-center justify-center text-[#FF5C28]">
-                <Sparkles className="w-6 h-6" />
               </div>
             </div>
           </div>
@@ -1114,9 +1093,14 @@ export default function HomePage() {
       ======================================================== */}
       <footer className="bg-white border-t border-neutral-200/80 py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center space-y-6">
-          {/* Brand Icon Center */}
-          <div className="w-10 h-10 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shadow-glow">
-            <Layers className="w-5 h-5" />
+          {/* Brand Logo Center */}
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] flex items-center justify-center text-white font-black text-lg shadow-glow">
+              M
+            </div>
+            <span className="font-extrabold tracking-tight text-xl text-neutral-900">
+              MarketingCode<span className="text-[#FF5C28]">.ID</span>
+            </span>
           </div>
 
           <p className="text-xs text-neutral-500 max-w-sm">
@@ -1158,7 +1142,7 @@ export default function HomePage() {
           </div>
 
           <div className="pt-4 border-t border-neutral-100 w-full flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-400">
-            <span>&copy; 2026 NexaCraft Digital Agency (MarketingCode ID). Hak Cipta Dilindungi.</span>
+            <span>&copy; 2026 MarketingCode.ID Digital Agency. Hak Cipta Dilindungi.</span>
             <div className="flex gap-4 mt-2 sm:mt-0">
               <a href="#" className="hover:underline">Kebijakan Privasi</a>
               <a href="#" className="hover:underline">Syarat & Ketentuan</a>
@@ -1188,7 +1172,7 @@ export default function HomePage() {
             </button>
             <div className="aspect-video bg-black rounded-2xl flex flex-col items-center justify-center text-center p-6 text-white">
               <Film className="w-12 h-12 text-[#FF5C28] mb-3" />
-              <h4 className="text-base font-bold">Video Showreel NexaCraft Digital Agency</h4>
+              <h4 className="text-base font-bold">Video Showreel MarketingCode.ID</h4>
               <p className="text-xs text-neutral-400 mt-1 max-w-md">
                 Cuplikan sprint desain UI/UX, pengkodean backend Next.js & Payload CMS, dan live tracking dashboard iklan Meta & Google.
               </p>
@@ -1216,9 +1200,6 @@ export default function HomePage() {
           <p className="text-[11px] text-neutral-500">Membuka WhatsApp untuk terhubung dengan konsultan senior...</p>
         </div>
       </div>
-
-      {/* Floating WhatsApp CTA */}
-      <FloatingWhatsApp />
     </div>
   )
 }

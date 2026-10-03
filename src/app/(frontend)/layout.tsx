@@ -18,18 +18,18 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'NexaCraft Agency — Solusi Website, Mobile App & Digital Marketing',
+  title: 'MarketingCode.ID — Solusi Website, Mobile App & Digital Marketing',
   description:
     'Kami merancang ekosistem digital performa tinggi: dari arsitektur kode modern, mobile app yang intuitif, hingga strategi akuisisi pelanggan berbasis konversi nyata.',
   keywords: [
-    'NexaCraft Agency',
+    'MarketingCode.ID',
     'Jasa Pembuatan Website',
     'Mobile App Dev iOS Android',
     'Digital Marketing Ads',
     'Next.js Agency',
     'UI UX Design',
   ],
-  authors: [{ name: 'NexaCraft Digital Agency' }],
+  authors: [{ name: 'MarketingCode.ID Digital Agency' }],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
