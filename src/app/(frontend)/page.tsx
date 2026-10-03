@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Link from 'next/link'
 import {
   Menu,
   X,
@@ -29,6 +30,8 @@ import {
   Minus,
   MessageCircle,
   Film,
+  Sparkles,
+  ExternalLink,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 
@@ -61,6 +64,17 @@ function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
   )
 }
 
+interface PortfolioProject {
+  title: string
+  client: string
+  category: 'web' | 'app' | 'marketing'
+  categoryLabel: string
+  techStack: string[]
+  description: string
+  highlight: string
+  image: string
+}
+
 export default function HomePage() {
   // Mobile Menu State
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -71,7 +85,10 @@ export default function HomePage() {
   // Pricing Tab Filter State
   const [pricingTab, setPricingTab] = useState<'web' | 'app' | 'ads'>('web')
 
-  // FAQ Accordion State (single open or multiple)
+  // Portfolio Category Filter State
+  const [portfolioFilter, setPortfolioFilter] = useState<'all' | 'web' | 'app' | 'marketing'>('all')
+
+  // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   // Toast Notification State
@@ -121,6 +138,55 @@ export default function HomePage() {
     }, 4000)
   }
 
+  // Portfolio Projects Data
+  const portfolioProjects: PortfolioProject[] = [
+    {
+      title: 'Warehouse & Stock Inventory ERP',
+      client: 'Distribusi Logistik B2B',
+      category: 'web',
+      categoryLabel: 'Custom Web Application',
+      techStack: ['Next.js 16', 'Payload CMS 3', 'Supabase PostgreSQL', 'Tailwind CSS'],
+      description: 'Sistem pencatatan inventaris multi-gudang real-time dengan batch FIFO/LIFO, audit trail mutasi, dan dashboard visual low-stock alert.',
+      highlight: '0ms Rekap Manual · 100% Data Integritas',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'High-Converting Brand Showcase & E-Catalog',
+      client: 'Consumer Brand & Retail',
+      category: 'web',
+      categoryLabel: 'Company Profile & E-Catalog',
+      techStack: ['Next.js App Router', 'Tailwind CSS', 'WhatsApp Pipeline', 'Vercel Edge'],
+      description: 'Website katalog interaktif ultra-cepat dengan waktu muat 0.8 detik. Dilengkapi integrasi pesan WhatsApp otomatis sesuai produk yang dilihat.',
+      highlight: 'Score Lighthouse 99 · Konversi 3.4x',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Client Service Portal & Mobile Booking Engine',
+      client: 'Jasa Profesional & Medis',
+      category: 'app',
+      categoryLabel: 'Mobile Application (iOS/Android)',
+      techStack: ['Flutter Cross-Platform', 'REST API Node.js', 'PostgreSQL', 'Cloudflare CDN'],
+      description: 'Aplikasi pemesanan jadwal konsultasi, pembayaran invoice gateway otomatis, dan tracking status pengerjaan proyek transparan untuk klien.',
+      highlight: 'Automated Client Onboarding · 4.9 App Rating',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      title: 'Omnichannel Performance Ads Scaling',
+      client: 'Fashion & Skincare E-Commerce',
+      category: 'marketing',
+      categoryLabel: 'Digital Marketing & Ads',
+      techStack: ['Meta Conversions API (CAPI)', 'Google Search Ads', 'Looker Studio', 'CRO Landing Page'],
+      description: 'Eksekusi kampanye iklan berbasis ROI dengan testing copywriting agresif, tracking server-side anti-bocor, dan dashboard live reporting mingguan.',
+      highlight: '+320% ROI Growth · CAC Turun 42%',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    },
+  ]
+
+  const filteredProjects =
+    portfolioFilter === 'all'
+      ? portfolioProjects
+      : portfolioProjects.filter((p) => p.category === portfolioFilter)
+
   // Pricing Data per Category
   const pricingData = {
     web: [
@@ -166,7 +232,7 @@ export default function HomePage() {
         btnText: 'Hubungi Tim Sales',
         ctaContext: 'website',
         features: [
-          'Full Custom Tech Stack (Node/Laravel/Next)',
+          'Full Custom Tech Stack (Next.js/Node/Flutter)',
           'Database & Server Dedicated AWS/GCP',
           'Multi-role User & Payment Gateway',
           'SLA Uptime 99.9% & Dedicated PM',
@@ -300,25 +366,25 @@ export default function HomePage() {
   return (
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
       {/* ========================================================
-          TOP FLOATING CAPSULE NAVIGATION (Sesuai Referensi)
+          TOP FLOATING CAPSULE NAVIGATION
       ======================================================== */}
       <header className="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
         <nav className="w-full max-w-4xl bg-[#1A1A1E]/90 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 transition-all duration-300">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] flex items-center justify-center text-white font-extrabold text-sm shadow-glow group-hover:scale-105 transition-transform tracking-tight">
               M
             </div>
             <span className="font-bold tracking-tight text-base text-white">
               MarketingCode<span className="text-[#FF5C28]">.ID</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Menu Links */}
           <div className="hidden md:flex items-center gap-7 text-xs font-medium tracking-wide text-neutral-300">
-            <a href="#layanan" className="hover:text-white transition-colors">Layanan</a>
-            <a href="#fitur" className="hover:text-white transition-colors">Keunggulan</a>
-            <a href="#alur-kerja" className="hover:text-white transition-colors">Cara Kerja</a>
+            <a href="#web-services" className="hover:text-white transition-colors">Layanan Utama</a>
+            <a href="#akselerasi" className="hover:text-white transition-colors">Skalakan Bisnis</a>
+            <a href="#portfolio" className="hover:text-white transition-colors">Studi Kasus</a>
             <a href="#harga" className="hover:text-white transition-colors">Investasi</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
@@ -336,7 +402,7 @@ export default function HomePage() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
-              className="md:hidden text-neutral-300 hover:text-white p-1"
+              className="md:hidden text-neutral-300 hover:text-white p-1 cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -348,25 +414,25 @@ export default function HomePage() {
       {mobileMenuOpen && (
         <div className="fixed inset-x-4 top-20 z-40 bg-[#1A1A1E] text-white p-6 rounded-3xl shadow-2xl border border-white/10 flex flex-col gap-4 text-center md:hidden transition-all animate-in fade-in slide-in-from-top-4">
           <a
-            href="#layanan"
+            href="#web-services"
             onClick={() => setMobileMenuOpen(false)}
             className="py-2 hover:text-[#FF5C28] transition-colors"
           >
-            Layanan
+            Layanan Utama
           </a>
           <a
-            href="#fitur"
+            href="#akselerasi"
             onClick={() => setMobileMenuOpen(false)}
             className="py-2 hover:text-[#FF5C28] transition-colors"
           >
-            Keunggulan
+            Skalakan Bisnis
           </a>
           <a
-            href="#alur-kerja"
+            href="#portfolio"
             onClick={() => setMobileMenuOpen(false)}
             className="py-2 hover:text-[#FF5C28] transition-colors"
           >
-            Cara Kerja
+            Studi Kasus
           </a>
           <a
             href="#harga"
@@ -395,144 +461,210 @@ export default function HomePage() {
       {/* ========================================================
           MAIN CONTENT AREA
       ======================================================== */}
-      <main className="relative bg-grid-pattern pt-32 pb-20 overflow-hidden">
+      <main className="relative bg-grid-pattern pt-28 sm:pt-32 pb-20 overflow-hidden">
         {/* ========================================================
-            HERO SECTION
+            1. HERO SECTION (Container Flex/Grid 2 Kolom di Desktop, Stack di Mobile)
         ======================================================== */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 text-center pt-8">
-          {/* Social Proof Badge with Avatars */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-sm mb-6 hover:border-orange-200 transition-colors">
-            <div className="flex -space-x-2">
-              <img
-                className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80"
-                alt="Client 1"
-              />
-              <img
-                className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
-                alt="Client 2"
-              />
-              <img
-                className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
-                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=80&q=80"
-                alt="Client 3"
-              />
-            </div>
-            <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-              Bergabung bersama <span className="text-[#FF5C28]">250+ Bisnis</span> yang Bertumbuh
-            </span>
-          </div>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Kolom 1 (Dominan) */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              {/* Social Proof Badge with Avatars */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
+                <div className="flex -space-x-2">
+                  <img
+                    className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80"
+                    alt="Client 1"
+                  />
+                  <img
+                    className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
+                    alt="Client 2"
+                  />
+                  <img
+                    className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                    src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=80&q=80"
+                    alt="Client 3"
+                  />
+                </div>
+                <span className="text-xs font-semibold text-neutral-700 tracking-tight">
+                  Bergabung bersama <span className="text-[#FF5C28]">250+ Bisnis</span> yang Bertumbuh
+                </span>
+              </div>
 
-          {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#111827] tracking-tight leading-[1.15] max-w-4xl mx-auto">
-            Kembangkan Bisnis Anda Melalui <span className="text-[#FF5C28]">Website</span>,{' '}
-            <span className="text-[#FF5C28]">Aplikasi</span> &{' '}
-            <span className="text-[#FF5C28]">Digital Marketing</span>
-          </h1>
+              {/* Headline Utama H1 (Web & Mobile App) */}
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
+                Kembangkan Bisnis Anda Melalui <span className="text-[#FF5C28]">Website</span> &amp;{' '}
+                <span className="text-[#FF5C28]">Aplikasi Mobile</span>
+              </h1>
 
-          {/* Subheadline */}
-          <p className="mt-6 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal">
-            Kami merancang ekosistem digital performa tinggi: dari arsitektur kode modern, mobile app yang intuitif, hingga strategi akuisisi pelanggan berbasis konversi nyata.
-          </p>
+              {/* Deskripsi Penawaran */}
+              <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
+                Kami merancang ekosistem digital performa tinggi: arsitektur kode modern, mobile app yang intuitif, serta strategi pemasaran berbasis konversi nyata untuk melipatgandakan omzet bisnis Anda.
+              </p>
 
-          {/* CTA Button & Hand-drawn Indicator */}
-          <div className="mt-8 flex flex-col items-center justify-center relative">
-            <a
-              href="#konsultasi"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <span>Mulai Konsultasi Gratis</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-
-            {/* Social Proof Microtext */}
-            <div className="mt-3 flex items-center gap-1.5 text-xs text-neutral-500">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-              <span>Estimasi proposal & audit arsitektur dalam waktu 24 jam kerja</span>
-            </div>
-          </div>
-
-          {/* Hero Video / Interactive Showcase Card */}
-          <div className="mt-12 relative max-w-4xl mx-auto">
-            <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/9] sm:aspect-[21/10] group">
-              {/* Background Cover Mockup */}
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
-                alt="Agency Team Working"
-                className="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
-
-              {/* Play Button Icon Modal Trigger */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button
-                  type="button"
-                  onClick={() => setVideoModalOpen(true)}
-                  aria-label="Putar Video Showreel"
-                  className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 hover:bg-white text-[#FF5C28] rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md transition-all duration-300 transform hover:scale-110 group-hover:shadow-glow cursor-pointer"
+              {/* CTA Konversi */}
+              <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <a
+                  href="#konsultasi"
+                  className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  <Play className="w-7 h-7 fill-[#FF5C28] text-[#FF5C28] translate-x-0.5" />
-                </button>
+                  <span>Mulai Konsultasi Gratis</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+
+                <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span>Estimasi proposal &amp; audit arsitektur dalam 24 jam</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* 4 Core Pillars Strip */}
-          <div id="layanan" className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 pt-8">
-            {/* Item 1 */}
-            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
-              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                <Code2 className="w-6 h-6" />
-              </div>
-              <h2 className="text-sm font-bold text-neutral-900 leading-snug">Web Development</h2>
-              <p className="text-xs text-neutral-500 mt-1">Next.js 16 & Payload CMS 3</p>
-            </div>
+            {/* Kolom 2: Komponen Visual / Mockup Proyek Utama */}
+            <div className="lg:col-span-5">
+              <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/10] sm:aspect-[4/3] group">
+                {/* Background Cover Mockup */}
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+                  alt="MarketingCode ID Team Working"
+                  className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
 
-            {/* Item 2 */}
-            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
-              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                <Smartphone className="w-6 h-6" />
-              </div>
-              <h2 className="text-sm font-bold text-neutral-900 leading-snug">Mobile App Dev</h2>
-              <p className="text-xs text-neutral-500 mt-1">iOS & Android Hybrid</p>
-            </div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
 
-            {/* Item 3 */}
-            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
-              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-              <h2 className="text-sm font-bold text-neutral-900 leading-snug">Digital Marketing</h2>
-              <p className="text-xs text-neutral-500 mt-1">Meta & Google Ads CAPI</p>
-            </div>
+                {/* Play Button Icon Modal Trigger */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setVideoModalOpen(true)}
+                    aria-label="Putar Video Showreel"
+                    className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 hover:bg-white text-[#FF5C28] rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md transition-all duration-300 transform hover:scale-110 group-hover:shadow-glow cursor-pointer"
+                  >
+                    <Play className="w-7 h-7 fill-[#FF5C28] text-[#FF5C28] translate-x-0.5" />
+                  </button>
+                </div>
 
-            {/* Item 4 */}
-            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
-              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                <Palette className="w-6 h-6" />
+                {/* Floating Micro Badges inside Video Preview */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs">
+                  <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px]">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Showreel Agensi 2026</span>
+                  </div>
+                  <span className="bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white">
+                    1:45 Min
+                  </span>
+                </div>
               </div>
-              <h2 className="text-sm font-bold text-neutral-900 leading-snug">UI/UX & Branding</h2>
-              <p className="text-xs text-neutral-500 mt-1">Konversi & Estetika Tinggi</p>
             </div>
           </div>
         </section>
 
         {/* ========================================================
-            METRICS COUNTER SECTION
+            2. TRAFFIC ROUTER GRID (Tepat di bawah Hero, Grid 3 Kolom)
         ======================================================== */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-24 text-center">
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
+          <div className="text-center mb-8">
+            <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
+              Pusat Layanan &amp; Navigasi Solusi
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mt-1">
+              Pilih Solusi yang Sesuai dengan Kebutuhan Bisnis Anda
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Fokus Web & Mobile App */}
+            <a
+              href="#web-services"
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4 shadow-xs group-hover:scale-110 transition-transform">
+                  <Code2 className="w-6 h-6" />
+                </div>
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-[#EA4510] mb-2 border border-orange-100">
+                  Layanan Inti
+                </span>
+                <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors">
+                  Web &amp; Mobile App Development
+                </h3>
+                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                  Pengembangan website Next.js 16 kencang, Payload CMS 3 mandiri, dan aplikasi mobile Flutter iOS &amp; Android siap rilis.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-[#FF5C28]">
+                <span>Lihat Detail Solusi Web &amp; App</span>
+                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+            {/* Card 2: Fokus Digital Marketing */}
+            <Link
+              href="/digital-marketing"
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4 shadow-xs group-hover:scale-110 transition-transform">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-[#EA4510] mb-2 border border-orange-100">
+                  Pertumbuhan Omzet
+                </span>
+                <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors">
+                  Digital Marketing &amp; Performance Ads
+                </h3>
+                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                  Akuisisi pelanggan tertarget melalui Meta Ads, Google Search, SEO organik, dan tracking CAPI server-side anti-bocor.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-[#FF5C28]">
+                <span>Pelajari Digital Marketing</span>
+                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Card 3: Fokus Video Editing */}
+            <Link
+              href="/video-editing"
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4 shadow-xs group-hover:scale-110 transition-transform">
+                  <Film className="w-6 h-6" />
+                </div>
+                <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-[#EA4510] mb-2 border border-orange-100">
+                  Konten Kreatif
+                </span>
+                <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors">
+                  Creative Video Editing &amp; Motion
+                </h3>
+                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                  Produksi materi video iklan vertikal (TikTok/Reels/Shorts) berdaya pikat tinggi dan company showreel berstandar sinematik.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-[#FF5C28]">
+                <span>Pelajari Video Editing</span>
+                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          </div>
+        </section>
+
+        {/* ========================================================
+            3. TRUST & SOCIAL PROOF STRIP (Pembatas Transisi Antar-Bagian)
+        ======================================================== */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-20 sm:mt-24 text-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight max-w-xl mx-auto">
             Kinerja Teruji Membantu Ekosistem Bisnis Melejit
           </h2>
-          <p className="text-neutral-500 text-sm mt-2">Dukungan teknologi solid & eksekusi pemasaran presisi</p>
+          <p className="text-neutral-500 text-sm mt-2">Dukungan teknologi solid &amp; eksekusi pemasaran presisi</p>
 
           <div className="mt-8 bg-white border border-neutral-200/70 rounded-3xl p-6 sm:p-8 shadow-card grid grid-cols-1 sm:grid-cols-3 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-neutral-100">
             <div className="flex flex-col items-center py-2 sm:py-0">
               <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">180+</span>
-              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">Website & App Dirilis</span>
+              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">Website &amp; App Dirilis</span>
             </div>
 
             <div className="flex flex-col items-center py-2 sm:py-0">
@@ -542,19 +674,128 @@ export default function HomePage() {
 
             <div className="flex flex-col items-center py-2 sm:py-0">
               <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">98.6%</span>
-              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">Kepuasan & Retensi Klien</span>
+              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">Kepuasan &amp; Retensi Klien</span>
             </div>
           </div>
         </section>
 
         {/* ========================================================
-            FEATURE SHOWCASE 1: WEB & APP DEV UI SIMULATION
+            4. DETAIL LAYANAN UTAMA (Flagship Breakdown: Web & Mobile App)
         ======================================================== */}
-        <section id="fitur" className="max-w-5xl mx-auto px-4 sm:px-6 mt-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left: Interactive UI Card Mockup */}
-            <div className="lg:col-span-6 bg-gradient-to-br from-neutral-100 to-neutral-200/60 p-6 rounded-3xl border border-neutral-200/80 shadow-soft">
-              <div className="bg-white rounded-2xl p-5 shadow-card border border-neutral-100">
+        <section id="web-services" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+              <Code className="w-3.5 h-3.5" />
+              <span>Flagship Solutions</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              Spesialisasi Web &amp; Mobile App Berperforma Tinggi
+            </h2>
+            <p className="text-neutral-500 text-sm mt-2 max-w-2xl mx-auto">
+              Setiap solusi dirancang khusus dari baris kode pertama untuk kecepatan instan, keamanan data menyeluruh, dan 100% kepemilikan source code tanpa sistem sewa.
+            </p>
+          </div>
+
+          {/* 3 Pillar Cards: Landing Page, Custom Web & CMS, Mobile App */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Landing Page */}
+            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card flex flex-col justify-between hover:border-orange-200 transition-all">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
+                  <Palette className="w-6 h-6" />
+                </div>
+                <span className="text-[11px] font-bold text-[#FF5C28] uppercase tracking-wider">Kilat &amp; Konversi</span>
+                <h3 className="text-lg font-bold text-neutral-900 mt-1">High-Converting Landing Page</h3>
+                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                  Solusi halaman promosi tunggal ultra-responsif yang dirancang untuk kampanye iklan berkonversi tinggi dan peluncuran produk cepat.
+                </p>
+
+                <div className="mt-5 space-y-2.5 text-xs text-neutral-600">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Waktu muat sub-detik (&lt; 0.8s)
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Integrasi Meta Pixel &amp; Google Tag
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> WhatsApp CTA Auto-Dispatch
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400">
+                Pengerjaan: 5 - 7 Hari Kerja
+              </div>
+            </div>
+
+            {/* Card 2: Custom Web Application & CMS (Flagship) */}
+            <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-[#FF5C28] shadow-xl relative flex flex-col justify-between transform md:-translate-y-2">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                Flagship Agensi
+              </div>
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#FF5C28] text-white flex items-center justify-center mb-4 shadow-glow">
+                  <Code2 className="w-6 h-6" />
+                </div>
+                <span className="text-[11px] font-bold text-[#FF5C28] uppercase tracking-wider">Enterprise Architecture</span>
+                <h3 className="text-lg font-bold text-neutral-900 mt-1">Custom Web Platform &amp; CMS</h3>
+                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                  Aplikasi web korporat, dashboard internal, atau portal SaaS menggunakan Next.js 16 (App Router) dan Payload CMS 3 mandiri.
+                </p>
+
+                <div className="mt-5 space-y-2.5 text-xs text-neutral-700 font-medium">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Full-stack Next.js 16 &amp; React 19
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Payload CMS 3 Serverless Native
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> PostgreSQL Supabase Database
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Hak Akses Repositori GitHub
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-[#FF5C28] font-semibold">
+                Pengerjaan: 14 - 21 Hari Kerja
+              </div>
+            </div>
+
+            {/* Card 3: Mobile Application */}
+            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card flex flex-col justify-between hover:border-orange-200 transition-all">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
+                  <Smartphone className="w-6 h-6" />
+                </div>
+                <span className="text-[11px] font-bold text-[#FF5C28] uppercase tracking-wider">iOS &amp; Android Dual Store</span>
+                <h3 className="text-lg font-bold text-neutral-900 mt-1">Cross-Platform Mobile App</h3>
+                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                  Pengembangan aplikasi mobile modern dengan Flutter cross-platform untuk e-commerce, booking engine, dan interaksi pengguna intensif.
+                </p>
+
+                <div className="mt-5 space-y-2.5 text-xs text-neutral-600">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Single Codebase Android &amp; iOS
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Integrasi Payment Gateway &amp; Auth
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Bantuan Publikasi ke Play/App Store
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400">
+                Pengerjaan: 3 - 6 Minggu
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive UI Mockup (Sprint 04 & Architecture Showcase) */}
+          <div className="mt-16 bg-gradient-to-br from-neutral-100 to-neutral-200/60 p-6 sm:p-8 rounded-3xl border border-neutral-200/80 shadow-soft">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-6 bg-white rounded-2xl p-5 shadow-card border border-neutral-100">
                 <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-red-400" />
@@ -573,7 +814,7 @@ export default function HomePage() {
                       <h4 className="text-xs font-bold text-neutral-800">Optimasi Kecepatan Core Web Vitals</h4>
                       <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Score 99</span>
                     </div>
-                    <p className="text-[11px] text-neutral-500 mt-1">Restrukturisasi cache & CDN Next.js untuk loading time &lt; 0.8s.</p>
+                    <p className="text-[11px] text-neutral-500 mt-1">Restrukturisasi cache &amp; CDN Next.js untuk loading time &lt; 0.8s.</p>
                     <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-400">
                       <div className="flex -space-x-1.5">
                         <span className="w-5 h-5 rounded-full bg-[#FF5C28] text-white flex items-center justify-center text-[9px] font-bold">FE</span>
@@ -583,162 +824,49 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Push Notification Simulated Pill */}
-                  <div className="flex items-center gap-3 p-3 bg-white border border-neutral-200/70 rounded-xl shadow-sm">
+                  <div className="flex items-center gap-3 p-3 bg-white border border-neutral-200/70 rounded-xl shadow-xs">
                     <div className="w-8 h-8 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shrink-0">
                       <BellRing className="w-4 h-4" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-neutral-800 truncate">Mobile App iOS & Android Ready</p>
-                      <p className="text-[10px] text-neutral-400">Build stabil siap diunggah ke Play Store & App Store</p>
+                      <p className="text-xs font-semibold text-neutral-800 truncate">Mobile App iOS &amp; Android Ready</p>
+                      <p className="text-[10px] text-neutral-400">Build stabil siap diunggah ke Play Store &amp; App Store</p>
                     </div>
                     <span className="text-[10px] text-neutral-400">Just now</span>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right: Content Description */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold">
-                <Code className="w-3.5 h-3.5" />
-                <span>Engineering & Design Excellence</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight leading-snug">
-                Teknologi Modular yang Skalabel, Cepat & Aman
-              </h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Kami tidak menggunakan template murahan. Setiap baris kode dirancang spesifik untuk kecepatan loading tinggi, proteksi keamanan data, dan siap menangani jutaan pengunjung tanpa lag.
-              </p>
+              <div className="lg:col-span-6 space-y-4">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight leading-snug">
+                  Teknologi Modular yang Skalabel, Cepat &amp; Aman
+                </h3>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Kami mengintegrasikan ekosistem teknologi terbaru agar produk Anda tahan uji di masa depan tanpa terbebani plugin yang memperlambat website.
+                </p>
 
-              {/* Feature Pills */}
-              <div className="pt-2 flex flex-wrap gap-2">
-                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Next.js 16 & React 19
-                </span>
-                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Payload CMS 3 Native
-                </span>
-                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Supabase Managed Postgres
-                </span>
-                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Client Source Code Ownership
-                </span>
-              </div>
-
-              <div className="pt-3">
-                <a
-                  href="#konsultasi"
-                  className="inline-flex items-center text-xs font-bold text-white bg-[#FF5C28] hover:bg-[#EA4510] px-5 py-2.5 rounded-full transition-all shadow-sm"
-                >
-                  Jelajahi Solusi Teknis
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================
-            FEATURE SHOWCASE 2: DIGITAL MARKETING & DATA ROI
-        ======================================================== */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left: Text Content */}
-            <div className="lg:col-span-6 space-y-4 order-2 lg:order-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold">
-                <BarChart3 className="w-3.5 h-3.5" />
-                <span>Growth & Conversion</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight leading-snug">
-                Kampanye Berbasis ROI: Bukan Sekadar Klik, Tapi Omzet
-              </h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Lupakan anggaran iklan yang terbuang sia-sia. Spesialis digital marketing kami memanfaatkan tracking presisi, A/B testing copywriting, dan landing page conversion-focused untuk mengonversi prospek menjadi pembeli setia.
-              </p>
-
-              {/* 4 Bullet Mini-Cards */}
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
-                    <Target className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-semibold text-neutral-800">Meta & Google Ads</span>
+                <div className="pt-2 flex flex-wrap gap-2">
+                  <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Next.js 16 &amp; React 19
+                  </span>
+                  <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Payload CMS 3 Serverless
+                  </span>
+                  <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Supabase Managed PostgreSQL
+                  </span>
+                  <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Source Code Ownership
+                  </span>
                 </div>
 
-                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
-                    <Search className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-semibold text-neutral-800">Organic SEO Rank #1</span>
-                </div>
-
-                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
-                    <Filter className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-semibold text-neutral-800">Funnel Sales Audit</span>
-                </div>
-
-                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
-                    <PieChart className="w-4 h-4" />
-                  </div>
-                  <span className="text-xs font-semibold text-neutral-800">Transparent Analytics</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Visual Growth Chart Mockup */}
-            <div className="lg:col-span-6 bg-gradient-to-br from-neutral-100 to-neutral-200/60 p-6 rounded-3xl border border-neutral-200/80 shadow-soft order-1 lg:order-2">
-              <div className="bg-white rounded-2xl p-5 shadow-card border border-neutral-100">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">Total Penjualan Klien</span>
-                    <h4 className="text-2xl font-black text-neutral-900 mt-0.5">Rp 842.500.000</h4>
-                  </div>
-                  <div className="text-right">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
-                      <TrendingUp className="w-3 h-3 mr-1" /> +320% ROI
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bar Chart Simulation with Orange Accents */}
-                <div className="mt-6 flex items-end justify-between h-32 pt-4 px-2 gap-2 border-b border-neutral-100">
-                  <div className="w-full flex flex-col items-center gap-1.5">
-                    <div className="w-full bg-orange-100 rounded-t-md h-12" />
-                    <span className="text-[10px] text-neutral-400">Bln 1</span>
-                  </div>
-                  <div className="w-full flex flex-col items-center gap-1.5">
-                    <div className="w-full bg-orange-200 rounded-t-md h-16" />
-                    <span className="text-[10px] text-neutral-400">Bln 2</span>
-                  </div>
-                  <div className="w-full flex flex-col items-center gap-1.5">
-                    <div className="w-full bg-orange-300 rounded-t-md h-20" />
-                    <span className="text-[10px] text-neutral-400">Bln 3</span>
-                  </div>
-                  <div className="w-full flex flex-col items-center gap-1.5">
-                    <div className="w-full bg-orange-400 rounded-t-md h-24" />
-                    <span className="text-[10px] text-neutral-400">Bln 4</span>
-                  </div>
-                  <div className="w-full flex flex-col items-center gap-1.5">
-                    <div className="w-full bg-[#FF5C28] rounded-t-md h-28 shadow-glow" />
-                    <span className="text-[10px] font-bold text-[#EA4510]">Bln 5</span>
-                  </div>
-                </div>
-
-                {/* Footer metric tag */}
-                <div className="mt-4 flex items-center justify-between text-xs text-neutral-500">
-                  <span>Biaya Akuisisi (CAC): <strong>Turun 42%</strong></span>
+                <div className="pt-2">
                   <a
-                    href={getWhatsAppUrl('ads')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#FF5C28] font-semibold flex items-center gap-1 hover:underline"
+                    href="#konsultasi"
+                    className="inline-flex items-center text-xs font-bold text-white bg-[#FF5C28] hover:bg-[#EA4510] px-5 py-2.5 rounded-full transition-all shadow-sm"
                   >
-                    Lihat Laporan Studi Kasus <ArrowUpRight className="w-3.5 h-3.5" />
+                    Konsultasikan Solusi Teknis
+                    <ChevronRight className="w-4 h-4 ml-1" />
                   </a>
                 </div>
               </div>
@@ -747,41 +875,211 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================
-            PRICING / SERVICE PACKAGES SECTION
+            5. ACCELERATION / CROSS-SELL SECTION ("Skalakan Website Anda")
         ======================================================== */}
-        <section id="harga" className="max-w-5xl mx-auto px-4 sm:px-6 mt-28 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
-            <Tag className="w-3.5 h-3.5" />
-            <span>Pilihan Paket Fleksibel</span>
+        <section id="akselerasi" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+              <TrendingUp className="w-3.5 h-3.5" />
+              <span>Growth &amp; Acceleration</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              Skalakan Website Anda dengan Pemasaran &amp; Konten Kreatif
+            </h2>
+            <p className="text-neutral-500 text-sm mt-2 max-w-2xl mx-auto">
+              Website hebat membutuhkan traffic pembeli dan materi video memikat. Padukan arsitektur digital Anda dengan strategi akuisisi teruji untuk melipatgandakan return on investment (ROI).
+            </p>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-            Paket Investasi Transparan Sesuai Skala Bisnis
-          </h2>
-          <p className="text-neutral-500 text-sm mt-2 max-w-lg mx-auto">
-            Pilih paket yang paling pas untuk akselerasi bisnis Anda. Tersedia garansi performa dan purna jual.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Card 1: Digital Marketing */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+                      <BarChart3 className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-neutral-900">Digital Marketing &amp; Performance Ads</h3>
+                      <span className="text-xs text-neutral-400">Kampanye Berbasis ROI &amp; Penjualan Nyata</span>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
+                    +320% ROI
+                  </span>
+                </div>
+
+                <p className="text-xs text-neutral-600 mt-4 leading-relaxed">
+                  Lupakan anggaran iklan yang terbuang sia-sia. Spesialis digital marketing kami memanfaatkan tracking CAPI server-side, riset kata kunci Google Ads intensi beli tinggi, dan optimasi alur funnel.
+                </p>
+
+                {/* Growth Chart Simulation Mini */}
+                <div className="mt-5 p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
+                  <div className="flex justify-between items-baseline mb-2">
+                    <span className="text-[10px] text-neutral-400 font-semibold uppercase">Total Penjualan Klien</span>
+                    <span className="text-sm font-black text-neutral-900">Rp 842.500.000</span>
+                  </div>
+                  <div className="flex items-end justify-between h-20 px-2 gap-2 border-b border-neutral-200/70 pb-2">
+                    <div className="w-full flex flex-col items-center gap-1">
+                      <div className="w-full bg-orange-100 rounded-t h-6" />
+                      <span className="text-[9px] text-neutral-400">Bln 1</span>
+                    </div>
+                    <div className="w-full flex flex-col items-center gap-1">
+                      <div className="w-full bg-orange-200 rounded-t h-9" />
+                      <span className="text-[9px] text-neutral-400">Bln 2</span>
+                    </div>
+                    <div className="w-full flex flex-col items-center gap-1">
+                      <div className="w-full bg-orange-300 rounded-t h-12" />
+                      <span className="text-[9px] text-neutral-400">Bln 3</span>
+                    </div>
+                    <div className="w-full flex flex-col items-center gap-1">
+                      <div className="w-full bg-orange-400 rounded-t h-15" />
+                      <span className="text-[9px] text-neutral-400">Bln 4</span>
+                    </div>
+                    <div className="w-full flex flex-col items-center gap-1">
+                      <div className="w-full bg-[#FF5C28] rounded-t h-18 shadow-glow" />
+                      <span className="text-[9px] font-bold text-[#EA4510]">Bln 5</span>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-[11px] text-neutral-500 flex justify-between">
+                    <span>Biaya Akuisisi (CAC): <strong>Turun 42%</strong></span>
+                    <span className="text-emerald-600 font-semibold">Scaling Positif</span>
+                  </div>
+                </div>
+
+                <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-neutral-600">
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Meta &amp; Google Ads</div>
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Organic SEO Rank #1</div>
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Funnel Sales Audit</div>
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Transparent Analytics</div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-neutral-100">
+                <Link
+                  href="/digital-marketing"
+                  className="w-full py-3 px-5 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow flex items-center justify-center gap-2 transition-all"
+                >
+                  <span>Jelajahi Layanan Digital Marketing</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 2: Creative Video Editing */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+                      <Film className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-neutral-900">Creative Video Editing &amp; Motion</h3>
+                      <span className="text-xs text-neutral-400">Konten Penjualan Hook &amp; Retensi Tinggi</span>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-50 text-[#EA4510] border border-orange-200">
+                    Hook 3 Detik
+                  </span>
+                </div>
+
+                <p className="text-xs text-neutral-600 mt-4 leading-relaxed">
+                  Tingkatkan retensi audiens dengan materi video berstandar tinggi. Dari video iklan ads vertikal (TikTok/Reels) yang memicu klik hingga company showreel yang membangun kredibilitas instan.
+                </p>
+
+                {/* Video Editor Mockup Mini Card */}
+                <div className="mt-5 p-4 bg-neutral-900 text-white rounded-2xl border border-neutral-800 relative overflow-hidden">
+                  <div className="flex items-center justify-between text-xs pb-3 border-b border-neutral-800">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                      <span className="text-[11px] font-mono text-neutral-300">Format 9:16 Vertical Ads</span>
+                    </div>
+                    <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-neutral-300">4K 60fps Master</span>
+                  </div>
+
+                  <div className="py-4 text-center">
+                    <Sparkles className="w-8 h-8 text-[#FF5C28] mx-auto mb-2" />
+                    <h4 className="text-xs font-bold text-white">Dynamic Transitions &amp; Sound Design</h4>
+                    <p className="text-[11px] text-neutral-400 mt-0.5">Dirancang spesifik untuk algoritma FYP dan click conversion rate tinggi</p>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800">
+                    <span>Platform: TikTok • Reels • Shorts</span>
+                    <span className="text-emerald-400 font-semibold">+280% Watch Retention</span>
+                  </div>
+                </div>
+
+                <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-neutral-600">
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> TikTok &amp; Reels Ads</div>
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Corporate Showreel</div>
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Kinetic Typography &amp; SFX</div>
+                  <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Monthly Retainer Squad</div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-neutral-100">
+                <Link
+                  href="/video-editing"
+                  className="w-full py-3 px-5 bg-neutral-900 hover:bg-black text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all"
+                >
+                  <span>Jelajahi Layanan Video Editing</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================
+            6. PORTFOLIO & CASE STUDIES (Hasil Kerja Nyata dengan Filter Kategori)
+        ======================================================== */}
+        <section id="portfolio" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+              <Route className="w-3.5 h-3.5" />
+              <span>Studi Kasus &amp; Portofolio</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              Hasil Kerja Nyata yang Telah Beroperasi
+            </h2>
+            <p className="text-neutral-500 text-sm mt-2 max-w-2xl mx-auto">
+              Setiap proyek dibangun dengan arsitektur bersih, performa tinggi, dan terbukti menghasilkan dampak bisnis nyata bagi klien kami.
+            </p>
+          </div>
 
           {/* Category Filter Tabs */}
-          <div className="mt-8 flex justify-center">
-            <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200">
+          <div className="flex justify-center mb-10">
+            <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full">
               <button
                 type="button"
-                onClick={() => setPricingTab('web')}
-                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
-                  pricingTab === 'web'
-                    ? 'font-bold bg-white text-neutral-900 shadow-sm'
+                onClick={() => setPortfolioFilter('all')}
+                className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                  portfolioFilter === 'all'
+                    ? 'font-bold bg-white text-neutral-900 shadow-xs'
                     : 'font-semibold text-neutral-600 hover:text-neutral-900'
                 }`}
               >
-                Website Development
+                Semua Proyek
               </button>
               <button
                 type="button"
-                onClick={() => setPricingTab('app')}
-                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
-                  pricingTab === 'app'
-                    ? 'font-bold bg-white text-neutral-900 shadow-sm'
+                onClick={() => setPortfolioFilter('web')}
+                className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                  portfolioFilter === 'web'
+                    ? 'font-bold bg-white text-neutral-900 shadow-xs'
+                    : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                Web Development
+              </button>
+              <button
+                type="button"
+                onClick={() => setPortfolioFilter('app')}
+                className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                  portfolioFilter === 'app'
+                    ? 'font-bold bg-white text-neutral-900 shadow-xs'
                     : 'font-semibold text-neutral-600 hover:text-neutral-900'
                 }`}
               >
@@ -789,10 +1087,10 @@ export default function HomePage() {
               </button>
               <button
                 type="button"
-                onClick={() => setPricingTab('ads')}
-                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
-                  pricingTab === 'ads'
-                    ? 'font-bold bg-white text-neutral-900 shadow-sm'
+                onClick={() => setPortfolioFilter('marketing')}
+                className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                  portfolioFilter === 'marketing'
+                    ? 'font-bold bg-white text-neutral-900 shadow-xs'
                     : 'font-semibold text-neutral-600 hover:text-neutral-900'
                 }`}
               >
@@ -801,72 +1099,193 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 3 Tier Pricing Cards */}
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            {pricingData[pricingTab].map((item, idx) => (
+          {/* Portfolio Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredProjects.map((item, idx) => (
               <div
                 key={idx}
-                className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
-                  item.isPopular
-                    ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
-                    : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
-                }`}
+                className="bg-white rounded-3xl overflow-hidden border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all group flex flex-col justify-between"
               >
-                {item.isPopular && (
-                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                    Paling Populer
-                  </div>
-                )}
-
                 <div>
-                  <span
-                    className={`text-xs font-bold uppercase tracking-wider ${
-                      item.isPopular ? 'text-[#FF5C28]' : 'text-neutral-400'
-                    }`}
-                  >
-                    {item.tier}
-                  </span>
-                  <div className="mt-3 flex items-baseline">
-                    <span className="text-3xl font-extrabold text-neutral-900">{item.price}</span>
-                    <span className="text-xs text-neutral-400 ml-1.5">{item.unit}</span>
+                  {/* Thumbnail Image */}
+                  <div className="aspect-[16/9] w-full overflow-hidden relative bg-neutral-100">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full border border-white/20">
+                      {item.categoryLabel}
+                    </div>
                   </div>
-                  <p className="text-xs text-neutral-500 mt-2">{item.desc}</p>
 
-                  <a
-                    href={getWhatsAppUrl(item.ctaContext as any, `${item.tier} (${item.price})`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
-                      item.isPopular
-                        ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow'
-                        : 'bg-neutral-900 hover:bg-black text-white'
-                    }`}
-                  >
-                    {item.btnText}
-                  </a>
+                  <div className="p-6 sm:p-7">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-xs font-semibold text-neutral-400">Klien: {item.client}</span>
+                      <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        {item.highlight}
+                      </span>
+                    </div>
 
-                  {/* Checklist */}
-                  <div className="mt-6 pt-6 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
-                    {item.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#FF5C28] shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
+                    <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#FF5C28] transition-colors">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
+                      {item.description}
+                    </p>
+
+                    {/* Tech Stack Pills */}
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {item.techStack.map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-2.5 py-1 bg-neutral-50 border border-neutral-200 rounded-lg text-[11px] font-medium text-neutral-600"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400 text-center">
-                  {item.time}
+                <div className="px-6 pb-6 pt-2">
+                  <a
+                    href={getWhatsAppUrl('case-study', item.title)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 px-4 bg-neutral-50 hover:bg-[#FFF5F0] hover:text-[#EA4510] border border-neutral-200 text-neutral-700 text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <span>Ingin Solusi Serupa? Diskusi via WA</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Pricing / Investment Options (Integrated into Section 6 Flow) */}
+          <div id="harga" className="mt-24 pt-8">
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+                <Tag className="w-3.5 h-3.5" />
+                <span>Pilihan Paket Transparan</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                Paket Investasi Transparan Sesuai Skala Bisnis
+              </h2>
+              <p className="text-neutral-500 text-sm mt-2 max-w-lg mx-auto">
+                Pilih paket yang paling pas untuk akselerasi bisnis Anda. Tersedia garansi performa dan purna jual.
+              </p>
+
+              {/* Pricing Category Tabs */}
+              <div className="mt-8 flex justify-center">
+                <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200">
+                  <button
+                    type="button"
+                    onClick={() => setPricingTab('web')}
+                    className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                      pricingTab === 'web'
+                        ? 'font-bold bg-white text-neutral-900 shadow-xs'
+                        : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                    }`}
+                  >
+                    Website Development
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPricingTab('app')}
+                    className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                      pricingTab === 'app'
+                        ? 'font-bold bg-white text-neutral-900 shadow-xs'
+                        : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                    }`}
+                  >
+                    Mobile Application
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPricingTab('ads')}
+                    className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                      pricingTab === 'ads'
+                        ? 'font-bold bg-white text-neutral-900 shadow-xs'
+                        : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                    }`}
+                  >
+                    Digital Marketing
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Tier Pricing Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+              {pricingData[pricingTab].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
+                    item.isPopular
+                      ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
+                      : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
+                  }`}
+                >
+                  {item.isPopular && (
+                    <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                      Paling Populer
+                    </div>
+                  )}
+
+                  <div>
+                    <span
+                      className={`text-xs font-bold uppercase tracking-wider ${
+                        item.isPopular ? 'text-[#FF5C28]' : 'text-neutral-400'
+                      }`}
+                    >
+                      {item.tier}
+                    </span>
+                    <div className="mt-3 flex items-baseline">
+                      <span className="text-3xl font-extrabold text-neutral-900">{item.price}</span>
+                      <span className="text-xs text-neutral-400 ml-1.5">{item.unit}</span>
+                    </div>
+                    <p className="text-xs text-neutral-500 mt-2">{item.desc}</p>
+
+                    <a
+                      href={getWhatsAppUrl(item.ctaContext as any, `${item.tier} (${item.price})`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
+                        item.isPopular
+                          ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow'
+                          : 'bg-neutral-900 hover:bg-black text-white'
+                      }`}
+                    >
+                      {item.btnText}
+                    </a>
+
+                    {/* Checklist */}
+                    <div className="mt-6 pt-6 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
+                      {item.features.map((feat, fIdx) => (
+                        <div key={fIdx} className="flex items-center gap-2">
+                          <Check className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400 text-center">
+                    {item.time}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* ========================================================
-            GETTING STARTED 3-STEP PROCESS
+            7. FINAL LEAD CAPTURE & CTA (Alur Kerja, Form Kontak, FAQ, Dark CTA)
         ======================================================== */}
+        {/* Getting Started 3-Step Process */}
         <section id="alur-kerja" className="max-w-4xl mx-auto px-4 sm:px-6 mt-28 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
             <Route className="w-3.5 h-3.5" />
@@ -877,48 +1296,84 @@ export default function HomePage() {
             Tiga Langkah Mudah Memulai Proyek
           </h2>
           <p className="text-neutral-500 text-sm mt-2">
-            Transparan dari tahap perumusan ide sampai produk live siap menghasilkan.
+            Transparan dari tahap perumusan ide sampai produk live siap menghasilkan omzet.
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-            {/* Step 1 */}
             <div className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-[#FFF5F0] text-[#EA4510] font-extrabold text-sm flex items-center justify-center border border-orange-200 mb-4">
                 01
               </div>
-              <h3 className="text-sm font-bold text-neutral-900">Discovery & Konsultasi</h3>
+              <h3 className="text-sm font-bold text-neutral-900">Discovery &amp; Konsultasi</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
                 Sampaikan visi, kendala operasional, dan target bisnis Anda. Kami buatkan road-map teknis serta estimasi investasi.
               </p>
             </div>
 
-            {/* Step 2 */}
             <div className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-[#FF5C28] text-white font-extrabold text-sm flex items-center justify-center shadow-glow mb-4">
                 02
               </div>
-              <h3 className="text-sm font-bold text-neutral-900">Desain UI & Koding</h3>
+              <h3 className="text-sm font-bold text-neutral-900">Desain UI &amp; Koding</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
                 Tim kami menyusun prototipe interaktif di Figma, lalu diimplementasikan menjadi aplikasi kencang melalui sprint mingguan.
               </p>
             </div>
 
-            {/* Step 3 */}
             <div className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-[#FFF5F0] text-[#EA4510] font-extrabold text-sm flex items-center justify-center border border-orange-200 mb-4">
                 03
               </div>
-              <h3 className="text-sm font-bold text-neutral-900">Peluncuran & Scaling</h3>
+              <h3 className="text-sm font-bold text-neutral-900">Peluncuran &amp; Scaling</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Pengujian menyeluruh (QA), rilis ke server produksi atau App Store, dan aktivasi campaign digital marketing.
+                Pengujian menyeluruh (QA), rilis ke server produksi Vercel / App Store, dan aktivasi campaign digital marketing.
               </p>
             </div>
           </div>
         </section>
 
-        {/* ========================================================
-            CONSULTATION FORM SECTION
-        ======================================================== */}
+        {/* FAQ Section */}
+        <section id="faq" className="max-w-3xl mx-auto px-4 sm:px-6 mt-28">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Tanya Jawab</span>
+            </div>
+            <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+              Pertanyaan yang Sering Diajukan
+            </h2>
+            <p className="text-neutral-500 text-sm mt-1">Semua hal yang perlu Anda ketahui sebelum bermitra bersama kami.</p>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs transition-all"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer"
+                >
+                  <span>{faq.q}</span>
+                  {openFaq === idx ? (
+                    <Minus className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                  ) : (
+                    <Plus className="w-4 h-4 text-neutral-400 shrink-0" />
+                  )}
+                </button>
+                {openFaq === idx && (
+                  <div className="px-5 pb-4 text-xs text-neutral-500 leading-relaxed animate-in fade-in">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Lead Capture Form Section */}
         <section id="konsultasi" className="max-w-xl mx-auto px-4 sm:px-6 mt-28 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
             <MailCheck className="w-3.5 h-3.5" />
@@ -926,13 +1381,12 @@ export default function HomePage() {
           </div>
 
           <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-            Klaim Diskusi & Audit Website Gratis
+            Klaim Diskusi &amp; Audit Website Gratis
           </h2>
           <p className="text-neutral-500 text-xs sm:text-sm mt-2">
-            Isi form singkat ini, tim konsultan senior kami akan menganalisis kebutuhan Anda dan mengirimkan proposal dalam 24 jam.
+            Isi formulir singkat ini, tim konsultan senior kami akan menganalisis kebutuhan Anda dan mengirimkan proposal dalam 24 jam.
           </p>
 
-          {/* Clean White Form Box */}
           <div className="mt-8 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card text-left">
             <form onSubmit={handleFormSubmit} className="space-y-4">
               <div>
@@ -966,7 +1420,7 @@ export default function HomePage() {
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                   className="w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50"
                 >
-                  <option value="web">Pembuatan Website Baru / Redesign (Next.js & Payload)</option>
+                  <option value="web">Pembuatan Website Baru / Redesign (Next.js &amp; Payload)</option>
                   <option value="app">Pengembangan Mobile App (iOS / Android)</option>
                   <option value="marketing">Digital Marketing (Meta Ads, Google, SEO)</option>
                   <option value="all">Solusi Komprehensif (Web + App + Marketing)</option>
@@ -998,52 +1452,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ========================================================
-            FREQUENTLY ASKED QUESTIONS
-        ======================================================== */}
-        <section id="faq" className="max-w-3xl mx-auto px-4 sm:px-6 mt-28">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Tanya Jawab</span>
-            </div>
-            <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Pertanyaan yang Sering Diajukan
-            </h2>
-            <p className="text-neutral-500 text-sm mt-1">Semua hal yang perlu Anda ketahui sebelum bermitra bersama kami.</p>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-sm transition-all"
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer"
-                >
-                  <span>{faq.q}</span>
-                  {openFaq === idx ? (
-                    <Minus className="w-4 h-4 text-[#FF5C28] shrink-0" />
-                  ) : (
-                    <Plus className="w-4 h-4 text-neutral-400 shrink-0" />
-                  )}
-                </button>
-                {openFaq === idx && (
-                  <div className="px-5 pb-4 text-xs text-neutral-500 leading-relaxed animate-in fade-in">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ========================================================
-            DARK CAPSULE CTA CARD (Sesuai Referensi)
-        ======================================================== */}
+        {/* Dark Capsule Final CTA Card */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-28">
           <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
             {/* Subtle Glow Effect */}
@@ -1080,7 +1489,7 @@ export default function HomePage() {
                   <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Tanpa Kontrak Mengikat
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> NDA & Proteksi Ide
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> NDA &amp; Proteksi Ide
                 </span>
               </div>
             </div>
@@ -1089,7 +1498,7 @@ export default function HomePage() {
       </main>
 
       {/* ========================================================
-          FOOTER (Sesuai Referensi)
+          FOOTER (Colophon & Copyright)
       ======================================================== */}
       <footer className="bg-white border-t border-neutral-200/80 py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center space-y-6">
@@ -1109,10 +1518,10 @@ export default function HomePage() {
 
           {/* Pill Nav Links */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-neutral-600">
-            <a href="#layanan" className="hover:text-[#FF5C28] transition-colors">Layanan</a>
-            <a href="#fitur" className="hover:text-[#FF5C28] transition-colors">Fitur</a>
-            <a href="#harga" className="hover:text-[#FF5C28] transition-colors">Harga</a>
-            <a href="#alur-kerja" className="hover:text-[#FF5C28] transition-colors">Proses</a>
+            <a href="#web-services" className="hover:text-[#FF5C28] transition-colors">Layanan Utama</a>
+            <a href="#akselerasi" className="hover:text-[#FF5C28] transition-colors">Skalakan Bisnis</a>
+            <a href="#portfolio" className="hover:text-[#FF5C28] transition-colors">Studi Kasus</a>
+            <a href="#harga" className="hover:text-[#FF5C28] transition-colors">Investasi</a>
             <a href="#faq" className="hover:text-[#FF5C28] transition-colors">FAQ</a>
           </div>
 
@@ -1145,7 +1554,7 @@ export default function HomePage() {
             <span>&copy; 2026 MarketingCode.ID Digital Agency. Hak Cipta Dilindungi.</span>
             <div className="flex gap-4 mt-2 sm:mt-0">
               <a href="#" className="hover:underline">Kebijakan Privasi</a>
-              <a href="#" className="hover:underline">Syarat & Ketentuan</a>
+              <a href="#" className="hover:underline">Syarat &amp; Ketentuan</a>
             </div>
           </div>
         </div>
@@ -1174,7 +1583,7 @@ export default function HomePage() {
               <Film className="w-12 h-12 text-[#FF5C28] mb-3" />
               <h4 className="text-base font-bold">Video Showreel MarketingCode.ID</h4>
               <p className="text-xs text-neutral-400 mt-1 max-w-md">
-                Cuplikan sprint desain UI/UX, pengkodean backend Next.js & Payload CMS, dan live tracking dashboard iklan Meta & Google.
+                Cuplikan sprint desain UI/UX, pengkodean backend Next.js 16 &amp; Payload CMS 3, serta live tracking dashboard iklan Meta &amp; Google.
               </p>
               <span className="mt-4 px-3 py-1 bg-white/10 rounded-full text-[10px] text-neutral-300">
                 Durasi: 1 Menit 45 Detik
