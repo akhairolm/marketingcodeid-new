@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.supabase.co',
       },
+      {
+        // Sample/fallback content imagery
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
     localPatterns: [
       {

@@ -11,6 +11,7 @@ export type ConsultationContext =
   | 'ads'
   | 'government'
   | 'case-study'
+  | 'article'
 
 export function getWhatsAppUrl(
   context: ConsultationContext = 'general',
@@ -39,6 +40,11 @@ export function getWhatsAppUrl(
       message = customSubject 
         ? `Halo MarketingCode ID, saya melihat studi kasus proyek "${customSubject}" dan tertarik membangun solusi serupa untuk bisnis saya.`
         : 'Halo MarketingCode ID, saya melihat portofolio proyek Anda dan ingin konsultasi pembuatan sistem serupa.'
+      break
+    case 'article':
+      message = customSubject
+        ? `Halo MarketingCode ID, saya membaca artikel "${customSubject}" dan ingin diskusi lebih lanjut.`
+        : 'Halo MarketingCode ID, saya membaca artikel di blog Anda dan ingin diskusi lebih lanjut.'
       break
     default:
       if (customSubject) {

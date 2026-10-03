@@ -65,6 +65,7 @@ function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
 }
 
 interface PortfolioProject {
+  slug: string
   title: string
   client: string
   category: 'web' | 'app' | 'marketing'
@@ -141,6 +142,7 @@ export default function HomePage() {
   // Portfolio Projects Data
   const portfolioProjects: PortfolioProject[] = [
     {
+      slug: 'warehouse-stock-inventory-erp',
       title: 'Warehouse & Stock Inventory ERP',
       client: 'Distribusi Logistik B2B',
       category: 'web',
@@ -151,6 +153,7 @@ export default function HomePage() {
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
     },
     {
+      slug: 'brand-showcase-e-catalog',
       title: 'High-Converting Brand Showcase & E-Catalog',
       client: 'Consumer Brand & Retail',
       category: 'web',
@@ -161,6 +164,7 @@ export default function HomePage() {
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
     },
     {
+      slug: 'client-service-portal-mobile-booking',
       title: 'Client Service Portal & Mobile Booking Engine',
       client: 'Jasa Profesional & Medis',
       category: 'app',
@@ -171,6 +175,7 @@ export default function HomePage() {
       image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
     },
     {
+      slug: 'omnichannel-performance-ads-scaling',
       title: 'Omnichannel Performance Ads Scaling',
       client: 'Fashion & Skincare E-Commerce',
       category: 'marketing',
@@ -381,10 +386,11 @@ export default function HomePage() {
           </Link>
 
           {/* Desktop Menu Links */}
-          <div className="hidden md:flex items-center gap-7 text-xs font-medium tracking-wide text-neutral-300">
+          <div className="hidden md:flex items-center gap-6 text-xs font-medium tracking-wide text-neutral-300">
             <a href="#web-services" className="hover:text-white transition-colors">Layanan Utama</a>
             <a href="#akselerasi" className="hover:text-white transition-colors">Skalakan Bisnis</a>
-            <a href="#portfolio" className="hover:text-white transition-colors">Studi Kasus</a>
+            <Link href="/portfolio" className="hover:text-white transition-colors">Portofolio</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
             <a href="#harga" className="hover:text-white transition-colors">Investasi</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
@@ -427,13 +433,20 @@ export default function HomePage() {
           >
             Skalakan Bisnis
           </a>
-          <a
-            href="#portfolio"
+          <Link
+            href="/portfolio"
             onClick={() => setMobileMenuOpen(false)}
             className="py-2 hover:text-[#FF5C28] transition-colors"
           >
-            Studi Kasus
-          </a>
+            Portofolio &amp; Studi Kasus
+          </Link>
+          <Link
+            href="/blog"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#FF5C28] transition-colors"
+          >
+            Blog &amp; Insight
+          </Link>
           <a
             href="#harga"
             onClick={() => setMobileMenuOpen(false)}
@@ -1108,7 +1121,7 @@ export default function HomePage() {
               >
                 <div>
                   {/* Thumbnail Image */}
-                  <div className="aspect-[16/9] w-full overflow-hidden relative bg-neutral-100">
+                  <Link href={`/portfolio/${item.slug}`} className="block aspect-[16/9] w-full overflow-hidden relative bg-neutral-100">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -1117,7 +1130,7 @@ export default function HomePage() {
                     <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full border border-white/20">
                       {item.categoryLabel}
                     </div>
-                  </div>
+                  </Link>
 
                   <div className="p-6 sm:p-7">
                     <div className="flex items-center justify-between gap-2 mb-2">
@@ -1127,9 +1140,11 @@ export default function HomePage() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#FF5C28] transition-colors">
-                      {item.title}
-                    </h3>
+                    <Link href={`/portfolio/${item.slug}`} className="block">
+                      <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#FF5C28] transition-colors">
+                        {item.title}
+                      </h3>
+                    </Link>
 
                     <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
                       {item.description}
@@ -1149,19 +1164,37 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 pt-2">
+                <div className="px-6 pb-6 pt-2 flex flex-col sm:flex-row gap-2.5">
+                  <Link
+                    href={`/portfolio/${item.slug}`}
+                    className="flex-1 py-2.5 px-4 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap"
+                  >
+                    <span>Lihat Studi Kasus</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                   <a
                     href={getWhatsAppUrl('case-study', item.title)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 px-4 bg-neutral-50 hover:bg-[#FFF5F0] hover:text-[#EA4510] border border-neutral-200 text-neutral-700 text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors"
+                    className="py-2.5 px-4 bg-neutral-50 hover:bg-[#FFF5F0] hover:text-[#EA4510] border border-neutral-200 text-neutral-700 text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap"
                   >
-                    <span>Ingin Solusi Serupa? Diskusi via WA</span>
+                    <span>Diskusi via WA</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Link to Full Portfolio Archive */}
+          <div className="mt-10 text-center">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-neutral-200/80 hover:border-[#FF5C28] text-xs font-bold text-neutral-800 hover:text-[#FF5C28] shadow-card transition-all transform hover:-translate-y-0.5"
+            >
+              <span>Lihat Seluruh Portofolio &amp; Studi Kasus</span>
+              <ArrowRight className="w-4 h-4 text-[#FF5C28]" />
+            </Link>
           </div>
 
           {/* Pricing / Investment Options (Integrated into Section 6 Flow) */}
@@ -1520,7 +1553,8 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-neutral-600">
             <a href="#web-services" className="hover:text-[#FF5C28] transition-colors">Layanan Utama</a>
             <a href="#akselerasi" className="hover:text-[#FF5C28] transition-colors">Skalakan Bisnis</a>
-            <a href="#portfolio" className="hover:text-[#FF5C28] transition-colors">Studi Kasus</a>
+            <Link href="/portfolio" className="hover:text-[#FF5C28] transition-colors">Portofolio</Link>
+            <Link href="/blog" className="hover:text-[#FF5C28] transition-colors">Blog</Link>
             <a href="#harga" className="hover:text-[#FF5C28] transition-colors">Investasi</a>
             <a href="#faq" className="hover:text-[#FF5C28] transition-colors">FAQ</a>
           </div>

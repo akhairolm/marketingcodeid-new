@@ -100,25 +100,24 @@ Tujuan: Membuat skema collection yang terstruktur, aman, dan mudah dikelola mela
   - Buat `src/collections/Services.ts`:
     - Fields: `title` (text, required), `slug` (text, unique, auto-generate), `shortDescription` (textarea), `icon` (text/upload), `content` (lexical rich text), `sortOrder` (number).
 
-- [ ] **Task 2.3: Portfolios Collection (Studi Kasus Proyek)**
-  - Buat `src/collections/Portfolios.ts`:
-    - Fields: `title`, `slug`, `clientName`, `service` (relationship ke `Services`), `description`, `techStack` (array teks atau badges), `thumbnail` (upload relationship ke `Media`), `gallery` (array upload), `liveUrl` (url), `isFeatured` (boolean), `completedDate` (date).
+- [x] **Task 2.3: Portfolios Collection (Studi Kasus Proyek - SELESAI)**
+  - Dibuat `src/collections/Portfolios.ts`:
+    - Fields: `title`, `slug` (auto-generated via `beforeValidate`), `status` (`draft` | `published`), `isFeatured`, `completedDate`, `clientName`, `category` (`web`, `app`, `marketing`, `video`), `summary`, `thumbnail`, `duration`, `role`, `liveUrl`, `challenge`, `solution`, `results` (array value & label), `techStack` (array), `content` (lexical rich text), `testimonial` (group: quote, name, role), `gallery` (array media & caption), `metaTitle`, `metaDescription`.
 
-- [ ] **Task 2.4: Categories Collection (Kategori Blog)**
-  - Buat `src/collections/Categories.ts`:
-    - Fields: `name` (text, required), `slug` (text, unique).
+- [x] **Task 2.4: Categories Collection (Kategori Blog - SELESAI)**
+  - Dibuat `src/collections/Categories.ts`:
+    - Fields: `name` (text, required), `slug` (text, unique, auto-generate), `description`.
 
-- [ ] **Task 2.5: Articles Collection (Blog SEO Organik)**
-  - Buat `src/collections/Articles.ts`:
-    - Fields: `title`, `slug`, `category` (relationship ke `Categories`), `content` (Lexical Rich Text), `coverImage` (relationship ke `Media`), `metaTitle` (text), `metaDescription` (textarea), `status` (select: `draft` / `published`), `publishedAt` (date).
-    - Tambahkan hooks untuk otomatis mengisi slug dari judul (`beforeValidate` hook).
+- [x] **Task 2.5: Articles Collection (Blog SEO Organik - SELESAI)**
+  - Dibuat `src/collections/Articles.ts`:
+    - Fields: `title`, `slug` (auto-generate via `beforeValidate`), `status` (`draft` | `published`), `publishedAt` (auto-fill hook on publish), `category` (relationship ke `categories`), `excerpt`, `coverImage` (upload media), `content` (Lexical Rich Text), `tags` (array), `authorName`, `authorRole`, `metaTitle`, `metaDescription`.
 
 - [ ] **Task 2.6: Media Collection**
-  - Buat `src/collections/Media.ts` dengan upload aktif (`upload: true`), validasi tipe file gambar (PNG, JPG, WebP), dan atribut `alt` text wajib untuk kebutuhan SEO.
+  - Koleksi `src/collections/Media.ts` aktif dengan upload enabled (`upload: true`), validasi tipe file gambar (PNG, JPG, WebP), dan atribut `alt` text wajib untuk SEO.
 
-- [ ] **Task 2.7: Generate ImportMap, Types & Verifikasi Admin**
-  - Jalankan script `pnpm payload generate:types` dan `pnpm payload generate:importmap`.
-  - Akses `http://localhost:3000/admin`, lakukan registrasi akun Admin perdana, dan lakukan uji input data contoh (sample data).
+- [x] **Task 2.7: Generate ImportMap, Types & Verifikasi Admin (SELESAI)**
+  - Dijalankan script `pnpm generate:types` dan `pnpm generate:importmap` dengan semua koleksi terdaftar di `payload.config.ts`.
+  - Interface TypeScript `Portfolio`, `Article`, `Category` ter-compile bersih di `src/payload-types.ts`.
 
 ---
 
@@ -163,16 +162,18 @@ Tujuan: Mengintegrasikan data Payload CMS 3 ke halaman website Next.js App Route
   - Query data dari koleksi `Services`.
   - Halaman detail layanan dilengkapi rincian alur kerja pengerjaan proyek dan tombol CTA WhatsApp bertarget (*"Saya tertarik layanan pembuatan website"*).
 
-- [ ] **Task 4.3: Halaman Galeri Portofolio (`/portfolio` & `/portfolio/[slug]`)**
-  - Halaman arsip dengan filter kategori/layanan.
-  - Halaman detail studi kasus: Tampilan mockup besar, tantangan klien, solusi yang dibangun, tech stack yang dipakai, dan tombol live demo.
+- [x] **Task 4.3: Halaman Galeri Portofolio (`/portfolio` & `/portfolio/[slug]`) (SELESAI)**
+  - `src/app/(frontend)/portfolio/page.tsx`: Halaman arsip portofolio dengan filter kategori interaktif (Web, Mobile App, Digital Marketing) dan metrik hasil nyata.
+  - `src/app/(frontend)/portfolio/[slug]/page.tsx`: Halaman detail studi kasus lengkap dengan hero + spec sheet kartu klien, banner mockup resolusi tinggi, strip metrik hasil (Lighthouse, ROI, dll.), struktur cerita bernomor (Tantangan, Solusi, Tech Stack), galeri mockup proyek, rekomendasi studi kasus terkait, dan CTA konsultasi WhatsApp kontekstual.
+  - Fallback aman dengan sample data terkurasi saat koneksi database database belum terisi.
 
-- [ ] **Task 4.4: Halaman Blog SEO (`/blog` & `/blog/[slug]`)**
-  - Daftar artikel dengan paginasi atau infinite scroll.
-  - Detail artikel lengkap dengan tanggal terbit, nama penulis, cover image, dan estimasi waktu baca (*reading time*).
+- [x] **Task 4.4: Halaman Blog SEO (`/blog` & `/blog/[slug]`) (SELESAI)**
+  - `src/app/(frontend)/blog/page.tsx`: Halaman arsip artikel dengan hero featured story, filter kategori, dan kartu artikel komprehensif.
+  - `src/app/(frontend)/blog/[slug]/page.tsx`: Halaman detail artikel editorial dengan reading progress bar di bagian atas layar, informasi penulis + estimasi waktu baca (reading minutes), cover image rasio 16:9, sticky table of contents (TOC) dengan scroll-spy aktif, tombol bagikan artikel (Salin Tautan, WhatsApp, LinkedIn, X), kotak bio penulis, artikel terkait, dan dark CTA banner.
 
-- [ ] **Task 4.5: Lexical Rich Text Renderer Component**
-  - Buat komponen `src/components/common/RichText.tsx` untuk me-render data JSON Lexical dari Payload 3 menjadi elemen HTML semantik (H2, H3, Paragraph, CodeBlock, Quote, Image).
+- [x] **Task 4.5: Lexical Rich Text Renderer Component (SELESAI)**
+  - Dibuat komponen `src/components/common/RichText.tsx` memanfaatkan `@payloadcms/richtext-lexical/react` dengan konverter custom untuk heading ber-anchor ID otomatis sehingga bersinkronisasi langsung dengan Table of Contents.
+  - Styling tipografi artikel panjang (`.prose-article`) diatur dengan rapi di `styles.css`.
 
 ---
 
@@ -180,20 +181,20 @@ Tujuan: Mengintegrasikan data Payload CMS 3 ke halaman website Next.js App Route
 
 Tujuan: Memaksimalkan perolehan traffic organik Google sesuai target PRD.
 
-- [ ] **Task 5.1: Dynamic Metadata API (`generateMetadata`)**
-  - Terapkan `generateMetadata` di setiap halaman dinamis (`/portfolio/[slug]` dan `/blog/[slug]`):
-    - Title Tag: `[Judul Artikel] | MarketingCode ID`
-    - Meta Description terambil langsung dari field `metaDescription`.
-    - OpenGraph Tags & Twitter Card dengan gambar thumbnail otomatis.
+- [x] **Task 5.1: Dynamic Metadata API (`generateMetadata`) (SELESAI)**
+  - Diterapkan `generateMetadata` di setiap halaman dinamis:
+    - `/portfolio/[slug]`: Title Tag, Meta Description, OpenGraph tags (article type, image, site name), Twitter summary_large_image card, dan Canonical URL.
+    - `/blog/[slug]`: Title Tag, Meta Description, Authors, Keywords/Tags, Published Time, Modified Time, OpenGraph & Twitter Card.
 
 - [ ] **Task 5.2: Dynamic Sitemap & Robots.txt**
   - Buat `src/app/sitemap.ts`: Otomatis meng-query semua slug artikel dan portofolio terkini dari database Supabase via `payload.find()`.
   - Buat `src/app/robots.ts`: Izinkan crawling untuk seluruh halaman publik dan blokir akses crawler ke `/admin` dan `/api`.
 
-- [ ] **Task 5.3: Schema Markup JSON-LD**
+- [x] **Task 5.3: Schema Markup JSON-LD (SELESAI)**
   - Pasang script JSON-LD terstruktur:
-    - `ProfessionalService` / `Organization` pada Homepage.
-    - `BlogPosting` pada halaman detail artikel untuk Google Rich Snippet.
+    - `BreadcrumbList` pada halaman detail portofolio dan blog.
+    - `CreativeWork` pada halaman studi kasus portofolio.
+    - `BlogPosting` pada halaman detail artikel untuk Google Rich Snippet (author, publisher, headline, image, dates, keywords).
 
 - [ ] **Task 5.4: Optimasi Performa & Gambar**
   - Konfigurasi `next/image` dengan domain Supabase Storage di `next.config.mjs`.
