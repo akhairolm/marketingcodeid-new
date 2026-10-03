@@ -145,14 +145,19 @@ Tujuan: Menyiapkan tata letak responsif, palet visual, dan komponen CTA WhatsApp
 
 Tujuan: Mengintegrasikan data Payload CMS 3 ke halaman website Next.js App Router menggunakan *Local API (`getPayload`)* tanpa latensi HTTP.
 
-- [x] **Task 4.1: Homepage (`/`) (SELESAI)**
-  - **Hero Section:** Asymmetric layout dengan `<HeroBlueprint />` terminal interaktif tabbed (Next.js 16, Mobile, Ads).
-  - **Audience Problem-Solution Bridges:** 3 kartu spesifik (Bisnis tanpa web, Pebisnis bingung ads, Instansi butuh aplikasi custom).
-  - **The Bento Grid (Macrostructure 01):** Modular tiles 2x2, 2x1, 1x1 untuk kapabilitas agensi.
-  - **Featured Case Studies:** 3 studi kasus nyata lengkap dengan badge tech stack dan tombol konsultasi WA spesifik.
-  - **Dark Graphite Band:** Protokol pengerjaan 4 fase transparan.
-  - **Conversational FAQ:** Transparansi harga, waktu, garansi, dan 100% kepemilikan source code.
-  - **Final CTA Banner:** Saluran kontak langsung WhatsApp tanpa sales rep.
+- [x] **Task 4.1: Homepage (`/`) — NexaCraft Design Implementation (SELESAI)**
+  - **Top Floating Capsule Navigation:** Bar kapsul gelap (`#1A1A1E`/90) dengan logo NexaCraft, link anchor navigasi, tombol CTA oranye (`#FF5C28`), dan responsive mobile drawer.
+  - **Hero Section:** Social proof badge 3 avatar (`250+ Bisnis yang Bertumbuh`), judul utama dengan aksen warna brand oranye, deskripsi performa tinggi, dan kartu showcase video 16/9 dengan play button modal interaktif.
+  - **4 Core Pillars Strip:** Web Development, Mobile App Dev, Digital Marketing, dan UI/UX & Branding.
+  - **Metrics Counter Card:** 180+ Website & App Dirilis, Rp 45M+ GMV Klien, 98.6% Kepuasan & Retensi.
+  - **Feature Showcase 1 (App Architecture):** Kartu UI simulasi Next.js 16 cache & CDN, Core Web Vitals score 99, sprint task progress, dan notification pill.
+  - **Feature Showcase 2 (Growth Chart):** Kartu visual ROI +320% dengan bar chart oranye gradasi bulanan dan metrik CAC turun 42%.
+  - **Pilihan Paket Investasi Transparan:** Tabs filter interaktif (Website, Mobile App, Digital Marketing), 3 tingkatan kartu harga dengan highlight tier "Paling Populer" (Business Pro).
+  - **Alur Kerja 3 Langkah:** Discovery & Konsultasi, Desain UI & Koding, Peluncuran & Scaling.
+  - **Lead Consultation Form:** Form permintaan konsultasi terintegrasi WhatsApp URL generation otomatis dan toast notification konfirmasi.
+  - **FAQ Accordion:** Tanya-jawab interaktif mengenai estimasi waktu, 100% kepemilikan source code, garansi 3 bulan, dan alur pelaporan marketing.
+  - **Dark Capsule CTA Banner:** Container gelap `#121214` dengan efek glow oranye dan tombol ganda (Konsultasi & Direct WhatsApp).
+  - **Footer & Floating WhatsApp:** Footer minimalis dengan link navigasi, ikon sosial media (Instagram, LinkedIn, GitHub), copyright, dan floating WhatsApp CTA widget.
 
 - [ ] **Task 4.2: Halaman Layanan (`/services` & `/services/[slug]`)**
   - Query data dari koleksi `Services`.
