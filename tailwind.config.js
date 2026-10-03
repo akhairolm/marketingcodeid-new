@@ -9,48 +9,57 @@ export default {
   		colors: {
   			border: 'var(--color-rule)',
   			input: 'var(--color-rule)',
-  			ring: 'var(--color-accent)',
-  			background: 'var(--color-paper)',
-  			foreground: 'var(--color-ink)',
+  			ring: '#FF5C28',
+  			background: '#FBFBFB',
+  			foreground: '#18181B',
+  			brand: {
+  				50: '#FFF5F0',
+  				100: '#FFE9DE',
+  				200: '#FFD3BE',
+  				300: '#FFAD8E',
+  				400: '#FF8452',
+  				500: '#FF5C28', // Warna aksen orange persis referensi
+  				600: '#EA4510',
+  				700: '#C23205',
+  				dark: '#121214',
+  			},
   			primary: {
-  				DEFAULT: 'var(--color-accent)',
+  				DEFAULT: '#FF5C28',
   				foreground: '#ffffff'
   			},
   			secondary: {
-  				DEFAULT: 'var(--color-paper-subtle)',
-  				foreground: 'var(--color-ink)'
+  				DEFAULT: '#F4F4F5',
+  				foreground: '#18181B'
   			},
   			muted: {
-  				DEFAULT: 'var(--color-paper-subtle)',
-  				foreground: 'var(--color-ink-muted)'
+  				DEFAULT: '#F4F4F5',
+  				foreground: '#71717A'
   			},
   			accent: {
-  				DEFAULT: 'var(--color-accent-subtle)',
-  				foreground: 'var(--color-accent)'
+  				DEFAULT: '#FFF5F0',
+  				foreground: '#FF5C28'
   			},
   			card: {
-  				DEFAULT: 'var(--color-paper-card)',
-  				foreground: 'var(--color-ink)'
+  				DEFAULT: '#FFFFFF',
+  				foreground: '#18181B'
   			}
   		},
+  		boxShadow: {
+  			'soft': '0 10px 40px -10px rgba(0,0,0,0.06)',
+  			'glow': '0 12px 30px -5px rgba(255, 92, 40, 0.25)',
+  			'card': '0 4px 24px -2px rgba(16, 24, 40, 0.05)',
+  		},
   		borderRadius: {
-  			lg: 'var(--radius-card)',
-  			md: 'var(--radius-btn)',
-  			sm: 'calc(var(--radius-btn) - 2px)'
+  			'3xl': '1.5rem',
+  			'2xl': '1rem',
+  			'xl': '0.75rem',
+  			lg: '0.625rem',
+  			md: '0.5rem',
+  			sm: '0.375rem'
   		},
   		fontFamily: {
-  			display: [
-  				'var(--font-display)',
-  				'sans-serif'
-  			],
-  			body: [
-  				'var(--font-body)',
-  				'sans-serif'
-  			],
-  			mono: [
-  				'var(--font-mono)',
-  				'monospace'
-  			]
+  			sans: ['var(--font-sans)', '"Plus Jakarta Sans"', 'sans-serif'],
+  			mono: ['var(--font-mono)', 'monospace'],
   		},
   		keyframes: {
   			'accordion-down': {

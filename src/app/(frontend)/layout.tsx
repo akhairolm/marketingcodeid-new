@@ -1,31 +1,43 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import './styles.css'
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  weight: ['400', '500', '600'],
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'MarketingCode ID — Custom Web, Mobile App & Digital Marketing Agency',
+  title: 'NexaCraft Agency — Solusi Website, Mobile App & Digital Marketing',
   description:
-    'Agensi pengembangan website custom performa tinggi (Next.js 16 & Payload CMS 3), aplikasi mobile, dan strategi digital marketing (Meta & Google Ads). Konsultasi langsung via WhatsApp.',
+    'Kami merancang ekosistem digital performa tinggi: dari arsitektur kode modern, mobile app yang intuitif, hingga strategi akuisisi pelanggan berbasis konversi nyata.',
   keywords: [
-    'Jasa Pembuatan Website Custom',
-    'Next.js Agency Indonesia',
-    'Aplikasi Mobile iOS Android',
+    'NexaCraft Agency',
+    'Jasa Pembuatan Website',
+    'Mobile App Dev iOS Android',
     'Digital Marketing Ads',
-    'Jasa Website Instansi Pemerintahan',
-    'Payload CMS Developer',
+    'Next.js Agency',
+    'UI UX Design',
   ],
-  authors: [{ name: 'MarketingCode ID' }],
+  authors: [{ name: 'NexaCraft Digital Agency' }],
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
-      <body>
-        <main>{children}</main>
+    <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
+        {children}
       </body>
     </html>
   )
 }
-

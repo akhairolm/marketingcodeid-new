@@ -1,642 +1,1223 @@
-import React from 'react'
-import { headers as getHeaders } from 'next/headers.js'
-import { getPayload } from 'payload'
-import config from '@/payload.config'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
-import { HeroBlueprint } from '@/components/home/HeroBlueprint'
-import { FloatingWhatsApp } from '@/components/common/FloatingWhatsApp'
-import { getWhatsAppUrl } from '@/lib/whatsapp'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+'use client'
+
+import React, { useState } from 'react'
 import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from '@/components/ui/card'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import {
+  Layers,
+  Menu,
+  X,
   ArrowRight,
-  ArrowDown,
-  Check,
-  ShieldCheck,
-  Zap,
+  CheckCircle2,
+  Play,
+  Sparkles,
   Code2,
   Smartphone,
-  LineChart,
-  Terminal,
-  MessageSquare,
-  Sparkles,
+  TrendingUp,
+  Palette,
+  BellRing,
+  Code,
+  Check,
+  ChevronRight,
+  BarChart3,
+  Target,
+  Search,
+  Filter,
+  PieChart,
+  ArrowUpRight,
+  Tag,
+  Route,
+  MailCheck,
+  HelpCircle,
+  Plus,
+  Minus,
+  MessageCircle,
+  Film,
 } from 'lucide-react'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { FloatingWhatsApp } from '@/components/common/FloatingWhatsApp'
 
-export const dynamic = 'force-dynamic'
-
-interface FeaturedProject {
-  title: string
-  client: string
-  category: string
-  techStack: string[]
-  description: string
-  highlight: string
+function InstagramIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+    </svg>
+  )
 }
 
-export default async function HomePage() {
-  // Graceful Local API query (Fallback if Supabase DB is offline during setup)
-  let isDbConnected = false
+function LinkedinIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect width="4" height="12" x="2" y="9"/>
+      <circle cx="4" cy="4" r="2"/>
+    </svg>
+  )
+}
 
-  try {
-    const headers = await getHeaders()
-    const payloadConfig = await config
-    const payload = await getPayload({ config: payloadConfig })
-    await payload.find({
-      collection: 'users',
-      limit: 1,
-    })
-    isDbConnected = true
-  } catch (_err) {
-    isDbConnected = false
+function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+      <path d="M9 18c-4.51 2-5-2-7-2"/>
+    </svg>
+  )
+}
+
+export default function HomePage() {
+  // Mobile Menu State
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  // Video Modal State
+  const [videoModalOpen, setVideoModalOpen] = useState(false)
+
+  // Pricing Tab Filter State
+  const [pricingTab, setPricingTab] = useState<'web' | 'app' | 'ads'>('web')
+
+  // FAQ Accordion State (single open or multiple)
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  // Toast Notification State
+  const [toastOpen, setToastOpen] = useState(false)
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: 'web',
+    notes: '',
+  })
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index)
   }
 
-  const featuredProjects: FeaturedProject[] = [
-    {
-      title: 'Warehouse & Stock Inventory ERP',
-      client: 'Distribusi Logistik B2B',
-      category: 'Custom Web Application',
-      techStack: ['Next.js 16', 'Payload CMS 3', 'Supabase PostgreSQL', 'Drizzle ORM'],
-      description: 'Sistem pencatatan stok multi-rak real-time dengan nomor batch FIFO/LIFO, audit trail mutasi barang, dan dashboard visual low-stock alert.',
-      highlight: '0ms Rekap Manual · 100% Data Integritas',
-    },
-    {
-      title: 'High-Converting Brand Showcase & Product Catalog',
-      client: 'Consumer Brand & Retail',
-      category: 'Company Profile & E-Catalog',
-      techStack: ['Next.js App Router', 'Tailwind CSS', 'Dynamic WhatsApp CTA', 'Vercel Edge'],
-      description: 'Website katalog interaktif ultra-cepat dengan waktu muat 0.8 detik. Dilengkapi integrasi pesan WhatsApp otomatis sesuai produk yang dilihat pengunjung.',
-      highlight: 'Score Lighthouse 99 · Conversion 3.4x',
-    },
-    {
-      title: 'Client Service Portal & Booking Engine',
-      client: 'Jasa Profesional & Konsultan',
-      category: 'Web & Mobile Application',
-      techStack: ['Next.js', 'React Server Actions', 'PostgreSQL', 'Cloudflare CDN'],
-      description: 'Portal pemesanan jadwal konsultasi, pembayaran invoice, dan dashboard status pengerjaan proyek transparan yang dapat diakses klien.',
-      highlight: 'Automated Client Onboarding',
-    },
-  ]
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    // Show toast notification
+    setToastOpen(true)
+
+    // Prepare WhatsApp message
+    const serviceName =
+      formData.service === 'web'
+        ? 'Website Development'
+        : formData.service === 'app'
+        ? 'Mobile App Development'
+        : formData.service === 'marketing'
+        ? 'Digital Marketing (Ads & SEO)'
+        : 'Solusi Komprehensif (Web + App + Marketing)'
+
+    const waText = `Halo NexaCraft / MarketingCode ID, saya ${formData.name} (${formData.email}) ingin konsultasi terkait ${serviceName}. Detail rencana: ${formData.notes || '-'}`
+
+    // Automatically trigger WhatsApp redirect after brief moment
+    setTimeout(() => {
+      window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(waText)}`, '_blank')
+    }, 1000)
+
+    // Reset Form
+    setFormData({ name: '', email: '', service: 'web', notes: '' })
+
+    // Auto dismiss toast after 4s
+    setTimeout(() => {
+      setToastOpen(false)
+    }, 4000)
+  }
+
+  // Pricing Data per Category
+  const pricingData = {
+    web: [
+      {
+        tier: 'Starter UMKM',
+        price: 'Rp 4.9jt',
+        unit: '/ project',
+        desc: 'Solusi landing page kilat dengan konversi tinggi untuk promosi produk unggulan.',
+        isPopular: false,
+        btnText: 'Pilih Paket Starter',
+        ctaContext: 'website',
+        features: [
+          '1 High-Converting Landing Page',
+          'Mobile Responsive & Fast Speed',
+          'Free Domain .com & Cloud Hosting 1 Th',
+          'Integrasi WhatsApp & Meta Pixel',
+        ],
+        time: 'Pengerjaan: 5 - 7 Hari Kerja',
+      },
+      {
+        tier: 'Business Pro',
+        price: 'Rp 12.5jt',
+        unit: '/ project',
+        desc: 'Website korporat atau portal katalog dinamis lengkap dengan CMS mandiri.',
+        isPopular: true,
+        btnText: 'Pilih Paket Business',
+        ctaContext: 'website',
+        features: [
+          'Hingga 8 Halaman Custom Desain',
+          'Content Management System (CMS)',
+          'On-Page SEO Optimization Pro',
+          'Setup Google Analytics & Heatmap',
+          'Garansi Maintenance 3 Bulan',
+        ],
+        time: 'Pengerjaan: 14 - 21 Hari Kerja',
+      },
+      {
+        tier: 'Enterprise & App',
+        price: 'Rp 28jt+',
+        unit: '/ custom',
+        desc: 'Aplikasi mobile iOS/Android, SaaS web app, atau platform e-commerce kompleks.',
+        isPopular: false,
+        btnText: 'Hubungi Tim Sales',
+        ctaContext: 'website',
+        features: [
+          'Full Custom Tech Stack (Node/Laravel/Next)',
+          'Database & Server Dedicated AWS/GCP',
+          'Multi-role User & Payment Gateway',
+          'SLA Uptime 99.9% & Dedicated PM',
+        ],
+        time: 'Timeline Disesuaikan Scope Project',
+      },
+    ],
+    app: [
+      {
+        tier: 'MVP Mobile Starter',
+        price: 'Rp 18jt',
+        unit: '/ project',
+        desc: 'Aplikasi mobile esensial untuk validasi pasar dengan fitur utama yang siap pakai.',
+        isPopular: false,
+        btnText: 'Pilih MVP Mobile',
+        ctaContext: 'mobile',
+        features: [
+          'Flutter Cross-Platform (Android & iOS)',
+          'Autentikasi User (Google & Email)',
+          'Integrasi REST API & Cloud Database',
+          'Push Notification Setup',
+        ],
+        time: 'Pengerjaan: 3 - 4 Minggu',
+      },
+      {
+        tier: 'Full Commercial App',
+        price: 'Rp 35jt',
+        unit: '/ project',
+        desc: 'Solusi lengkap e-commerce atau booking service siap terbit di App Store & Play Store.',
+        isPopular: true,
+        btnText: 'Pilih Commercial App',
+        ctaContext: 'mobile',
+        features: [
+          'Dual Platform: iOS App Store & Android Play Store',
+          'Payment Gateway Terintegrasi (Midtrans/Xendit)',
+          'Dashboard Admin Web untuk Pengelolaan Data',
+          'Tracking Analytics & Crash Reporting',
+          'Garansi & Bantuan Review App Store',
+        ],
+        time: 'Pengerjaan: 6 - 8 Minggu',
+      },
+      {
+        tier: 'Custom Enterprise App',
+        price: 'Rp 65jt+',
+        unit: '/ custom',
+        desc: 'Arsitektur skala besar dengan integrasi sistem internal perusahaan dan keamanan biometrik.',
+        isPopular: false,
+        btnText: 'Konsultasi Enterprise',
+        ctaContext: 'mobile',
+        features: [
+          'Microservices Architecture & Offline-First Sync',
+          'Enkripsi Data End-to-End & Biometrik',
+          'Integrasi ERP/CRM Perusahaan Eksisting',
+          'Dedicated QA & Stress Testing 50k CCU',
+        ],
+        time: 'Timeline Sesuai Dokumen Spesifikasi',
+      },
+    ],
+    ads: [
+      {
+        tier: 'Growth Campaign',
+        price: 'Rp 3.5jt',
+        unit: '/ bulan',
+        desc: 'Paket manajemen Meta Ads atau Google Ads untuk akselerasi leads produk UMKM.',
+        isPopular: false,
+        btnText: 'Pilih Paket Growth',
+        ctaContext: 'ads',
+        features: [
+          'Setup Meta Pixel / Google Ads Conversion',
+          'Riset Audiens & Target Kata Kunci',
+          'Pembuatan 6 Variasi Copywriting & Banner',
+          'Laporan Kinerja Mingguan Transparan',
+        ],
+        time: 'Siklus Evaluasi Mingguan',
+      },
+      {
+        tier: 'Scale & Performance',
+        price: 'Rp 7.5jt',
+        unit: '/ bulan',
+        desc: 'Manajemen multi-channel (Meta + Google) dengan A/B testing dan optimasi CRO landing page.',
+        isPopular: true,
+        btnText: 'Pilih Scale Ads',
+        ctaContext: 'ads',
+        features: [
+          'Omnichannel Ads: Meta Ads (FB/IG) + Google Search',
+          'Tracking Meta CAPI (Server-Side) Anti-Bocor',
+          'A/B Testing Copywriting & Creative Visual',
+          'Audit & Optimasi Kecepatan Landing Page',
+          'Live Reporting Dashboard (Looker Studio)',
+        ],
+        time: 'Evaluasi & Scaling Harian',
+      },
+      {
+        tier: 'Full Digital Takeover',
+        price: 'Rp 15jt+',
+        unit: '/ bulan',
+        desc: 'Tim digital marketing dedicated untuk brand yang menargetkan omzet miliaran rupiah.',
+        isPopular: false,
+        btnText: 'Diskusi Retainer',
+        ctaContext: 'ads',
+        features: [
+          'Full Funnel Strategy: Awareness, Retargeting, Retention',
+          'Dedicated Copywriter, Graphic Designer & Media Buyer',
+          'Optimasi SEO Organik Halaman 1 Google',
+          'Konsultasi Pertumbuhan Mingguan Bersama Lead Strategist',
+        ],
+        time: 'Dedicated Squad Mingguan',
+      },
+    ],
+  }
 
   const faqs = [
     {
-      q: 'Berapa lama rata-rata pembuatan website atau aplikasi?',
-      a: 'Untuk website company profile custom (Next.js 16 + Payload CMS 3) umumnya membutuhkan waktu 7 hingga 14 hari kerja. Untuk aplikasi web custom atau aplikasi mobile dengan kompleksitas lebih tinggi, berkisar antara 3 hingga 6 minggu.',
+      q: 'Berapa lama estimasi pembuatan website atau aplikasi?',
+      a: 'Landing page sederhana umumnya selesai dalam 5-7 hari kerja. Website korporat 2-3 minggu, dan aplikasi mobile custom antara 1 hingga 3 bulan tergantung kompleksitas fitur yang diinginkan.',
     },
     {
-      q: 'Mengapa memilih Next.js & Payload daripada WordPress template?',
-      a: 'WordPress menggunakan plugin pihak ketiga yang sering konflik, lambat, dan rentan celah keamanan. Next.js dan Payload CMS memberikan waktu muat instan (sub-detik), skor Google SEO sangat tinggi, dan CMS modern yang ringan tanpa beban plugin tidak penting.',
+      q: 'Apakah saya memegang kepemilikan penuh atas kode (source code)?',
+      a: 'Ya, 100%! Setelah pelunasan proyek, seluruh hak cipta source code, aset desain Figma, dan akses server diserahkan sepenuhnya kepada perusahaan Anda tanpa ada sistem sewa tersembunyi.',
     },
     {
-      q: 'Apakah saya mendapatkan seluruh source code proyek?',
-      a: 'Ya, 100%. Seluruh source code proyek akan diserahkan dan dipush ke akun GitHub Anda. Kami tidak membatasi atau mengunci kepemilikan kode Anda (Zero Vendor Lock-in).',
+      q: 'Bagaimana garansi dan pemeliharaan (maintenance) setelah rilis?',
+      a: 'Kami memberikan garansi perbaikan bug dan pemeliharaan gratis selama 1 hingga 3 bulan (tergantung paket). Kami juga menyediakan opsi retainer tahunan untuk update berkala dan optimasi server.',
     },
     {
-      q: 'Apakah biaya deploy di Vercel dan Supabase mahal?',
-      a: 'Untuk skala kecil hingga menengah, kuota gratis (free tier) Vercel dan Supabase sudah sangat mencukupi kebutuhan operasional harian. Biaya langganan hanya meningkat jika traffic website Anda sudah mencapai puluhan ribu pengunjung per bulan.',
-    },
-    {
-      q: 'Bagaimana jika saya belum punya logo, tulisan, atau gambar produk?',
-      a: 'Jangan khawatir. Kami membantu perapian struktur teks copywriting, pemilihan gambar lisensi resmi berkualitas tinggi, dan tata letak materi sehingga Anda tidak perlu pusing menyiapkan semuanya dari awal.',
-    },
-    {
-      q: 'Bagaimana sistem pembayaran dan garansinya?',
-      a: 'Sistem pembayaran bertahap (Down Payment 50% saat kesepakatan, dan pelunasan 50% setelah proyek selesai dan siap live). Kami memberikan garansi perbaikan bug dan pendampingan teknis gratis setelah serah terima.',
+      q: 'Bagaimana alur kerja jasa digital marketing dan laporannya?',
+      a: 'Kami melakukan audit akun iklan & SEO terlebih dahulu, membuat rancangan materi kreatif dan copywriting, lalu melakukan testing audiens. Anda akan menerima dashboard live reporting dan evaluasi berkala setiap minggu.',
     },
   ]
 
   return (
-    <div className="site-wrapper">
-      <Navbar />
+    <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
+      {/* ========================================================
+          TOP FLOATING CAPSULE NAVIGATION (Sesuai Referensi)
+      ======================================================== */}
+      <header className="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
+        <nav className="w-full max-w-4xl bg-[#1A1A1E]/90 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 transition-all duration-300">
+          {/* Brand Logo */}
+          <a href="#" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shadow-glow group-hover:scale-105 transition-transform">
+              <Layers className="w-4 h-4" />
+            </div>
+            <span className="font-bold tracking-tight text-base text-white">
+              Nexa<span className="text-[#FF5C28]">Craft</span>
+            </span>
+          </a>
 
-      <main className="main-content">
+          {/* Desktop Menu Links */}
+          <div className="hidden md:flex items-center gap-7 text-xs font-medium tracking-wide text-neutral-300">
+            <a href="#layanan" className="hover:text-white transition-colors">Layanan</a>
+            <a href="#fitur" className="hover:text-white transition-colors">Keunggulan</a>
+            <a href="#alur-kerja" className="hover:text-white transition-colors">Cara Kerja</a>
+            <a href="#harga" className="hover:text-white transition-colors">Investasi</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+          </div>
+
+          {/* Action Button */}
+          <div className="flex items-center gap-3">
+            <a
+              href="#konsultasi"
+              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-glow transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Konsultasi Gratis
+            </a>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
+              className="md:hidden text-neutral-300 hover:text-white p-1"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Dropdown Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-x-4 top-20 z-40 bg-[#1A1A1E] text-white p-6 rounded-3xl shadow-2xl border border-white/10 flex flex-col gap-4 text-center md:hidden transition-all animate-in fade-in slide-in-from-top-4">
+          <a
+            href="#layanan"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#FF5C28] transition-colors"
+          >
+            Layanan
+          </a>
+          <a
+            href="#fitur"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#FF5C28] transition-colors"
+          >
+            Keunggulan
+          </a>
+          <a
+            href="#alur-kerja"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#FF5C28] transition-colors"
+          >
+            Cara Kerja
+          </a>
+          <a
+            href="#harga"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#FF5C28] transition-colors"
+          >
+            Investasi
+          </a>
+          <a
+            href="#faq"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#FF5C28] transition-colors"
+          >
+            FAQ
+          </a>
+          <a
+            href="#konsultasi"
+            onClick={() => setMobileMenuOpen(false)}
+            className="bg-[#FF5C28] hover:bg-[#EA4510] text-white font-semibold py-2.5 rounded-full mt-2"
+          >
+            Jadwalkan Diskusi Proyek
+          </a>
+        </div>
+      )}
+
+      {/* ========================================================
+          MAIN CONTENT AREA
+      ======================================================== */}
+      <main className="relative bg-grid-pattern pt-32 pb-20 overflow-hidden">
         {/* ========================================================
-            HERO SECTION (Asymmetric Hallmark Cobalt Layout)
+            HERO SECTION
         ======================================================== */}
-        <section className="hero-section">
-          <div className="section-container hero-grid">
-            <div className="hero-content">
-              <div className="hero-eyebrow">
-                <span className="eyebrow-symbol">●</span>
-                <span className="eyebrow-text">MARKETINGCODE ID · BESPOKE DIGITAL AGENCY</span>
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 text-center pt-8">
+          {/* Social Proof Badge with Avatars */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-sm mb-6 hover:border-orange-200 transition-colors">
+            <div className="flex -space-x-2">
+              <img
+                className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80"
+                alt="Client 1"
+              />
+              <img
+                className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
+                alt="Client 2"
+              />
+              <img
+                className="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=80&q=80"
+                alt="Client 3"
+              />
+            </div>
+            <span className="text-xs font-semibold text-neutral-700 tracking-tight">
+              Bergabung bersama <span className="text-[#FF5C28]">250+ Bisnis</span> yang Bertumbuh
+            </span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#111827] tracking-tight leading-[1.15] max-w-4xl mx-auto">
+            Kembangkan Bisnis Anda Melalui <span className="text-[#FF5C28]">Website</span>,{' '}
+            <span className="text-[#FF5C28]">Aplikasi</span> &{' '}
+            <span className="text-[#FF5C28]">Digital Marketing</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="mt-6 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal">
+            Kami merancang ekosistem digital performa tinggi: dari arsitektur kode modern, mobile app yang intuitif, hingga strategi akuisisi pelanggan berbasis konversi nyata.
+          </p>
+
+          {/* CTA Button & Hand-drawn Indicator */}
+          <div className="mt-8 flex flex-col items-center justify-center relative">
+            <a
+              href="#konsultasi"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <span>Mulai Konsultasi Gratis</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+
+            {/* Social Proof Microtext */}
+            <div className="mt-3 flex items-center gap-1.5 text-xs text-neutral-500">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+              <span>Estimasi proposal & audit arsitektur dalam waktu 24 jam kerja</span>
+            </div>
+          </div>
+
+          {/* Hero Video / Interactive Showcase Card */}
+          <div className="mt-12 relative max-w-4xl mx-auto">
+            <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/9] sm:aspect-[21/10] group">
+              {/* Background Cover Mockup */}
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
+                alt="Agency Team Working"
+                className="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
+
+              {/* Play Button Icon Modal Trigger */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={() => setVideoModalOpen(true)}
+                  aria-label="Putar Video Showreel"
+                  className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 hover:bg-white text-[#FF5C28] rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md transition-all duration-300 transform hover:scale-110 group-hover:shadow-glow cursor-pointer"
+                >
+                  <Play className="w-7 h-7 fill-[#FF5C28] text-[#FF5C28] translate-x-0.5" />
+                </button>
               </div>
 
-              <h1 className="hero-title">
-                Website Custom, Aplikasi Mobile, dan Iklan Berkonversi Tinggi.
-              </h1>
-
-              <p className="hero-lede">
-                Kami membangun solusi digital kustom menggunakan <strong>Next.js 16 & Payload CMS 3</strong> untuk 
-                pemilik bisnis dan instansi yang membutuhkan sistem cepat, kredibel, dan menjadi <strong>100% hak milik Anda</strong> tanpa biaya langganan software vendor perantara.
-              </p>
-
-              <div className="hero-cta-group">
-                <Button asChild size="lg" className="btn-primary-cobalt">
-                  <a
-                    href={getWhatsAppUrl('general')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Mulai Konsultasi WhatsApp</span>
-                    <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </Button>
-
-                <Button asChild variant="outline" size="lg" className="btn-secondary-hairline">
-                  <a href="#services">
-                    <span>Lihat Solusi Kami</span>
-                    <ArrowDown className="w-4 h-4 ml-1.5" />
-                  </a>
-                </Button>
-              </div>
-
-              <div className="hero-trust-metrics">
-                <div className="trust-item">
-                  <span className="trust-dot live" />
-                  <span className="trust-label">Direct Lead Dev Access (No Sales Pitch)</span>
+              {/* Floating Micro Badges inside Video Preview */}
+              <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between text-white text-xs gap-3">
+                <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Sedang Mengerjakan 12 Proyek Aktif</span>
                 </div>
-                <div className="trust-item">
-                  <span className="trust-dot live" />
-                  <span className="trust-label">100% Full Source Code Handover</span>
+                <div className="hidden sm:flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                  <span>Stack: Next.js 16 • Payload CMS 3 • Meta & Google Ads</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Hero Blueprint Interactive Instrument */}
-            <div className="hero-interactive">
-              <HeroBlueprint />
+            {/* Center Floating Brand Icon Beneath Video */}
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+              <div className="w-12 h-12 rounded-full bg-white shadow-md border border-neutral-100 flex items-center justify-center text-[#FF5C28]">
+                <Sparkles className="w-6 h-6" />
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Core Pillars Strip */}
+          <div id="layanan" className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 pt-8">
+            {/* Item 1 */}
+            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                <Code2 className="w-6 h-6" />
+              </div>
+              <h2 className="text-sm font-bold text-neutral-900 leading-snug">Web Development</h2>
+              <p className="text-xs text-neutral-500 mt-1">Next.js 16 & Payload CMS 3</p>
+            </div>
+
+            {/* Item 2 */}
+            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                <Smartphone className="w-6 h-6" />
+              </div>
+              <h2 className="text-sm font-bold text-neutral-900 leading-snug">Mobile App Dev</h2>
+              <p className="text-xs text-neutral-500 mt-1">iOS & Android Hybrid</p>
+            </div>
+
+            {/* Item 3 */}
+            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <h2 className="text-sm font-bold text-neutral-900 leading-snug">Digital Marketing</h2>
+              <p className="text-xs text-neutral-500 mt-1">Meta & Google Ads CAPI</p>
+            </div>
+
+            {/* Item 4 */}
+            <div className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-white/80 transition-all group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-3 shadow-sm group-hover:scale-110 transition-transform">
+                <Palette className="w-6 h-6" />
+              </div>
+              <h2 className="text-sm font-bold text-neutral-900 leading-snug">UI/UX & Branding</h2>
+              <p className="text-xs text-neutral-500 mt-1">Konversi & Estetika Tinggi</p>
             </div>
           </div>
         </section>
 
         {/* ========================================================
-            PROBLEM-SOLUTION BRIDGES (Audience Specific)
+            METRICS COUNTER SECTION
         ======================================================== */}
-        <section className="bridges-section">
-          <div className="section-container">
-            <div className="section-header-hairline">
-              <span className="section-tag">01 / SIAPA YANG KAMI BANTU</span>
-              <h2 className="section-title">Solusi Nyata untuk 3 Kebutuhan Kritis</h2>
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-24 text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight max-w-xl mx-auto">
+            Kinerja Teruji Membantu Ekosistem Bisnis Melejit
+          </h2>
+          <p className="text-neutral-500 text-sm mt-2">Dukungan teknologi solid & eksekusi pemasaran presisi</p>
+
+          <div className="mt-8 bg-white border border-neutral-200/70 rounded-3xl p-6 sm:p-8 shadow-card grid grid-cols-1 sm:grid-cols-3 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-neutral-100">
+            <div className="flex flex-col items-center py-2 sm:py-0">
+              <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">180+</span>
+              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">Website & App Dirilis</span>
             </div>
 
-            <div className="bridges-grid">
-              <Card className="bridge-card">
-                <CardHeader className="p-0 mb-4">
-                  <div className="bridge-num font-mono text-3xl font-bold text-[var(--color-accent)] mb-2">01</div>
-                  <CardTitle className="bridge-title text-xl font-semibold">Punya Bisnis tapi Belum Memiliki Website</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <CardDescription className="bridge-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-6">
-                    Calon klien Anda mencari kredibilitas di Google sebelum membeli. Kami bangunkan website berdesain premium, cepat, dan teroptimasi SEO agar bisnis Anda langsung terlihat berkelas dan profesional.
-                  </CardDescription>
-                </CardContent>
-                <CardFooter className="p-0">
-                  <a
-                    href={getWhatsAppUrl('website')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bridge-link text-sm font-semibold text-[var(--color-accent)] inline-flex items-center gap-1 group"
-                  >
-                    <span>Konsultasi Pembuatan Website</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </CardFooter>
-              </Card>
+            <div className="flex flex-col items-center py-2 sm:py-0">
+              <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">Rp 45M+</span>
+              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">GMV Klien Tergenerate</span>
+            </div>
 
-              <Card className="bridge-card">
-                <CardHeader className="p-0 mb-4">
-                  <div className="bridge-num font-mono text-3xl font-bold text-[var(--color-accent)] mb-2">02</div>
-                  <CardTitle className="bridge-title text-xl font-semibold">Ingin Iklan Digital tapi Bingung Setup Teknis</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <CardDescription className="bridge-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-6">
-                    Iklan bukan sekadar pasang budget lalu buang uang. Kami rancang funnel terpadu dari Meta Ads & Google Ads langsung terhubung ke WhatsApp bisnis Anda, lengkap dengan tracking Meta CAPI server-side anti-bocor.
-                  </CardDescription>
-                </CardContent>
-                <CardFooter className="p-0">
+            <div className="flex flex-col items-center py-2 sm:py-0">
+              <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900">98.6%</span>
+              <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mt-1">Kepuasan & Retensi Klien</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================
+            FEATURE SHOWCASE 1: WEB & APP DEV UI SIMULATION
+        ======================================================== */}
+        <section id="fitur" className="max-w-5xl mx-auto px-4 sm:px-6 mt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left: Interactive UI Card Mockup */}
+            <div className="lg:col-span-6 bg-gradient-to-br from-neutral-100 to-neutral-200/60 p-6 rounded-3xl border border-neutral-200/80 shadow-soft">
+              <div className="bg-white rounded-2xl p-5 shadow-card border border-neutral-100">
+                <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-red-400" />
+                    <span className="w-3 h-3 rounded-full bg-amber-400" />
+                    <span className="w-3 h-3 rounded-full bg-emerald-400" />
+                    <span className="text-xs font-medium text-neutral-400 ml-2">App Architecture • Sprint 04</span>
+                  </div>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#FFF5F0] text-[#EA4510] font-semibold border border-orange-100">
+                    On Schedule
+                  </span>
+                </div>
+
+                <div className="mt-4 space-y-3">
+                  <div className="p-3.5 bg-neutral-50 rounded-xl border border-neutral-100">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xs font-bold text-neutral-800">Optimasi Kecepatan Core Web Vitals</h4>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Score 99</span>
+                    </div>
+                    <p className="text-[11px] text-neutral-500 mt-1">Restrukturisasi cache & CDN Next.js untuk loading time &lt; 0.8s.</p>
+                    <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-400">
+                      <div className="flex -space-x-1.5">
+                        <span className="w-5 h-5 rounded-full bg-[#FF5C28] text-white flex items-center justify-center text-[9px] font-bold">FE</span>
+                        <span className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">BE</span>
+                      </div>
+                      <span>4 Subtasks selesai</span>
+                    </div>
+                  </div>
+
+                  {/* Push Notification Simulated Pill */}
+                  <div className="flex items-center gap-3 p-3 bg-white border border-neutral-200/70 rounded-xl shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shrink-0">
+                      <BellRing className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-semibold text-neutral-800 truncate">Mobile App iOS & Android Ready</p>
+                      <p className="text-[10px] text-neutral-400">Build stabil siap diunggah ke Play Store & App Store</p>
+                    </div>
+                    <span className="text-[10px] text-neutral-400">Just now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content Description */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold">
+                <Code className="w-3.5 h-3.5" />
+                <span>Engineering & Design Excellence</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight leading-snug">
+                Teknologi Modular yang Skalabel, Cepat & Aman
+              </h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Kami tidak menggunakan template murahan. Setiap baris kode dirancang spesifik untuk kecepatan loading tinggi, proteksi keamanan data, dan siap menangani jutaan pengunjung tanpa lag.
+              </p>
+
+              {/* Feature Pills */}
+              <div className="pt-2 flex flex-wrap gap-2">
+                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Next.js 16 & React 19
+                </span>
+                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Payload CMS 3 Native
+                </span>
+                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Supabase Managed Postgres
+                </span>
+                <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Client Source Code Ownership
+                </span>
+              </div>
+
+              <div className="pt-3">
+                <a
+                  href="#konsultasi"
+                  className="inline-flex items-center text-xs font-bold text-white bg-[#FF5C28] hover:bg-[#EA4510] px-5 py-2.5 rounded-full transition-all shadow-sm"
+                >
+                  Jelajahi Solusi Teknis
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================
+            FEATURE SHOWCASE 2: DIGITAL MARKETING & DATA ROI
+        ======================================================== */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left: Text Content */}
+            <div className="lg:col-span-6 space-y-4 order-2 lg:order-1">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold">
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>Growth & Conversion</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight leading-snug">
+                Kampanye Berbasis ROI: Bukan Sekadar Klik, Tapi Omzet
+              </h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Lupakan anggaran iklan yang terbuang sia-sia. Spesialis digital marketing kami memanfaatkan tracking presisi, A/B testing copywriting, dan landing page conversion-focused untuk mengonversi prospek menjadi pembeli setia.
+              </p>
+
+              {/* 4 Bullet Mini-Cards */}
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
+                    <Target className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-neutral-800">Meta & Google Ads</span>
+                </div>
+
+                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
+                    <Search className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-neutral-800">Organic SEO Rank #1</span>
+                </div>
+
+                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
+                    <Filter className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-neutral-800">Funnel Sales Audit</span>
+                </div>
+
+                <div className="p-3 bg-white border border-neutral-200/80 rounded-2xl flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-[#FFF5F0] flex items-center justify-center text-[#FF5C28] shrink-0">
+                    <PieChart className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-semibold text-neutral-800">Transparent Analytics</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Visual Growth Chart Mockup */}
+            <div className="lg:col-span-6 bg-gradient-to-br from-neutral-100 to-neutral-200/60 p-6 rounded-3xl border border-neutral-200/80 shadow-soft order-1 lg:order-2">
+              <div className="bg-white rounded-2xl p-5 shadow-card border border-neutral-100">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">Total Penjualan Klien</span>
+                    <h4 className="text-2xl font-black text-neutral-900 mt-0.5">Rp 842.500.000</h4>
+                  </div>
+                  <div className="text-right">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
+                      <TrendingUp className="w-3 h-3 mr-1" /> +320% ROI
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bar Chart Simulation with Orange Accents */}
+                <div className="mt-6 flex items-end justify-between h-32 pt-4 px-2 gap-2 border-b border-neutral-100">
+                  <div className="w-full flex flex-col items-center gap-1.5">
+                    <div className="w-full bg-orange-100 rounded-t-md h-12" />
+                    <span className="text-[10px] text-neutral-400">Bln 1</span>
+                  </div>
+                  <div className="w-full flex flex-col items-center gap-1.5">
+                    <div className="w-full bg-orange-200 rounded-t-md h-16" />
+                    <span className="text-[10px] text-neutral-400">Bln 2</span>
+                  </div>
+                  <div className="w-full flex flex-col items-center gap-1.5">
+                    <div className="w-full bg-orange-300 rounded-t-md h-20" />
+                    <span className="text-[10px] text-neutral-400">Bln 3</span>
+                  </div>
+                  <div className="w-full flex flex-col items-center gap-1.5">
+                    <div className="w-full bg-orange-400 rounded-t-md h-24" />
+                    <span className="text-[10px] text-neutral-400">Bln 4</span>
+                  </div>
+                  <div className="w-full flex flex-col items-center gap-1.5">
+                    <div className="w-full bg-[#FF5C28] rounded-t-md h-28 shadow-glow" />
+                    <span className="text-[10px] font-bold text-[#EA4510]">Bln 5</span>
+                  </div>
+                </div>
+
+                {/* Footer metric tag */}
+                <div className="mt-4 flex items-center justify-between text-xs text-neutral-500">
+                  <span>Biaya Akuisisi (CAC): <strong>Turun 42%</strong></span>
                   <a
                     href={getWhatsAppUrl('ads')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bridge-link text-sm font-semibold text-[var(--color-accent)] inline-flex items-center gap-1 group"
+                    className="text-[#FF5C28] font-semibold flex items-center gap-1 hover:underline"
                   >
-                    <span>Konsultasi Strategi Ads & Funnel</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    Lihat Laporan Studi Kasus <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
-                </CardFooter>
-              </Card>
-
-              <Card className="bridge-card">
-                <CardHeader className="p-0 mb-4">
-                  <div className="bridge-num font-mono text-3xl font-bold text-[var(--color-accent)] mb-2">03</div>
-                  <CardTitle className="bridge-title text-xl font-semibold">Instansi & B2B yang Butuh Aplikasi Custom</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <CardDescription className="bridge-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-6">
-                    Tidak memiliki tim developer internal? Kami menjadi mitra teknologi teknis Anda. Siap dengan kontrak kerja resmi (SPK/Invoice), arsitektur modular teruji, dan penyerahan kode sumber 100% ke pihak Anda.
-                  </CardDescription>
-                </CardContent>
-                <CardFooter className="p-0">
-                  <a
-                    href={getWhatsAppUrl('government')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bridge-link text-sm font-semibold text-[var(--color-accent)] inline-flex items-center gap-1 group"
-                  >
-                    <span>Konsultasi Aplikasi Instansi</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </CardFooter>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================
-            THE BENTO GRID (Core Capabilities & Pillars)
-        ======================================================== */}
-        <section id="services" className="bento-section">
-          <div className="section-container">
-            <div className="section-header-hairline">
-              <span className="section-tag">02 / KAPABILITAS UTAMA</span>
-              <h2 className="section-title">Arsitektur Modern untuk Pertumbuhan Bisnis</h2>
-              <p className="section-subtitle">
-                Kami menolak penggunaan template siap pakai lambat seperti WordPress berat. Seluruh kode ditulis custom untuk menghasilkan skor performa tertinggi.
-              </p>
-            </div>
-
-            <div className="bento-grid">
-              {/* Tile 1: 2x2 Anchor (Web Custom) */}
-              <Card className="bento-cell cell-2x2">
-                <CardHeader className="p-0 mb-4">
-                  <Badge variant="outline" className="w-fit text-[11px] font-mono tracking-wider text-[var(--color-accent)] border-[var(--color-accent)]/30 mb-2">
-                    PILLAR UTAMA · WEB CUSTOM
-                  </Badge>
-                  <CardTitle className="cell-title text-2xl font-bold">Next.js 16 & Payload CMS 3 Architecture</CardTitle>
-                  <CardDescription className="cell-desc text-sm text-[var(--color-ink-muted)] leading-relaxed">
-                    Kombinasi fullstack terkini di dunia web engineering. Memberikan Anda website company profile berkecepatan instan (Lighthouse 95+) dengan CMS Admin Panel intuitif yang tertanam langsung tanpa perlu sewa hosting CMS terpisah.
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="p-0">
-                  <div className="cell-features-list flex flex-col gap-3 mb-6">
-                    <div className="feature-item flex items-start gap-2.5 text-sm">
-                      <Check className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
-                      <span><strong>Server-Side Rendering (SSR) & ISR:</strong> Google mengindeks artikel Anda secara instan.</span>
-                    </div>
-                    <div className="feature-item flex items-start gap-2.5 text-sm">
-                      <Check className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
-                      <span><strong>Payload 3 Native CMS:</strong> Tulis artikel SEO dan kelola portofolio tanpa coding.</span>
-                    </div>
-                    <div className="feature-item flex items-start gap-2.5 text-sm">
-                      <Check className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
-                      <span><strong>Supabase PostgreSQL:</strong> Database relational cloud tangguh kelas enterprise.</span>
-                    </div>
-                    <div className="feature-item flex items-start gap-2.5 text-sm">
-                      <Check className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" />
-                      <span><strong>Zero Bloatware:</strong> Tidak ada plugin rapuh yang rawan dibobol hacker.</span>
-                    </div>
-                  </div>
-                </CardContent>
-
-                <CardFooter className="p-0 mt-auto">
-                  <a
-                    href={getWhatsAppUrl('website')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cell-link text-sm font-semibold text-[var(--color-accent)] inline-flex items-center gap-1 group"
-                  >
-                    <span>Diskusikan Proyek Website Custom</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </CardFooter>
-              </Card>
-
-              {/* Tile 2: 1x1 (Mobile Apps) */}
-              <Card className="bento-cell cell-1x1">
-                <CardHeader className="p-0 mb-3">
-                  <Badge variant="outline" className="w-fit text-[11px] font-mono tracking-wider text-[var(--color-accent)] border-[var(--color-accent)]/30 mb-2">
-                    APLIKASI MOBILE
-                  </Badge>
-                  <CardTitle className="cell-title text-xl font-bold">Cross-Platform iOS & Android</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <p className="cell-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-4">
-                    Satu basis kode untuk hadir di Play Store dan App Store sekaligus. Animasi 60 FPS, push notification, dan integrasi backend realtime.
-                  </p>
-                </CardContent>
-                <CardFooter className="p-0">
-                  <a
-                    href={getWhatsAppUrl('mobile')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cell-link text-sm font-semibold text-[var(--color-accent)] inline-flex items-center gap-1 group"
-                  >
-                    <span>Konsultasi Mobile App</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </CardFooter>
-              </Card>
-
-              {/* Tile 3: 1x1 (Digital Marketing) */}
-              <Card className="bento-cell cell-1x1">
-                <CardHeader className="p-0 mb-3">
-                  <Badge variant="outline" className="w-fit text-[11px] font-mono tracking-wider text-[var(--color-accent)] border-[var(--color-accent)]/30 mb-2">
-                    DIGITAL ADS ENGINE
-                  </Badge>
-                  <CardTitle className="cell-title text-xl font-bold">Meta & Google Ads Berkonversi</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <p className="cell-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-4">
-                    Menjangkau calon pembeli yang benar-benar siap bayar. Funnel langsung diarahkan ke chat WhatsApp dengan tracking konversi terpasang akurat.
-                  </p>
-                </CardContent>
-                <CardFooter className="p-0">
-                  <a
-                    href={getWhatsAppUrl('ads')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cell-link text-sm font-semibold text-[var(--color-accent)] inline-flex items-center gap-1 group"
-                  >
-                    <span>Diskusi Strategi Iklan</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </CardFooter>
-              </Card>
-
-              {/* Tile 4: 2x1 (Full Ownership) */}
-              <Card className="bento-cell cell-2x1">
-                <CardHeader className="p-0 mb-3">
-                  <Badge variant="outline" className="w-fit text-[11px] font-mono tracking-wider text-[var(--color-accent)] border-[var(--color-accent)]/30 mb-2">
-                    KEPEMILIKAN PENUH
-                  </Badge>
-                  <CardTitle className="cell-title text-xl font-bold">100% Hak Milik Source Code & Cloud Klien</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <p className="cell-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-4">
-                    Tidak ada istilah Anda disandera oleh vendor. Repositori GitHub diserahkan ke akun Anda, akun Vercel dan Supabase atas nama Anda sendiri. Anda bebas mengembangkan sistem bersama siapa saja di masa depan.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary" className="font-mono text-xs font-normal">GitHub Handover</Badge>
-                    <Badge variant="secondary" className="font-mono text-xs font-normal">No Vendor Lock-in</Badge>
-                    <Badge variant="secondary" className="font-mono text-xs font-normal">Dokumentasi API Lengkap</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Tile 5: 1x1 (Direct Dev) */}
-              <Card className="bento-cell cell-1x1">
-                <CardHeader className="p-0 mb-3">
-                  <Badge variant="outline" className="w-fit text-[11px] font-mono tracking-wider text-[var(--color-accent)] border-[var(--color-accent)]/30 mb-2">
-                    TANPA PERANTARA
-                  </Badge>
-                  <CardTitle className="cell-title text-xl font-bold">Direct Dev Communication</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0 flex-1">
-                  <p className="cell-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-4">
-                    Bicara langsung dengan developer teknis yang membangun aplikasi Anda via WhatsApp. Tidak ada sales rep yang menjanjikan hal mustahil.
-                  </p>
-                </CardContent>
-                <CardFooter className="p-0">
-                  <Badge className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-300 font-mono text-xs gap-1.5 py-1">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
-                    <span>WhatsApp Selalu Terbuka</span>
-                  </Badge>
-                </CardFooter>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================
-            FEATURED CASE STUDIES
-        ======================================================== */}
-        <section id="portfolio" className="portfolio-section">
-          <div className="section-container">
-            <div className="section-header-hairline">
-              <span className="section-tag">03 / STUDI KASUS TERPILIH</span>
-              <h2 className="section-title">Hasil Kerja Nyata yang Telah Beroperasi</h2>
-              <p className="section-subtitle">
-                Setiap proyek dibangun dengan arsitektur bersih, performa tinggi, dan fokus pada target bisnis klien.
-              </p>
-            </div>
-
-            <div className="projects-grid">
-              {featuredProjects.map((project, index) => (
-                <Card key={index} className="project-card">
-                  <CardHeader className="p-0 mb-4">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-xs font-mono font-semibold text-[var(--color-accent)] uppercase">
-                        {project.category}
-                      </span>
-                      <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[11px] font-mono">
-                        {project.highlight}
-                      </Badge>
-                    </div>
-                    <CardTitle className="project-title text-xl font-bold">{project.title}</CardTitle>
-                    <div className="text-xs font-mono text-[var(--color-ink-faint)]">Klien: {project.client}</div>
-                  </CardHeader>
-
-                  <CardContent className="p-0 flex-1">
-                    <p className="project-desc text-sm text-[var(--color-ink-muted)] leading-relaxed mb-5">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {project.techStack.map((tech, tIdx) => (
-                        <Badge key={tIdx} variant="secondary" className="font-mono text-xs font-normal">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-
-                  <CardFooter className="p-0">
-                    <Button asChild variant="outline" className="w-full justify-between h-10 border-[var(--color-rule)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all">
-                      <a
-                        href={getWhatsAppUrl('case-study', project.title)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span className="text-xs font-semibold">Ingin Sistem Serupa? Diskusi via WA</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================
-            THE DARK GRAPHITE BAND: PROTOKOL KERJA
-            (Cobalt's signature light -> dark -> light rhythm)
-        ======================================================== */}
-        <section id="protocol" className="protocol-band">
-          <div className="section-container">
-            <div className="protocol-header">
-              <span className="protocol-tag">PROTOKOL PENGERJAAN</span>
-              <h2 className="protocol-title">Alur Kerja Terbuka Tanpa Kejutan Biaya</h2>
-              <p className="protocol-subtitle">
-                Dari percakapan WhatsApp pertama hingga peluncuran di domain Anda, setiap tahapan tercatat transparan.
-              </p>
-            </div>
-
-            <div className="protocol-steps">
-              <Card className="step-card bg-[var(--color-graphite-card)] border-[var(--color-graphite-border)] text-white">
-                <CardHeader className="p-0 mb-3">
-                  <div className="step-number text-xs font-mono font-bold text-[#60a5fa] tracking-wider mb-2">PHASE 01</div>
-                  <CardTitle className="step-title text-lg font-semibold text-white">Diskusi WhatsApp 15–30 Menit</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <p className="step-desc text-sm text-[var(--color-graphite-muted)] leading-relaxed">
-                    Kirimkan ide atau masalah bisnis Anda. Kami bantu bedah fitur esensial (MVP), estimasi biaya transparan, dan jadwal pengerjaan tanpa jargon rumit.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="step-card bg-[var(--color-graphite-card)] border-[var(--color-graphite-border)] text-white">
-                <CardHeader className="p-0 mb-3">
-                  <div className="step-number text-xs font-mono font-bold text-[#60a5fa] tracking-wider mb-2">PHASE 02</div>
-                  <CardTitle className="step-title text-lg font-semibold text-white">Desain UI & Arsitektur Database</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <p className="step-desc text-sm text-[var(--color-graphite-muted)] leading-relaxed">
-                    Penyusunan alur pengguna, struktur database Supabase, dan desain halaman web modern responsif yang disepakati sebelum kode ditulis.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="step-card bg-[var(--color-graphite-card)] border-[var(--color-graphite-border)] text-white">
-                <CardHeader className="p-0 mb-3">
-                  <div className="step-number text-xs font-mono font-bold text-[#60a5fa] tracking-wider mb-2">PHASE 03</div>
-                  <CardTitle className="step-title text-lg font-semibold text-white">Development & Staging Link</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <p className="step-desc text-sm text-[var(--color-graphite-muted)] leading-relaxed">
-                    Proses koding menggunakan Next.js 16 + Payload CMS 3. Anda mendapatkan tautan preview staging berkala untuk memantau kemajuan secara langsung.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="step-card bg-[var(--color-graphite-card)] border-[var(--color-graphite-border)] text-white">
-                <CardHeader className="p-0 mb-3">
-                  <div className="step-number text-xs font-mono font-bold text-[#60a5fa] tracking-wider mb-2">PHASE 04</div>
-                  <CardTitle className="step-title text-lg font-semibold text-white">Deploy ke Vercel & Handover</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <p className="step-desc text-sm text-[var(--color-graphite-muted)] leading-relaxed">
-                    Peluncuran ke domain utama Anda, panduan penggunaan CMS admin, dan penyerahan hak akses repositori GitHub 100% tanpa ikatan tersembunyi.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="protocol-cta-box">
-              <div className="protocol-cta-text">
-                <strong className="text-lg text-white block mb-1">Ingin mengetahui estimasi biaya untuk kebutuhan Anda?</strong>
-                <p className="text-sm text-[var(--color-graphite-muted)]">Kirimkan brief singkat, dan kami berikan respon estimasi langsung di hari yang sama.</p>
+                </div>
               </div>
-              <Button asChild size="lg" className="btn-primary-cobalt">
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================
+            PRICING / SERVICE PACKAGES SECTION
+        ======================================================== */}
+        <section id="harga" className="max-w-5xl mx-auto px-4 sm:px-6 mt-28 text-center">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+            <Tag className="w-3.5 h-3.5" />
+            <span>Pilihan Paket Fleksibel</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+            Paket Investasi Transparan Sesuai Skala Bisnis
+          </h2>
+          <p className="text-neutral-500 text-sm mt-2 max-w-lg mx-auto">
+            Pilih paket yang paling pas untuk akselerasi bisnis Anda. Tersedia garansi performa dan purna jual.
+          </p>
+
+          {/* Category Filter Tabs */}
+          <div className="mt-8 flex justify-center">
+            <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200">
+              <button
+                type="button"
+                onClick={() => setPricingTab('web')}
+                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                  pricingTab === 'web'
+                    ? 'font-bold bg-white text-neutral-900 shadow-sm'
+                    : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                Website Development
+              </button>
+              <button
+                type="button"
+                onClick={() => setPricingTab('app')}
+                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                  pricingTab === 'app'
+                    ? 'font-bold bg-white text-neutral-900 shadow-sm'
+                    : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                Mobile Application
+              </button>
+              <button
+                type="button"
+                onClick={() => setPricingTab('ads')}
+                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                  pricingTab === 'ads'
+                    ? 'font-bold bg-white text-neutral-900 shadow-sm'
+                    : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                Digital Marketing
+              </button>
+            </div>
+          </div>
+
+          {/* 3 Tier Pricing Cards */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            {pricingData[pricingTab].map((item, idx) => (
+              <div
+                key={idx}
+                className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
+                  item.isPopular
+                    ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
+                    : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
+                }`}
+              >
+                {item.isPopular && (
+                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    Paling Populer
+                  </div>
+                )}
+
+                <div>
+                  <span
+                    className={`text-xs font-bold uppercase tracking-wider ${
+                      item.isPopular ? 'text-[#FF5C28]' : 'text-neutral-400'
+                    }`}
+                  >
+                    {item.tier}
+                  </span>
+                  <div className="mt-3 flex items-baseline">
+                    <span className="text-3xl font-extrabold text-neutral-900">{item.price}</span>
+                    <span className="text-xs text-neutral-400 ml-1.5">{item.unit}</span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-2">{item.desc}</p>
+
+                  <a
+                    href={getWhatsAppUrl(item.ctaContext as any, `${item.tier} (${item.price})`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
+                      item.isPopular
+                        ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow'
+                        : 'bg-neutral-900 hover:bg-black text-white'
+                    }`}
+                  >
+                    {item.btnText}
+                  </a>
+
+                  {/* Checklist */}
+                  <div className="mt-6 pt-6 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
+                    {item.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400 text-center">
+                  {item.time}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ========================================================
+            GETTING STARTED 3-STEP PROCESS
+        ======================================================== */}
+        <section id="alur-kerja" className="max-w-4xl mx-auto px-4 sm:px-6 mt-28 text-center">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+            <Route className="w-3.5 h-3.5" />
+            <span>Alur Kerja Rapi</span>
+          </div>
+
+          <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+            Tiga Langkah Mudah Memulai Proyek
+          </h2>
+          <p className="text-neutral-500 text-sm mt-2">
+            Transparan dari tahap perumusan ide sampai produk live siap menghasilkan.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            {/* Step 1 */}
+            <div className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[#FFF5F0] text-[#EA4510] font-extrabold text-sm flex items-center justify-center border border-orange-200 mb-4">
+                01
+              </div>
+              <h3 className="text-sm font-bold text-neutral-900">Discovery & Konsultasi</h3>
+              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                Sampaikan visi, kendala operasional, dan target bisnis Anda. Kami buatkan road-map teknis serta estimasi investasi.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[#FF5C28] text-white font-extrabold text-sm flex items-center justify-center shadow-glow mb-4">
+                02
+              </div>
+              <h3 className="text-sm font-bold text-neutral-900">Desain UI & Koding</h3>
+              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                Tim kami menyusun prototipe interaktif di Figma, lalu diimplementasikan menjadi aplikasi kencang melalui sprint mingguan.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[#FFF5F0] text-[#EA4510] font-extrabold text-sm flex items-center justify-center border border-orange-200 mb-4">
+                03
+              </div>
+              <h3 className="text-sm font-bold text-neutral-900">Peluncuran & Scaling</h3>
+              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
+                Pengujian menyeluruh (QA), rilis ke server produksi atau App Store, dan aktivasi campaign digital marketing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================
+            CONSULTATION FORM SECTION
+        ======================================================== */}
+        <section id="konsultasi" className="max-w-xl mx-auto px-4 sm:px-6 mt-28 text-center">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+            <MailCheck className="w-3.5 h-3.5" />
+            <span>Konsultasi Proyek</span>
+          </div>
+
+          <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+            Klaim Diskusi & Audit Website Gratis
+          </h2>
+          <p className="text-neutral-500 text-xs sm:text-sm mt-2">
+            Isi form singkat ini, tim konsultan senior kami akan menganalisis kebutuhan Anda dan mengirimkan proposal dalam 24 jam.
+          </p>
+
+          {/* Clean White Form Box */}
+          <div className="mt-8 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card text-left">
+            <form onSubmit={handleFormSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Nama Lengkap</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Contoh: Budi Pratama"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Alamat Email Bisnis</label>
+                <input
+                  type="email"
+                  required
+                  placeholder="budi@perusahaan.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Layanan yang Dibutuhkan</label>
+                <select
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50"
+                >
+                  <option value="web">Pembuatan Website Baru / Redesign (Next.js & Payload)</option>
+                  <option value="app">Pengembangan Mobile App (iOS / Android)</option>
+                  <option value="marketing">Digital Marketing (Meta Ads, Google, SEO)</option>
+                  <option value="all">Solusi Komprehensif (Web + App + Marketing)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Ceritakan Singkat Rencana Anda</label>
+                <textarea
+                  rows={3}
+                  placeholder="Jelaskan kebutuhan fitur atau target yang ingin dicapai..."
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  className="w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3.5 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                Kirim Permintaan Konsultasi
+              </button>
+
+              <p className="text-[11px] text-center text-neutral-400 mt-2">
+                Privasi Anda terjamin. Kami tidak pernah membagikan email atau mengirim spam.
+              </p>
+            </form>
+          </div>
+        </section>
+
+        {/* ========================================================
+            FREQUENTLY ASKED QUESTIONS
+        ======================================================== */}
+        <section id="faq" className="max-w-3xl mx-auto px-4 sm:px-6 mt-28">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Tanya Jawab</span>
+            </div>
+            <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+              Pertanyaan yang Sering Diajukan
+            </h2>
+            <p className="text-neutral-500 text-sm mt-1">Semua hal yang perlu Anda ketahui sebelum bermitra bersama kami.</p>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-sm transition-all"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer"
+                >
+                  <span>{faq.q}</span>
+                  {openFaq === idx ? (
+                    <Minus className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                  ) : (
+                    <Plus className="w-4 h-4 text-neutral-400 shrink-0" />
+                  )}
+                </button>
+                {openFaq === idx && (
+                  <div className="px-5 pb-4 text-xs text-neutral-500 leading-relaxed animate-in fade-in">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ========================================================
+            DARK CAPSULE CTA CARD (Sesuai Referensi)
+        ======================================================== */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-28">
+          <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
+            {/* Subtle Glow Effect */}
+            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 max-w-xl mx-auto space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Siap Membangun Solusi Digital Terbaik Anda Hari Ini?
+              </h2>
+              <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
+                Diskusikan ide Anda bersama lead developer dan digital marketer kami. Dapatkan saran arsitektur tanpa komitmen awal.
+              </p>
+
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href="#konsultasi"
+                  className="w-full sm:w-auto px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all"
+                >
+                  Jadwalkan Konsultasi Sekarang
+                </a>
                 <a
                   href={getWhatsAppUrl('general')}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-full border border-white/15 transition-all flex items-center justify-center gap-2"
                 >
-                  <span>Mulai Diskusi WhatsApp Sekarang</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  Chat via WhatsApp
                 </a>
-              </Button>
-            </div>
-          </div>
-        </section>
+              </div>
 
-        {/* ========================================================
-            TRANSPARENT FAQ (shadcn ui Accordion)
-        ======================================================== */}
-        <section id="faq" className="faq-section">
-          <div className="section-container">
-            <div className="section-header-hairline">
-              <span className="section-tag">04 / TRANSPARANSI & PERTANYAAN</span>
-              <h2 className="section-title">Pertanyaan yang Sering Diajukan</h2>
+              <div className="pt-4 flex items-center justify-center gap-6 text-[11px] text-neutral-400">
+                <span className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Tanpa Kontrak Mengikat
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> NDA & Proteksi Ide
+                </span>
+              </div>
             </div>
-
-            <div className="max-w-3xl mx-auto">
-              <Accordion type="single" collapsible className="w-full flex flex-col gap-3">
-                {faqs.map((faq, index) => (
-                  <AccordionItem
-                    key={index}
-                    value={`item-${index}`}
-                    className="border border-[var(--color-rule)] rounded-lg bg-[var(--color-paper-card)] px-5 py-1"
-                  >
-                    <AccordionTrigger className="text-left font-display font-semibold text-base text-[var(--color-ink)] hover:text-[var(--color-accent)] hover:no-underline py-4">
-                      {faq.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-sm text-[var(--color-ink-muted)] leading-relaxed pt-1 pb-4">
-                      {faq.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================
-            FINAL CALL TO ACTION BANNER
-        ======================================================== */}
-        <section className="cta-banner-section">
-          <div className="section-container">
-            <Card className="cta-banner-card bg-[var(--color-paper-card)] border-[var(--color-rule)] shadow-sm">
-              <CardHeader className="p-0 mb-4 text-center">
-                <Badge variant="outline" className="w-fit mx-auto font-mono text-xs text-[var(--color-accent)] border-[var(--color-accent)]/30 mb-3">
-                  SIAP MELANGKAH LEBIH MAJU
-                </Badge>
-                <CardTitle className="cta-banner-title text-3xl sm:text-4xl font-bold">
-                  Bangun Solusi Digital Anda Bersama Partner Teknis yang Mengerti Kode dan Konversi.
-                </CardTitle>
-                <CardDescription className="cta-banner-desc text-base text-[var(--color-ink-muted)] max-w-xl mx-auto mt-3">
-                  Konsultasikan kebutuhan website custom, aplikasi mobile, atau strategi iklan Anda langsung dengan lead engineer kami tanpa perantara sales.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-0 flex justify-center">
-                <Button asChild size="lg" className="btn-primary-cobalt h-12 px-8 text-base">
-                  <a
-                    href={getWhatsAppUrl('general')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Chat Langsung di WhatsApp</span>
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </a>
-                </Button>
-              </CardContent>
-              <CardFooter className="p-0 justify-center mt-5">
-                <div className="cta-footer-note font-mono text-xs text-[var(--color-ink-faint)]">
-                  ⚡ Respon cepat · Diskusi terbuka · Estimasi gratis tanpa komitmen
-                </div>
-              </CardFooter>
-            </Card>
           </div>
         </section>
       </main>
 
-      <Footer />
+      {/* ========================================================
+          FOOTER (Sesuai Referensi)
+      ======================================================== */}
+      <footer className="bg-white border-t border-neutral-200/80 py-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center space-y-6">
+          {/* Brand Icon Center */}
+          <div className="w-10 h-10 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shadow-glow">
+            <Layers className="w-5 h-5" />
+          </div>
+
+          <p className="text-xs text-neutral-500 max-w-sm">
+            Membantu wirausahawan, agensi, dan perusahaan bertumbuh pesat dengan teknologi web modern, aplikasi mobile, dan strategi pemasaran konversi tinggi.
+          </p>
+
+          {/* Pill Nav Links */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-neutral-600">
+            <a href="#layanan" className="hover:text-[#FF5C28] transition-colors">Layanan</a>
+            <a href="#fitur" className="hover:text-[#FF5C28] transition-colors">Fitur</a>
+            <a href="#harga" className="hover:text-[#FF5C28] transition-colors">Harga</a>
+            <a href="#alur-kerja" className="hover:text-[#FF5C28] transition-colors">Proses</a>
+            <a href="#faq" className="hover:text-[#FF5C28] transition-colors">FAQ</a>
+          </div>
+
+          {/* Social Media Icons */}
+          <div className="flex items-center gap-4 text-neutral-400">
+            <a
+              href="#"
+              className="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center hover:text-[#FF5C28] hover:border-[#FF5C28] transition-colors"
+              aria-label="Instagram"
+            >
+              <InstagramIcon className="w-4 h-4" />
+            </a>
+            <a
+              href="#"
+              className="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center hover:text-[#FF5C28] hover:border-[#FF5C28] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <LinkedinIcon className="w-4 h-4" />
+            </a>
+            <a
+              href="#"
+              className="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center hover:text-[#FF5C28] hover:border-[#FF5C28] transition-colors"
+              aria-label="GitHub"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="pt-4 border-t border-neutral-100 w-full flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-400">
+            <span>&copy; 2026 NexaCraft Digital Agency (MarketingCode ID). Hak Cipta Dilindungi.</span>
+            <div className="flex gap-4 mt-2 sm:mt-0">
+              <a href="#" className="hover:underline">Kebijakan Privasi</a>
+              <a href="#" className="hover:underline">Syarat & Ketentuan</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* ========================================================
+          VIDEO DEMO MODAL DIALOG
+      ======================================================== */}
+      {videoModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setVideoModalOpen(false)}
+        >
+          <div
+            className="bg-neutral-900 rounded-3xl max-w-2xl w-full p-4 border border-white/10 shadow-2xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setVideoModalOpen(false)}
+              className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white text-neutral-900 flex items-center justify-center font-bold shadow-lg hover:bg-neutral-200 cursor-pointer"
+              aria-label="Tutup Video Modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <div className="aspect-video bg-black rounded-2xl flex flex-col items-center justify-center text-center p-6 text-white">
+              <Film className="w-12 h-12 text-[#FF5C28] mb-3" />
+              <h4 className="text-base font-bold">Video Showreel NexaCraft Digital Agency</h4>
+              <p className="text-xs text-neutral-400 mt-1 max-w-md">
+                Cuplikan sprint desain UI/UX, pengkodean backend Next.js & Payload CMS, dan live tracking dashboard iklan Meta & Google.
+              </p>
+              <span className="mt-4 px-3 py-1 bg-white/10 rounded-full text-[10px] text-neutral-300">
+                Durasi: 1 Menit 45 Detik
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          NOTIFICATION TOAST BOX
+      ======================================================== */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 bg-white border border-emerald-200 text-neutral-800 p-4 rounded-2xl shadow-xl flex items-center gap-3 transition-all duration-300 ${
+          toastOpen ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+          <Check className="w-4 h-4" />
+        </div>
+        <div>
+          <h5 className="text-xs font-bold text-neutral-900">Permintaan Terkirim!</h5>
+          <p className="text-[11px] text-neutral-500">Membuka WhatsApp untuk terhubung dengan konsultan senior...</p>
+        </div>
+      </div>
+
+      {/* Floating WhatsApp CTA */}
       <FloatingWhatsApp />
     </div>
   )
