@@ -3,12 +3,12 @@ import Image from 'next/image'
 import { desc } from 'drizzle-orm'
 import { db } from '@/db'
 import { media } from '@/db/schema'
-import { DashboardHeader } from '@/components/dashboard/DashboardHeader'
-import { Card, CardContent } from '@/components/ui/card'
-import { DeleteButton } from '@/components/dashboard/DeleteButton'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { DeleteDialog } from '@/components/dashboard/DeleteDialog'
 import { deleteMediaAction } from './actions'
 import { MediaUploadForm } from './MediaUploadForm'
-import { ImageIcon } from 'lucide-react'
+import { ImageIcon, Trash2 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,56 +27,60 @@ export default async function MediaPage() {
   }
 
   return (
-    <>
-      <DashboardHeader
-        title="Media Library"
-        subtitle="Aset gambar tersimpan di Supabase Storage dan siap dipakai artikel & portofolio"
-      />
-
-      <main className="p-8 space-y-6 max-w-7xl w-full mx-auto">
-        <Card className="bg-white border-zinc-200/80 shadow-sm p-5">
+    <main className="p-4 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm">Unggah Media</CardTitle>
+          <CardDescription>
+            Aset tersimpan di Supabase Storage, siap dipakai artikel &amp; portofolio. Maksimal 10MB (JPEG, PNG, WebP, GIF, SVG).
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <MediaUploadForm />
-        </Card>
+        </CardContent>
+      </Card>
 
-        {rows.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-            {rows.map((item) => (
-              <Card key={item.id} className="bg-white border-zinc-200/80 shadow-sm overflow-hidden group">
-                <div className="relative aspect-[4/3] bg-zinc-100">
-                  <Image
-                    src={item.publicUrl}
-                    alt={item.altText || item.filename}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-                <CardContent className="p-3 space-y-1.5">
-                  <p className="text-xs font-semibold text-zinc-800 truncate" title={item.filename}>
-                    {item.filename}
-                  </p>
-                  <p className="text-[11px] text-zinc-400">
-                    {item.mimeType} · {formatSize(item.filesize)}
-                  </p>
-                  <div className="pt-1">
-                    <DeleteButton
-                      action={deleteMediaAction}
-                      id={item.id}
-                      label={item.filename}
-                      confirmMessage={`Hapus "${item.filename}" dari storage dan database? Artikel/portofolio yang memakai gambar ini akan kehilangan gambar.`}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 space-y-3">
-            <ImageIcon className="w-10 h-10 text-zinc-300 mx-auto" />
-            <p className="text-xs text-zinc-500">Belum ada media. Unggah gambar pertama lewat form di atas.</p>
-          </div>
-        )}
-      </main>
-    </>
+      {rows.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {rows.map((item) => (
+            <Card key={item.id} className="overflow-hidden group">
+              <div className="relative aspect-[4/3] bg-secondary">
+                <Image
+                  src={item.publicUrl}
+                  alt={item.altText || item.filename}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-3 space-y-1.5">
+                <p className="text-sm font-semibold truncate" title={item.filename}>
+                  {item.filename}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {item.mimeType} · {formatSize(item.filesize)}
+                </p>
+                <DeleteDialog
+                  action={deleteMediaAction}
+                  id={item.id}
+                  label={item.filename}
+                  description="File dihapus dari storage dan database. Artikel/portofolio yang memakai gambar ini akan kehilangan gambar."
+                >
+                  <Button variant="ghost" size="sm" className="text-destructive px-2 h-7">
+                    <Trash2 className="h-3.5 w-3.5" />
+                    Hapus
+                  </Button>
+                </DeleteDialog>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-20 space-y-3">
+          <ImageIcon className="h-10 w-10 text-muted-foreground/40 mx-auto" />
+          <p className="text-sm text-muted-foreground">Belum ada media. Unggah gambar pertama lewat form di atas.</p>
+        </div>
+      )}
+    </main>
   )
 }

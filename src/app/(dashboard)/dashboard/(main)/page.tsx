@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { count, desc, eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { articles, categories, media, portfolios } from '@/db/schema'
-import { DashboardHeader } from '@/components/dashboard/DashboardHeader'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -15,13 +15,20 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from '@/components/ui/alert'
+import {
   Briefcase,
   FileText,
   Layers,
   Image as ImageIcon,
   ArrowUpRight,
-  CheckCircle2,
+  PlusCircle,
+  CircleCheck,
   Clock,
+  Terminal,
 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -78,16 +85,65 @@ async function loadStats() {
 function StatusBadge({ status }: { status: string }) {
   const published = status === 'published'
   return (
-    <span
-      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold ${
-        published
-          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-          : 'bg-amber-50 text-amber-700 border border-amber-200'
-      }`}
-    >
-      <span className={`w-1.5 h-1.5 rounded-full ${published ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+    <Badge variant={published ? 'default' : 'secondary'} className="gap-1 font-medium">
+      <span className={`h-1.5 w-1.5 rounded-full ${published ? 'bg-primary-foreground' : 'bg-muted-foreground'}`} />
       {published ? 'Published' : 'Draft'}
-    </span>
+    </Badge>
+  )
+}
+
+function KpiCard({
+  title,
+  value,
+  live,
+  draft,
+  icon: Icon,
+  hint,
+  href,
+}: {
+  title: string
+  value: number
+  live?: number
+  draft?: number
+  icon: React.ComponentType<{ className?: string }>
+  hint?: string
+  href: string
+}) {
+  return (
+    <Card className="hover:border-primary/40 transition-colors">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+        <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          {title}
+        </CardTitle>
+        <div className="p-2 rounded-lg bg-primary/10 text-primary">
+          <Icon className="h-4 w-4" />
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <div className="text-3xl font-extrabold tracking-tight">{value}</div>
+        {typeof live === 'number' && typeof draft === 'number' ? (
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="gap-1 text-emerald-600 border-emerald-200">
+              <CircleCheck className="h-3 w-3" />
+              {live} Live
+            </Badge>
+            <Badge variant="outline" className="gap-1 text-amber-600 border-amber-200">
+              <Clock className="h-3 w-3" />
+              {draft} Draft
+            </Badge>
+          </div>
+        ) : (
+          hint && <p className="text-xs text-muted-foreground">{hint}</p>
+        )}
+        <Link
+          href={href}
+          className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+        >
+          Kelola
+          <ArrowUpRight className="h-3 w-3" />
+        </Link>
+      </CardContent>
+    </Card>
   )
 }
 
@@ -95,243 +151,171 @@ export default async function DashboardPage() {
   const stats = await loadStats()
 
   return (
-    <>
-      <DashboardHeader
-        title="Ringkasan Performa Konten"
-        subtitle="Dashboard fullstack Next.js + Drizzle ORM — tanpa CMS pihak ketiga"
-      />
+    <main className="p-4 sm:p-8 space-y-8 max-w-7xl w-full mx-auto">
+      {stats.error && (
+        <Alert variant="destructive">
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>Gagal terhubung ke database</AlertTitle>
+          <AlertDescription>
+            Periksa <code>DATABASE_URL</code> di <code>.env</code> lalu jalankan{' '}
+            <code>pnpm db:push</code>.
+          </AlertDescription>
+        </Alert>
+      )}
 
-      <main className="p-8 space-y-8 max-w-7xl w-full mx-auto">
-        {stats.error && (
-          <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-xs text-red-700">
-            Gagal terhubung ke database. Periksa DATABASE_URL lalu jalankan <code>pnpm db:push</code>.
-          </div>
-        )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <KpiCard
+          title="Total Portofolio"
+          value={stats.totalPortfolios}
+          live={stats.publishedPortfolios}
+          draft={stats.totalPortfolios - stats.publishedPortfolios}
+          icon={Briefcase}
+          href="/dashboard/portofolio"
+        />
+        <KpiCard
+          title="Artikel Blog"
+          value={stats.totalArticles}
+          live={stats.publishedArticles}
+          draft={stats.totalArticles - stats.publishedArticles}
+          icon={FileText}
+          href="/dashboard/artikel"
+        />
+        <KpiCard
+          title="Kategori Konten"
+          value={stats.totalCategories}
+          icon={Layers}
+          hint="Taksonomi topik artikel & studi kasus"
+          href="/dashboard/kategori"
+        />
+        <KpiCard
+          title="Media Library"
+          value={stats.totalMedia}
+          icon={ImageIcon}
+          hint="Gambar tersimpan di Supabase Storage"
+          href="/dashboard/media"
+        />
+      </div>
 
-        {/* 4 KPI Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <Card className="bg-white border-zinc-200/80 shadow-sm hover:border-[#FF5C28]/50 hover:shadow-md transition-all">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                Total Portofolio
-              </CardTitle>
-              <div className="p-2 rounded-xl bg-orange-500/10 text-[#FF5C28]">
-                <Briefcase className="w-4 h-4" />
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="text-3xl font-extrabold text-zinc-900 tracking-tight">
-                {stats.totalPortfolios}
-              </div>
-              <div className="flex items-center gap-2 text-xs">
-                <span className="inline-flex items-center gap-1 font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
-                  <CheckCircle2 className="w-3 h-3" />
-                  {stats.publishedPortfolios} Live
-                </span>
-                <span className="inline-flex items-center gap-1 font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/60">
-                  <Clock className="w-3 h-3" />
-                  {stats.totalPortfolios - stats.publishedPortfolios} Draft
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white border-zinc-200/80 shadow-sm hover:border-blue-400 hover:shadow-md transition-all">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                Artikel Blog
-              </CardTitle>
-              <div className="p-2 rounded-xl bg-blue-500/10 text-blue-600">
-                <FileText className="w-4 h-4" />
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="text-3xl font-extrabold text-zinc-900 tracking-tight">
-                {stats.totalArticles}
-              </div>
-              <div className="flex items-center gap-2 text-xs">
-                <span className="inline-flex items-center gap-1 font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
-                  <CheckCircle2 className="w-3 h-3" />
-                  {stats.publishedArticles} Live
-                </span>
-                <span className="inline-flex items-center gap-1 font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/60">
-                  <Clock className="w-3 h-3" />
-                  {stats.totalArticles - stats.publishedArticles} Draft
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white border-zinc-200/80 shadow-sm hover:border-purple-400 hover:shadow-md transition-all">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                Kategori Konten
-              </CardTitle>
-              <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600">
-                <Layers className="w-4 h-4" />
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="text-3xl font-extrabold text-zinc-900 tracking-tight">
-                {stats.totalCategories}
-              </div>
-              <p className="text-xs text-zinc-500">Taksonomi topik artikel &amp; studi kasus</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white border-zinc-200/80 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                Media Library
-              </CardTitle>
-              <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600">
-                <ImageIcon className="w-4 h-4" />
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="text-3xl font-extrabold text-zinc-900 tracking-tight">
-                {stats.totalMedia}
-              </div>
-              <p className="text-xs text-zinc-500">Penyimpanan gambar &amp; aset digital</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Recent lists */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="bg-white border-zinc-200/80 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-zinc-100">
-              <div>
-                <CardTitle className="text-base font-bold text-zinc-900">Portofolio Terbaru</CardTitle>
-                <CardDescription className="text-xs text-zinc-500">
-                  Studi kasus klien yang terdaftar di sistem
-                </CardDescription>
-              </div>
-              <Link
-                href="/dashboard/portofolio"
-                className="text-xs font-semibold text-[#FF5C28] hover:underline flex items-center gap-1"
-              >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-3 border-b">
+            <div>
+              <CardTitle className="text-base">Portofolio Terbaru</CardTitle>
+              <CardDescription>Studi kasus klien yang terdaftar di sistem</CardDescription>
+            </div>
+            <Button asChild variant="ghost" size="sm" className="text-primary">
+              <Link href="/dashboard/portofolio">
                 Lihat Semua
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
-            </CardHeader>
-            <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow className="hover:bg-transparent border-zinc-100">
-                    <TableHead className="text-xs font-semibold text-zinc-500">Proyek &amp; Klien</TableHead>
-                    <TableHead className="text-xs font-semibold text-zinc-500">Status</TableHead>
-                    <TableHead className="text-xs font-semibold text-zinc-500 text-right">Aksi</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {stats.latestPortfolios.length > 0 ? (
-                    stats.latestPortfolios.map((item) => (
-                      <TableRow key={item.id} className="border-zinc-100 hover:bg-zinc-50/80">
-                        <TableCell className="py-3">
-                          <div className="font-semibold text-xs text-zinc-900 truncate max-w-[200px]">
-                            {item.title}
-                          </div>
-                          <div className="text-[11px] text-zinc-400">{item.clientName}</div>
-                        </TableCell>
-                        <TableCell className="py-3">
-                          <StatusBadge status={item.status} />
-                        </TableCell>
-                        <TableCell className="py-3 text-right">
-                          <Link
-                            href={`/dashboard/portofolio/${item.id}`}
-                            className="inline-flex items-center gap-1 text-xs font-semibold text-[#FF5C28] hover:underline p-1 rounded"
-                          >
-                            <span>Edit</span>
-                            <ArrowUpRight className="w-3 h-3" />
-                          </Link>
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  ) : (
-                    <TableRow>
-                      <TableCell colSpan={3} className="text-center py-8 text-xs text-zinc-400">
-                        Belum ada portofolio di database.
+            </Button>
+          </CardHeader>
+          <CardContent className="p-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Proyek &amp; Klien</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Aksi</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {stats.latestPortfolios.length > 0 ? (
+                  stats.latestPortfolios.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell>
+                        <div className="font-semibold text-sm truncate max-w-[220px]">{item.title}</div>
+                        <div className="text-xs text-muted-foreground">{item.clientName}</div>
+                      </TableCell>
+                      <TableCell>
+                        <StatusBadge status={item.status} />
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button asChild variant="ghost" size="sm" className="text-primary">
+                          <Link href={`/dashboard/portofolio/${item.id}`}>Edit</Link>
+                        </Button>
                       </TableCell>
                     </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white border-zinc-200/80 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-zinc-100">
-              <div>
-                <CardTitle className="text-base font-bold text-zinc-900">Artikel Blog Terkini</CardTitle>
-                <CardDescription className="text-xs text-zinc-500">
-                  Wawasan editorial &amp; strategi bisnis digital
-                </CardDescription>
-              </div>
-              <Link
-                href="/dashboard/artikel"
-                className="text-xs font-semibold text-[#FF5C28] hover:underline flex items-center gap-1"
-              >
-                Lihat Semua
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
-            </CardHeader>
-            <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow className="hover:bg-transparent border-zinc-100">
-                    <TableHead className="text-xs font-semibold text-zinc-500">Judul Artikel</TableHead>
-                    <TableHead className="text-xs font-semibold text-zinc-500">Status</TableHead>
-                    <TableHead className="text-xs font-semibold text-zinc-500 text-right">Aksi</TableHead>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={3} className="text-center py-8 text-sm text-muted-foreground">
+                      Belum ada portofolio di database.
+                    </TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {stats.latestArticles.length > 0 ? (
-                    stats.latestArticles.map((item) => (
-                      <TableRow key={item.id} className="border-zinc-100 hover:bg-zinc-50/80">
-                        <TableCell className="py-3">
-                          <div className="font-semibold text-xs text-zinc-900 truncate max-w-[200px]">
-                            {item.title}
-                          </div>
-                          <div className="text-[11px] text-zinc-400">/blog/{item.slug}</div>
-                        </TableCell>
-                        <TableCell className="py-3">
-                          <StatusBadge status={item.status} />
-                        </TableCell>
-                        <TableCell className="py-3 text-right">
-                          <Link
-                            href={`/dashboard/artikel/${item.id}`}
-                            className="inline-flex items-center gap-1 text-xs font-semibold text-[#FF5C28] hover:underline p-1 rounded"
-                          >
-                            <span>Edit</span>
-                            <ArrowUpRight className="w-3 h-3" />
-                          </Link>
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  ) : (
-                    <TableRow>
-                      <TableCell colSpan={3} className="text-center py-8 text-xs text-zinc-400">
-                        Belum ada artikel di database.
+                )}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-3 border-b">
+            <div>
+              <CardTitle className="text-base">Artikel Blog Terkini</CardTitle>
+              <CardDescription>Wawasan editorial &amp; strategi bisnis digital</CardDescription>
+            </div>
+            <Button asChild variant="ghost" size="sm" className="text-primary">
+              <Link href="/dashboard/artikel">
+                Lihat Semua
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+          </CardHeader>
+          <CardContent className="p-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Judul Artikel</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Aksi</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {stats.latestArticles.length > 0 ? (
+                  stats.latestArticles.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell>
+                        <div className="font-semibold text-sm truncate max-w-[220px]">{item.title}</div>
+                        <div className="text-xs text-muted-foreground font-mono">/blog/{item.slug}</div>
+                      </TableCell>
+                      <TableCell>
+                        <StatusBadge status={item.status} />
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button asChild variant="ghost" size="sm" className="text-primary">
+                          <Link href={`/dashboard/artikel/${item.id}`}>Edit</Link>
+                        </Button>
                       </TableCell>
                     </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </div>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={3} className="text-center py-8 text-sm text-muted-foreground">
+                      Belum ada artikel di database.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
 
-        <div className="rounded-xl p-4 bg-white border border-zinc-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-zinc-500">
-          <div className="flex items-center gap-2">
-            <Badge variant="outline" className="border-[#FF5C28]/40 text-[#FF5C28]">
-              Fullstack
-            </Badge>
-            <span className="font-semibold text-zinc-800">Stack Aktif:</span>
-            <span>Next.js 16 · Drizzle ORM · PostgreSQL · Supabase Storage · shadcn/ui</span>
-          </div>
-        </div>
-      </main>
-    </>
+      <div className="flex flex-col sm:flex-row gap-3">
+        <Button asChild>
+          <Link href="/dashboard/portofolio/baru">
+            <PlusCircle className="h-4 w-4" />
+            Tambah Portofolio
+          </Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/dashboard/artikel/baru">
+            <PlusCircle className="h-4 w-4" />
+            Tulis Artikel
+          </Link>
+        </Button>
+      </div>
+    </main>
   )
 }

@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { asc, eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { articles, categories } from '@/db/schema'
-import { DashboardHeader } from '@/components/dashboard/DashboardHeader'
 import { ArticleForm } from '../ArticleForm'
 
 export const dynamic = 'force-dynamic'
@@ -19,29 +18,30 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
   if (!item) notFound()
 
   return (
-    <>
-      <DashboardHeader title={`Edit: ${item.title}`} subtitle={`/blog/${item.slug}`} />
-      <main className="p-8 max-w-7xl w-full mx-auto">
-        <ArticleForm
-          categories={categoryRows}
-          initial={{
-            id: item.id,
-            title: item.title,
-            slug: item.slug,
-            status: item.status,
-            publishedAt: item.publishedAt ? toLocalInput(item.publishedAt) : '',
-            categoryId: item.categoryId ?? '',
-            excerpt: item.excerpt ?? '',
-            content: item.content,
-            tags: (item.tags ?? []).join(', '),
-            authorName: item.authorName,
-            authorRole: item.authorRole ?? '',
-            metaTitle: item.metaTitle ?? '',
-            metaDescription: item.metaDescription ?? '',
-          }}
-        />
-      </main>
-    </>
+    <main className="p-4 sm:p-8 max-w-7xl w-full mx-auto">
+      <div className="mb-6">
+        <h2 className="text-lg font-bold tracking-tight truncate">{item.title}</h2>
+        <p className="text-sm text-muted-foreground font-mono">/blog/{item.slug}</p>
+      </div>
+      <ArticleForm
+        categories={categoryRows}
+        initial={{
+          id: item.id,
+          title: item.title,
+          slug: item.slug,
+          status: item.status,
+          publishedAt: item.publishedAt ? toLocalInput(item.publishedAt) : '',
+          categoryId: item.categoryId ?? '',
+          excerpt: item.excerpt ?? '',
+          content: item.content,
+          tags: (item.tags ?? []).join(', '),
+          authorName: item.authorName,
+          authorRole: item.authorRole ?? '',
+          metaTitle: item.metaTitle ?? '',
+          metaDescription: item.metaDescription ?? '',
+        }}
+      />
+    </main>
   )
 }
 
