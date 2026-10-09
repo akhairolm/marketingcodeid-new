@@ -1,10 +1,10 @@
-import { lx, readingMinutes } from './lexical'
+import { readingMinutes } from './markdown'
 import type { ArticleItem, PortfolioItem } from './types'
 
 /**
- * Sample content shown while the CMS is unreachable or still empty.
- * Once Portfolios / Articles are published in Payload (/admin), the pages
- * switch to CMS data automatically — nothing here needs to be deleted.
+ * Sample content shown while the database is unreachable or still empty.
+ * Once Portfolios / Articles are published in the dashboard, the pages
+ * switch to database data automatically — nothing here needs to be deleted.
  */
 
 const img = (id: string, alt: string, w = 1600) => ({
@@ -39,18 +39,14 @@ export const samplePortfolios: PortfolioItem[] = [
       { value: '0 jam', label: 'Rekap stok manual per minggu' },
       { value: '100%', label: 'Mutasi tercatat dengan audit trail' },
     ],
-    techStack: ['Next.js 16', 'Payload CMS 3', 'Supabase PostgreSQL', 'Tailwind CSS'],
-    content: lx.doc(
-      lx.h3('Alur kerja yang dipetakan ulang'),
-      lx.p(
-        'Sebelum menulis kode, kami duduk bersama kepala gudang dan tim admin untuk memetakan alur barang masuk, transfer antar gudang, hingga barang keluar. Hasilnya menjadi dasar struktur data dan hak akses setiap peran.',
-      ),
-      lx.ul(
-        ['Role terpisah untuk admin gudang, supervisor, dan manajemen'],
-        ['Scan barcode via kamera ponsel untuk penerimaan barang'],
-        ['Ekspor laporan mutasi ke Excel untuk kebutuhan akuntansi'],
-      ),
-    ),
+    techStack: ['Next.js 16', 'Drizzle ORM', 'Supabase PostgreSQL', 'Tailwind CSS'],
+    content: `### Alur kerja yang dipetakan ulang
+
+Sebelum menulis kode, kami duduk bersama kepala gudang dan tim admin untuk memetakan alur barang masuk, transfer antar gudang, hingga barang keluar. Hasilnya menjadi dasar struktur data dan hak akses setiap peran.
+
+- Role terpisah untuk admin gudang, supervisor, dan manajemen
+- Scan barcode via kamera ponsel untuk penerimaan barang
+- Ekspor laporan mutasi ke Excel untuk kebutuhan akuntansi`,
     gallery: [
       { image: img('photo-1551288049-bebda4e38f71', 'Dashboard analitik stok dan grafik pergerakan barang', 1200), caption: 'Dashboard ringkasan stok lintas gudang' },
       { image: img('photo-1553413077-190dd305871c', 'Petugas gudang memeriksa barang di rak', 1200), caption: 'Penerimaan barang dengan scan barcode' },
@@ -160,47 +156,38 @@ const rawArticles: Omit<ArticleItem, 'readingMinutes'>[] = [
     authorName: 'Tim MarketingCode.ID',
     authorRole: 'Web Development',
     publishedAt: '2026-09-22T09:00:00.000Z',
-    content: lx.doc(
-      lx.p(
-        'Pertanyaan pertama yang hampir selalu muncul saat konsultasi adalah, ',
-        lx.i('"berapa biayanya?"'),
-        ' Jawaban jujurnya: tergantung. Tapi "tergantung" tidak membantu Anda menyusun anggaran. Artikel ini merinci komponen yang benar-benar memengaruhi harga, agar Anda bisa membaca penawaran vendor dengan lebih percaya diri.',
-      ),
-      lx.h2('1. Jumlah dan jenis halaman'),
-      lx.p(
-        'Landing page tunggal untuk satu produk jauh lebih sederhana dibanding website company profile dengan delapan halaman, blog, dan katalog. Yang menambah biaya bukan sekadar jumlah halaman, melainkan berapa banyak ',
-        lx.b('template unik'),
-        ' yang harus didesain dan dibangun.',
-      ),
-      lx.h2('2. Desain custom atau template'),
-      lx.p(
-        'Template siap pakai memangkas waktu desain, tetapi sering membawa kode berlebih yang memperlambat website. Desain custom membutuhkan sesi riset dan prototipe, namun hasilnya selaras dengan brand dan alur konversi yang Anda inginkan.',
-      ),
-      lx.h2('3. Fitur dinamis dan CMS'),
-      lx.p('Komponen berikut biasanya menambah ruang lingkup pekerjaan secara signifikan:'),
-      lx.ul(
-        ['CMS agar tim Anda bisa mengubah konten tanpa developer'],
-        ['Katalog produk dengan filter dan pencarian'],
-        ['Integrasi WhatsApp, payment gateway, atau sistem internal'],
-        ['Area login untuk pelanggan atau mitra'],
-      ),
-      lx.h2('4. Biaya berulang yang sering terlupa'),
-      lx.p(
-        'Domain, hosting, layanan email, dan pemeliharaan adalah biaya tahunan. Tanyakan sejak awal apa saja yang sudah termasuk dalam paket dan berapa biaya perpanjangannya di tahun kedua.',
-      ),
-      lx.quote(
-        'Penawaran termurah belum tentu paling hemat jika website harus dibangun ulang dalam setahun karena lambat dan sulit dikembangkan.',
-      ),
-      lx.h2('Cara membandingkan penawaran'),
-      lx.ol(
-        ['Minta rincian fitur per halaman, bukan hanya total harga.'],
-        ['Pastikan kepemilikan source code dan akses hosting ada di tangan Anda.'],
-        ['Tanyakan masa garansi dan apa yang terjadi setelahnya.'],
-      ),
-      lx.p(
-        'Jika Anda masih ragu menentukan cakupan yang tepat, tim kami bisa membantu menyusun daftar kebutuhan dan estimasi biaya tanpa komitmen di awal.',
-      ),
-    ),
+    content: `Pertanyaan pertama yang hampir selalu muncul saat konsultasi adalah, *"berapa biayanya?"* Jawaban jujurnya: tergantung. Tapi "tergantung" tidak membantu Anda menyusun anggaran. Artikel ini merinci komponen yang benar-benar memengaruhi harga, agar Anda bisa membaca penawaran vendor dengan lebih percaya diri.
+
+## 1. Jumlah dan jenis halaman
+
+Landing page tunggal untuk satu produk jauh lebih sederhana dibanding website company profile dengan delapan halaman, blog, dan katalog. Yang menambah biaya bukan sekadar jumlah halaman, melainkan berapa banyak **template unik** yang harus didesain dan dibangun.
+
+## 2. Desain custom atau template
+
+Template siap pakai memangkas waktu desain, tetapi sering membawa kode berlebih yang memperlambat website. Desain custom membutuhkan sesi riset dan prototipe, namun hasilnya selaras dengan brand dan alur konversi yang Anda inginkan.
+
+## 3. Fitur dinamis dan CMS
+
+Komponen berikut biasanya menambah ruang lingkup pekerjaan secara signifikan:
+
+- CMS agar tim Anda bisa mengubah konten tanpa developer
+- Katalog produk dengan filter dan pencarian
+- Integrasi WhatsApp, payment gateway, atau sistem internal
+- Area login untuk pelanggan atau mitra
+
+## 4. Biaya berulang yang sering terlupa
+
+Domain, hosting, layanan email, dan pemeliharaan adalah biaya tahunan. Tanyakan sejak awal apa saja yang sudah termasuk dalam paket dan berapa biaya perpanjangannya di tahun kedua.
+
+> Penawaran termurah belum tentu paling hemat jika website harus dibangun ulang dalam setahun karena lambat dan sulit dikembangkan.
+
+## Cara membandingkan penawaran
+
+1. Minta rincian fitur per halaman, bukan hanya total harga.
+2. Pastikan kepemilikan source code dan akses hosting ada di tangan Anda.
+3. Tanyakan masa garansi dan apa yang terjadi setelahnya.
+
+Jika Anda masih ragu menentukan cakupan yang tepat, tim kami bisa membantu menyusun daftar kebutuhan dan estimasi biaya tanpa komitmen di awal.`,
   },
   {
     slug: 'meta-conversions-api-pixel-tidak-cukup',
@@ -213,45 +200,34 @@ const rawArticles: Omit<ArticleItem, 'readingMinutes'>[] = [
     authorName: 'Tim MarketingCode.ID',
     authorRole: 'Performance Marketing',
     publishedAt: '2026-09-08T09:00:00.000Z',
-    content: lx.doc(
-      lx.p(
-        'Jika angka pembelian di Ads Manager selalu lebih kecil dibanding pesanan yang masuk, Anda tidak sendirian. Sejak browser dan sistem operasi memperketat pelacakan, Meta Pixel yang berjalan di browser kehilangan sebagian sinyal konversi.',
-      ),
-      lx.h2('Apa itu Conversions API?'),
-      lx.p(
-        'Conversions API (CAPI) adalah cara mengirim event seperti ',
-        lx.b('Purchase'),
-        ' atau ',
-        lx.b('Lead'),
-        ' langsung dari server Anda ke Meta. Karena tidak bergantung pada browser pengunjung, event tetap terkirim meski ada ad blocker atau pembatasan cookie.',
-      ),
-      lx.h2('Dampaknya ke performa iklan'),
-      lx.p(
-        'Algoritma Meta mengoptimalkan iklan berdasarkan data konversi yang diterimanya. Data yang bolong membuat algoritma menargetkan orang yang salah, sehingga biaya per hasil naik.',
-      ),
-      lx.ul(
-        ['Atribusi lebih akurat untuk keputusan alokasi budget'],
-        ['Audiens retargeting dan lookalike yang lebih lengkap'],
-        ['Kualitas pencocokan event (Event Match Quality) meningkat'],
-      ),
-      lx.h2('Pixel dan CAPI bekerja bersama'),
-      lx.p(
-        'CAPI bukan pengganti Pixel. Praktik terbaiknya adalah menjalankan keduanya dengan ',
-        lx.b('event_id'),
-        ' yang sama, agar Meta bisa menghapus duplikasi dan menyimpan satu event yang paling lengkap.',
-      ),
-      lx.h3('Checklist implementasi'),
-      lx.ol(
-        ['Tentukan event bisnis yang benar-benar penting (bukan semua klik).'],
-        ['Kirim parameter pelanggan yang di-hash, seperti email dan nomor telepon.'],
-        ['Gunakan event_id untuk deduplikasi dengan Pixel.'],
-        ['Pantau Event Match Quality di Events Manager setiap minggu.'],
-      ),
-      lx.quote('Iklan yang bagus tidak akan menolong jika data yang dipakai algoritma untuk belajar salah.'),
-      lx.p(
-        'Implementasi CAPI bisa dilakukan lewat integrasi platform e-commerce, server-side tagging, atau kode custom. Pilihannya bergantung pada stack website dan seberapa detail data yang ingin Anda kirim.',
-      ),
-    ),
+    content: `Jika angka pembelian di Ads Manager selalu lebih kecil dibanding pesanan yang masuk, Anda tidak sendirian. Sejak browser dan sistem operasi memperketat pelacakan, Meta Pixel yang berjalan di browser kehilangan sebagian sinyal konversi.
+
+## Apa itu Conversions API?
+
+Conversions API (CAPI) adalah cara mengirim event seperti **Purchase** atau **Lead** langsung dari server Anda ke Meta. Karena tidak bergantung pada browser pengunjung, event tetap terkirim meski ada ad blocker atau pembatasan cookie.
+
+## Dampaknya ke performa iklan
+
+Algoritma Meta mengoptimalkan iklan berdasarkan data konversi yang diterimanya. Data yang bolong membuat algoritma menargetkan orang yang salah, sehingga biaya per hasil naik.
+
+- Atribusi lebih akurat untuk keputusan alokasi budget
+- Audiens retargeting dan lookalike yang lebih lengkap
+- Kualitas pencocokan event (Event Match Quality) meningkat
+
+## Pixel dan CAPI bekerja bersama
+
+CAPI bukan pengganti Pixel. Praktik terbaiknya adalah menjalankan keduanya dengan **event_id** yang sama, agar Meta bisa menghapus duplikasi dan menyimpan satu event yang paling lengkap.
+
+### Checklist implementasi
+
+1. Tentukan event bisnis yang benar-benar penting (bukan semua klik).
+2. Kirim parameter pelanggan yang di-hash, seperti email dan nomor telepon.
+3. Gunakan event_id untuk deduplikasi dengan Pixel.
+4. Pantau Event Match Quality di Events Manager setiap minggu.
+
+> Iklan yang bagus tidak akan menolong jika data yang dipakai algoritma untuk belajar salah.
+
+Implementasi CAPI bisa dilakukan lewat integrasi platform e-commerce, server-side tagging, atau kode custom. Pilihannya bergantung pada stack website dan seberapa detail data yang ingin Anda kirim.`,
   },
   {
     slug: 'nextjs-vs-wordpress-company-profile',
@@ -264,31 +240,26 @@ const rawArticles: Omit<ArticleItem, 'readingMinutes'>[] = [
     authorName: 'Tim MarketingCode.ID',
     authorRole: 'Web Development',
     publishedAt: '2026-08-25T09:00:00.000Z',
-    content: lx.doc(
-      lx.p(
-        'Dua pilihan ini sama-sama bisa menghasilkan website company profile yang baik. Perbedaannya ada pada cara website dibangun, dirawat, dan dikembangkan di masa depan.',
-      ),
-      lx.h2('Performa dan Core Web Vitals'),
-      lx.p(
-        'Next.js merender halaman di server atau saat build, lalu mengirim HTML yang ringan ke browser. WordPress bisa cepat juga, tetapi biasanya membutuhkan plugin cache dan optimasi tambahan, terutama jika tema dan plugin yang dipakai berat.',
-      ),
-      lx.h2('Kemudahan mengelola konten'),
-      lx.p(
-        'WordPress terkenal ramah untuk editor konten. Di sisi Next.js, kebutuhan ini dipenuhi oleh headless CMS seperti ',
-        lx.b('Payload CMS'),
-        ', yang memberi panel admin modern dengan struktur konten yang bisa disesuaikan per bisnis.',
-      ),
-      lx.h2('Keamanan dan pemeliharaan'),
-      lx.ul(
-        ['WordPress: update rutin core, tema, dan plugin wajib dilakukan'],
-        ['Next.js + headless CMS: permukaan serangan lebih kecil karena frontend terpisah dari admin'],
-      ),
-      lx.h2('Kapan memilih yang mana?'),
-      lx.p(
-        'Pilih WordPress jika Anda butuh website cepat jadi dengan anggaran terbatas dan fitur standar. Pilih Next.js jika performa, SEO teknis, dan rencana pengembangan fitur custom menjadi prioritas.',
-      ),
-      lx.quote('Teknologi terbaik adalah yang paling sesuai dengan tujuan bisnis dan kemampuan tim Anda merawatnya.'),
-    ),
+    content: `Dua pilihan ini sama-sama bisa menghasilkan website company profile yang baik. Perbedaannya ada pada cara website dibangun, dirawat, dan dikembangkan di masa depan.
+
+## Performa dan Core Web Vitals
+
+Next.js merender halaman di server atau saat build, lalu mengirim HTML yang ringan ke browser. WordPress bisa cepat juga, tetapi biasanya membutuhkan plugin cache dan optimasi tambahan, terutama jika tema dan plugin yang dipakai berat.
+
+## Kemudahan mengelola konten
+
+WordPress terkenal ramah untuk editor konten. Di sisi Next.js, kebutuhan ini bisa dipenuhi oleh **dashboard admin custom** yang dibangun khusus sesuai alur kerja bisnis Anda — dengan struktur konten yang sepenuhnya bisa disesuaikan.
+
+## Keamanan dan pemeliharaan
+
+- WordPress: update rutin core, tema, dan plugin wajib dilakukan
+- Next.js + dashboard custom: permukaan serangan lebih kecil karena tidak ada plugin pihak ketiga yang harus dipantau
+
+## Kapan memilih yang mana?
+
+Pilih WordPress jika Anda butuh website cepat jadi dengan anggaran terbatas dan fitur standar. Pilih Next.js jika performa, SEO teknis, dan rencana pengembangan fitur custom menjadi prioritas.
+
+> Teknologi terbaik adalah yang paling sesuai dengan tujuan bisnis dan kemampuan tim Anda merawatnya.`,
   },
   {
     slug: 'tanda-bisnis-butuh-aplikasi-mobile',
@@ -301,34 +272,36 @@ const rawArticles: Omit<ArticleItem, 'readingMinutes'>[] = [
     authorName: 'Tim MarketingCode.ID',
     authorRole: 'Mobile Development',
     publishedAt: '2026-08-11T09:00:00.000Z',
-    content: lx.doc(
-      lx.p(
-        'Membangun aplikasi mobile adalah investasi besar. Sebelum memutuskan, perhatikan apakah bisnis Anda menunjukkan tanda-tanda berikut.',
-      ),
-      lx.h2('1. Pelanggan bertransaksi berulang kali'),
-      lx.p(
-        'Jika pelanggan memesan setiap minggu atau setiap bulan, aplikasi memberi akses satu ketuk dan menyimpan riwayat mereka, sehingga proses pemesanan jauh lebih cepat.',
-      ),
-      lx.h2('2. Tim kewalahan membalas chat yang sama'),
-      lx.p(
-        'Pertanyaan soal jadwal, status pesanan, atau tagihan bisa dijawab otomatis oleh aplikasi lewat notifikasi dan halaman status.',
-      ),
-      lx.h2('3. Anda butuh fitur perangkat'),
-      lx.p('Beberapa kebutuhan hanya optimal di aplikasi native atau cross-platform:'),
-      lx.ul(['Push notification'], ['Kamera dan scan barcode'], ['Lokasi real-time'], ['Mode offline']),
-      lx.h2('4. Loyalitas menjadi prioritas'),
-      lx.p(
-        'Program poin, membership, dan promo personal lebih efektif ketika aplikasi Anda ada di layar utama ponsel pelanggan.',
-      ),
-      lx.h2('5. Proses internal masih manual'),
-      lx.p(
-        'Aplikasi tidak selalu untuk pelanggan. Tim lapangan, kurir, atau teknisi juga bisa bekerja lebih rapi dengan aplikasi internal yang terhubung ke sistem pusat.',
-      ),
-      lx.quote('Mulailah dari satu alur yang paling sering dipakai, bukan dari daftar fitur sepanjang mungkin.'),
-      lx.p(
-        'Jika dua atau lebih tanda di atas terasa familiar, ini saat yang tepat untuk mendiskusikan MVP aplikasi yang fokus pada alur terpenting bisnis Anda.',
-      ),
-    ),
+    content: `Membangun aplikasi mobile adalah investasi besar. Sebelum memutuskan, perhatikan apakah bisnis Anda menunjukkan tanda-tanda berikut.
+
+## 1. Pelanggan bertransaksi berulang kali
+
+Jika pelanggan memesan setiap minggu atau setiap bulan, aplikasi memberi akses satu ketuk dan menyimpan riwayat mereka, sehingga proses pemesanan jauh lebih cepat.
+
+## 2. Tim kewalahan membalas chat yang sama
+
+Pertanyaan soal jadwal, status pesanan, atau tagihan bisa dijawab otomatis oleh aplikasi lewat notifikasi dan halaman status.
+
+## 3. Anda butuh fitur perangkat
+
+Beberapa kebutuhan hanya optimal di aplikasi native atau cross-platform:
+
+- Push notification
+- Kamera dan scan barcode
+- Lokasi real-time
+- Mode offline
+
+## 4. Loyalitas menjadi prioritas
+
+Program poin, membership, dan promo personal lebih efektif ketika aplikasi Anda ada di layar utama ponsel pelanggan.
+
+## 5. Proses internal masih manual
+
+Aplikasi tidak selalu untuk pelanggan. Tim lapangan, kurir, atau teknisi juga bisa bekerja lebih rapi dengan aplikasi internal yang terhubung ke sistem pusat.
+
+> Mulailah dari satu alur yang paling sering dipakai, bukan dari daftar fitur sepanjang mungkin.
+
+Jika dua atau lebih tanda di atas terasa familiar, ini saat yang tepat untuk mendiskusikan MVP aplikasi yang fokus pada alur terpenting bisnis Anda.`,
   },
 ]
 

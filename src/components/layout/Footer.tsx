@@ -31,7 +31,7 @@ export function Footer() {
             <ul className="footer-links">
               <li>
                 <a href={getWhatsAppUrl('website')} target="_blank" rel="noopener noreferrer">
-                  Website Custom (Next.js & Payload)
+                  Website Custom (Next.js & Custom Dashboard)
                 </a>
               </li>
               <li>
@@ -95,7 +95,7 @@ export function Footer() {
           <div className="footer-tech-stack">
             <span>Built with Next.js 16</span>
             <span className="dot">•</span>
-            <span>Payload CMS 3</span>
+            <span>Drizzle ORM</span>
             <span className="dot">•</span>
             <span>Supabase PostgreSQL</span>
           </div>

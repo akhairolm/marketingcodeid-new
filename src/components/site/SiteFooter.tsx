@@ -37,7 +37,7 @@ export function SiteFooter() {
 
         <div className="pt-4 border-t border-neutral-100 w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-400">
           <span>&copy; {new Date().getFullYear()} MarketingCode.ID Digital Agency. Hak Cipta Dilindungi.</span>
-          <span className="font-mono">Dibangun dengan Next.js &amp; Payload CMS</span>
+          <span className="font-mono">Dibangun dengan Next.js &amp; Drizzle ORM</span>
         </div>
       </div>
     </footer>

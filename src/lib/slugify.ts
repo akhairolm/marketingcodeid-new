@@ -10,7 +10,7 @@ export function slugify(input: string): string {
     .toLowerCase()
     .trim()
     .replace(/&/g, '-dan-')
-    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[^a-z0-9\s_-]/g, '')
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }

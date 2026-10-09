@@ -1,12 +1,8 @@
-import type { Article } from '@/payload-types'
-
 /**
  * View-model types consumed by the public pages.
- * Both Payload documents and the bundled sample data are mapped into these
+ * Both database rows and the bundled sample data are mapped into these
  * shapes, so pages never depend on where the content came from.
  */
-
-export type RichTextData = Article['content']
 
 export interface ImageAsset {
   url: string
@@ -45,7 +41,7 @@ export interface PortfolioItem {
   solution?: string
   results: PortfolioResult[]
   techStack: string[]
-  content?: RichTextData | null
+  content?: string | null
   testimonial?: { quote: string; name?: string; role?: string }
   gallery: { image: ImageAsset; caption?: string }[]
   isFeatured: boolean
@@ -64,7 +60,7 @@ export interface ArticleItem {
   excerpt: string
   category?: ArticleCategory
   coverImage: ImageAsset
-  content: RichTextData
+  content: string
   tags: string[]
   authorName: string
   authorRole?: string

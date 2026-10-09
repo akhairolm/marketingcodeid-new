@@ -147,7 +147,7 @@ export default function HomePage() {
       client: 'Distribusi Logistik B2B',
       category: 'web',
       categoryLabel: 'Custom Web Application',
-      techStack: ['Next.js 16', 'Payload CMS 3', 'Supabase PostgreSQL', 'Tailwind CSS'],
+      techStack: ['Next.js 16', 'Drizzle ORM', 'Supabase PostgreSQL', 'Tailwind CSS'],
       description: 'Sistem pencatatan inventaris multi-gudang real-time dengan batch FIFO/LIFO, audit trail mutasi, dan dashboard visual low-stock alert.',
       highlight: '0ms Rekap Manual · 100% Data Integritas',
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
@@ -604,7 +604,7 @@ export default function HomePage() {
                   Web &amp; Mobile App Development
                 </h3>
                 <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                  Pengembangan website Next.js 16 kencang, Payload CMS 3 mandiri, dan aplikasi mobile Flutter iOS &amp; Android siap rilis.
+                  Pengembangan website Next.js 16 kencang, dashboard admin custom mandiri, dan aplikasi mobile Flutter iOS &amp; Android siap rilis.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-[#FF5C28]">
@@ -752,7 +752,7 @@ export default function HomePage() {
                 <span className="text-[11px] font-bold text-[#FF5C28] uppercase tracking-wider">Enterprise Architecture</span>
                 <h3 className="text-lg font-bold text-neutral-900 mt-1">Custom Web Platform &amp; CMS</h3>
                 <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                  Aplikasi web korporat, dashboard internal, atau portal SaaS menggunakan Next.js 16 (App Router) dan Payload CMS 3 mandiri.
+                  Aplikasi web korporat, dashboard internal, atau portal SaaS menggunakan Next.js 16 (App Router) dan dashboard admin custom.
                 </p>
 
                 <div className="mt-5 space-y-2.5 text-xs text-neutral-700 font-medium">
@@ -760,7 +760,7 @@ export default function HomePage() {
                     <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Full-stack Next.js 16 &amp; React 19
                   </div>
                   <div className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Payload CMS 3 Serverless Native
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Dashboard Admin Fullstack Custom
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> PostgreSQL Supabase Database
@@ -863,7 +863,7 @@ export default function HomePage() {
                     <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Next.js 16 &amp; React 19
                   </span>
                   <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Payload CMS 3 Serverless
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Dashboard Admin Custom
                   </span>
                   <span className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5">
                     <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Supabase Managed PostgreSQL
@@ -1453,7 +1453,7 @@ export default function HomePage() {
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                   className="w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50"
                 >
-                  <option value="web">Pembuatan Website Baru / Redesign (Next.js &amp; Payload)</option>
+                  <option value="web">Pembuatan Website Baru / Redesign (Next.js &amp; Custom Dashboard)</option>
                   <option value="app">Pengembangan Mobile App (iOS / Android)</option>
                   <option value="marketing">Digital Marketing (Meta Ads, Google, SEO)</option>
                   <option value="all">Solusi Komprehensif (Web + App + Marketing)</option>
@@ -1617,7 +1617,7 @@ export default function HomePage() {
               <Film className="w-12 h-12 text-[#FF5C28] mb-3" />
               <h4 className="text-base font-bold">Video Showreel MarketingCode.ID</h4>
               <p className="text-xs text-neutral-400 mt-1 max-w-md">
-                Cuplikan sprint desain UI/UX, pengkodean backend Next.js 16 &amp; Payload CMS 3, serta live tracking dashboard iklan Meta &amp; Google.
+                Cuplikan sprint desain UI/UX, pengkodean backend Next.js 16 &amp; dashboard custom, serta live tracking dashboard iklan Meta &amp; Google.
               </p>
               <span className="mt-4 px-3 py-1 bg-white/10 rounded-full text-[10px] text-neutral-300">
                 Durasi: 1 Menit 45 Detik

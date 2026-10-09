@@ -2,7 +2,80 @@
 
 import React from 'react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { Badge } from '@/components/ui/badge'
+
+type CodeLine = { text: string; kind?: 'comment' | 'keyword' | 'string' | 'number' | 'boolean' | 'plain' }
+
+function Line({ line }: { line: CodeLine }) {
+  const cls =
+    line.kind === 'comment'
+      ? 'c-comment'
+      : line.kind === 'keyword'
+        ? 'c-keyword'
+        : line.kind === 'string'
+          ? 'c-string'
+          : line.kind === 'number'
+            ? 'c-number'
+            : line.kind === 'boolean'
+              ? 'c-boolean'
+              : ''
+  return (
+    <span className="code-line">
+      {line.kind ? <span className={cls}>{line.text}</span> : line.text}
+    </span>
+  )
+}
+
+function CodeBlock({ lines }: { lines: CodeLine[] }) {
+  return (
+    <pre className="code-content">
+      <code>
+        {lines.map((line, i) => (
+          <Line key={i} line={line} />
+        ))}
+      </code>
+    </pre>
+  )
+}
+
+const WEB_LINES: CodeLine[] = [
+  { text: '// MarketingCode ID — Custom Web Architecture', kind: 'comment' },
+  { text: "import { drizzle } from 'drizzle-orm'", kind: 'plain' },
+  { text: "import { supabaseStorage } from '@supabase/supabase-js'", kind: 'plain' },
+  { text: '' },
+  { text: 'export default defineAgencyProject({', kind: 'plain' },
+  { text: "  framework: 'Next.js 16 (App Router + Turbopack)',", kind: 'plain' },
+  { text: "  dashboard: 'Custom Admin UI (Fullstack Next.js)',", kind: 'plain' },
+  { text: "  database: 'Supabase Managed PostgreSQL',", kind: 'plain' },
+  { text: '  speedScore: 99,', kind: 'plain' },
+  { text: '  /* Google PageSpeed Guaranteed */', kind: 'comment' },
+  { text: "  codeOwnership: '100% Full Source Code Handover',", kind: 'plain' },
+  { text: '  seoReady: true,', kind: 'plain' },
+  { text: "  directSupport: 'WhatsApp Direct to Lead Dev'", kind: 'plain' },
+  { text: '})', kind: 'plain' },
+]
+
+const MOBILE_LINES: CodeLine[] = [
+  { text: '// Cross-Platform iOS & Android Application', kind: 'comment' },
+  { text: 'interface MobileAppConfig {', kind: 'plain' },
+  { text: "  platform: 'iOS (App Store) & Android (Play Store)',", kind: 'plain' },
+  { text: "  performance: '60 FPS Native Smooth Animation',", kind: 'plain' },
+  { text: '  offlineFirst: true,', kind: 'plain' },
+  { text: "  pushNotifications: 'Firebase Cloud Messaging',", kind: 'plain' },
+  { text: "  security: 'Biometric & Encrypted Storage',", kind: 'plain' },
+  { text: "  backendIntegration: 'Direct Supabase REST / GraphQL'", kind: 'plain' },
+  { text: '}', kind: 'plain' },
+]
+
+const ADS_LINES: CodeLine[] = [
+  { text: '// High-Converting Digital Marketing Engine', kind: 'comment' },
+  { text: '{', kind: 'plain' },
+  { text: '  "channels": ["Meta Ads (FB/IG)", "Google Search & Display"],', kind: 'plain' },
+  { text: '  "funnel": "High-Intent Click → Fast Landing → WhatsApp Lead",', kind: 'plain' },
+  { text: '  "tracking": ["Meta CAPI (Server-Side)", "Google GA4"],', kind: 'plain' },
+  { text: '  "targetMetric": "Lowest Cost-Per-Qualified-Lead (CPL)",', kind: 'plain' },
+  { text: '  "transparency": "Client Holds 100% Ads Account Access"', kind: 'plain' },
+  { text: '}', kind: 'plain' },
+]
 
 export function HeroBlueprint() {
   return (
@@ -22,7 +95,7 @@ export function HeroBlueprint() {
               className="data-[state=active]:bg-[#1e293b] data-[state=active]:text-[#60a5fa] text-xs font-mono text-gray-400 py-1 px-2.5 rounded border border-transparent data-[state=active]:border-gray-700 transition-all"
             >
               <span className="mr-1.5 text-xs">⚡</span>
-              <span>next16_payload3.ts</span>
+              <span>next16_dashboard.ts</span>
             </TabsTrigger>
             <TabsTrigger
               value="mobile"
@@ -49,69 +122,16 @@ export function HeroBlueprint() {
         {/* Code Body Content */}
         <div className="blueprint-body">
           <TabsContent value="web" className="m-0 focus-visible:outline-none">
-            <pre className="code-content">
-              <code>
-                <span className="code-line"><span className="c-comment">// MarketingCode ID — Custom Web Architecture</span></span>
-                <span className="code-line"><span className="c-keyword">import</span> {'{'} buildConfig {'}'} <span className="c-keyword">from</span> <span className="c-string">'payload'</span></span>
-                <span className="code-line"><span className="c-keyword">import</span> {'{'} postgresAdapter {'}'} <span className="c-keyword">from</span> <span className="c-string">'@payloadcms/db-postgres'</span></span>
-                <span className="code-line"></span>
-                <span className="code-line"><span className="c-keyword">export default</span> <span className="c-func">defineAgencyProject</span>({'{'}</span>
-                <span className="code-line">  framework: <span className="c-string">'Next.js 16 (App Router + Turbopack)'</span>,</span>
-                <span className="code-line">  cms: <span className="c-string">'Payload CMS 3.x (Native Embedded)'</span>,</span>
-                <span className="code-line">  database: <span className="c-string">'Supabase Managed PostgreSQL'</span>,</span>
-                <span className="code-line">  speedScore: <span className="c-number">99</span>, <span className="c-comment">/* Google PageSpeed Guaranteed */</span></span>
-                <span className="code-line">  codeOwnership: <span className="c-string">'100% Full Source Code Handover'</span>,</span>
-                <span className="code-line">  seoReady: <span className="c-boolean">true</span>,</span>
-                <span className="code-line">  directSupport: <span className="c-string">'WhatsApp Direct to Lead Dev'</span></span>
-                <span className="code-line">{'}'})</span>
-              </code>
-            </pre>
+            <CodeBlock lines={WEB_LINES} />
           </TabsContent>
 
           <TabsContent value="mobile" className="m-0 focus-visible:outline-none">
-            <pre className="code-content">
-              <code>
-                <span className="code-line"><span className="c-comment">// Cross-Platform iOS & Android Application</span></span>
-                <span className="code-line"><span className="c-keyword">interface</span> <span className="c-type">MobileAppConfig</span> {'{'}</span>
-                <span className="code-line">  platform: <span className="c-string">'iOS (App Store) & Android (Play Store)'</span>,</span>
-                <span className="code-line">  performance: <span className="c-string">'60 FPS Native Smooth Animation'</span>,</span>
-                <span className="code-line">  offlineFirst: <span className="c-boolean">true</span>,</span>
-                <span className="code-line">  pushNotifications: <span className="c-string">'Firebase Cloud Messaging'</span>,</span>
-                <span className="code-line">  security: <span className="c-string">'Biometric & Encrypted Storage'</span>,</span>
-                <span className="code-line">  backendIntegration: <span className="c-string">'Direct Supabase REST / GraphQL'</span></span>
-                <span className="code-line">{'}'}</span>
-              </code>
-            </pre>
+            <CodeBlock lines={MOBILE_LINES} />
           </TabsContent>
 
           <TabsContent value="ads" className="m-0 focus-visible:outline-none">
-            <pre className="code-content">
-              <code>
-                <span className="code-line"><span className="c-comment">// High-Converting Digital Marketing Engine</span></span>
-                <span className="code-line">{'{'}</span>
-                <span className="code-line">  <span className="c-prop">"channels"</span>: [<span className="c-string">"Meta Ads (FB/IG)"</span>, <span className="c-string">"Google Search & Display"</span>],</span>
-                <span className="code-line">  <span className="c-prop">"funnel"</span>: <span className="c-string">"High-Intent Click → Fast Landing → WhatsApp Lead"</span>,</span>
-                <span className="code-line">  <span className="c-prop">"tracking"</span>: [<span className="c-string">"Meta CAPI (Server-Side)"</span>, <span className="c-string">"Google GA4"</span>],</span>
-                <span className="code-line">  <span className="c-prop">"targetMetric"</span>: <span className="c-string">"Lowest Cost-Per-Qualified-Lead (CPL)"</span>,</span>
-                <span className="code-line">  <span className="c-prop">"transparency"</span>: <span className="c-string">"Client Holds 100% Ads Account Access"</span></span>
-                <span className="code-line">{'}'}</span>
-              </code>
-            </pre>
+            <CodeBlock lines={ADS_LINES} />
           </TabsContent>
-        </div>
-
-        {/* Execution Footer Bar */}
-        <div className="blueprint-footer">
-          <div className="footer-metric">
-            <Badge variant="outline" className="bg-emerald-950/40 text-emerald-400 border-emerald-500/40 text-[11px] font-mono font-normal">
-              200 OK
-            </Badge>
-            <span className="metric-desc text-xs">Next.js 16 SSR · Clean Drizzle Schemas · Zero WordPress Bloat</span>
-          </div>
-          <div className="footer-action">
-            <span className="pulse-dot" />
-            <span className="text-xs">Active Pipeline</span>
-          </div>
         </div>
       </Tabs>
     </div>

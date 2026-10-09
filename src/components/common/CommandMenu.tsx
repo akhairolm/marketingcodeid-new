@@ -60,7 +60,7 @@ export function CommandMenu() {
     },
     {
       id: 'wa-web',
-      title: 'Konsultasi Pembuatan Website Custom (Next.js & Payload)',
+      title: 'Konsultasi Pembuatan Website Custom (Next.js & Custom Dashboard)',
       category: 'Layanan',
       icon: <Laptop className="w-4 h-4 text-[var(--color-accent)]" />,
       action: () => handleConsult('website'),
