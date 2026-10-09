@@ -13,20 +13,24 @@ services:
     env_file:
       - .env
 
-  # Uncomment the following to use local postgres
-  # Then point DATABASE_URL to postgres://postgres:postgres@postgres:5432/postgres
-  # postgres:
-  #   restart: always
-  #   image: postgres:latest
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: postgres
-  #     POSTGRES_DB: postgres
-  #   volumes:
-  #     - pgdata:/var/lib/postgresql/data
-  #   ports:
-  #     - "5432:5432"
+  # Local dev database (temporary — production uses Supabase)
+  postgres:
+    restart: unless-stopped
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: marketingcode
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
 volumes:
-  # pgdata:
+  pgdata:
   node_modules:

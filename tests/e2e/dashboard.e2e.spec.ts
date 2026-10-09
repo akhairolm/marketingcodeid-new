@@ -4,8 +4,8 @@ const BASE = 'http://localhost:3000'
 
 async function login(page: Page) {
   await page.goto(`${BASE}/dashboard/login`)
-  await page.fill('#email', process.env.ADMIN_EMAIL || 'admin@marketingcode.id')
-  await page.fill('#password', process.env.ADMIN_PASSWORD || '')
+  await page.fill('input[name="email"]', process.env.ADMIN_EMAIL || 'admin@marketingcode.id')
+  await page.fill('input[name="password"]', process.env.ADMIN_PASSWORD || '')
   await page.click('button[type="submit"]')
   await page.waitForURL(`${BASE}/dashboard`)
 }
@@ -23,9 +23,9 @@ test.describe('Custom Dashboard', () => {
 
     await page.goto(`${BASE}/dashboard/artikel/baru`)
     const unique = Date.now()
-    await page.fill('#title', `E2E Test Artikel ${unique}`)
+    await page.fill('input[name="title"]', `E2E Test Artikel ${unique}`)
     await page.fill('textarea[name="content"]', `## Bagian Uji\n\nKonten e2e ${unique}.`)
-    await page.click('button[type="submit"]')
+    await page.getByRole('button', { name: 'Simpan Artikel' }).click()
 
     await page.waitForURL(`${BASE}/dashboard/artikel`)
     await expect(page.locator('table')).toContainText(`E2E Test Artikel ${unique}`)
