@@ -19,7 +19,7 @@ test.describe('Custom Dashboard', () => {
   test('login → dashboard → create article draft', async ({ page }) => {
     await login(page)
 
-    await expect(page.locator('h1', { hasText: 'Ringkasan' })).toBeVisible()
+    await expect(page.getByText('Mulai Cepat', { exact: true })).toBeVisible()
 
     await page.goto(`${BASE}/dashboard/artikel/baru`)
     const unique = Date.now()

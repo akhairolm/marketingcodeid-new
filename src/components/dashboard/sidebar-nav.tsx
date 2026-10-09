@@ -32,8 +32,8 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
   return (
     <>
       <nav className="px-3 py-4 space-y-1">
-        <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-          Menu Utama
+        <div className="px-3 pb-2 text-[11px] tracking-[0.12em] font-semibold text-zinc-500">
+          MENU UTAMA
         </div>
         {navItems.map((item) => {
           const Icon = item.icon
@@ -46,18 +46,28 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                'flex items-center justify-between px-3 min-h-11 rounded-xl text-sm font-semibold transition-all hover:translate-x-1',
                 isActive
-                  ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                  : 'text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent/60',
+                  ? 'bg-primary text-zinc-950'
+                  : 'text-sidebar-foreground hover:bg-sidebar-accent',
               )}
             >
-              <span className="flex items-center gap-2.5">
-                <Icon className={cn('h-4 w-4', isActive ? 'text-primary' : 'text-zinc-500')} />
+              <span className="flex items-center gap-3">
+                <Icon
+                  className={cn(
+                    'h-[18px] w-[18px]',
+                    isActive ? 'text-zinc-950' : 'text-zinc-500',
+                  )}
+                />
                 {item.title}
               </span>
               {badge > 0 && (
-                <span className="inline-flex items-center rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                <span
+                  className={cn(
+                    'inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold',
+                    isActive ? 'bg-zinc-950/15 text-zinc-950' : 'bg-primary/15 text-primary',
+                  )}
+                >
                   {badge}
                 </span>
               )}
@@ -71,10 +81,10 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent/60 transition-colors"
+          className="flex items-center justify-between px-3 min-h-11 rounded-xl text-sm font-semibold text-sidebar-foreground hover:bg-sidebar-accent hover:translate-x-1 transition-all"
         >
-          <span className="flex items-center gap-2.5">
-            <ExternalLink className="h-4 w-4 text-zinc-500" />
+          <span className="flex items-center gap-3">
+            <ExternalLink className="h-[18px] w-[18px] text-zinc-500" />
             Lihat Website
           </span>
         </a>
@@ -85,18 +95,15 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
 
 export function SidebarBrand() {
   return (
-    <Link href="/dashboard" className="flex items-center gap-2.5 group">
-      <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-sm shadow-md shadow-primary/25 group-hover:scale-105 transition-transform">
+    <Link href="/dashboard" className="flex items-center gap-3 group px-2">
+      <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center font-display font-extrabold text-xl text-zinc-950 group-hover:scale-105 transition-transform">
         M
       </div>
       <div>
-        <div className="text-sm font-bold tracking-tight text-white flex items-center gap-1.5">
+        <div className="text-[15px] font-extrabold tracking-tight text-white leading-tight">
           MarketingCode
-          <span className="text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-primary/15 text-primary">
-            Pro
-          </span>
         </div>
-        <div className="text-[11px] text-zinc-500 font-medium">Agency Console</div>
+        <div className="text-[11px] tracking-[0.12em] text-zinc-500 font-semibold">DASHBOARD</div>
       </div>
     </Link>
   )

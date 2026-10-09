@@ -43,6 +43,14 @@ export default {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+  			'chip-live': {
+  				DEFAULT: 'hsl(var(--chip-live-bg))',
+  				foreground: 'hsl(var(--chip-live-fg))'
+  			},
+  			'chip-draft': {
+  				DEFAULT: 'hsl(var(--chip-draft-bg))',
+  				foreground: 'hsl(var(--chip-draft-fg))'
+  			},
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -69,6 +77,7 @@ export default {
   		fontFamily: {
   			sans: ['var(--font-sans)', '"Plus Jakarta Sans"', 'sans-serif'],
   			mono: ['var(--font-mono)', 'monospace'],
+  			display: ['var(--font-display)', '"Bricolage Grotesque"', 'sans-serif'],
   		},
   		keyframes: {
   			'accordion-down': {

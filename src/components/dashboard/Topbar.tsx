@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { usePathname } from 'next/navigation'
-import { LogOut, Menu } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -33,6 +33,13 @@ function pageMeta(pathname: string): { title: string; parent?: string } {
   return TITLES.find((t) => t.match(pathname)) ?? { title: 'Dashboard' }
 }
 
+function greeting(hour: number): string {
+  if (hour < 11) return 'Selamat pagi'
+  if (hour < 15) return 'Selamat siang'
+  if (hour < 19) return 'Selamat sore'
+  return 'Selamat malam'
+}
+
 export function Topbar({
   user,
   draftCounts,
@@ -48,31 +55,49 @@ export function Topbar({
       .slice(0, 2)
       .map((w) => w[0]?.toUpperCase())
       .join('') || 'AD'
+  const dateStr = new Date().toLocaleDateString('id-ID', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+  const isHome = pathname === '/dashboard'
 
   return (
-    <header className="h-16 px-4 sm:px-6 bg-card border-b border-border flex items-center justify-between sticky top-0 z-30">
+    <header className="h-[72px] px-4 sm:px-8 bg-card border-b border-border flex items-center justify-between sticky top-0 z-30">
       <div className="flex items-center gap-3 min-w-0">
         <div className="md:hidden">
-          <MobileSidebarTrigger draftCounts={draftCounts} />
+          <MobileSidebar draftCounts={draftCounts} />
         </div>
-        <div className="min-w-0">
-          {meta.parent && (
-            <p className="text-[11px] text-muted-foreground leading-none">{meta.parent}</p>
-          )}
-          <h1 className="text-sm font-bold text-foreground tracking-tight truncate">{meta.title}</h1>
-        </div>
+        {isHome ? (
+          <div className="min-w-0">
+            <p className="text-xs text-muted-foreground leading-tight">{dateStr}</p>
+            <h1 className="font-display text-lg font-bold tracking-tight truncate leading-tight">
+              {greeting(new Date().getHours())}, Admin
+            </h1>
+          </div>
+        ) : (
+          <div className="min-w-0">
+            {meta.parent && (
+              <p className="text-[11px] text-muted-foreground leading-tight">{meta.parent}</p>
+            )}
+            <h1 className="text-sm font-bold text-foreground tracking-tight truncate leading-tight">
+              {meta.title}
+            </h1>
+          </div>
+        )}
       </div>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-10 px-2 gap-2.5">
-            <Avatar className="h-8 w-8">
-              <AvatarFallback className="bg-primary text-primary-foreground text-xs font-bold">
+            <Avatar className="h-10 w-10">
+              <AvatarFallback className="bg-primary text-zinc-950 text-sm font-extrabold">
                 {initials}
               </AvatarFallback>
             </Avatar>
             <span className="hidden sm:block text-left leading-tight">
-              <span className="block text-xs font-semibold text-foreground">{user.name}</span>
+              <span className="block text-xs font-bold text-foreground">{user.name}</span>
               <span className="block text-[11px] text-muted-foreground">{user.email}</span>
             </span>
           </Button>
@@ -102,12 +127,4 @@ export function Topbar({
       </DropdownMenu>
     </header>
   )
-}
-
-function MobileSidebarTrigger({ draftCounts }: { draftCounts: DraftCounts }) {
-  return <MobileSidebarSlot draftCounts={draftCounts} />
-}
-
-function MobileSidebarSlot({ draftCounts }: { draftCounts: DraftCounts }) {
-  return <MobileSidebar draftCounts={draftCounts} />
 }

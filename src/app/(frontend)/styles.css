@@ -15,36 +15,42 @@
     --radius-btn: 9999px;
 
     /* shadcn tokens (light) */
-    --background: 240 20% 99%;
-    --foreground: 240 10% 10%;
+    --background: 40 33% 95%;          /* #F5F2EC warm cream */
+    --foreground: 240 6% 8%;           /* #141416 */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 240 6% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 240 6% 8%;
     --primary: 18 100% 58%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 10%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --secondary: 40 25% 92%;
+    --secondary-foreground: 240 6% 8%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 40 5% 38%;     /* #66645F */
     --accent: 18 100% 97%;
-    --accent-foreground: 18 100% 45%;
+    --accent-foreground: 18 100% 42%;  /* #C2410C */
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
+    --border: 40 25% 87%;              /* #E6E1D8 warm line */
+    --input: 40 25% 87%;
     --ring: 18 100% 58%;
     --radius: 0.625rem;
 
+    /* Mockup accent chips */
+    --chip-live-bg: 137 45% 92%;
+    --chip-live-fg: 148 79% 23%;
+    --chip-draft-bg: 45 100% 91%;
+    --chip-draft-fg: 32 100% 27%;
+
     /* Sidebar (dark) */
-    --sidebar: 240 10% 7%;
-    --sidebar-foreground: 240 5% 75%;
-    --sidebar-accent: 240 6% 14%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 240 6% 16%;
+    --sidebar: 240 7% 7%;              /* #0F0F12 */
+    --sidebar-foreground: 45 12% 82%;
+    --sidebar-accent: 240 6% 10%;
+    --sidebar-accent-foreground: 45 12% 94%;
+    --sidebar-border: 240 6% 15%;
     --sidebar-ring: 18 100% 58%;
     --sidebar-primary: 18 100% 58%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary-foreground: 240 6% 8%;
   }
 
   html {
@@ -90,4 +96,29 @@
 
 .shadow-card {
   box-shadow: 0 4px 24px -2px rgba(16, 24, 40, 0.05);
+}
+
+/* Dashboard entrance + float animations (mockup) */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+.animate-rise {
+  animation: rise 0.7s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes float-y {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-float {
+  animation: float-y 3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-float {
+    animation: none !important;
+  }
 }

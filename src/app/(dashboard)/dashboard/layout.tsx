@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans, JetBrains_Mono, Bricolage_Grotesque } from 'next/font/google'
 import '@/app/(frontend)/styles.css'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -17,6 +17,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['700', '800'],
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: 'MarketingCode Console — Custom Agency Dashboard',
   description:
@@ -25,8 +32,11 @@ export const metadata: Metadata = {
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans bg-zinc-50 text-zinc-900 antialiased selection:bg-[#FF5C28] selection:text-white">
+    <html
+      lang="id"
+      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} ${bricolage.variable}`}
+    >
+      <body className="font-sans bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
         {children}
       </body>
     </html>
