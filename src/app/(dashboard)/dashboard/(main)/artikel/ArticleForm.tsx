@@ -3,9 +3,9 @@
 import React, { useActionState, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 import Link from 'next/link'
-import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { renderMarkdown } from '@/lib/content/markdown'
+import { renderMarkdown, isHtmlContent } from '@/lib/content/markdown'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -18,6 +18,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { FormSection, FormError } from '@/components/dashboard/FormSection'
+import { TiptapEditor } from '@/components/dashboard/TiptapEditor'
+import { uploadEditorImageAction } from '../media/actions'
 import { saveArticleAction, type ArticleFormState } from './actions'
 
 function SubmitButton({ isEdit }: { isEdit: boolean }) {
@@ -65,9 +67,12 @@ export function ArticleForm({
     undefined,
   )
   const [content, setContent] = useState(initial?.content || '')
-  const [preview, setPreview] = useState(false)
   const [status, setStatus] = useState(initial?.status || 'draft')
   const [categoryId, setCategoryId] = useState(initial?.categoryId || 'none')
+
+  // Legacy markdown content must be converted to HTML for the editor;
+  // Tiptap content is already HTML and passes through untouched.
+  const initialContent = initial ? (isHtmlContent(initial.content) ? initial.content : renderMarkdown(initial.content)) : ''
 
   return (
     <form action={formAction} className="space-y-6 max-w-4xl">
@@ -139,38 +144,23 @@ export function ArticleForm({
         </div>
       </FormSection>
 
-      <FormSection title="Konten (Markdown)">
-        <div className="flex items-center justify-between">
-          <p className="text-xs text-muted-foreground">
-            Dukungan: <code className="font-mono">## Judul</code>, <code className="font-mono">**tebal**</code>,{' '}
-            <code className="font-mono">*miring*</code>, list, quote, link, dan gambar.
-          </p>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => setPreview((v) => !v)}
-          >
-            {preview ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            {preview ? 'Edit' : 'Preview'}
-          </Button>
-        </div>
-        {preview ? (
-          <div
-            className="prose-article min-h-[320px] rounded-lg border bg-secondary/40 p-5"
-            dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
-          />
-        ) : (
-          <Textarea
-            name="content"
-            required
-            rows={18}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="font-mono leading-relaxed"
-            placeholder={'## Pendahuluan\n\nTulis konten artikel di sini...'}
-          />
-        )}
+      <FormSection title="Konten Artikel" description="WYSIWYG editor — tampilan saat menulis sama dengan hasil di website">
+        <input type="hidden" name="content" value={content} />
+        <TiptapEditor
+          content={initialContent}
+          onChange={setContent}
+          placeholder="Tulis konten artikel di sini..."
+          onUploadImage={async (file) => {
+            try {
+              const url = await uploadEditorImageAction(file)
+              toast.success('Gambar berhasil diunggah.')
+              return url
+            } catch (error) {
+              toast.error(error instanceof Error ? error.message : 'Upload gambar gagal.')
+              throw error
+            }
+          }}
+        />
       </FormSection>
 
       <FormSection title="Penulis & SEO">

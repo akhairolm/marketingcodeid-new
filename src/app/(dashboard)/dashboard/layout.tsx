@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, JetBrains_Mono, Bricolage_Grotesque } from 'next/font/google'
 import '@/app/(frontend)/styles.css'
+import '@/app/(frontend)/tiptap.css'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],

@@ -3,15 +3,20 @@ import { renderMarkdown } from '@/lib/content/markdown'
 import { cn } from '@/lib/utils'
 
 /**
- * Renders Markdown content as HTML (server-side).
- * Headings receive stable ids so the table of contents can link to them.
+ * Renders editor content as HTML.
+ * Tiptap output is already HTML; legacy markdown content (starting without
+ * a tag) is rendered through the markdown pipeline for backward compat.
  */
 export function RichText({ data, className }: { data?: string | null; className?: string }) {
-  if (!data) return null
+  if (!data?.trim()) return null
+
+  const isHtml = /^\s*</.test(data)
+  const html = isHtml ? data : renderMarkdown(data)
+
   return (
     <div
       className={cn('prose-article', className)}
-      dangerouslySetInnerHTML={{ __html: renderMarkdown(data) }}
+      dangerouslySetInnerHTML={{ __html: html }}
     />
   )
 }

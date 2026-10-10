@@ -6,7 +6,8 @@ import { Loader2, UploadCloud } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { uploadMediaAction, type UploadState } from './actions'
+import { uploadMediaAction } from './actions'
+import type { UploadState } from './upload'
 
 function SubmitButton() {
   const { pending } = useFormStatus()

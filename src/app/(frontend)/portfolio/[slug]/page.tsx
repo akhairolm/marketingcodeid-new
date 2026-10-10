@@ -73,13 +73,13 @@ export async function generateMetadata({ params }: PageProps<'/portfolio/[slug]'
 
 function SectionHeading({ index, icon: Icon, children }: { index: string; icon: typeof Target; children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3 mb-4">
-      <span className="w-10 h-10 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 text-[#FF5C28] flex items-center justify-center shrink-0">
-        <Icon className="w-5 h-5" />
+    <div className="flex items-center gap-3 mb-3 sm:mb-4">
+      <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-[#FFF5F0] border border-orange-200/60 text-[#FF5C28] flex items-center justify-center shrink-0">
+        <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
       </span>
       <div className="min-w-0">
-        <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-neutral-400">{index}</p>
-        <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900">{children}</h2>
+        <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-neutral-400">{index}</p>
+        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-neutral-900">{children}</h2>
       </div>
     </div>
   )
@@ -128,11 +128,11 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
     <div className="min-h-screen">
       <SiteHeader />
 
-      <main className="relative pt-28 sm:pt-32 pb-24 overflow-hidden">
+      <main className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[560px] bg-grid-pattern [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none" />
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+        <section className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-2 sm:pt-4">
           <Breadcrumbs
             items={[
               { label: 'Beranda', href: '/' },
@@ -141,23 +141,23 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
             ]}
           />
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
             <div className="lg:col-span-7 min-w-0 animate-fade-up">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold">
                 Studi Kasus · {item.categoryLabel}
               </span>
-              <h1 className="mt-5 text-[34px] sm:text-5xl lg:text-[56px] font-extrabold text-[#111827] tracking-tight leading-[1.08] [overflow-wrap:anywhere]">
+              <h1 className="mt-4 sm:mt-5 text-[28px] leading-[1.15] sm:text-5xl sm:leading-[1.08] lg:text-[56px] font-extrabold text-[#111827] tracking-tight [overflow-wrap:anywhere]">
                 {item.title}
               </h1>
-              <p className="mt-5 text-base sm:text-lg text-neutral-600 leading-relaxed max-w-2xl">{item.summary}</p>
+              <p className="mt-4 sm:mt-5 text-[15px] sm:text-lg text-neutral-600 leading-relaxed max-w-2xl">{item.summary}</p>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
                 <a
                   id="portfolio-cta-whatsapp"
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all hover:-translate-y-0.5 whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all hover:-translate-y-0.5"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Bangun Solusi Serupa
@@ -168,7 +168,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                     href={item.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-neutral-800 bg-white border border-neutral-200 hover:border-neutral-400 rounded-full transition-all whitespace-nowrap"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-neutral-800 bg-white border border-neutral-200 hover:border-neutral-400 rounded-full transition-all"
                   >
                     Lihat Live Demo
                     <ArrowUpRight className="w-4 h-4" />
@@ -178,12 +178,14 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
             </div>
 
             {facts.length > 0 && (
-              <dl className="lg:col-span-5 bg-white rounded-3xl border border-neutral-200/80 shadow-card divide-y divide-neutral-100 animate-fade-up [animation-delay:120ms]">
+              <dl className="lg:col-span-5 bg-white rounded-3xl border border-neutral-200/80 shadow-card p-4 sm:p-0 sm:divide-y sm:divide-neutral-100 grid grid-cols-2 sm:block gap-3 animate-fade-up [animation-delay:120ms]">
                 {facts.map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="flex items-start gap-4 px-6 py-4">
-                    <Icon className="w-4 h-4 mt-0.5 text-[#FF5C28] shrink-0" />
-                    <dt className="w-24 shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-400 pt-0.5">{label}</dt>
-                    <dd className="text-sm font-semibold text-neutral-800 min-w-0">{value}</dd>
+                  <div key={label} className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4 sm:px-6 sm:py-4">
+                    <div className="flex items-center gap-2 sm:contents">
+                      <Icon className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                      <dt className="sm:w-24 sm:shrink-0 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.12em] text-neutral-400">{label}</dt>
+                    </div>
+                    <dd className="text-[13px] sm:text-sm font-semibold text-neutral-800 min-w-0">{value}</dd>
                   </div>
                 ))}
               </dl>
@@ -192,8 +194,8 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
         </section>
 
         {/* ── Cover + results strip ───────────────────────── */}
-        <section className="relative max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16">
-          <figure className="relative aspect-[16/10] sm:aspect-[16/8] w-full overflow-hidden rounded-3xl border border-neutral-200/80 bg-neutral-100 shadow-soft">
+        <section className="relative max-w-6xl mx-auto px-4 sm:px-6 mt-10 sm:mt-16">
+          <figure className="relative aspect-[16/10] sm:aspect-[16/8] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-neutral-200/80 bg-neutral-100 shadow-soft">
             <Image
               src={item.thumbnail.url}
               alt={item.thumbnail.alt}
@@ -207,11 +209,11 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
           {item.results.length > 0 && (
             <div
               aria-label="Hasil proyek"
-              className={`relative -mt-10 sm:-mt-14 mx-3 sm:mx-10 bg-white rounded-3xl border border-neutral-200/80 shadow-card grid grid-cols-1 ${RESULT_COLS[Math.min(item.results.length, 4)]} divide-y sm:divide-y-0 sm:divide-x divide-neutral-100`}
+              className={`mt-4 sm:mt-0 sm:relative sm:-mt-14 sm:mx-10 bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/80 shadow-card grid grid-cols-1 ${RESULT_COLS[Math.min(item.results.length, 4)]} divide-y sm:divide-y-0 sm:divide-x divide-neutral-100`}
             >
               {item.results.map((r) => (
-                <div key={r.label} className="px-6 py-5 sm:py-6 text-center sm:text-left min-w-0">
-                  <p className="text-3xl sm:text-[34px] font-extrabold tracking-tight text-neutral-900 [overflow-wrap:anywhere]">
+                <div key={r.label} className="px-5 py-4 sm:px-6 sm:py-6 text-center sm:text-left min-w-0">
+                  <p className="text-2xl sm:text-[34px] font-extrabold tracking-tight text-neutral-900 [overflow-wrap:anywhere]">
                     {r.value}
                   </p>
                   <p className="mt-1 text-xs text-neutral-500 leading-snug">{r.label}</p>
@@ -222,8 +224,8 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
         </section>
 
         {/* ── Story ───────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 lg:order-2 min-w-0 space-y-14">
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12">
+          <div className="lg:col-span-8 lg:order-2 min-w-0 space-y-10 sm:space-y-14">
             {item.challenge && (
               <article>
                 <SectionHeading index={nextIndex()} icon={Target}>
@@ -244,7 +246,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
             )}
 
             {item.testimonial && (
-              <figure className="relative rounded-3xl bg-[#121214] text-white p-8 sm:p-10 overflow-hidden">
+              <figure className="relative rounded-2xl sm:rounded-3xl bg-[#121214] text-white p-6 sm:p-10 overflow-hidden">
                 <div aria-hidden className="absolute -right-16 -top-16 w-64 h-64 bg-[#FF5C28]/20 rounded-full blur-3xl" />
                 <Quote aria-hidden className="relative w-8 h-8 text-[#FF5C28]" />
                 <blockquote className="relative mt-4 text-lg sm:text-xl font-semibold leading-relaxed">
@@ -262,7 +264,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
 
           <aside className="lg:col-span-4 lg:order-1 space-y-5 lg:sticky lg:top-28 self-start">
             {item.techStack.length > 0 && (
-              <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-card p-6">
+              <div className="bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/80 shadow-card p-5 sm:p-6">
                 <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-neutral-400">Tech Stack</h2>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {item.techStack.map((tech) => (
@@ -277,7 +279,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
               </div>
             )}
 
-            <div className="rounded-3xl p-6 bg-gradient-to-br from-[#FFF5F0] to-white border border-orange-200/60">
+            <div className="rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#FFF5F0] to-white border border-orange-200/60">
               <p className="text-sm font-bold text-neutral-900">Punya tantangan serupa?</p>
               <p className="mt-1.5 text-xs text-neutral-600 leading-relaxed">
                 Ceritakan kondisi bisnis Anda. Kami bantu petakan solusi dan estimasinya tanpa biaya.
@@ -286,7 +288,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors whitespace-nowrap"
+                className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
                 Diskusi via WhatsApp
@@ -305,15 +307,15 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
 
         {/* ── Gallery ─────────────────────────────────────── */}
         {item.gallery.length > 0 && (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900">Galeri Proyek</h2>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-14 sm:mt-24">
+            <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight text-neutral-900">Galeri Proyek</h2>
+            <div className="mt-5 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
               {item.gallery.map((g, idx) => (
                 <figure
                   key={`${g.image.url}-${idx}`}
                   className={idx === 0 && item.gallery.length % 2 === 1 ? 'md:col-span-2' : undefined}
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-neutral-200/80 bg-neutral-100">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl sm:rounded-3xl border border-neutral-200/80 bg-neutral-100">
                     <Image
                       src={g.image.url}
                       alt={g.image.alt}
@@ -331,9 +333,9 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
 
         {/* ── Related ─────────────────────────────────────── */}
         {related.length > 0 && (
-          <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
-            <div className="flex items-end justify-between gap-4 mb-8">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900">Proyek Lainnya</h2>
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-14 sm:mt-24">
+            <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight text-neutral-900">Proyek Lainnya</h2>
               <Link
                 href="/portfolio"
                 className="text-xs font-semibold text-neutral-600 hover:text-[#FF5C28] whitespace-nowrap transition-colors"
@@ -341,7 +343,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                 Lihat semua →
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {related.map((p) => (
                 <PortfolioCard key={p.slug} item={p} />
               ))}
@@ -349,7 +351,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
           </section>
         )}
 
-        <div className="mt-24">
+        <div className="mt-14 sm:mt-24">
           <CtaBanner
             title="Siap Membangun Proyek Berikutnya Bersama Kami?"
             description={`Ceritakan kebutuhan Anda — kami siapkan rancangan solusi seperti ${item.title} yang disesuaikan dengan target bisnis Anda.`}

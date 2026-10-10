@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useActionState } from 'react'
+import React, { useActionState, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
@@ -18,6 +18,9 @@ import {
 } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
 import { FormSection, FormError } from '@/components/dashboard/FormSection'
+import { TiptapEditor } from '@/components/dashboard/TiptapEditor'
+import { uploadEditorImageAction } from '../media/actions'
+import { renderMarkdown, isHtmlContent } from '@/lib/content/markdown'
 import { savePortfolioAction, type PortfolioFormState } from './actions'
 
 const CATEGORIES = [
@@ -66,6 +69,13 @@ export function PortfolioForm({
   }
 }) {
   const isEdit = Boolean(initial?.id)
+  const [content, setContent] = useState(initial?.content || '')
+  // Legacy markdown must be converted to HTML for the editor
+  const initialContent = initial
+    ? isHtmlContent(initial.content)
+      ? initial.content
+      : renderMarkdown(initial.content)
+    : ''
   const [state, formAction] = useActionState<PortfolioFormState | undefined, FormData>(
     async (prev, formData) => {
       const result = await savePortfolioAction(prev, formData)
@@ -189,9 +199,24 @@ export function PortfolioForm({
           <p className="text-xs text-muted-foreground">Pisahkan dengan koma</p>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="content">Konten Tambahan (Markdown)</Label>
-          <Textarea id="content" name="content" rows={6} defaultValue={initial?.content} className="font-mono" />
-          <p className="text-xs text-muted-foreground">Rendered di halaman studi kasus, opsional</p>
+          <Label>Konten Tambahan</Label>
+          <input type="hidden" name="content" value={content} />
+          <TiptapEditor
+            content={initialContent}
+            onChange={setContent}
+            placeholder="Tulis konten tambahan studi kasus (opsional)..."
+            onUploadImage={async (file) => {
+              try {
+                const url = await uploadEditorImageAction(file)
+                toast.success('Gambar berhasil diunggah.')
+                return url
+              } catch (error) {
+                toast.error(error instanceof Error ? error.message : 'Upload gambar gagal.')
+                throw error
+              }
+            }}
+          />
+          <p className="text-xs text-muted-foreground">Tampil di halaman studi kasus, opsional</p>
         </div>
       </FormSection>
 

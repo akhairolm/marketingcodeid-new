@@ -24,7 +24,10 @@ test.describe('Custom Dashboard', () => {
     await page.goto(`${BASE}/dashboard/artikel/baru`)
     const unique = Date.now()
     await page.fill('input[name="title"]', `E2E Test Artikel ${unique}`)
-    await page.fill('textarea[name="content"]', `## Bagian Uji\n\nKonten e2e ${unique}.`)
+    // Tiptap editor: click into the contenteditable and type
+    const editorBody = page.locator('.tiptap-content')
+    await editorBody.click()
+    await page.keyboard.type(`Konten e2e ${unique}.`)
     await page.getByRole('button', { name: 'Simpan Artikel' }).click()
 
     await page.waitForURL(`${BASE}/dashboard/artikel`)
