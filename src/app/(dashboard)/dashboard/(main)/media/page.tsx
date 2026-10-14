@@ -32,7 +32,7 @@ export default async function MediaPage() {
         <CardHeader>
           <CardTitle className="text-sm">Unggah Media</CardTitle>
           <CardDescription>
-            Aset tersimpan di Supabase Storage, siap dipakai artikel &amp; portofolio. Maksimal 10MB (JPEG, PNG, WebP, GIF, SVG).
+            Aset tersimpan di Neon Storage, siap dipakai artikel &amp; portofolio. Maksimal 10MB (JPEG, PNG, WebP, GIF).
           </CardDescription>
         </CardHeader>
         <CardContent>

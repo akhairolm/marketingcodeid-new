@@ -1,6 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import { eq } from 'drizzle-orm'
-import { createClient } from '@supabase/supabase-js'
+import { DeleteObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { db } from '@/db'
 import { media } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
@@ -11,7 +11,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 
 /** Magic-byte signatures for allowed raster image types (SVG intentionally excluded — XSS vector). */
-const MIME_SIGNATURES: { mime: string; bytes: number[]; offsets?: number[] }[] = [
+const MIME_SIGNATURES: { mime: string; bytes: number[] }[] = [
   { mime: 'image/jpeg', bytes: [0xff, 0xd8, 0xff] },
   { mime: 'image/png', bytes: [0x89, 0x50, 0x4e, 0x47] },
   { mime: 'image/gif', bytes: [0x47, 0x49, 0x46, 0x38] },
@@ -43,22 +43,43 @@ function extFromMime(mime: string): string {
   return map[mime] ?? 'bin'
 }
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  const bucket = process.env.SUPABASE_STORAGE_BUCKET || 'media'
-  if (!url || !key) {
-    throw new Error('NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY belum dikonfigurasi di .env')
+/**
+ * Neon S3-compatible storage client (credentials from .env).
+ * ponytail: singleton via globalThis to survive HMR in dev.
+ */
+export function getS3(): { client: S3Client; bucket: string } {
+  const endpoint = process.env.AWS_ENDPOINT_URL_S3
+  const bucket = process.env.S3_BUCKET
+  if (!endpoint || !bucket || !process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
+    throw new Error(
+      'Storage belum dikonfigurasi: set AWS_ENDPOINT_URL_S3, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, dan S3_BUCKET di .env',
+    )
   }
-  return { client: createClient(url, key, { auth: { persistSession: false } }), bucket }
+  const globalForS3 = globalThis as unknown as { __s3Client?: S3Client }
+  const client =
+    globalForS3.__s3Client ??
+    new S3Client({
+      region: process.env.AWS_REGION ?? 'auto',
+      endpoint,
+      forcePathStyle: true,
+    })
+  globalForS3.__s3Client = client
+  // Bucket Neon bersifat private — objek di-serve publik lewat route /api/media/<id>
+  // (signed GET server-side). publicBase tidak dipakai untuk URL langsung.
+  return { client, bucket }
 }
 
-export { getSupabase }
+/** Delete a stored object (called when removing media rows). */
+export async function deleteStorageObject(storagePath: string): Promise<void> {
+  const { client, bucket } = getS3()
+  await client.send(new DeleteObjectCommand({ Bucket: bucket, Key: storagePath }))
+}
 
 /**
- * Validates + uploads an image to Supabase Storage, records it in the media
- * table, returns the public URL. Shared by the media page and Tiptap editor
- * image insertion. Throws on failure with a user-readable message.
+ * Validates + uploads an image to Neon S3-compatible storage, records it in
+ * the media table, returns the public URL. Shared by the media page,
+ * thumbnail picker, and Tiptap editor image insertion. Throws with a
+ * user-readable message on failure.
  */
 export async function uploadMediaFile(file: File, altText = ''): Promise<string> {
   if (!(file instanceof File) || file.size === 0) {
@@ -74,29 +95,41 @@ export async function uploadMediaFile(file: File, altText = ''): Promise<string>
     throw new Error('Tipe file tidak didukung. Gunakan JPEG, PNG, WebP, atau GIF.')
   }
 
-  const supabase = getSupabase()
+  const { client, bucket } = getS3()
 
   const ext = extFromMime(detectedMime)
   const baseName = slugify(file.name.replace(/\.[^.]+$/, '')) || 'media'
   const storagePath = `${Date.now()}-${baseName}.${ext}`
 
-  const { error: uploadError } = await supabase.client.storage
-    .from(supabase.bucket)
-    .upload(storagePath, file, { contentType: detectedMime, upsert: false })
-  if (uploadError) throw uploadError
+  await client.send(
+    new PutObjectCommand({
+      Bucket: bucket,
+      Key: storagePath,
+      Body: new Uint8Array(await file.arrayBuffer()),
+      ContentType: detectedMime,
+    }),
+  )
 
-  const { data } = supabase.client.storage.from(supabase.bucket).getPublicUrl(storagePath)
+  // Simpan row dulu agar punya id, lalu URL publik = route proxy /api/media/<id>
+  const inserted = await db
+    .insert(media)
+    .values({
+      filename: file.name,
+      mimeType: detectedMime,
+      filesize: file.size,
+      storagePath,
+      publicUrl: '', // diisi setelah row dibuat
+      altText: altText || null,
+    })
+    .returning({ id: media.id })
+  const rowId = inserted[0].id
 
-  await db.insert(media).values({
-    filename: file.name,
-    mimeType: detectedMime,
-    filesize: file.size,
-    storagePath,
-    publicUrl: data.publicUrl,
-    altText: altText || null,
-  })
+  const publicUrl = `/api/media/${rowId}`
+  await db.update(media).set({ publicUrl }).where(eq(media.id, rowId))
 
   revalidatePath('/dashboard/media')
   revalidatePath('/')
-  return data.publicUrl
+  return publicUrl
 }
+
+// Keep eq import used if future queries need it; avoid unused-import lint

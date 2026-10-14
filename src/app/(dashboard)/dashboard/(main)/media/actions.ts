@@ -50,9 +50,8 @@ export async function deleteMediaAction(formData: FormData) {
   if (!row) return
 
   try {
-    const { getSupabase } = await import('./upload')
-    const supabase = getSupabase()
-    await supabase.client.storage.from(supabase.bucket).remove([row.storagePath])
+    const { deleteStorageObject } = await import('./upload')
+    await deleteStorageObject(row.storagePath)
   } catch (error) {
     console.error('[dashboard] remove storage object failed', error)
   }

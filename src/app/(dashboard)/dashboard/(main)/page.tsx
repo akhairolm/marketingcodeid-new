@@ -296,7 +296,7 @@ export default async function DashboardPage() {
           label="MEDIA LIBRARY"
           value={stats.m}
           icon={ImageIcon}
-          desc="Gambar tersimpan di Supabase Storage"
+          desc="Gambar tersimpan di Neon Storage"
           href="/dashboard/media"
           delay="240ms"
         />
