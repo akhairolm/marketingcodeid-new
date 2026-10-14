@@ -18,7 +18,7 @@ export function DashboardSidebar({ draftCounts }: { draftCounts: DraftCounts }) 
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-[11px] text-zinc-600 hover:text-zinc-400 transition-colors"
+          className="flex items-center gap-1.5 text-[11px] text-sidebar-foreground/80 hover:text-sidebar-foreground transition-colors"
         >
           <ExternalLink className="h-3 w-3" />
           Fullstack Next.js · Drizzle ORM

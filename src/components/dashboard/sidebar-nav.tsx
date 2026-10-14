@@ -32,7 +32,7 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
   return (
     <>
       <nav className="px-3 py-4 space-y-1">
-        <div className="px-3 pb-2 text-[11px] tracking-[0.12em] font-semibold text-zinc-500">
+        <div className="px-3 pb-2 text-[11px] tracking-[0.12em] font-semibold text-sidebar-foreground/70">
           MENU UTAMA
         </div>
         {navItems.map((item) => {
@@ -56,7 +56,7 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
                 <Icon
                   className={cn(
                     'h-[18px] w-[18px]',
-                    isActive ? 'text-zinc-950' : 'text-zinc-500',
+                    isActive ? 'text-zinc-950' : 'text-sidebar-foreground/80',
                   )}
                 />
                 {item.title}
@@ -84,7 +84,7 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
           className="flex items-center justify-between px-3 min-h-11 rounded-xl text-sm font-semibold text-sidebar-foreground hover:bg-sidebar-accent hover:translate-x-1 transition-all"
         >
           <span className="flex items-center gap-3">
-            <ExternalLink className="h-[18px] w-[18px] text-zinc-500" />
+            <ExternalLink className="h-[18px] w-[18px] text-sidebar-foreground/80" />
             Lihat Website
           </span>
         </a>
@@ -103,7 +103,7 @@ export function SidebarBrand() {
         <div className="text-[15px] font-extrabold tracking-tight text-white leading-tight">
           MarketingCode
         </div>
-        <div className="text-[11px] tracking-[0.12em] text-zinc-500 font-semibold">DASHBOARD</div>
+        <div className="text-[11px] tracking-[0.12em] text-sidebar-foreground/70 font-semibold">DASHBOARD</div>
       </div>
     </Link>
   )
