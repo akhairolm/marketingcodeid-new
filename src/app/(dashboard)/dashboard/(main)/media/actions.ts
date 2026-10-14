@@ -5,15 +5,22 @@ import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { media } from '@/db/schema'
 import { uploadMediaFile, type UploadState } from './upload'
+import { requireAdmin } from '@/lib/auth'
+import { z } from 'zod'
 
 export type { UploadState }
+
+const altTextSchema = z.string().trim().max(300).default('')
 
 export async function uploadMediaAction(
   _prev: UploadState | undefined,
   formData: FormData,
 ): Promise<UploadState> {
+  await requireAdmin()
+
   const file = formData.get('file')
-  const altText = String(formData.get('altText') || '').trim()
+  const altParsed = altTextSchema.safeParse(String(formData.get('altText') || ''))
+  const altText = altParsed.success ? altParsed.data : ''
 
   if (!(file instanceof File) || file.size === 0) {
     return { error: 'Pilih file gambar untuk diunggah.', success: null }
@@ -33,6 +40,8 @@ export async function uploadMediaAction(
 }
 
 export async function deleteMediaAction(formData: FormData) {
+  await requireAdmin()
+
   const id = String(formData.get('id') || '')
   if (!id) return
 
@@ -58,5 +67,6 @@ export async function deleteMediaAction(formData: FormData) {
  * service key must stay server-side).
  */
 export async function uploadEditorImageAction(file: File): Promise<string> {
+  await requireAdmin()
   return uploadMediaFile(file)
 }

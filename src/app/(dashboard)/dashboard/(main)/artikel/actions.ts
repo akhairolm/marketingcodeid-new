@@ -6,8 +6,25 @@ import { and, eq, ne } from 'drizzle-orm'
 import { db } from '@/db'
 import { articles } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
+import { requireAdmin } from '@/lib/auth'
+import { z } from 'zod'
 
 export type ArticleFormState = { error: string | null }
+
+const articleSchema = z.object({
+  title: z.string().trim().min(1, 'Judul wajib diisi.').max(200),
+  slug: z.string().trim().max(220).default(''),
+  status: z.enum(['draft', 'published']),
+  publishedAt: z.date().nullable(),
+  categoryId: z.string().max(64).nullable(),
+  excerpt: z.string().max(500).nullable(),
+  content: z.string().min(1, 'Konten wajib diisi.').max(500_000),
+  tags: z.array(z.string().max(40)).max(20),
+  authorName: z.string().max(120),
+  authorRole: z.string().max(120).nullable(),
+  metaTitle: z.string().max(70).nullable(),
+  metaDescription: z.string().max(200).nullable(),
+})
 
 function parseForm(formData: FormData) {
   const str = (key: string) => String(formData.get(key) || '').trim()
@@ -38,35 +55,31 @@ function parseForm(formData: FormData) {
   }
 }
 
-async function assertUniqueSlug(slug: string, excludeId?: string) {
-  const rows = await db
-    .select({ id: articles.id })
-    .from(articles)
-    .where(excludeId ? and(eq(articles.slug, slug), ne(articles.id, excludeId)) : eq(articles.slug, slug))
-    .limit(1)
-  return rows.length === 0
-}
 
 export async function saveArticleAction(
   _prev: ArticleFormState | undefined,
   formData: FormData,
 ): Promise<ArticleFormState> {
+  await requireAdmin()
+
   const id = String(formData.get('id') || '')
   const data = parseForm(formData)
 
-  if (!data.title || !data.content) {
+  const parsed = articleSchema.safeParse(data)
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? 'Data form tidak valid.' }
+  }
+  const valid = parsed.data
+
+  if (!valid.title || !valid.content) {
     return { error: 'Judul dan konten wajib diisi.' }
   }
 
-  const baseSlug = slugify(data.slug)
+  const baseSlug = slugify(valid.slug || valid.title)
   if (!baseSlug) return { error: 'Slug tidak valid.' }
-  if (!(await assertUniqueSlug(baseSlug, id || undefined))) {
-    return { error: `Slug "${baseSlug}" sudah dipakai artikel lain.` }
-  }
 
   const values = {
-    ...data,
-    categoryId: data.categoryId || null,
+    ...valid,
     slug: baseSlug,
     updatedAt: new Date(),
   }
@@ -79,7 +92,12 @@ export async function saveArticleAction(
     }
   } catch (error) {
     console.error('[dashboard] save article failed', error)
-    return { error: 'Gagal menyimpan ke database. Coba lagi.' }
+    return {
+      error:
+        error instanceof Error && 'code' in error && (error as { code?: string }).code === '23505'
+          ? `Slug "${baseSlug}" sudah dipakai artikel lain.`
+          : 'Gagal menyimpan ke database. Coba lagi.',
+    }
   }
 
   revalidatePath('/dashboard/artikel')
@@ -90,6 +108,8 @@ export async function saveArticleAction(
 }
 
 export async function deleteArticleAction(formData: FormData) {
+  await requireAdmin()
+
   const id = String(formData.get('id') || '')
   if (id) {
     await db.delete(articles).where(eq(articles.id, id))

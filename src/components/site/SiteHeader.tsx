@@ -9,7 +9,9 @@ import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
   { href: '/', label: 'Beranda' },
-  { href: '/#web-services', label: 'Layanan' },
+  { href: '/jasa-pembuatan-website', label: 'Website' },
+  { href: '/jasa-pembuatan-aplikasi-mobile', label: 'Aplikasi Mobile' },
+  { href: '/jasa-iklan-meta-ads', label: 'Meta Ads' },
   { href: '/portfolio', label: 'Portofolio' },
   { href: '/blog', label: 'Blog' },
 ]
