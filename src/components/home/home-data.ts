@@ -10,61 +10,6 @@ export interface PortfolioProject {
   image: string
 }
 
-export const portfolioProjects: PortfolioProject[] = [
-  {
-    slug: 'warehouse-stock-inventory-erp',
-    title: 'Warehouse & Stock Inventory ERP',
-    client: 'Distribusi Logistik B2B',
-    category: 'web',
-    categoryLabel: 'Custom Web Application',
-    techStack: ['Next.js 16', 'Drizzle ORM', 'Supabase PostgreSQL', 'Tailwind CSS'],
-    description:
-      'Sistem pencatatan inventaris multi-gudang real-time dengan batch FIFO/LIFO, audit trail mutasi, dan dashboard visual low-stock alert.',
-    highlight: '0ms Rekap Manual · 100% Data Integritas',
-    image:
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'brand-showcase-e-catalog',
-    title: 'High-Converting Brand Showcase & E-Catalog',
-    client: 'Consumer Brand & Retail',
-    category: 'web',
-    categoryLabel: 'Company Profile & E-Catalog',
-    techStack: ['Next.js App Router', 'Tailwind CSS', 'WhatsApp Pipeline', 'Vercel Edge'],
-    description:
-      'Website katalog interaktif ultra-cepat dengan waktu muat 0.8 detik. Dilengkapi integrasi pesan WhatsApp otomatis sesuai produk yang dilihat.',
-    highlight: 'Score Lighthouse 99 · Konversi 3.4x',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'client-service-portal-mobile-booking',
-    title: 'Client Service Portal & Mobile Booking Engine',
-    client: 'Jasa Profesional & Medis',
-    category: 'app',
-    categoryLabel: 'Mobile Application (iOS/Android)',
-    techStack: ['Flutter Cross-Platform', 'REST API Node.js', 'PostgreSQL', 'Cloudflare CDN'],
-    description:
-      'Aplikasi pemesanan jadwal konsultasi, pembayaran invoice gateway otomatis, dan tracking status pengerjaan proyek transparan untuk klien.',
-    highlight: 'Automated Client Onboarding · 4.9 App Rating',
-    image:
-      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'omnichannel-performance-ads-scaling',
-    title: 'Omnichannel Performance Ads Scaling',
-    client: 'Fashion & Skincare E-Commerce',
-    category: 'marketing',
-    categoryLabel: 'Digital Marketing & Ads',
-    techStack: ['Meta Conversions API (CAPI)', 'Google Search Ads', 'Looker Studio', 'CRO Landing Page'],
-    description:
-      'Eksekusi kampanye iklan berbasis ROI dengan testing copywriting agresif, tracking server-side anti-bocor, dan dashboard live reporting mingguan.',
-    highlight: '+320% ROI Growth · CAC Turun 42%',
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-  },
-]
-
 export interface PricingTier {
   tier: string
   price: string

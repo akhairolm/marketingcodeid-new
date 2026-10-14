@@ -15,7 +15,7 @@ export function PricingSection() {
   const [tab, setTab] = useState<(typeof TABS)[number]['value']>('web')
 
   return (
-    <div id="harga" className="mt-24 pt-8">
+    <div id="harga" className="max-w-5xl mx-auto mt-24 pt-8">
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
           <Tag className="w-3.5 h-3.5" />

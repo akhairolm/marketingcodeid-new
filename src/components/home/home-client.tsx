@@ -10,8 +10,15 @@ import { WorkflowSection } from './WorkflowSection'
 import { FaqSection } from './FaqSection'
 import { ConsultationSection } from './ConsultationSection'
 import { FinalCtaSection } from './FinalCtaSection'
+import type { PortfolioProject } from './home-data'
 
-export default function HomePageClient({ faqs }: { faqs: { q: string; a: string }[] }) {
+export default function HomePageClient({
+  faqs,
+  portfolioHighlights,
+}: {
+  faqs: { q: string; a: string }[]
+  portfolioHighlights: PortfolioProject[]
+}) {
   return (
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
       <HomeNavbar />
@@ -22,7 +29,7 @@ export default function HomePageClient({ faqs }: { faqs: { q: string; a: string 
         <TrustSection />
         <FlagshipSection />
         <AccelerationSection />
-        <PortfolioSection />
+        <PortfolioSection projects={portfolioHighlights} />
         <PricingSection />
         <WorkflowSection />
         <FaqSection faqs={faqs} />
