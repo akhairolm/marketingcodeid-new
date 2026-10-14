@@ -19,6 +19,7 @@ import {
 import { Checkbox } from '@/components/ui/checkbox'
 import { FormSection, FormError } from '@/components/dashboard/FormSection'
 import { TiptapEditor } from '@/components/dashboard/TiptapEditor'
+import { ThumbnailPicker } from './ThumbnailPicker'
 import { uploadEditorImageAction } from '../media/actions'
 import { renderMarkdown, isHtmlContent } from '@/lib/content/markdown'
 import { savePortfolioAction, type PortfolioFormState } from './actions'
@@ -42,6 +43,7 @@ function SubmitButton({ isEdit }: { isEdit: boolean }) {
 
 export function PortfolioForm({
   initial,
+  mediaItems,
 }: {
   initial?: {
     id: string
@@ -53,6 +55,8 @@ export function PortfolioForm({
     clientName: string
     category: string
     summary: string
+    thumbnailId?: string
+    thumbnailUrl?: string
     duration: string
     role: string
     liveUrl: string
@@ -67,8 +71,8 @@ export function PortfolioForm({
     metaTitle: string
     metaDescription: string
   }
-}) {
-  const isEdit = Boolean(initial?.id)
+  mediaItems: { id: string; filename: string; publicUrl: string; altText: string | null }[]
+}) {  const isEdit = Boolean(initial?.id)
   const [content, setContent] = useState(initial?.content || '')
   // Legacy markdown must be converted to HTML for the editor
   const initialContent = initial
@@ -147,6 +151,11 @@ export function PortfolioForm({
           <Textarea id="summary" name="summary" required rows={3} defaultValue={initial?.summary} />
           <p className="text-xs text-muted-foreground">Tampil di kartu portofolio dan hero studi kasus</p>
         </div>
+        <ThumbnailPicker
+          items={mediaItems}
+          initialId={initial?.thumbnailId}
+          initialUrl={initial?.thumbnailUrl}
+        />
         <div className="flex items-center gap-2">
           <Checkbox id="isFeatured" name="isFeatured" defaultChecked={initial?.isFeatured} />
           <Label htmlFor="isFeatured" className="font-normal">
