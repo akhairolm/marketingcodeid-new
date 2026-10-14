@@ -2,11 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 
 const FOOTER_LINKS = [
-  { href: '/#web-services', label: 'Layanan Utama' },
+  { href: '/jasa-pembuatan-website', label: 'Jasa Pembuatan Website' },
+  { href: '/jasa-pembuatan-aplikasi-mobile', label: 'Jasa Aplikasi Mobile' },
+  { href: '/jasa-iklan-meta-ads', label: 'Jasa Iklan Meta Ads' },
   { href: '/portfolio', label: 'Portofolio' },
   { href: '/blog', label: 'Blog' },
-  { href: '/#harga', label: 'Investasi' },
-  { href: '/#faq', label: 'FAQ' },
 ]
 
 export function SiteFooter() {

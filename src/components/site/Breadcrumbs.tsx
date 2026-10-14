@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { absoluteUrl } from '@/lib/site'
+import { jsonLdString } from '@/lib/seo'
 
 export interface Crumb {
   label: string
@@ -42,7 +43,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
           )
         })}
       </ol>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
     </nav>
   )
 }

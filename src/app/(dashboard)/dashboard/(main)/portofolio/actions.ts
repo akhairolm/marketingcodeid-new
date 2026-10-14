@@ -6,8 +6,34 @@ import { and, eq, ne } from 'drizzle-orm'
 import { db } from '@/db'
 import { portfolios } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
+import { requireAdmin } from '@/lib/auth'
+import { z } from 'zod'
 
 export type PortfolioFormState = { error: string | null }
+
+const portfolioSchema = z.object({
+  title: z.string().trim().min(1, 'Judul wajib diisi.').max(200),
+  slug: z.string().trim().max(220).default(''),
+  status: z.enum(['draft', 'published']),
+  isFeatured: z.boolean(),
+  completedDate: z.date().nullable(),
+  clientName: z.string().trim().min(1, 'Nama klien wajib diisi.').max(160),
+  category: z.string().max(40),
+  summary: z.string().trim().min(1, 'Ringkasan wajib diisi.').max(1000),
+  duration: z.string().max(80).nullable(),
+  role: z.string().max(120).nullable(),
+  liveUrl: z.string().max(500).refine((v) => !v || /^https?:\/\//.test(v), 'URL harus diawali http(s)://').nullable(),
+  challenge: z.string().max(5000).nullable(),
+  solution: z.string().max(5000).nullable(),
+  results: z.array(z.object({ value: z.string().max(80), label: z.string().max(160) })).max(12),
+  techStack: z.array(z.string().max(40)).max(20),
+  content: z.string().max(500_000).nullable(),
+  testimonialQuote: z.string().max(1000).nullable(),
+  testimonialName: z.string().max(120).nullable(),
+  testimonialRole: z.string().max(120).nullable(),
+  metaTitle: z.string().max(70).nullable(),
+  metaDescription: z.string().max(200).nullable(),
+})
 
 function parseForm(formData: FormData) {
   const str = (key: string) => String(formData.get(key) || '').trim()
@@ -47,33 +73,26 @@ function parseForm(formData: FormData) {
   }
 }
 
-async function assertUniqueSlug(slug: string, excludeId?: string) {
-  const rows = await db
-    .select({ id: portfolios.id })
-    .from(portfolios)
-    .where(excludeId ? and(eq(portfolios.slug, slug), ne(portfolios.id, excludeId)) : eq(portfolios.slug, slug))
-    .limit(1)
-  return rows.length === 0
-}
 
 export async function savePortfolioAction(
   _prev: PortfolioFormState | undefined,
   formData: FormData,
 ): Promise<PortfolioFormState> {
+  await requireAdmin()
+
   const id = String(formData.get('id') || '')
   const data = parseForm(formData)
 
-  if (!data.title || !data.summary || !data.clientName) {
-    return { error: 'Judul, klien, dan ringkasan wajib diisi.' }
+  const parsed = portfolioSchema.safeParse(data)
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? 'Data form tidak valid.' }
   }
+  const valid = parsed.data
 
-  const baseSlug = slugify(data.slug)
+  const baseSlug = slugify(valid.slug || valid.title)
   if (!baseSlug) return { error: 'Slug tidak valid.' }
-  if (!(await assertUniqueSlug(baseSlug, id || undefined))) {
-    return { error: `Slug "${baseSlug}" sudah dipakai proyek lain.` }
-  }
 
-  const values = { ...data, slug: baseSlug, updatedAt: new Date() }
+  const values = { ...valid, slug: baseSlug, updatedAt: new Date() }
 
   try {
     if (id) {
@@ -83,7 +102,12 @@ export async function savePortfolioAction(
     }
   } catch (error) {
     console.error('[dashboard] save portfolio failed', error)
-    return { error: 'Gagal menyimpan ke database. Coba lagi.' }
+    return {
+      error:
+        error instanceof Error && 'code' in error && (error as { code?: string }).code === '23505'
+          ? `Slug "${baseSlug}" sudah dipakai proyek lain.`
+          : 'Gagal menyimpan ke database. Coba lagi.',
+    }
   }
 
   revalidatePath('/dashboard/portofolio')
@@ -94,6 +118,8 @@ export async function savePortfolioAction(
 }
 
 export async function deletePortfolioAction(formData: FormData) {
+  await requireAdmin()
+
   const id = String(formData.get('id') || '')
   if (id) {
     await db.delete(portfolios).where(eq(portfolios.id, id))

@@ -7,6 +7,7 @@ import { ArrowLeft, Clock, MessageCircle } from 'lucide-react'
 import { getArticleBySlug, getArticles } from '@/lib/content/queries'
 import { extractHeadings } from '@/lib/content/markdown'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { jsonLdString } from '@/lib/seo'
 import { SITE_NAME, absoluteUrl, formatDate } from '@/lib/site'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { SiteFooter } from '@/components/site/SiteFooter'
@@ -280,7 +281,7 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
       </main>
 
       <SiteFooter />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
     </div>
   )
 }

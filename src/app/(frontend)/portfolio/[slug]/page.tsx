@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 import { getPortfolioBySlug, getPortfolios } from '@/lib/content/queries'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { jsonLdString } from '@/lib/seo'
 import { SITE_NAME, absoluteUrl, formatMonth } from '@/lib/site'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { SiteFooter } from '@/components/site/SiteFooter'
@@ -362,7 +363,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
       </main>
 
       <SiteFooter />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
     </div>
   )
 }

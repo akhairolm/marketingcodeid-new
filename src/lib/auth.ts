@@ -1,10 +1,23 @@
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { and, eq, gt } from 'drizzle-orm'
 import { db } from '@/db'
 import { sessions, users, SESSION_COOKIE, SESSION_TTL_DAYS } from '@/db/schema'
 import { generateSessionToken, hashToken } from '@/lib/auth-core'
 
 export { hashPassword, verifyPassword } from '@/lib/auth-core'
+
+export type SessionUser = { id: string; email: string; name: string }
+
+/**
+ * Authorization guard for server actions and dashboard pages.
+ * Verifies the session server-side — never rely on middleware/proxy alone.
+ */
+export async function requireAdmin(): Promise<SessionUser> {
+  const user = await getSessionUser()
+  if (!user) redirect('/dashboard/login')
+  return user
+}
 
 export async function createSession(userId: string): Promise<void> {
   const token = generateSessionToken()
@@ -26,7 +39,7 @@ export async function createSession(userId: string): Promise<void> {
   })
 }
 
-export async function getSessionUser() {
+export async function getSessionUser(): Promise<SessionUser | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get(SESSION_COOKIE)?.value
   if (!token) return null

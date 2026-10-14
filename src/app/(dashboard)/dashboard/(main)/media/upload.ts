@@ -8,7 +8,40 @@ import { slugify } from '@/lib/slugify'
 export type UploadState = { error: string | null; success: string | null }
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
-const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+
+/** Magic-byte signatures for allowed raster image types (SVG intentionally excluded — XSS vector). */
+const MIME_SIGNATURES: { mime: string; bytes: number[]; offsets?: number[] }[] = [
+  { mime: 'image/jpeg', bytes: [0xff, 0xd8, 0xff] },
+  { mime: 'image/png', bytes: [0x89, 0x50, 0x4e, 0x47] },
+  { mime: 'image/gif', bytes: [0x47, 0x49, 0x46, 0x38] },
+  // WebP: "RIFF"...."WEBP"
+  { mime: 'image/webp', bytes: [0x52, 0x49, 0x46, 0x46] },
+]
+
+async function detectMime(file: File): Promise<string | null> {
+  const header = new Uint8Array(await file.slice(0, 16).arrayBuffer())
+  for (const sig of MIME_SIGNATURES) {
+    if (sig.bytes.every((b, i) => header[i] === b)) {
+      if (sig.mime === 'image/webp') {
+        const webp = [0x57, 0x45, 0x42, 0x50] // "WEBP" at offset 8
+        if (!webp.every((b, i) => header[8 + i] === b)) continue
+      }
+      return sig.mime
+    }
+  }
+  return null
+}
+
+function extFromMime(mime: string): string {
+  const map: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'image/webp': 'webp',
+    'image/gif': 'gif',
+  }
+  return map[mime] ?? 'bin'
+}
 
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -34,26 +67,29 @@ export async function uploadMediaFile(file: File, altText = ''): Promise<string>
   if (file.size > MAX_FILE_SIZE) {
     throw new Error('Ukuran file maksimal 10MB.')
   }
-  if (!ALLOWED_MIME.includes(file.type)) {
-    throw new Error(`Tipe file ${file.type} tidak didukung. Gunakan JPEG, PNG, WebP, GIF, atau SVG.`)
+
+  // Server-side content sniffing — client-supplied file.type is untrusted.
+  const detectedMime = await detectMime(file)
+  if (!detectedMime || !ALLOWED_MIME.includes(detectedMime)) {
+    throw new Error('Tipe file tidak didukung. Gunakan JPEG, PNG, WebP, atau GIF.')
   }
 
   const supabase = getSupabase()
 
-  const ext = file.name.includes('.') ? file.name.split('.').pop() : 'bin'
+  const ext = extFromMime(detectedMime)
   const baseName = slugify(file.name.replace(/\.[^.]+$/, '')) || 'media'
   const storagePath = `${Date.now()}-${baseName}.${ext}`
 
   const { error: uploadError } = await supabase.client.storage
     .from(supabase.bucket)
-    .upload(storagePath, file, { contentType: file.type, upsert: false })
+    .upload(storagePath, file, { contentType: detectedMime, upsert: false })
   if (uploadError) throw uploadError
 
   const { data } = supabase.client.storage.from(supabase.bucket).getPublicUrl(storagePath)
 
   await db.insert(media).values({
     filename: file.name,
-    mimeType: file.type,
+    mimeType: detectedMime,
     filesize: file.size,
     storagePath,
     publicUrl: data.publicUrl,
