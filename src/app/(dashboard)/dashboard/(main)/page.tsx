@@ -51,7 +51,7 @@ function StatusChip({ status }: { status: string }) {
   return (
     <span
       className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold ${
-        live ? 'bg-chip-live text-chip-live' : 'bg-chip-draft text-chip-draft'
+        live ? 'bg-chip-live text-chip-live-foreground' : 'bg-chip-draft text-chip-draft-foreground'
       }`}
     >
       {live ? 'Live' : 'Draft'}
@@ -92,10 +92,10 @@ function KpiCard({
       <div className="font-display text-[52px] font-extrabold leading-none tracking-tight">{value}</div>
       {typeof live === 'number' && typeof draft === 'number' ? (
         <div className="flex gap-2 flex-wrap">
-          <span className="rounded-full px-2.5 py-1 text-xs font-bold bg-chip-live text-chip-live">
+          <span className="rounded-full px-2.5 py-1 text-xs font-bold bg-chip-live text-chip-live-foreground">
             {live} Live
           </span>
-          <span className="rounded-full px-2.5 py-1 text-xs font-bold bg-chip-draft text-chip-draft">
+          <span className="rounded-full px-2.5 py-1 text-xs font-bold bg-chip-draft text-chip-draft-foreground">
             {draft} Draft
           </span>
         </div>
