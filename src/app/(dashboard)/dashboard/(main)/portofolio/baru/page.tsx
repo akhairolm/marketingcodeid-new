@@ -1,9 +1,12 @@
 import React from 'react'
 import { PortfolioForm } from '../PortfolioForm'
+import { getRecentMedia } from '@/lib/media-queries'
 
 export const dynamic = 'force-dynamic'
 
-export default function NewPortfolioPage() {
+export default async function NewPortfolioPage() {
+  const mediaItems = await getRecentMedia()
+
   return (
     <main className="p-4 sm:p-8 max-w-7xl w-full mx-auto">
       <div className="mb-6">
@@ -12,7 +15,7 @@ export default function NewPortfolioPage() {
           Isi detail studi kasus lalu simpan sebagai draft atau publikasikan
         </p>
       </div>
-      <PortfolioForm />
+      <PortfolioForm mediaItems={mediaItems} />
     </main>
   )
 }
