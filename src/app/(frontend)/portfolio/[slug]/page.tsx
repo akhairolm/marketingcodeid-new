@@ -20,8 +20,6 @@ import { getPortfolioBySlug, getPortfolios } from '@/lib/content/queries'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { jsonLdString } from '@/lib/seo'
 import { SITE_NAME, absoluteUrl, formatMonth } from '@/lib/site'
-import { SiteHeader } from '@/components/site/SiteHeader'
-import { SiteFooter } from '@/components/site/SiteFooter'
 import { Breadcrumbs } from '@/components/site/Breadcrumbs'
 import { CtaBanner } from '@/components/site/CtaBanner'
 import { RichText } from '@/components/common/RichText'
@@ -127,7 +125,6 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
 
   return (
     <div className="min-h-screen">
-      <SiteHeader />
 
       <main className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[560px] bg-grid-pattern [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none" />
@@ -361,8 +358,6 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
           />
         </div>
       </main>
-
-      <SiteFooter />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
     </div>
   )

@@ -9,8 +9,6 @@ import { extractHeadings } from '@/lib/content/markdown'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { jsonLdString } from '@/lib/seo'
 import { SITE_NAME, absoluteUrl, formatDate } from '@/lib/site'
-import { SiteHeader } from '@/components/site/SiteHeader'
-import { SiteFooter } from '@/components/site/SiteFooter'
 import { Breadcrumbs } from '@/components/site/Breadcrumbs'
 import { CtaBanner } from '@/components/site/CtaBanner'
 import { RichText } from '@/components/common/RichText'
@@ -108,7 +106,6 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
   return (
     <div className="min-h-screen">
       <ReadingProgress targetId="article-body" />
-      <SiteHeader />
 
       <main className="relative pt-28 sm:pt-32 pb-24 overflow-hidden">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[520px] bg-grid-pattern [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none" />
@@ -279,8 +276,6 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
           />
         </div>
       </main>
-
-      <SiteFooter />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
     </div>
   )

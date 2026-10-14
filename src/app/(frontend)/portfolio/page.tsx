@@ -4,8 +4,6 @@ import { Route } from 'lucide-react'
 import { getPortfolios } from '@/lib/content/queries'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { SITE_NAME, absoluteUrl } from '@/lib/site'
-import { SiteHeader } from '@/components/site/SiteHeader'
-import { SiteFooter } from '@/components/site/SiteFooter'
 import { CtaBanner } from '@/components/site/CtaBanner'
 import { PortfolioFilterGrid } from '@/components/portfolio/PortfolioFilterGrid'
 
@@ -27,7 +25,6 @@ export default async function PortfolioIndexPage() {
 
   return (
     <div className="min-h-screen">
-      <SiteHeader />
       <main className="relative pt-28 sm:pt-32 pb-24 overflow-hidden">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[520px] bg-grid-pattern [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none" />
 
@@ -58,7 +55,6 @@ export default async function PortfolioIndexPage() {
           />
         </div>
       </main>
-      <SiteFooter />
     </div>
   )
 }

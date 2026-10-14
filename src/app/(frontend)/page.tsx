@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import HomePageClient from '@/components/home/home-client'
 import { JsonLd, orgSchema, faqSchema } from '@/lib/seo'
+import { getPortfolios } from '@/lib/content/queries'
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Software House & Digital Agency Kalimantan Selatan | MarketingCode.ID',
@@ -32,11 +35,25 @@ const homeFaqs = [
   },
 ]
 
-export default function Page() {
+export default async function Page() {
+  const portfolioItems = await getPortfolios()
+  const portfolioHighlights = portfolioItems.slice(0, 4).map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    client: item.clientName,
+    category: item.category as 'web' | 'app' | 'marketing',
+    categoryLabel: item.categoryLabel,
+    techStack: item.techStack,
+    description: item.summary,
+    highlight: item.results[0] ? `${item.results[0].value} · ${item.results[0].label}` : item.summary.slice(0, 40),
+    image: item.thumbnail?.url ?? '',
+    imageAlt: item.thumbnail?.alt ?? `Portofolio ${item.title}`,
+  }))
+
   return (
     <>
       <JsonLd data={[orgSchema, faqSchema(homeFaqs)]} />
-      <HomePageClient faqs={homeFaqs} />
+      <HomePageClient faqs={homeFaqs} portfolioHighlights={portfolioHighlights} />
     </>
   )
 }

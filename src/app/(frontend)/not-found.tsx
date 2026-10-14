@@ -1,12 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { SiteHeader } from '@/components/site/SiteHeader'
-import { SiteFooter } from '@/components/site/SiteFooter'
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col">
-      <SiteHeader />
       <main className="flex-1 relative pt-40 pb-28 overflow-hidden">
         <div aria-hidden className="absolute inset-0 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)] pointer-events-none" />
         <div className="relative max-w-xl mx-auto px-4 text-center">
@@ -37,7 +34,6 @@ export default function NotFound() {
           </div>
         </div>
       </main>
-      <SiteFooter />
     </div>
   )
 }

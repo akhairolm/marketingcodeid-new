@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Route, ArrowRight, ExternalLink } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
-import { portfolioProjects, type PortfolioProject } from './home-data'
+import type { PortfolioProject } from './home-data'
 
 const FILTERS = [
   { value: 'all', label: 'Semua Proyek' },
@@ -79,10 +79,10 @@ function PortfolioCard({ item }: { item: PortfolioProject }) {
   )
 }
 
-export function PortfolioSection() {
+export function PortfolioSection({ projects }: { projects: PortfolioProject[] }) {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]['value']>('all')
 
-  const filteredProjects = filter === 'all' ? portfolioProjects : portfolioProjects.filter((p) => p.category === filter)
+  const filteredProjects = filter === 'all' ? projects : projects.filter((p) => p.category === filter)
 
   return (
     <section id="portfolio" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
