@@ -27,7 +27,8 @@ export async function uploadMediaAction(
   }
 
   try {
-    await uploadMediaFile(file, altText)
+    const item = await uploadMediaFile(file, altText)
+    return { error: null, success: `${file.name} berhasil diunggah.`, item }
   } catch (error) {
     console.error('[dashboard] upload media failed', error)
     return {
@@ -35,8 +36,6 @@ export async function uploadMediaAction(
       success: null,
     }
   }
-
-  return { error: null, success: `${file.name} berhasil diunggah.` }
 }
 
 export async function deleteMediaAction(formData: FormData) {
@@ -67,5 +66,6 @@ export async function deleteMediaAction(formData: FormData) {
  */
 export async function uploadEditorImageAction(file: File): Promise<string> {
   await requireAdmin()
-  return uploadMediaFile(file)
+  const item = await uploadMediaFile(file)
+  return item.publicUrl
 }

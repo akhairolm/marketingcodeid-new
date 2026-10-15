@@ -38,7 +38,7 @@ export function FaqSection({ faqs }: { faqs: { q: string; a: string }[] }) {
               )}
             </button>
             {openFaq === idx && (
-              <div className="px-5 pb-4 text-xs text-neutral-500 leading-relaxed animate-in fade-in">{faq.a}</div>
+              <div className="px-5 pb-4 text-sm text-neutral-500 leading-relaxed animate-in fade-in">{faq.a}</div>
             )}
           </div>
         ))}

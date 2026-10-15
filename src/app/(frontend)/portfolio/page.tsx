@@ -7,9 +7,11 @@ import { SITE_NAME, absoluteUrl } from '@/lib/site'
 import { CtaBanner } from '@/components/site/CtaBanner'
 import { PortfolioFilterGrid } from '@/components/portfolio/PortfolioFilterGrid'
 
+import { JsonLd, breadcrumbSchema } from '@/lib/seo'
+
 export const revalidate = 60
 
-const title = `Portofolio & Studi Kasus | ${SITE_NAME}`
+const title = 'Portofolio Proyek & Studi Kasus'
 const description =
   'Kumpulan proyek website, aplikasi mobile, dan kampanye digital marketing yang telah kami kerjakan — lengkap dengan tantangan, solusi, dan hasilnya.'
 
@@ -17,7 +19,19 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: absoluteUrl('/portfolio') },
-  openGraph: { title, description, url: absoluteUrl('/portfolio'), siteName: SITE_NAME, locale: 'id_ID', type: 'website' },
+  openGraph: {
+    title,
+    description,
+    url: absoluteUrl('/portfolio'),
+    siteName: SITE_NAME,
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+  },
 }
 
 export default async function PortfolioIndexPage() {
@@ -25,6 +39,12 @@ export default async function PortfolioIndexPage() {
 
   return (
     <div className="min-h-screen">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Beranda', path: '/' },
+          { name: 'Portofolio', path: '/portfolio' },
+        ])}
+      />
       <main className="relative pt-28 sm:pt-32 pb-24 overflow-hidden">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[520px] bg-grid-pattern [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none" />
 

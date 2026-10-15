@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Play, X, Film, ArrowRight } from 'lucide-react'
 
@@ -45,9 +46,13 @@ export function HeroSection() {
 
         <div className="lg:col-span-5">
           <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/10] sm:aspect-[4/3] group">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-              alt="MarketingCode ID Team Working"
+              alt="Tim Developer dan Digital Marketing MarketingCode.ID di Kalimantan Selatan"
+              title="Tim Digital Agency & Software House MarketingCode.ID"
+              fill
+              priority
+              sizes="(min-width: 1024px) 40vw, 100vw"
               className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
             />
 
@@ -88,7 +93,7 @@ export function HeroSection() {
           >
             <button
               onClick={() => setVideoModalOpen(false)}
-              className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white text-neutral-900 flex items-center justify-center font-bold shadow-lg hover:bg-neutral-200 cursor-pointer"
+              className="absolute top-2 right-2 w-10 h-10 rounded-full bg-white text-neutral-900 flex items-center justify-center font-bold shadow-lg hover:bg-neutral-200 cursor-pointer"
               aria-label="Tutup Video Modal"
             >
               <X className="w-4 h-4" />

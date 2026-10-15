@@ -30,6 +30,16 @@ export function SiteHeader() {
   // Close the mobile drawer whenever the route changes.
   useEffect(() => closeDrawer, [closeDrawer, pathname])
 
+  // Lock body scroll while the mobile drawer is open.
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open])
+
   return (
     <>
       <header className="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
@@ -41,7 +51,7 @@ export function SiteHeader() {
             <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] flex items-center justify-center text-white font-extrabold text-sm shadow-glow group-hover:scale-105 transition-transform">
               M
             </span>
-            <span className="font-bold tracking-tight text-base whitespace-nowrap">
+            <span className="font-bold tracking-tight text-base whitespace-nowrap hidden min-[420px]:inline">
               MarketingCode<span className="text-[#FF5C28]">.ID</span>
             </span>
           </Link>
@@ -71,7 +81,7 @@ export function SiteHeader() {
               href={getWhatsAppUrl('general')}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-glow whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
+              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
               Konsultasi Gratis
             </a>
@@ -80,7 +90,7 @@ export function SiteHeader() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? 'Tutup menu' : 'Buka menu'}
               aria-expanded={open}
-              className="md:hidden text-neutral-300 hover:text-white p-1.5 rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C28]"
+              className="md:hidden text-neutral-300 hover:text-white p-2.5 -mr-1 rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C28]"
             >
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -89,21 +99,37 @@ export function SiteHeader() {
       </header>
 
       {open && (
-        <div className="fixed inset-x-4 top-20 z-40 bg-[#1A1A1E] text-white p-4 rounded-3xl shadow-2xl border border-white/10 flex flex-col gap-1 md:hidden animate-fade-up">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
+        <>
+          <div
+            aria-hidden
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+            onClick={closeDrawer}
+          />
+          <div className="fixed inset-x-4 top-20 z-50 bg-[#1A1A1E] text-white p-4 rounded-3xl shadow-2xl border border-white/10 flex flex-col gap-1 md:hidden animate-fade-up">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  'py-3 px-4 rounded-2xl text-sm transition-colors',
+                  isActive(pathname, link.href) ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-[#FF5C28]',
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href={getWhatsAppUrl('general')}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className={cn(
-                'py-3 px-4 rounded-2xl text-sm transition-colors',
-                isActive(pathname, link.href) ? 'bg-white/10 text-white' : 'text-neutral-300 hover:text-[#FF5C28]',
-              )}
+              className="mt-2 py-3 px-4 rounded-2xl text-sm font-semibold text-center bg-[#FF5C28] hover:bg-[#EA4510] text-white transition-colors"
             >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+              Konsultasi Gratis
+            </a>
+          </div>
+        </>
       )}
     </>
   )

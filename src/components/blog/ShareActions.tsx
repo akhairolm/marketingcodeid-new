@@ -29,7 +29,7 @@ function XGlyph({ className }: { className?: string }) {
 }
 
 const buttonClass =
-  'w-9 h-9 rounded-full border border-neutral-200 bg-white text-neutral-500 flex items-center justify-center transition-colors hover:text-[#FF5C28] hover:border-[#FF5C28] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C28] focus-visible:ring-offset-2'
+  'w-11 h-11 rounded-full border border-neutral-200 bg-white text-neutral-500 flex items-center justify-center transition-colors hover:text-[#FF5C28] hover:border-[#FF5C28] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C28] focus-visible:ring-offset-2'
 
 /** Share row: copy link + WhatsApp, LinkedIn, X intents. */
 export function ShareActions({ url, title, className }: { url: string; title: string; className?: string }) {

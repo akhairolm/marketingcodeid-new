@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Route, ArrowRight, ExternalLink } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import type { PortfolioProject } from './home-data'
@@ -18,9 +19,12 @@ function PortfolioCard({ item }: { item: PortfolioProject }) {
     <div className="bg-white rounded-3xl overflow-hidden border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all group flex flex-col justify-between">
       <div>
         <Link href={`/portfolio/${item.slug}`} className="block aspect-[16/9] w-full overflow-hidden relative bg-neutral-100">
-          <img
+          <Image
             src={item.image}
             alt={`Portofolio ${item.title} — ${item.categoryLabel} di Kalimantan Selatan`}
+            title={`Portofolio ${item.title} — ${item.client}`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full border border-white/20">
@@ -100,7 +104,7 @@ export function PortfolioSection({ projects }: { projects: PortfolioProject[] })
       </div>
 
       <div className="flex justify-center mb-10">
-        <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full">
+        <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {FILTERS.map((f) => (
             <button
               key={f.value}

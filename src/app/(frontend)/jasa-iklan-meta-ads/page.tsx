@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  TrendingUp,
   ArrowRight,
   ChevronRight,
   AlertTriangle,
@@ -15,7 +14,7 @@ import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA | MarketingCode.ID',
+  title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA',
   description:
     'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk banjir prospek & closing.',
   keywords: [
@@ -27,6 +26,21 @@ export const metadata: Metadata = {
     'agensi meta ads kalimantan selatan',
   ],
   alternates: { canonical: '/jasa-iklan-meta-ads' },
+  openGraph: {
+    title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA | MarketingCode.ID',
+    description:
+      'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk banjir prospek & closing.',
+    url: '/jasa-iklan-meta-ads',
+    siteName: 'MarketingCode.ID',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA | MarketingCode.ID',
+    description:
+      'Jasa kelola iklan Meta Ads profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk konversi & penjualan.',
+  },
 }
 
 const faqs = [

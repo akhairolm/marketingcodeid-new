@@ -2,14 +2,18 @@
 
 import React, { useActionState, useState } from 'react'
 import { useFormStatus } from 'react-dom'
-import Link from 'next/link'
-import { Loader2 } from 'lucide-react'
+import { format } from 'date-fns'
+import { id as idLocale } from 'date-fns/locale'
+import { Calendar as CalendarIcon, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import Link from 'next/link'
 import { renderMarkdown, isHtmlContent } from '@/lib/content/markdown'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Select,
   SelectContent,
@@ -19,6 +23,7 @@ import {
 } from '@/components/ui/select'
 import { FormSection, FormError } from '@/components/dashboard/FormSection'
 import { TiptapEditor } from '@/components/dashboard/TiptapEditor'
+import { ThumbnailPicker } from '../portofolio/ThumbnailPicker'
 import { uploadEditorImageAction } from '../media/actions'
 import { saveArticleAction, type ArticleFormState } from './actions'
 
@@ -35,6 +40,7 @@ function SubmitButton({ isEdit }: { isEdit: boolean }) {
 export function ArticleForm({
   initial,
   categories,
+  mediaItems = [],
 }: {
   initial?: {
     id: string
@@ -43,6 +49,8 @@ export function ArticleForm({
     status: string
     publishedAt: string
     categoryId: string
+    coverImageId?: string
+    coverImageUrl?: string
     excerpt: string
     content: string
     tags: string
@@ -52,6 +60,7 @@ export function ArticleForm({
     metaDescription: string
   }
   categories: { id: string; name: string }[]
+  mediaItems?: { id: string; filename: string; publicUrl: string; altText: string | null }[]
 }) {
   const isEdit = Boolean(initial?.id)
   const [state, formAction] = useActionState<ArticleFormState | undefined, FormData>(
@@ -69,6 +78,9 @@ export function ArticleForm({
   const [content, setContent] = useState(initial?.content || '')
   const [status, setStatus] = useState(initial?.status || 'draft')
   const [categoryId, setCategoryId] = useState(initial?.categoryId || 'none')
+  const [publishedAt, setPublishedAt] = useState<Date | undefined>(
+    initial?.publishedAt ? new Date(initial.publishedAt) : undefined,
+  )
 
   // Legacy markdown content must be converted to HTML for the editor;
   // Tiptap content is already HTML and passes through untouched.
@@ -107,12 +119,44 @@ export function ArticleForm({
           </div>
           <div className="space-y-2">
             <Label htmlFor="publishedAt">Tanggal Terbit</Label>
-            <Input
-              id="publishedAt"
-              name="publishedAt"
-              type="datetime-local"
-              defaultValue={initial?.publishedAt}
-            />
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  id="publishedAt"
+                  className="w-full justify-start text-left font-normal"
+                >
+                  <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+                  {publishedAt ? format(publishedAt, "d MMM yyyy, HH.mm", { locale: idLocale }) : <span>Pilih tanggal &amp; jam terbit</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={publishedAt}
+                  defaultMonth={publishedAt}
+                  onSelect={(date) => setPublishedAt(date ?? undefined)}
+                />
+                <div className="border-t border-border p-3">
+                  <Label htmlFor="publishedTime" className="text-xs">Jam terbit</Label>
+                  <Input
+                    id="publishedTime"
+                    type="time"
+                    className="mt-1.5"
+                    value={publishedAt ? format(publishedAt, 'HH:mm') : ''}
+                    onChange={(e) => {
+                      const [h, m] = e.target.value.split(':').map(Number)
+                      const base = publishedAt ?? new Date()
+                      const next = new Date(base)
+                      next.setHours(h || 0, m || 0, 0, 0)
+                      setPublishedAt(next)
+                    }}
+                  />
+                </div>
+              </PopoverContent>
+            </Popover>
+            <input type="hidden" name="publishedAt" value={publishedAt ? publishedAt.toISOString() : ''} />
             <p className="text-xs text-muted-foreground">Kosongkan saat publish untuk memakai hari ini</p>
           </div>
           <div className="space-y-2">
@@ -142,6 +186,14 @@ export function ArticleForm({
           <Textarea id="excerpt" name="excerpt" rows={2} defaultValue={initial?.excerpt} />
           <p className="text-xs text-muted-foreground">Tampil di kartu blog dan meta description fallback</p>
         </div>
+        <ThumbnailPicker
+          name="coverImageId"
+          items={mediaItems}
+          initialId={initial?.coverImageId}
+          initialUrl={initial?.coverImageUrl}
+          label="Pilih Thumbnail Artikel"
+          helperText="Thumbnail tampil di kartu artikel di halaman depan & halaman /blog. Rasio disarankan 16:9."
+        />
       </FormSection>
 
       <FormSection title="Konten Artikel" description="WYSIWYG editor — tampilan saat menulis sama dengan hasil di website">

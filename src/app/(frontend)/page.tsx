@@ -18,6 +18,21 @@ export const metadata: Metadata = {
     'jasa meta ads kalsel',
   ],
   alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Software House & Digital Agency Kalimantan Selatan | MarketingCode.ID',
+    description:
+      'Agensi pembuatan website, aplikasi mobile Android/iOS, dan iklan Meta Ads di Kandangan, HSS, Kalimantan Selatan. Solusi digital kustom untuk instansi, UMKM, & perusahaan.',
+    url: '/',
+    siteName: 'MarketingCode.ID',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Software House & Digital Agency Kalimantan Selatan | MarketingCode.ID',
+    description:
+      'Agensi pembuatan website, aplikasi mobile Android/iOS, dan iklan Meta Ads di Kandangan, HSS, Kalimantan Selatan.',
+  },
 }
 
 const homeFaqs = [

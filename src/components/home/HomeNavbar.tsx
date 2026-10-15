@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronRight } from 'lucide-react'
 
@@ -30,6 +30,16 @@ export function HomeNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
 
+  // Lock body scroll while the mobile drawer is open.
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [mobileMenuOpen])
+
   return (
     <>
       <header className="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
@@ -38,7 +48,7 @@ export function HomeNavbar() {
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] flex items-center justify-center text-white font-extrabold text-sm shadow-glow group-hover:scale-105 transition-transform tracking-tight">
               M
             </div>
-            <span className="font-bold tracking-tight text-base text-white">
+            <span className="font-bold tracking-tight text-base text-white hidden min-[420px]:inline">
               MarketingCode<span className="text-[#FF5C28]">.ID</span>
             </span>
           </Link>
@@ -86,10 +96,10 @@ export function HomeNavbar() {
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <a
               href="#konsultasi"
-              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-glow transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
             >
               Konsultasi Gratis
             </a>
@@ -97,7 +107,8 @@ export function HomeNavbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
-              className="md:hidden text-neutral-300 hover:text-white p-1 cursor-pointer"
+              aria-expanded={mobileMenuOpen}
+              className="md:hidden text-neutral-300 hover:text-white p-2.5 -mr-1 rounded-full cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -106,7 +117,13 @@ export function HomeNavbar() {
       </header>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-x-4 top-20 z-40 bg-[#1A1A1E] text-white p-6 rounded-3xl shadow-2xl border border-white/10 flex flex-col gap-4 text-center md:hidden transition-all animate-in fade-in slide-in-from-top-4">
+        <>
+          <div
+            aria-hidden
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="fixed inset-x-4 top-20 z-50 bg-[#1A1A1E] text-white p-6 rounded-3xl shadow-2xl border border-white/10 flex flex-col gap-4 text-center md:hidden transition-all animate-in fade-in slide-in-from-top-4">
           {SERVICE_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -152,6 +169,7 @@ export function HomeNavbar() {
             Jadwalkan Diskusi Proyek
           </a>
         </div>
+        </>
       )}
     </>
   )

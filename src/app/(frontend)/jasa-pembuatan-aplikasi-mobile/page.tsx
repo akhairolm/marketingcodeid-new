@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  Smartphone,
-  Check,
   ArrowRight,
   ChevronRight,
   Landmark,
@@ -18,7 +16,7 @@ import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Jasa Pembuatan Aplikasi Mobile Android & iOS Kalsel | MarketingCode.ID',
+  title: 'Jasa Pembuatan Aplikasi Mobile Android & iOS Kalsel',
   description:
     'Jasa pembuatan aplikasi mobile Android & iOS kustom di Kandangan (HSS) & Kalimantan Selatan. Solusi aplikasi layanan publik instansi, presensi geotagging, & bisnis.',
   keywords: [
@@ -29,6 +27,21 @@ export const metadata: Metadata = {
     'jasa buat aplikasi android ios banjarmasin',
   ],
   alternates: { canonical: '/jasa-pembuatan-aplikasi-mobile' },
+  openGraph: {
+    title: 'Jasa Pembuatan Aplikasi Mobile Android & iOS Kalsel | MarketingCode.ID',
+    description:
+      'Jasa pembuatan aplikasi mobile Android & iOS kustom di Kandangan (HSS) & Kalimantan Selatan. Solusi aplikasi layanan publik instansi, presensi geotagging, & bisnis.',
+    url: '/jasa-pembuatan-aplikasi-mobile',
+    siteName: 'MarketingCode.ID',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jasa Pembuatan Aplikasi Mobile Android & iOS Kalsel | MarketingCode.ID',
+    description:
+      'Jasa pembuatan aplikasi mobile Android & iOS kustom di Kandangan (HSS) & Kalimantan Selatan. Solusi aplikasi instansi & bisnis.',
+  },
 }
 
 const faqs = [

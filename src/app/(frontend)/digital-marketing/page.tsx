@@ -1,9 +1,7 @@
-'use client'
-
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  ArrowLeft,
   ArrowRight,
   Target,
   Search,
@@ -15,41 +13,46 @@ import {
   MessageCircle,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { JsonLd, serviceSchema, breadcrumbSchema } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  title: 'Jasa Digital Marketing & Performance Ads Kalimantan Selatan | MarketingCode.ID',
+  description:
+    'Jasa digital marketing terukur di Kalimantan Selatan: iklan Meta & Google Ads, strategi akuisisi leads WhatsApp, dan optimasi konversi untuk UMKM sampai perusahaan.',
+  alternates: { canonical: '/digital-marketing' },
+  openGraph: {
+    title: 'Jasa Digital Marketing & Performance Ads Kalimantan Selatan',
+    description:
+      'Jasa digital marketing terukur di Kalimantan Selatan: iklan Meta & Google Ads, strategi akuisisi leads WhatsApp, dan optimasi konversi.',
+    url: '/digital-marketing',
+    siteName: 'MarketingCode.ID',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jasa Digital Marketing & Performance Ads Kalimantan Selatan | MarketingCode.ID',
+    description:
+      'Jasa digital marketing terukur di Kalimantan Selatan: iklan Meta & Google Ads, strategi akuisisi leads WhatsApp, dan optimasi konversi.',
+  },
+}
 
 export default function DigitalMarketingPage() {
   return (
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
-      {/* Top Floating Capsule Navigation */}
-      <header className="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
-        <nav className="w-full max-w-4xl bg-[#1A1A1E]/90 backdrop-blur-md text-white px-5 py-2.5 rounded-full flex items-center justify-between shadow-2xl border border-white/10 transition-all duration-300">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] flex items-center justify-center text-white font-extrabold text-sm shadow-glow group-hover:scale-105 transition-transform tracking-tight">
-              M
-            </div>
-            <span className="font-bold tracking-tight text-base text-white">
-              MarketingCode<span className="text-[#FF5C28]">.ID</span>
-            </span>
-          </Link>
-
-          <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              className="text-xs text-neutral-300 hover:text-white flex items-center gap-1.5 transition-colors mr-2"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Kembali ke Home</span>
-            </Link>
-            <a
-              href={getWhatsAppUrl('ads')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2 rounded-full shadow-glow transition-all"
-            >
-              Konsultasi Ads
-            </a>
-          </div>
-        </nav>
-      </header>
+      <JsonLd
+        data={[
+          serviceSchema(
+            'Jasa Digital Marketing & Performance Ads',
+            'Manajemen kampanye periklanan Meta Ads dan Google Ads berorientasi konversi leads WhatsApp dan omzet bisnis.',
+            '/digital-marketing',
+          ),
+          breadcrumbSchema([
+            { name: 'Beranda', path: '/' },
+            { name: 'Digital Marketing', path: '/digital-marketing' },
+          ]),
+        ]}
+      />
 
       <main className="relative bg-grid-pattern pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
@@ -59,7 +62,7 @@ export default function DigitalMarketingPage() {
             <span>Performance Marketing & Acquisition</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.15]">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.15]">
             Digital Marketing Berbasis <span className="text-[#FF5C28]">ROI & Konversi Omzet</span>
           </h1>
 

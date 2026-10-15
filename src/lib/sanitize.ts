@@ -10,5 +10,6 @@ export function sanitizeHtml(html: string): string {
     USE_PROFILES: { html: true, svg: false, svgFilters: false, mathMl: false },
     FORBID_TAGS: ['style', 'form', 'input', 'iframe'],
     FORBID_ATTR: ['style'],
+    ADD_ATTR: ['loading', 'decoding', 'title', 'target', 'rel'],
   })
 }

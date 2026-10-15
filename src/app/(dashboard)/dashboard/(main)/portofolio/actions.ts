@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { and, eq, ne } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { portfolios } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
@@ -27,13 +27,13 @@ const portfolioSchema = z.object({
   challenge: z.string().max(5000).nullable(),
   solution: z.string().max(5000).nullable(),
   results: z.array(z.object({ value: z.string().max(80), label: z.string().max(160) })).max(12),
-  techStack: z.array(z.string().max(40)).max(20),
+  techStack: z.array(z.string().max(80)).max(30),
   content: z.string().max(500_000).nullable(),
   testimonialQuote: z.string().max(1000).nullable(),
   testimonialName: z.string().max(120).nullable(),
   testimonialRole: z.string().max(120).nullable(),
-  metaTitle: z.string().max(70).nullable(),
-  metaDescription: z.string().max(200).nullable(),
+  metaTitle: z.string().max(200).nullable(),
+  metaDescription: z.string().max(500).nullable(),
 })
 
 function parseForm(formData: FormData) {

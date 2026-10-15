@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps<'/portfolio/[slug]'
   const item = await getPortfolioBySlug(slug)
   if (!item) return { title: `Proyek tidak ditemukan | ${SITE_NAME}` }
 
-  const title = `${item.metaTitle || item.title} | Studi Kasus ${SITE_NAME}`
+  const title = item.metaTitle || `${item.title} — Studi Kasus`
   const description = item.metaDescription || item.summary
   const url = absoluteUrl(`/portfolio/${item.slug}`)
 
@@ -59,7 +59,15 @@ export async function generateMetadata({ params }: PageProps<'/portfolio/[slug]'
       description,
       siteName: SITE_NAME,
       locale: 'id_ID',
-      images: [{ url: absoluteUrl(item.thumbnail.url), alt: item.thumbnail.alt }],
+      images: [
+        {
+          url: absoluteUrl(item.thumbnail.url),
+          width: 1200,
+          height: 630,
+          alt: item.thumbnail.alt || `${item.title} — Studi Kasus Portofolio MarketingCode.ID`,
+          type: 'image/jpeg',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -196,7 +204,8 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
           <figure className="relative aspect-[16/10] sm:aspect-[16/8] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-neutral-200/80 bg-neutral-100 shadow-soft">
             <Image
               src={item.thumbnail.url}
-              alt={item.thumbnail.alt}
+              alt={item.thumbnail.alt || `${item.title} — Studi Kasus Portofolio MarketingCode.ID`}
+              title={item.thumbnail.alt || `${item.title} — Portofolio ${item.clientName}`}
               fill
               priority
               sizes="(min-width: 1152px) 1104px, 100vw"
@@ -207,7 +216,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
           {item.results.length > 0 && (
             <div
               aria-label="Hasil proyek"
-              className={`mt-4 sm:mt-0 sm:relative sm:-mt-14 sm:mx-10 bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/80 shadow-card grid grid-cols-1 ${RESULT_COLS[Math.min(item.results.length, 4)]} divide-y sm:divide-y-0 sm:divide-x divide-neutral-100`}
+              className={`mt-4 sm:relative sm:-mt-14 sm:mx-10 bg-white rounded-2xl sm:rounded-3xl border border-neutral-200/80 shadow-card grid grid-cols-1 ${RESULT_COLS[Math.min(item.results.length, 4)]} divide-y sm:divide-y-0 sm:divide-x divide-neutral-100`}
             >
               {item.results.map((r) => (
                 <div key={r.label} className="px-5 py-4 sm:px-6 sm:py-6 text-center sm:text-left min-w-0">
@@ -268,7 +277,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                   {item.techStack.map((tech) => (
                     <li
                       key={tech}
-                      className="px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-medium text-neutral-700"
+                      className="px-3 py-1.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-semibold text-neutral-700"
                     >
                       {tech}
                     </li>
@@ -316,7 +325,8 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl sm:rounded-3xl border border-neutral-200/80 bg-neutral-100">
                     <Image
                       src={g.image.url}
-                      alt={g.image.alt}
+                      alt={g.image.alt || `${item.title} Screenshot Galeri ${idx + 1}`}
+                      title={g.caption || g.image.alt || `${item.title} — Tampilan ${idx + 1}`}
                       fill
                       sizes={idx === 0 && item.gallery.length % 2 === 1 ? '(min-width: 1152px) 1104px, 100vw' : '(min-width: 768px) 50vw, 100vw'}
                       className="object-cover hover:scale-[1.03] transition-transform duration-500"

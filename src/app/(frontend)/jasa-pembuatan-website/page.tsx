@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   Code2,
-  Check,
   ArrowRight,
   ChevronRight,
   Globe,
@@ -19,7 +18,7 @@ import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS | MarketingCode.ID',
+  title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS',
   description:
     'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan. Spesialis sistem informasi instansi, web company profile, travel, & landing page SEO.',
   keywords: [
@@ -32,6 +31,21 @@ export const metadata: Metadata = {
     'web developer kalsel',
   ],
   alternates: { canonical: '/jasa-pembuatan-website' },
+  openGraph: {
+    title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS | MarketingCode.ID',
+    description:
+      'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan. Spesialis sistem informasi instansi, web company profile, travel, & landing page SEO.',
+    url: '/jasa-pembuatan-website',
+    siteName: 'MarketingCode.ID',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS | MarketingCode.ID',
+    description:
+      'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan. Spesialis sistem informasi instansi, web company profile, & landing page SEO.',
+  },
 }
 
 const faqs = [

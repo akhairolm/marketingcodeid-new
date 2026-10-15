@@ -11,7 +11,7 @@ const SERVICE_OPTIONS = [
 ]
 
 const inputClass =
-  'w-full text-xs px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50'
+  'w-full text-base px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50'
 
 export function ConsultationSection() {
   const [toastOpen, setToastOpen] = useState(false)

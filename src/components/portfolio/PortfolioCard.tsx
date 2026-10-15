@@ -16,7 +16,8 @@ export function PortfolioCard({ item, priority = false }: { item: PortfolioItem;
       <div className="aspect-[16/10] w-full overflow-hidden relative bg-neutral-100">
         <Image
           src={item.thumbnail.url}
-          alt={item.thumbnail.alt}
+          alt={item.thumbnail.alt || `Portofolio ${item.title} — ${item.categoryLabel} ${item.clientName}`}
+          title={item.thumbnail.alt || `Portofolio ${item.title} — ${item.clientName}`}
           fill
           priority={priority}
           sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"

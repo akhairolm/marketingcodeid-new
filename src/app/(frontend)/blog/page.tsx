@@ -7,9 +7,11 @@ import { SITE_NAME, absoluteUrl } from '@/lib/site'
 import { CtaBanner } from '@/components/site/CtaBanner'
 import { BlogFilterGrid } from '@/components/blog/BlogFilterGrid'
 
+import { JsonLd, breadcrumbSchema } from '@/lib/seo'
+
 export const revalidate = 60
 
-const title = `Blog & Insight Digital | ${SITE_NAME}`
+const title = 'Blog & Wawasan Digital Marketing'
 const description =
   'Artikel praktis seputar pembuatan website, aplikasi mobile, dan digital marketing untuk membantu bisnis Anda mengambil keputusan teknologi yang tepat.'
 
@@ -17,7 +19,19 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: absoluteUrl('/blog') },
-  openGraph: { title, description, url: absoluteUrl('/blog'), siteName: SITE_NAME, locale: 'id_ID', type: 'website' },
+  openGraph: {
+    title,
+    description,
+    url: absoluteUrl('/blog'),
+    siteName: SITE_NAME,
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+  },
 }
 
 export default async function BlogIndexPage() {
@@ -25,6 +39,12 @@ export default async function BlogIndexPage() {
 
   return (
     <div className="min-h-screen">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Beranda', path: '/' },
+          { name: 'Blog', path: '/blog' },
+        ])}
+      />
       <main className="relative pt-28 sm:pt-32 pb-24 overflow-hidden">
         <div aria-hidden className="absolute inset-x-0 top-0 h-[520px] bg-grid-pattern [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none" />
 

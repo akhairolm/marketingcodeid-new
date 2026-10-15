@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { and, eq, ne } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { articles } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
@@ -12,18 +12,19 @@ import { z } from 'zod'
 export type ArticleFormState = { error: string | null }
 
 const articleSchema = z.object({
-  title: z.string().trim().min(1, 'Judul wajib diisi.').max(200),
-  slug: z.string().trim().max(220).default(''),
+  title: z.string().trim().min(1, 'Judul wajib diisi.').max(200, 'Judul maksimal 200 karakter.'),
+  slug: z.string().trim().max(220, 'Slug maksimal 220 karakter.').default(''),
   status: z.enum(['draft', 'published']),
   publishedAt: z.date().nullable(),
-  categoryId: z.string().max(64).nullable(),
-  excerpt: z.string().max(500).nullable(),
-  content: z.string().min(1, 'Konten wajib diisi.').max(500_000),
-  tags: z.array(z.string().max(40)).max(20),
-  authorName: z.string().max(120),
-  authorRole: z.string().max(120).nullable(),
-  metaTitle: z.string().max(70).nullable(),
-  metaDescription: z.string().max(200).nullable(),
+  categoryId: z.string().max(64, 'Kategori tidak valid.').nullable(),
+  coverImageId: z.string().max(64, 'Cover image tidak valid.').nullable(),
+  excerpt: z.string().max(1000, 'Excerpt maksimal 1000 karakter.').nullable(),
+  content: z.string().min(1, 'Konten wajib diisi.').max(500_000, 'Konten terlalu panjang.'),
+  tags: z.array(z.string().trim().max(100, 'Setiap tag maksimal 100 karakter.')).max(30, 'Maksimal 30 tag.'),
+  authorName: z.string().max(120, 'Nama author maksimal 120 karakter.'),
+  authorRole: z.string().max(120, 'Role author maksimal 120 karakter.').nullable(),
+  metaTitle: z.string().max(200, 'Meta title maksimal 200 karakter.').nullable(),
+  metaDescription: z.string().max(500, 'Meta description maksimal 500 karakter.').nullable(),
 })
 
 function parseForm(formData: FormData) {
@@ -42,6 +43,7 @@ function parseForm(formData: FormData) {
     status: str('status') === 'published' ? 'published' : 'draft',
     publishedAt,
     categoryId: str('categoryId') || null,
+    coverImageId: str('coverImageId') || str('thumbnailId') || null,
     excerpt: str('excerpt') || null,
     content: String(formData.get('content') || ''),
     tags: str('tags')

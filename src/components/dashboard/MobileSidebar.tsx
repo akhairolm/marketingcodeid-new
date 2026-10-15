@@ -1,14 +1,12 @@
 'use client'
 
 import React from 'react'
-import { usePathname } from 'next/navigation'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 import { SidebarBrand, SidebarNav, type DraftCounts } from './sidebar-nav'
 
 export function MobileSidebar({ draftCounts }: { draftCounts: DraftCounts }) {
-  const pathname = usePathname()
   const [open, setOpen] = React.useState(false)
 
   return (

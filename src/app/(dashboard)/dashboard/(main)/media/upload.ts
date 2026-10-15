@@ -5,7 +5,16 @@ import { db } from '@/db'
 import { media } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
 
-export type UploadState = { error: string | null; success: string | null }
+export type UploadState = {
+  error: string | null
+  success: string | null
+  item?: {
+    id: string
+    filename: string
+    publicUrl: string
+    altText: string | null
+  }
+}
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
@@ -81,7 +90,10 @@ export async function deleteStorageObject(storagePath: string): Promise<void> {
  * thumbnail picker, and Tiptap editor image insertion. Throws with a
  * user-readable message on failure.
  */
-export async function uploadMediaFile(file: File, altText = ''): Promise<string> {
+export async function uploadMediaFile(
+  file: File,
+  altText = '',
+): Promise<{ id: string; filename: string; publicUrl: string; altText: string | null }> {
   if (!(file instanceof File) || file.size === 0) {
     throw new Error('File gambar tidak valid.')
   }
@@ -129,7 +141,12 @@ export async function uploadMediaFile(file: File, altText = ''): Promise<string>
 
   revalidatePath('/dashboard/media')
   revalidatePath('/')
-  return publicUrl
+  return {
+    id: rowId,
+    filename: file.name,
+    publicUrl,
+    altText: altText || null,
+  }
 }
 
 // Keep eq import used if future queries need it; avoid unused-import lint

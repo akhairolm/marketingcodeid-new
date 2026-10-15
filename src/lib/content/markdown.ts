@@ -16,7 +16,41 @@ renderer.heading = function ({ tokens, depth }) {
   return `<h${depth} id="${id}" class="scroll-mt-28">${text}</h${depth}>\n`
 }
 
+renderer.table = function ({ header, rows }) {
+  const head = `<tr>${header.map((c) => `<th>${this.parser.parseInline(c.tokens)}</th>`).join('')}</tr>`
+  const body = rows
+    .map((row) => `<tr>${row.map((c) => `<td>${this.parser.parseInline(c.tokens)}</td>`).join('')}</tr>`)
+    .join('')
+  return `<div class="table-wrap"><table><thead>${head}</thead><tbody>${body}</tbody></table></div>\n`
+}
+
+renderer.image = function ({ href, title, text }) {
+  const cleanTitle = title || text || 'Gambar artikel'
+  return `<figure class="my-6"><img src="${href}" alt="${text || cleanTitle}" title="${cleanTitle}" loading="lazy" decoding="async" class="rounded-2xl border border-neutral-200/80 w-full h-auto" />${text ? `<figcaption class="mt-2 text-center text-xs text-neutral-500">${text}</figcaption>` : ''}</figure>\n`
+}
+
 marked.use({ renderer, gfm: true, breaks: false })
+
+/** Ensures all <img> tags in HTML articles have loading="lazy", decoding="async", and title attributes */
+export function enhanceArticleImages(html: string): string {
+  if (!html) return ''
+  return html.replace(/<img\b([^>]*)>/gi, (match, attrs) => {
+    let newAttrs = attrs
+    const altMatch = /alt=["']([^"']*)["']/i.exec(attrs)
+    const altText = altMatch ? altMatch[1] : ''
+
+    if (!/title=["']/i.test(newAttrs) && altText) {
+      newAttrs += ` title="${altText}"`
+    }
+    if (!/loading=["']/i.test(newAttrs)) {
+      newAttrs += ' loading="lazy"'
+    }
+    if (!/decoding=["']/i.test(newAttrs)) {
+      newAttrs += ' decoding="async"'
+    }
+    return `<img${newAttrs}>`
+  })
+}
 
 export function renderMarkdown(markdown?: string | null): string {
   if (!markdown) return ''

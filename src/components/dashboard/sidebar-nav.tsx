@@ -9,7 +9,6 @@ import {
   FileText,
   Layers,
   Image as ImageIcon,
-  ExternalLink,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -20,8 +19,18 @@ export interface DraftCounts {
 
 const navItems = [
   { title: 'Ringkasan', href: '/dashboard', icon: LayoutDashboard, badgeKey: null },
-  { title: 'Portofolio', href: '/dashboard/portofolio', icon: Briefcase, badgeKey: 'portfolios' as const },
-  { title: 'Artikel Blog', href: '/dashboard/artikel', icon: FileText, badgeKey: 'articles' as const },
+  {
+    title: 'Portofolio',
+    href: '/dashboard/portofolio',
+    icon: Briefcase,
+    badgeKey: 'portfolios' as const,
+  },
+  {
+    title: 'Artikel Blog',
+    href: '/dashboard/artikel',
+    icon: FileText,
+    badgeKey: 'articles' as const,
+  },
   { title: 'Kategori', href: '/dashboard/kategori', icon: Layers, badgeKey: null },
   { title: 'Media', href: '/dashboard/media', icon: ImageIcon, badgeKey: null },
 ]
@@ -38,8 +47,7 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive =
-            pathname === item.href ||
-            (item.href !== '/dashboard' && pathname.startsWith(item.href))
+            pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))
           const badge = item.badgeKey ? draftCounts[item.badgeKey] : 0
           return (
             <Link
@@ -75,20 +83,6 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
           )
         })}
       </nav>
-
-      <div className="px-3 pt-4 pb-2 border-t border-sidebar-border mt-2 space-y-1">
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between px-3 min-h-11 rounded-xl text-sm font-semibold text-sidebar-foreground hover:bg-sidebar-accent hover:translate-x-1 transition-all"
-        >
-          <span className="flex items-center gap-3">
-            <ExternalLink className="h-[18px] w-[18px] text-sidebar-foreground/80" />
-            Lihat Website
-          </span>
-        </a>
-      </div>
     </>
   )
 }
@@ -103,7 +97,9 @@ export function SidebarBrand() {
         <div className="text-[15px] font-extrabold tracking-tight text-white leading-tight">
           MarketingCode
         </div>
-        <div className="text-[11px] tracking-[0.12em] text-sidebar-foreground/70 font-semibold">DASHBOARD</div>
+        <div className="text-[11px] tracking-[0.12em] text-sidebar-foreground/70 font-semibold">
+          DASHBOARD
+        </div>
       </div>
     </Link>
   )

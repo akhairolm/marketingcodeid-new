@@ -29,7 +29,7 @@ export function PortfolioFilterGrid({ items }: { items: PortfolioItem[] }) {
   return (
     <div>
       <div className="flex justify-center mb-10">
-        <div role="group" aria-label="Filter kategori portofolio" className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full">
+        <div role="group" aria-label="Filter kategori portofolio" className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {tabs.map((tab) => (
             <button
               key={tab.value}

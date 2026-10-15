@@ -27,7 +27,8 @@ export function ArticleCard({
       <div className={cn('w-full overflow-hidden relative bg-neutral-100', featured ? 'aspect-[16/10] lg:aspect-auto lg:min-h-[340px]' : 'aspect-[16/10]')}>
         <Image
           src={article.coverImage.url}
-          alt={article.coverImage.alt}
+          alt={article.coverImage.alt || article.title}
+          title={article.coverImage.alt || article.title}
           fill
           priority={priority}
           sizes={featured ? '(min-width: 1024px) 600px, 100vw' : '(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw'}

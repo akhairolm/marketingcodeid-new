@@ -1,5 +1,3 @@
-import Link from 'next/link'
-import { ExternalLink } from 'lucide-react'
 import { SidebarBrand, SidebarNav, type DraftCounts } from './sidebar-nav'
 
 export function DashboardSidebar({ draftCounts }: { draftCounts: DraftCounts }) {
@@ -11,18 +9,6 @@ export function DashboardSidebar({ draftCounts }: { draftCounts: DraftCounts }) 
 
       <div className="flex-1 overflow-y-auto">
         <SidebarNav draftCounts={draftCounts} />
-      </div>
-
-      <div className="p-4 border-t border-sidebar-border">
-        <a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-[11px] text-sidebar-foreground/80 hover:text-sidebar-foreground transition-colors"
-        >
-          <ExternalLink className="h-3 w-3" />
-          Fullstack Next.js · Drizzle ORM
-        </a>
       </div>
     </aside>
   )

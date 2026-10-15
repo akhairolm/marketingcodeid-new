@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import '@/app/(frontend)/tiptap.css'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Clock, MessageCircle } from 'lucide-react'
 import { getArticleBySlug, getArticles } from '@/lib/content/queries'
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<'/blog/[slug]'>): P
   const article = await getArticleBySlug(slug)
   if (!article) return { title: `Artikel tidak ditemukan | ${SITE_NAME}` }
 
-  const title = `${article.metaTitle || article.title} | ${SITE_NAME}`
+  const title = article.metaTitle || article.title
   const description = article.metaDescription || article.excerpt
   const url = absoluteUrl(`/blog/${article.slug}`)
 
@@ -50,7 +51,15 @@ export async function generateMetadata({ params }: PageProps<'/blog/[slug]'>): P
       modifiedTime: article.updatedAt,
       authors: [article.authorName],
       tags: article.tags,
-      images: [{ url: absoluteUrl(article.coverImage.url), alt: article.coverImage.alt }],
+      images: [
+        {
+          url: absoluteUrl(article.coverImage.url),
+          width: 1200,
+          height: 630,
+          alt: article.coverImage.alt || article.title,
+          type: 'image/jpeg',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -102,6 +111,48 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
     keywords: article.tags.join(', '),
     ...(article.category ? { articleSection: article.category.name } : {}),
   }
+
+  const faqJsonLd =
+    article.slug === 'apakah-umkm-perlu-website-sendiri'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Saya gaptek dan nggak ngerti koding, apa nanti bisa kelola websitenya?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Bisa banget! Website yang dibuatkan untuk UMKM sudah dilengkapi halaman admin yang sangat mudah digunakan. Mengganti harga, mengedit promo, atau menambah foto produk baru semudah membuat postingan di media sosial.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Apakah pembeli tetap bisa pesan langsung lewat WhatsApp?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Tentu saja. Setiap produk atau layanan di website akan dilengkapi tombol Pesan via WhatsApp yang langsung mengirimkan rincian pesanan pelanggan ke ruang chat admin Anda.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Berapa lama proses pembuatan website untuk UMKM sampai siap pakai?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Untuk pembuatan Landing Page promosi, website katalog UMKM, atau Company Profile, rata-rata sudah siap online dalam 3 sampai 7 hari kerja setelah materi produk dan profil usaha terkumpul.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Usaha saya di daerah kabupaten seperti Kandangan (HSS), apa tetap efektif pakai website?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Justru sangat efektif karena persaingan digital di tingkat kabupaten dan kota sekitarnya masih rendah, sehingga website bisnis Anda bisa jauh lebih cepat naik ke peringkat pertama pencarian Google.',
+              },
+            },
+          ],
+        }
+      : null
 
   return (
     <div className="min-h-screen">
@@ -162,7 +213,8 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-neutral-200/80 bg-neutral-100 shadow-soft">
               <Image
                 src={article.coverImage.url}
-                alt={article.coverImage.alt}
+                alt={article.coverImage.alt || article.title}
+                title={article.coverImage.alt || article.title}
                 fill
                 priority
                 sizes="(min-width: 1024px) 976px, 100vw"
@@ -216,7 +268,7 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
               {article.tags.length > 0 && (
                 <ul aria-label="Tag artikel" className="mt-12 flex flex-wrap gap-2">
                   {article.tags.map((tag) => (
-                    <li key={tag} className="px-3 py-1.5 rounded-full bg-neutral-100 text-xs font-medium text-neutral-600">
+                    <li key={tag} className="px-3 py-1.5 rounded-full bg-neutral-100 text-xs font-semibold text-neutral-600">
                       #{tag}
                     </li>
                   ))}
@@ -277,6 +329,7 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
         </div>
       </main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(faqJsonLd) }} />}
     </div>
   )
 }

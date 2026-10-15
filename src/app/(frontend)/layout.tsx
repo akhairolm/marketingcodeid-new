@@ -1,14 +1,16 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './styles.css'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { SiteFooter } from '@/components/site/SiteFooter'
+import { SITE_URL } from '@/lib/site'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '600', '700', '800'],
   display: 'swap',
 })
 
@@ -20,18 +22,51 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'MarketingCode.ID — Solusi Website, Mobile App & Digital Marketing',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'MarketingCode.ID — Solusi Website, Mobile App & Digital Marketing Kalsel',
+    template: '%s | MarketingCode.ID',
+  },
   description:
-    'Kami merancang ekosistem digital performa tinggi: dari arsitektur kode modern, mobile app yang intuitif, hingga strategi akuisisi pelanggan berbasis konversi nyata.',
+    'Digital agency & software house di Kalimantan Selatan. Spesialis jasa pembuatan website kustom, aplikasi mobile Android/iOS, dan manajemen iklan Meta Ads berorientasi konversi.',
   keywords: [
     'MarketingCode.ID',
-    'Jasa Pembuatan Website',
-    'Mobile App Dev iOS Android',
-    'Digital Marketing Ads',
-    'Next.js Agency',
-    'UI UX Design',
+    'Software House Kalimantan Selatan',
+    'Digital Agency Kandangan',
+    'Jasa Pembuatan Website Kalsel',
+    'Jasa Aplikasi Mobile Android iOS',
+    'Jasa Iklan Meta Ads Kalsel',
+    'Web Developer Banua Enam',
   ],
-  authors: [{ name: 'MarketingCode.ID Digital Agency' }],
+  authors: [{ name: 'MarketingCode.ID Digital Agency', url: SITE_URL }],
+  creator: 'MarketingCode.ID',
+  publisher: 'MarketingCode.ID',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'id_ID',
+    url: SITE_URL,
+    siteName: 'MarketingCode.ID',
+    title: 'MarketingCode.ID — Solusi Website, Mobile App & Digital Marketing Kalsel',
+    description:
+      'Digital agency & software house di Kalimantan Selatan. Spesialis jasa pembuatan website kustom, aplikasi mobile Android/iOS, dan manajemen iklan Meta Ads berorientasi konversi.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MarketingCode.ID — Solusi Website, Mobile App & Digital Marketing Kalsel',
+    description:
+      'Digital agency & software house di Kalimantan Selatan. Spesialis jasa pembuatan website kustom, aplikasi mobile Android/iOS, dan manajemen iklan Meta Ads.',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -41,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         {children}
         <SiteFooter />
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   )

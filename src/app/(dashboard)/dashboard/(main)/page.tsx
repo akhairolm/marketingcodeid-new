@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { count, desc, eq } from 'drizzle-orm'
+import { count, desc } from 'drizzle-orm'
 import { db } from '@/db'
 import { articles, categories, media, portfolios } from '@/db/schema'
 import { Plus, ArrowRight } from 'lucide-react'
@@ -200,12 +200,6 @@ function Panel({
 export default async function DashboardPage() {
   const stats = await loadStats()
   const now = new Date()
-  const dateStr = now.toLocaleDateString('id-ID', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
   const hour = now.getHours()
   const hasContent = stats.p > 0 || stats.a > 0
 
