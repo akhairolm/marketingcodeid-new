@@ -9,6 +9,22 @@ export function HeroSection() {
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-team-mobile.webp"
+        type="image/webp"
+        media="(max-width: 640px)"
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-team.webp"
+        type="image/webp"
+        media="(min-width: 641px)"
+        fetchPriority="high"
+      />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         <div className="lg:col-span-7 space-y-6 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
