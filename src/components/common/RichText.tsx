@@ -1,4 +1,4 @@
-import { renderMarkdown, enhanceArticleImages } from '@/lib/content/markdown'
+import { renderMarkdown, enhanceArticleImages, enhanceArticleHeadings } from '@/lib/content/markdown'
 import { sanitizeHtml } from '@/lib/sanitize'
 import { cn } from '@/lib/utils'
 
@@ -13,7 +13,7 @@ export function RichText({ data, className }: { data?: string | null; className?
 
   const isHtml = /^\s*</.test(data)
   const rendered = isHtml ? data : renderMarkdown(data)
-  const html = sanitizeHtml(enhanceArticleImages(rendered))
+  const html = sanitizeHtml(enhanceArticleImages(enhanceArticleHeadings(rendered)))
 
   return (
     <div

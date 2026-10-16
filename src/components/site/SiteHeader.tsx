@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
+import { HomeNavbar } from '@/components/home/HomeNavbar'
 
 const NAV_LINKS = [
   { href: '/', label: 'Beranda' },
@@ -21,9 +22,18 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
-/** Floating capsule navigation shared by interior pages (portfolio, blog). */
+/** Homepage dropdown navigation; shared capsule navigation on interior routes. */
 export function SiteHeader() {
   const pathname = usePathname()
+
+  if (pathname === '/') {
+    return <HomeNavbar />
+  }
+
+  return <InteriorNav pathname={pathname} />
+}
+
+function InteriorNav({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false)
   const closeDrawer = useCallback(() => setOpen(false), [])
 

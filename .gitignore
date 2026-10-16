@@ -41,6 +41,7 @@ next-env.d.ts
 .env*.local
 .env.backup*
 !.env.example
+session-*.md
 
 /media
 

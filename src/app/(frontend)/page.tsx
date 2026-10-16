@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import HomePageClient from '@/components/home/home-client'
 import { JsonLd, orgSchema, faqSchema } from '@/lib/seo'
-import { getPortfolios } from '@/lib/content/queries'
+import { getPortfolioCards } from '@/lib/content/queries'
 
 export const revalidate = 60
 
@@ -51,16 +51,18 @@ const homeFaqs = [
 ]
 
 export default async function Page() {
-  const portfolioItems = await getPortfolios()
-  const portfolioHighlights = portfolioItems.slice(0, 4).map((item) => ({
+  const portfolioItems = await getPortfolioCards(4)
+  const portfolioHighlights = portfolioItems.map((item) => ({
     slug: item.slug,
     title: item.title,
     client: item.clientName,
-    category: item.category as 'web' | 'app' | 'marketing',
+    category: item.category,
     categoryLabel: item.categoryLabel,
     techStack: item.techStack,
     description: item.summary,
-    highlight: item.results[0] ? `${item.results[0].value} · ${item.results[0].label}` : item.summary.slice(0, 40),
+    highlight: item.headlineResult
+      ? `${item.headlineResult.value} · ${item.headlineResult.label}`
+      : item.summary.slice(0, 40),
     image: item.thumbnail?.url ?? '',
     imageAlt: item.thumbnail?.alt ?? `Portofolio ${item.title}`,
   }))

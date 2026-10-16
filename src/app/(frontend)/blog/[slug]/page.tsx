@@ -5,7 +5,11 @@ import Link from 'next/link'
 import '@/app/(frontend)/tiptap.css'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Clock, MessageCircle } from 'lucide-react'
-import { getArticleBySlug, getArticles } from '@/lib/content/queries'
+import {
+  getArticleBySlug,
+  getArticleSitemapEntries,
+  getRelatedArticles,
+} from '@/lib/content/queries'
 import { extractHeadings } from '@/lib/content/markdown'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { jsonLdString } from '@/lib/seo'
@@ -21,7 +25,7 @@ import { ShareActions } from '@/components/blog/ShareActions'
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const articles = await getArticles()
+  const articles = await getArticleSitemapEntries()
   return articles.map((a) => ({ slug: a.slug }))
 }
 
@@ -85,12 +89,7 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
   const article = await getArticleBySlug(slug)
   if (!article) notFound()
 
-  const all = await getArticles()
-  const others = all.filter((a) => a.slug !== article.slug)
-  const related = [
-    ...others.filter((a) => a.category && a.category.slug === article.category?.slug),
-    ...others.filter((a) => !a.category || a.category.slug !== article.category?.slug),
-  ].slice(0, 3)
+  const related = await getRelatedArticles(article.slug, article.category?.slug, 3)
 
   const headings = extractHeadings(article.content)
   const url = absoluteUrl(`/blog/${article.slug}`)

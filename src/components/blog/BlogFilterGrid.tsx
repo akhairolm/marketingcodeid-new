@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useMemo, useState } from 'react'
-import type { ArticleCategory, ArticleItem } from '@/lib/content/types'
+import type { ArticleCard as ArticleCardType, ArticleCategory } from '@/lib/content/types'
 import { ArticleCard } from './ArticleCard'
 import { cn } from '@/lib/utils'
 
-export function BlogFilterGrid({ articles }: { articles: ArticleItem[] }) {
+export function BlogFilterGrid({ articles }: { articles: ArticleCardType[] }) {
   const [category, setCategory] = useState<string>('all')
 
   const categories = useMemo(() => {

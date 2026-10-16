@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { Route } from 'lucide-react'
-import { getPortfolios } from '@/lib/content/queries'
+import { getPortfolioCards } from '@/lib/content/queries'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { SITE_NAME, absoluteUrl } from '@/lib/site'
 import { CtaBanner } from '@/components/site/CtaBanner'
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 }
 
 export default async function PortfolioIndexPage() {
-  const items = await getPortfolios()
+  const items = await getPortfolioCards()
 
   return (
     <div className="min-h-screen">

@@ -2,11 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import type { PortfolioItem } from '@/lib/content/types'
+import type { PortfolioCard as PortfolioCardType } from '@/lib/content/types'
 
 /** Clickable case-study card used on the archive and "related projects" rows. */
-export function PortfolioCard({ item, priority = false }: { item: PortfolioItem; priority?: boolean }) {
-  const headline = item.results[0]
+export function PortfolioCard({ item, priority = false }: { item: PortfolioCardType; priority?: boolean }) {
+  const headline = item.headlineResult
 
   return (
     <Link

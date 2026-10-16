@@ -12,6 +12,7 @@ const FILTERS = [
   { value: 'web', label: 'Web Development' },
   { value: 'app', label: 'Mobile Application' },
   { value: 'marketing', label: 'Digital Marketing' },
+  { value: 'video', label: 'Video Production' },
 ] as const
 
 function PortfolioCard({ item }: { item: PortfolioProject }) {

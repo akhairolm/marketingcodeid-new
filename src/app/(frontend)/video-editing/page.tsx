@@ -196,9 +196,6 @@ export default function VideoEditingPage() {
         </section>
       </main>
 
-      <footer className="bg-white border-t border-neutral-200/80 py-8 text-center text-xs text-neutral-400">
-        &copy; 2026 MarketingCode.ID Digital Agency. Hak Cipta Dilindungi.
-      </footer>
     </div>
   )
 }

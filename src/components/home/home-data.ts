@@ -1,8 +1,10 @@
+import type { PortfolioCategory } from '@/lib/content/types'
+
 export interface PortfolioProject {
   slug: string
   title: string
   client: string
-  category: 'web' | 'app' | 'marketing'
+  category: PortfolioCategory
   categoryLabel: string
   techStack: string[]
   description: string

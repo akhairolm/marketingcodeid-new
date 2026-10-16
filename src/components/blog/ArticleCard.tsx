@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Clock } from 'lucide-react'
-import type { ArticleItem } from '@/lib/content/types'
+import type { ArticleCard as ArticleCardType } from '@/lib/content/types'
 import { formatDate } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
@@ -12,7 +12,7 @@ export function ArticleCard({
   featured = false,
   priority = false,
 }: {
-  article: ArticleItem
+  article: ArticleCardType
   featured?: boolean
   priority?: boolean
 }) {

@@ -16,7 +16,11 @@ import {
   Timer,
   UserRound,
 } from 'lucide-react'
-import { getPortfolioBySlug, getPortfolios } from '@/lib/content/queries'
+import {
+  getPortfolioBySlug,
+  getPortfolioSitemapEntries,
+  getRelatedPortfolios,
+} from '@/lib/content/queries'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { jsonLdString } from '@/lib/seo'
 import { SITE_NAME, absoluteUrl, formatMonth } from '@/lib/site'
@@ -35,7 +39,7 @@ const RESULT_COLS: Record<number, string> = {
 }
 
 export async function generateStaticParams() {
-  const items = await getPortfolios()
+  const items = await getPortfolioSitemapEntries()
   return items.map((p) => ({ slug: p.slug }))
 }
 
@@ -97,12 +101,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
   const item = await getPortfolioBySlug(slug)
   if (!item) notFound()
 
-  const all = await getPortfolios()
-  const others = all.filter((p) => p.slug !== item.slug)
-  const related = [
-    ...others.filter((p) => p.category === item.category),
-    ...others.filter((p) => p.category !== item.category),
-  ].slice(0, 3)
+  const related = await getRelatedPortfolios(item.slug, item.category, 3)
 
   const waHref = getWhatsAppUrl('case-study', item.title)
   const completed = formatMonth(item.completedDate)

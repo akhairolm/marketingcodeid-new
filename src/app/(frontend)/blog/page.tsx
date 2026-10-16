@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { BookOpen } from 'lucide-react'
-import { getArticles } from '@/lib/content/queries'
+import { getArticleCards } from '@/lib/content/queries'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { SITE_NAME, absoluteUrl } from '@/lib/site'
 import { CtaBanner } from '@/components/site/CtaBanner'
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogIndexPage() {
-  const articles = await getArticles()
+  const articles = await getArticleCards()
 
   return (
     <div className="min-h-screen">
