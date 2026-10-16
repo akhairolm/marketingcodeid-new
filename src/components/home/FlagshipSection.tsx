@@ -143,7 +143,7 @@ export function FlagshipSection() {
                 <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
                   <div className="flex -space-x-1.5">
                     <span className="w-5 h-5 rounded-full bg-[#D13D00] text-white flex items-center justify-center text-[9px] font-bold">FE</span>
-                    <span className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">BE</span>
+                    <span className="w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center text-[9px] font-bold">BE</span>
                   </div>
                   <span>4 Subtasks selesai</span>
                 </div>

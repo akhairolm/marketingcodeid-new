@@ -22,7 +22,7 @@ export function SiteFooter() {
           </span>
         </Link>
 
-        <p className="text-xs text-neutral-500 max-w-sm">
+        <p className="text-xs text-neutral-600 max-w-sm">
           Membantu wirausahawan, agensi, dan perusahaan bertumbuh dengan teknologi web modern, aplikasi mobile, dan
           strategi pemasaran berbasis konversi.
         </p>
@@ -35,7 +35,7 @@ export function SiteFooter() {
           ))}
         </nav>
 
-        <div className="pt-4 border-t border-neutral-100 w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-400">
+        <div className="pt-4 border-t border-neutral-100 w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-600">
           <span>&copy; {new Date().getFullYear()} MarketingCode.ID Digital Agency. Hak Cipta Dilindungi.</span>
         </div>
       </div>
