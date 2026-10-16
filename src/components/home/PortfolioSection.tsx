@@ -35,7 +35,7 @@ function PortfolioCard({ item }: { item: PortfolioProject }) {
 
         <div className="p-6 sm:p-7">
           <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-xs font-semibold text-neutral-400">Klien: {item.client}</span>
+            <span className="text-xs font-semibold text-neutral-500">Klien: {item.client}</span>
             <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
               {item.highlight}
             </span>

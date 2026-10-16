@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Play, X, Film, ArrowRight } from 'lucide-react'
 
@@ -46,15 +45,28 @@ export function HeroSection() {
 
         <div className="lg:col-span-5">
           <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/10] sm:aspect-[4/3] group">
-            <Image
-              src="/images/hero-team.webp"
-              alt="Tim Developer dan Digital Marketing MarketingCode.ID di Kalimantan Selatan"
-              title="Tim Digital Agency & Software House MarketingCode.ID"
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
-              className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcSet="/images/hero-team-mobile.webp"
+                type="image/webp"
+              />
+              <source
+                srcSet="/images/hero-team.webp"
+                type="image/webp"
+              />
+              <img
+                src="/images/hero-team.webp"
+                alt="Tim Developer dan Digital Marketing MarketingCode.ID di Kalimantan Selatan"
+                title="Tim Digital Agency & Software House MarketingCode.ID"
+                width={1200}
+                height={800}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            </picture>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
 

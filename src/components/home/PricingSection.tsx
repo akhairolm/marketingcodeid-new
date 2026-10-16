@@ -67,14 +67,14 @@ export function PricingSection() {
             <div>
               <span
                 className={`text-xs font-bold uppercase tracking-wider ${
-                  item.isPopular ? 'text-[#FF5C28]' : 'text-neutral-400'
+                  item.isPopular ? 'text-[#FF5C28]' : 'text-neutral-500'
                 }`}
               >
                 {item.tier}
               </span>
               <div className="mt-3 flex items-baseline">
                 <span className="text-3xl font-extrabold text-neutral-900">{item.price}</span>
-                <span className="text-xs text-neutral-400 ml-1.5">{item.unit}</span>
+                <span className="text-xs text-neutral-500 ml-1.5">{item.unit}</span>
               </div>
               <p className="text-xs text-neutral-500 mt-2">{item.desc}</p>
 
@@ -101,7 +101,7 @@ export function PricingSection() {
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-400 text-center">
+            <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-500 text-center">
               {item.time}
             </div>
           </div>

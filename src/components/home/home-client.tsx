@@ -3,10 +3,10 @@ import { HeroSection } from './HeroSection'
 import { ServicesHub } from './ServicesHub'
 import { TrustSection } from './TrustSection'
 import { FlagshipSection } from './FlagshipSection'
-import { AccelerationSection } from './AccelerationSection'
 import { PortfolioSection } from './PortfolioSection'
 import type { PortfolioProject } from './home-data'
 
+const AccelerationSection = dynamic(() => import('./AccelerationSection').then((m) => m.AccelerationSection))
 const PricingSection = dynamic(() => import('./PricingSection').then((m) => m.PricingSection))
 const WorkflowSection = dynamic(() => import('./WorkflowSection').then((m) => m.WorkflowSection))
 const FaqSection = dynamic(() => import('./FaqSection').then((m) => m.FaqSection))
