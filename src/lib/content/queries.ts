@@ -30,15 +30,20 @@ import {
 const DEMO = process.env.CONTENT_DEMO_MODE === '1'
 
 const FALLBACK_IMAGE: ImageAsset = {
-  url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80',
-  alt: 'Ilustrasi proyek digital MarketingCode.ID',
-  width: 1600,
-  height: 900,
+  url: '/images/placeholder.svg',
+  alt: 'MarketingCode.ID',
+  width: 1200,
+  height: 675,
 }
 
 function toImage(row: MediaRow | null, fallbackAlt: string): ImageAsset | null {
   if (!row?.publicUrl) return null
-  return { url: row.publicUrl, alt: row.altText || fallbackAlt }
+  return {
+    url: row.publicUrl,
+    alt: row.altText || fallbackAlt,
+    width: row.width ?? 1200,
+    height: row.height ?? 675,
+  }
 }
 
 function mapPortfolio(row: PortfolioRow, thumb: MediaRow | null): PortfolioItem {

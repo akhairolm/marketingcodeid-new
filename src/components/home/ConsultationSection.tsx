@@ -13,6 +13,8 @@ const SERVICE_OPTIONS = [
 const inputClass =
   'w-full text-base px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50'
 
+import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp'
+
 export function ConsultationSection() {
   const [toastOpen, setToastOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', service: 'web', notes: '' })
@@ -26,7 +28,8 @@ export function ConsultationSection() {
     const waText = `Halo MarketingCode.ID, saya ${formData.name} (${formData.email}) ingin konsultasi terkait ${serviceName}. Detail rencana: ${formData.notes || '-'}`
 
     setTimeout(() => {
-      window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(waText)}`, '_blank')
+      const cleanPhone = DEFAULT_WHATSAPP_NUMBER.replace(/[^0-9]/g, '')
+      window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(waText)}`, '_blank')
     }, 1000)
 
     setFormData({ name: '', email: '', service: 'web', notes: '' })

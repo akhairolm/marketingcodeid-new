@@ -23,6 +23,7 @@ export function ThumbnailPicker({
   name = 'thumbnailId',
   label = 'Pilih Thumbnail dari Media Library',
   helperText = 'Thumbnail tampil di kartu di halaman depan & listing. Rasio disarankan 16:9.',
+  required = true,
 }: {
   items: { id: string; filename: string; publicUrl: string; altText: string | null }[]
   initialId?: string
@@ -30,6 +31,7 @@ export function ThumbnailPicker({
   name?: string
   label?: string
   helperText?: string
+  required?: boolean
 }) {
   const [selectedId, setSelectedId] = useState(initialId || '')
   const [selectedUrl, setSelectedUrl] = useState(initialUrl || '')
@@ -66,49 +68,75 @@ export function ThumbnailPicker({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <Label className="text-sm font-medium">
+          Thumbnail / Gambar Cover {required && <span className="text-destructive font-bold">* (Wajib)</span>}
+        </Label>
+        {selectedId ? (
+          <span className="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+            ✓ Gambar Terpilih
+          </span>
+        ) : required ? (
+          <span className="text-[11px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+            Wajib dipilih
+          </span>
+        ) : null}
+      </div>
+
       <input type="hidden" name={name} value={selectedId} />
 
       <Dialog open={open} onOpenChange={setOpen}>
         {selectedUrl ? (
-          <div className="flex items-center gap-3">
-            <div className="relative w-40 aspect-video rounded-xl overflow-hidden border border-border bg-muted">
+          <div className="flex flex-wrap items-center gap-4 p-3 rounded-2xl border border-border bg-card">
+            <div className="relative w-44 aspect-video rounded-xl overflow-hidden border border-border bg-muted shadow-sm">
               <Image
                 src={selectedUrl}
                 alt="Thumbnail terpilih"
                 fill
                 unoptimized
                 className="object-cover"
-                sizes="160px"
+                sizes="176px"
               />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2">
               <DialogTrigger asChild>
-                <Button type="button" variant="outline" size="sm" className="gap-2">
+                <Button type="button" variant="outline" size="sm" className="gap-2 justify-start">
                   <ImageIcon className="h-4 w-4" />
                   Ganti Thumbnail
                 </Button>
               </DialogTrigger>
               <Button
                 type="button"
-                variant="outline"
+                variant="ghost"
                 size="sm"
+                className="text-xs text-muted-foreground hover:text-destructive justify-start"
                 onClick={() => {
                   setSelectedId('')
                   setSelectedUrl('')
                 }}
               >
-                Hapus Thumbnail
+                Hapus Pilihan
               </Button>
             </div>
           </div>
         ) : (
-          <DialogTrigger asChild>
-            <Button type="button" variant="outline" className="gap-2">
-              <ImageIcon className="h-4 w-4" />
-              {label}
-            </Button>
-          </DialogTrigger>
+          <div className={`p-4 rounded-2xl border-2 border-dashed ${required ? 'border-amber-300 bg-amber-50/30' : 'border-border bg-muted/20'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3`}>
+            <div className="space-y-0.5">
+              <p className="text-sm font-semibold text-neutral-800">
+                {required ? 'Thumbnail belum dipilih (Wajib)' : 'Thumbnail belum dipilih'}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Pilih salah satu media dari library atau unggah foto thumbnail baru.
+              </p>
+            </div>
+            <DialogTrigger asChild>
+              <Button type="button" variant={required ? 'default' : 'outline'} size="sm" className="gap-2 shrink-0">
+                <ImageIcon className="h-4 w-4" />
+                {label}
+              </Button>
+            </DialogTrigger>
+          </div>
         )}
 
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">

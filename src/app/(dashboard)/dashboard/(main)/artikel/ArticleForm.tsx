@@ -87,7 +87,19 @@ export function ArticleForm({
   const initialContent = initial ? (isHtmlContent(initial.content) ? initial.content : renderMarkdown(initial.content)) : ''
 
   return (
-    <form action={formAction} className="space-y-6 max-w-4xl">
+    <form
+      action={formAction}
+      onSubmit={(e) => {
+        const formData = new FormData(e.currentTarget)
+        const cover = formData.get('coverImageId')
+        if (!cover || String(cover).trim() === '') {
+          e.preventDefault()
+          toast.error('Thumbnail / cover artikel wajib dipilih atau diunggah.')
+          return
+        }
+      }}
+      className="space-y-6 max-w-4xl"
+    >
       {isEdit && <input type="hidden" name="id" value={initial!.id} />}
       <input type="hidden" name="status" value={status} />
       <input type="hidden" name="categoryId" value={categoryId === 'none' ? '' : categoryId} />

@@ -94,7 +94,19 @@ export function PortfolioForm({
   )
 
   return (
-    <form action={formAction} className="space-y-6 max-w-4xl">
+    <form
+      action={formAction}
+      onSubmit={(e) => {
+        const formData = new FormData(e.currentTarget)
+        const thumb = formData.get('thumbnailId')
+        if (!thumb || String(thumb).trim() === '') {
+          e.preventDefault()
+          toast.error('Thumbnail portofolio wajib dipilih atau diunggah.')
+          return
+        }
+      }}
+      className="space-y-6 max-w-4xl"
+    >
       {isEdit && <input type="hidden" name="id" value={initial!.id} />}
 
       <FormError error={state?.error} />

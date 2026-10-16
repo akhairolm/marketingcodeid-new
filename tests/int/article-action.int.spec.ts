@@ -74,8 +74,25 @@ it('missing row on edit returns error without writing', async () => {
 it('republish of existing row keeps previous publishedAt when not overridden', async () => {
   const existing = new Date('2025-01-02T03:04:05.000Z')
   state.rows = [{ publishedAt: existing }]
-  await invoke(form({ id: 'x', title: 'T', content: 'c', status: 'published', publishedAt: '' }))
+  await invoke(
+    form({
+      id: 'x',
+      title: 'T',
+      content: 'c',
+      status: 'published',
+      publishedAt: '',
+      coverImageId: '11111111-1111-1111-1111-111111111111',
+    }),
+  )
   const written = state.updateCalls[0] as { publishedAt: Date }
   expect(written.publishedAt).toEqual(existing)
   expect(state.redirected).toBe('/dashboard/artikel')
+})
+
+it('rejects when coverImageId is missing', async () => {
+  const result = await invoke(
+    form({ title: 'T', content: 'c', status: 'published' }),
+  )
+  expect(result?.error).toBe('Thumbnail artikel wajib dipilih atau diunggah.')
+  expect(state.insertCalls).toHaveLength(0)
 })

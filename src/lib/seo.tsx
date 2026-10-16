@@ -1,7 +1,8 @@
 import { SITE_NAME, SITE_URL, absoluteUrl } from './site'
+import { DEFAULT_WHATSAPP_NUMBER } from './whatsapp'
 
 export const BRAND = SITE_NAME
-export const WA_URL = 'https://wa.me/6281234567890'
+export const WA_URL = `https://wa.me/${DEFAULT_WHATSAPP_NUMBER.replace(/[^0-9]/g, '')}`
 
 /** Escapes `</script` breakout and U+2028/2029 for safe JSON-in-script embedding. */
 export function jsonLdString(data: object): string {

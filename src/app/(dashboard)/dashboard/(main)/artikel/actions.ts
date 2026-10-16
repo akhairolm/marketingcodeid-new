@@ -18,7 +18,12 @@ const articleSchema = z.object({
   status: z.enum(['draft', 'published']),
   publishedAt: z.date().nullable(),
   categoryId: z.string().max(64, 'Kategori tidak valid.').nullable(),
-  coverImageId: z.string().max(64, 'Cover image tidak valid.').nullable(),
+  coverImageId: z
+    .string()
+    .trim()
+    .min(1, 'Thumbnail artikel wajib dipilih atau diunggah.')
+    .max(64, 'Cover image tidak valid.')
+    .regex(/^[0-9a-f-]{36}$/i, 'Cover image tidak valid.'),
   excerpt: z.string().max(1000, 'Excerpt maksimal 1000 karakter.').nullable(),
   content: z.string().min(1, 'Konten wajib diisi.').max(500_000, 'Konten terlalu panjang.'),
   tags: z.array(z.string().trim().max(100, 'Setiap tag maksimal 100 karakter.')).max(30, 'Maksimal 30 tag.'),
@@ -44,7 +49,7 @@ function parseForm(formData: FormData, existingPublishedAt: Date | null) {
     status,
     publishedAt,
     categoryId: str('categoryId') || null,
-    coverImageId: str('coverImageId') || str('thumbnailId') || null,
+    coverImageId: str('coverImageId') || str('thumbnailId'),
     excerpt: str('excerpt') || null,
     content: String(formData.get('content') || ''),
     tags: str('tags')

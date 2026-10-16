@@ -23,7 +23,12 @@ const portfolioSchema = z.object({
   duration: z.string().max(80).nullable(),
   role: z.string().max(120).nullable(),
   liveUrl: z.string().max(500).refine((v) => !v || /^https?:\/\//.test(v), 'URL harus diawali http(s)://').nullable(),
-  thumbnailId: z.string().max(64).refine((v) => !v || /^[0-9a-f-]{36}$/i.test(v), 'Thumbnail tidak valid.').nullable(),
+  thumbnailId: z
+    .string()
+    .trim()
+    .min(1, 'Thumbnail portofolio wajib dipilih atau diunggah.')
+    .max(64)
+    .regex(/^[0-9a-f-]{36}$/i, 'Thumbnail tidak valid.'),
   challenge: z.string().max(5000).nullable(),
   solution: z.string().max(5000).nullable(),
   results: z.array(z.object({ value: z.string().max(80), label: z.string().max(160) })).max(12),
@@ -55,7 +60,7 @@ function parseForm(formData: FormData) {
     clientName: str('clientName'),
     category: str('category') || 'web',
     summary: str('summary'),
-    thumbnailId: str('thumbnailId') || null,
+    thumbnailId: str('thumbnailId'),
     duration: str('duration') || null,
     role: str('role') || null,
     liveUrl: str('liveUrl') || null,

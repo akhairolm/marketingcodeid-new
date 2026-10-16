@@ -47,7 +47,7 @@ export function HeroSection() {
         <div className="lg:col-span-5">
           <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/10] sm:aspect-[4/3] group">
             <Image
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+              src="/images/hero-team.jpg"
               alt="Tim Developer dan Digital Marketing MarketingCode.ID di Kalimantan Selatan"
               title="Tim Digital Agency & Software House MarketingCode.ID"
               fill
