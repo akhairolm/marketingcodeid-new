@@ -45,7 +45,7 @@ export function PortfolioFilterGrid({ items }: { items: PortfolioCardType[] }) {
               )}
             >
               {tab.label}
-              <span className="ml-1.5 font-mono text-[10px] text-neutral-400">{tab.count}</span>
+              <span className="ml-1.5 font-mono text-[10px] text-neutral-500">{tab.count}</span>
             </button>
           ))}
         </div>

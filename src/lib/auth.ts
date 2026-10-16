@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { and, eq, gt } from 'drizzle-orm'
@@ -39,7 +40,7 @@ export async function createSession(userId: string): Promise<void> {
   })
 }
 
-export async function getSessionUser(): Promise<SessionUser | null> {
+export const getSessionUser = cache(async (): Promise<SessionUser | null> => {
   const cookieStore = await cookies()
   const token = cookieStore.get(SESSION_COOKIE)?.value
   if (!token) return null
@@ -52,7 +53,7 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     .limit(1)
 
   return rows[0] ?? null
-}
+})
 
 export async function destroySession(): Promise<void> {
   const cookieStore = await cookies()

@@ -47,12 +47,12 @@ export function HeroSection() {
         <div className="lg:col-span-5">
           <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/10] sm:aspect-[4/3] group">
             <Image
-              src="/images/hero-team.jpg"
+              src="/images/hero-team.webp"
               alt="Tim Developer dan Digital Marketing MarketingCode.ID di Kalimantan Selatan"
               title="Tim Digital Agency & Software House MarketingCode.ID"
               fill
               priority
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
               className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
             />
 
@@ -62,7 +62,7 @@ export function HeroSection() {
               <button
                 type="button"
                 onClick={() => setVideoModalOpen(true)}
-                aria-label="Putar Video Showreel"
+                aria-label="Putar Video Showreel Agensi MarketingCode.ID"
                 className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 hover:bg-white text-[#FF5C28] rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md transition-all duration-300 transform hover:scale-110 group-hover:shadow-glow cursor-pointer"
               >
                 <Play className="w-7 h-7 fill-[#FF5C28] text-[#FF5C28] translate-x-0.5" />

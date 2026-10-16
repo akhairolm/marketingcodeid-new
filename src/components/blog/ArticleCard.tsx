@@ -43,7 +43,7 @@ export function ArticleCard({
               {article.category.name}
             </span>
           )}
-          <span className="text-neutral-400">{formatDate(article.publishedAt)}</span>
+          <span className="text-neutral-500">{formatDate(article.publishedAt)}</span>
         </div>
 
         <h3
@@ -58,7 +58,7 @@ export function ArticleCard({
           {article.excerpt}
         </p>
 
-        <div className={cn('flex items-center gap-1.5 text-[11px] font-medium text-neutral-400', featured ? 'mt-6' : 'mt-auto pt-5')}>
+        <div className={cn('flex items-center gap-1.5 text-[11px] font-medium text-neutral-500', featured ? 'mt-6' : 'mt-auto pt-5')}>
           <Clock className="w-3.5 h-3.5" />
           <span>{article.readingMinutes} menit baca</span>
           {featured && <span className="ml-auto text-xs font-semibold text-[#FF5C28] whitespace-nowrap">Baca artikel →</span>}

@@ -1,15 +1,17 @@
+import dynamic from 'next/dynamic'
 import { HeroSection } from './HeroSection'
 import { ServicesHub } from './ServicesHub'
 import { TrustSection } from './TrustSection'
 import { FlagshipSection } from './FlagshipSection'
 import { AccelerationSection } from './AccelerationSection'
 import { PortfolioSection } from './PortfolioSection'
-import { PricingSection } from './PricingSection'
-import { WorkflowSection } from './WorkflowSection'
-import { FaqSection } from './FaqSection'
-import { ConsultationSection } from './ConsultationSection'
-import { FinalCtaSection } from './FinalCtaSection'
 import type { PortfolioProject } from './home-data'
+
+const PricingSection = dynamic(() => import('./PricingSection').then((m) => m.PricingSection))
+const WorkflowSection = dynamic(() => import('./WorkflowSection').then((m) => m.WorkflowSection))
+const FaqSection = dynamic(() => import('./FaqSection').then((m) => m.FaqSection))
+const ConsultationSection = dynamic(() => import('./ConsultationSection').then((m) => m.ConsultationSection))
+const FinalCtaSection = dynamic(() => import('./FinalCtaSection').then((m) => m.FinalCtaSection))
 
 export default function HomePageClient({
   faqs,

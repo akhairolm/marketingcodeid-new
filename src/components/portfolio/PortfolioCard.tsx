@@ -29,7 +29,7 @@ export function PortfolioCard({ item, priority = false }: { item: PortfolioCardT
       </div>
 
       <div className="p-6 flex flex-col flex-1">
-        <p className="text-xs font-semibold text-neutral-400">{item.clientName}</p>
+        <p className="text-xs font-semibold text-neutral-500">{item.clientName}</p>
         <h3 className="mt-1.5 text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors [overflow-wrap:anywhere]">
           {item.title}
         </h3>
@@ -43,7 +43,7 @@ export function PortfolioCard({ item, priority = false }: { item: PortfolioCardT
           ) : (
             <span />
           )}
-          <span className="w-9 h-9 shrink-0 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center group-hover:bg-[#FF5C28] group-hover:text-white transition-colors">
+          <span aria-hidden="true" className="w-9 h-9 shrink-0 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center group-hover:bg-[#FF5C28] group-hover:text-white transition-colors">
             <ArrowUpRight className="w-4 h-4" />
           </span>
         </div>

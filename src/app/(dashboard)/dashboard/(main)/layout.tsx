@@ -10,19 +10,20 @@ import { Topbar } from '@/components/dashboard/Topbar'
 import { Toaster } from '@/components/ui/sonner'
 
 export default async function DashboardMainLayout({ children }: { children: React.ReactNode }) {
-  const user = await getSessionUser()
-  if (!user) redirect('/dashboard/login')
-
-  let draftCounts = { articles: 0, portfolios: 0 }
-  try {
-    const [a, p] = await Promise.all([
-      db.select({ value: count() }).from(articles).where(eq(articles.status, 'draft')),
-      db.select({ value: count() }).from(portfolios).where(eq(portfolios.status, 'draft')),
+  const [user, draftCounts] = await Promise.all([
+    getSessionUser(),
+    Promise.all([
+      db.select({ value: count() }).from(articles).where(eq(articles.status, 'draft')).catch(() => []),
+      db.select({ value: count() }).from(portfolios).where(eq(portfolios.status, 'draft')).catch(() => []),
     ])
-    draftCounts = { articles: a[0]?.value ?? 0, portfolios: p[0]?.value ?? 0 }
-  } catch {
-    // badge tetap 0 jika DB error
-  }
+      .then(([a, p]) => ({
+        articles: a[0]?.value ?? 0,
+        portfolios: p[0]?.value ?? 0,
+      }))
+      .catch(() => ({ articles: 0, portfolios: 0 })),
+  ])
+
+  if (!user) redirect('/dashboard/login')
 
   return (
     <div className="flex min-h-screen">
