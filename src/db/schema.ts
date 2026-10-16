@@ -1,5 +1,6 @@
 import {
   boolean,
+  index,
   integer,
   jsonb,
   pgTable,
@@ -81,7 +82,9 @@ export const portfolios = pgTable('portfolios', {
   updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
-})
+}, (table) => [
+  index('portfolios_status_completed_date_idx').on(table.status, table.completedDate),
+])
 
 export const categories = pgTable('categories', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -117,7 +120,9 @@ export const articles = pgTable('articles', {
   updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
-})
+}, (table) => [
+  index('articles_status_published_at_idx').on(table.status, table.publishedAt),
+])
 
 export type User = typeof users.$inferSelect
 export type Session = typeof sessions.$inferSelect

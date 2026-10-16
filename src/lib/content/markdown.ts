@@ -52,6 +52,27 @@ export function enhanceArticleImages(html: string): string {
   })
 }
 
+/** Ensures <h2> and <h3> tags have anchor id and scroll-mt-28 class for TOC tracking and navigation */
+export function enhanceArticleHeadings(html: string): string {
+  if (!html) return ''
+  return html.replace(/<h([23])\b([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, level, attrs, content) => {
+    const text = content.replace(/<[^>]+>/g, '').trim()
+    const idMatch = /id=["']([^"']*)["']/i.exec(attrs)
+    const id = idMatch ? idMatch[1] : (slugify(text) || 'bagian')
+
+    let newAttrs = attrs
+    if (!idMatch) {
+      newAttrs = ` id="${id}"${newAttrs}`
+    }
+    if (!/class=["']/i.test(newAttrs)) {
+      newAttrs = ` class="scroll-mt-28"${newAttrs}`
+    } else if (!/scroll-mt/i.test(newAttrs)) {
+      newAttrs = newAttrs.replace(/class=["']([^"']*)["']/i, 'class="$1 scroll-mt-28"')
+    }
+    return `<h${level}${newAttrs}>${content}</h${level}>`
+  })
+}
+
 export function renderMarkdown(markdown?: string | null): string {
   if (!markdown) return ''
   return marked.parse(markdown, { async: false })

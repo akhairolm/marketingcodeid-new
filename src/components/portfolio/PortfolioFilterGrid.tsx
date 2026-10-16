@@ -1,14 +1,14 @@
 'use client'
 
 import React, { useMemo, useState } from 'react'
-import type { PortfolioCategory, PortfolioItem } from '@/lib/content/types'
+import type { PortfolioCard as PortfolioCardType, PortfolioCategory } from '@/lib/content/types'
 import { PORTFOLIO_CATEGORY_LABEL } from '@/lib/content/types'
 import { PortfolioCard } from './PortfolioCard'
 import { cn } from '@/lib/utils'
 
 type Filter = 'all' | PortfolioCategory
 
-export function PortfolioFilterGrid({ items }: { items: PortfolioItem[] }) {
+export function PortfolioFilterGrid({ items }: { items: PortfolioCardType[] }) {
   const [filter, setFilter] = useState<Filter>('all')
 
   const categories = useMemo(

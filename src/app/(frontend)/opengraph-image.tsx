@@ -55,12 +55,13 @@ export default async function Image() {
             >
               M
             </div>
-            <div style={{ fontSize: '28px', fontWeight: 800, letterSpacing: '-0.03em' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', fontSize: '28px', fontWeight: 800, letterSpacing: '-0.03em' }}>
               MarketingCode<span style={{ color: '#FF5C28' }}>.ID</span>
             </div>
           </div>
           <div
             style={{
+              display: 'flex',
               padding: '8px 20px',
               borderRadius: '9999px',
               backgroundColor: '#1E1E24',
@@ -78,6 +79,7 @@ export default async function Image() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', maxWidth: '980px' }}>
           <div
             style={{
+              display: 'flex',
               fontSize: '56px',
               fontWeight: 800,
               lineHeight: 1.12,
@@ -89,6 +91,7 @@ export default async function Image() {
           </div>
           <div
             style={{
+              display: 'flex',
               fontSize: '22px',
               lineHeight: 1.5,
               color: '#A1A1AA',

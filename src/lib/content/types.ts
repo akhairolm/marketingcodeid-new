@@ -76,3 +76,38 @@ export interface TocHeading {
   text: string
   level: 2 | 3
 }
+
+/**
+ * Minimal shape consumed by listing/filter cards. Pages that need the full
+ * document (detail pages, SEO metadata) must use the by-slug queries.
+ */
+export interface PortfolioCard {
+  slug: string
+  title: string
+  clientName: string
+  category: PortfolioCategory
+  categoryLabel: string
+  summary: string
+  thumbnail: ImageAsset
+  completedDate?: string
+  /** First result row, used for the stat badge on the card. */
+  headlineResult?: PortfolioResult
+  techStack: string[]
+  isFeatured: boolean
+}
+
+export interface ArticleCard {
+  slug: string
+  title: string
+  excerpt: string
+  category?: ArticleCategory
+  coverImage: ImageAsset
+  publishedAt: string
+  updatedAt?: string
+  readingMinutes: number
+}
+
+export interface SitemapEntry {
+  slug: string
+  updatedAt: string
+}

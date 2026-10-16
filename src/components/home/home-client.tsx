@@ -1,4 +1,3 @@
-import { HomeNavbar } from './HomeNavbar'
 import { HeroSection } from './HeroSection'
 import { ServicesHub } from './ServicesHub'
 import { TrustSection } from './TrustSection'
@@ -21,8 +20,6 @@ export default function HomePageClient({
 }) {
   return (
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
-      <HomeNavbar />
-
       <main className="relative bg-grid-pattern pt-28 sm:pt-32 pb-20 overflow-hidden">
         <HeroSection />
         <ServicesHub />

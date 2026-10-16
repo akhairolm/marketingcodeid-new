@@ -7,6 +7,7 @@ import { db } from '@/db'
 import { articles } from '@/db/schema'
 import { slugify } from '@/lib/slugify'
 import { requireAdmin } from '@/lib/auth'
+import { computePublishedAt } from '@/lib/content/publish-date'
 import { z } from 'zod'
 
 export type ArticleFormState = { error: string | null }
@@ -27,20 +28,20 @@ const articleSchema = z.object({
   metaDescription: z.string().max(500, 'Meta description maksimal 500 karakter.').nullable(),
 })
 
-function parseForm(formData: FormData) {
+function parseForm(formData: FormData, existingPublishedAt: Date | null) {
   const str = (key: string) => String(formData.get(key) || '').trim()
 
-  const publishedAtRaw = str('publishedAt')
-  const publishedAt = str('status') === 'published'
-    ? publishedAtRaw
-      ? new Date(publishedAtRaw)
-      : new Date()
-    : null
+  const status = str('status') === 'published' ? 'published' : 'draft'
+  const publishedAt = computePublishedAt({
+    incomingStatus: status,
+    incomingRaw: str('publishedAt'),
+    existingPublishedAt,
+  })
 
   return {
     title: str('title'),
     slug: str('slug') || str('title'),
-    status: str('status') === 'published' ? 'published' : 'draft',
+    status,
     publishedAt,
     categoryId: str('categoryId') || null,
     coverImageId: str('coverImageId') || str('thumbnailId') || null,
@@ -65,7 +66,21 @@ export async function saveArticleAction(
   await requireAdmin()
 
   const id = String(formData.get('id') || '')
-  const data = parseForm(formData)
+
+  let baseSlug = ''
+  try {
+  let existingPublishedAt: Date | null = null
+  if (id) {
+    const rows = await db
+      .select({ publishedAt: articles.publishedAt })
+      .from(articles)
+      .where(eq(articles.id, id))
+      .limit(1)
+    if (!rows[0]) return { error: 'Artikel tidak ditemukan.' }
+    existingPublishedAt = rows[0].publishedAt
+  }
+
+  const data = parseForm(formData, existingPublishedAt)
 
   const parsed = articleSchema.safeParse(data)
   if (!parsed.success) {
@@ -77,7 +92,7 @@ export async function saveArticleAction(
     return { error: 'Judul dan konten wajib diisi.' }
   }
 
-  const baseSlug = slugify(valid.slug || valid.title)
+  baseSlug = slugify(valid.slug || valid.title)
   if (!baseSlug) return { error: 'Slug tidak valid.' }
 
   const values = {
@@ -86,13 +101,15 @@ export async function saveArticleAction(
     updatedAt: new Date(),
   }
 
-  try {
     if (id) {
       await db.update(articles).set(values).where(eq(articles.id, id))
     } else {
       await db.insert(articles).values(values)
     }
   } catch (error) {
+    if (error instanceof Error && error.message === 'Tanggal publikasi tidak valid.') {
+      return { error: error.message }
+    }
     console.error('[dashboard] save article failed', error)
     return {
       error:
