@@ -34,7 +34,7 @@ export function LoginForm({ next }: { next?: string }) {
             type="email"
             autoComplete="email"
             required
-            placeholder="admin@marketingcode.id"
+            placeholder="nama@email.com"
             className="pl-9"
           />
         </div>
