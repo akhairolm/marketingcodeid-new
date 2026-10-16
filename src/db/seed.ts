@@ -14,15 +14,16 @@ async function seed() {
     process.exit(1)
   }
 
+  const passwordHash = await hashPassword(password)
   const existing = await db.select({ id: users.id }).from(users).where(eq(users.email, email)).limit(1)
   if (existing.length > 0) {
-    console.log(`Admin ${email} already exists, skipping.`)
+    await db.update(users).set({ passwordHash, name }).where(eq(users.email, email))
+    console.log(`Admin ${email} password & profile updated successfully.`)
     process.exit(0)
   }
 
-  const passwordHash = await hashPassword(password)
   await db.insert(users).values({ email, passwordHash, name })
-  console.log(`Admin ${email} created.`)
+  console.log(`Admin ${email} created successfully.`)
   process.exit(0)
 }
 
