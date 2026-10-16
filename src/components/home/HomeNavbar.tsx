@@ -110,7 +110,7 @@ export function HomeNavbar() {
           <div className="flex items-center gap-2">
             <a
               href="#konsultasi"
-              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+              className="bg-[#D13D00] hover:bg-[#B33400] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
             >
               Konsultasi Gratis
             </a>
@@ -175,7 +175,7 @@ export function HomeNavbar() {
           <a
             href="#konsultasi"
             onClick={() => setMobileMenuOpen(false)}
-            className="bg-[#FF5C28] hover:bg-[#EA4510] text-white font-semibold py-2.5 rounded-full mt-2"
+            className="bg-[#D13D00] hover:bg-[#B33400] text-white font-semibold py-2.5 rounded-full mt-2"
           >
             Jadwalkan Diskusi Proyek
           </a>

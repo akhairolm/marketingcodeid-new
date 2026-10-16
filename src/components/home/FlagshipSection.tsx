@@ -54,7 +54,7 @@ export function FlagshipSection() {
   return (
     <section id="web-services" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <Code className="w-3.5 h-3.5" />
           <span>Flagship Solutions</span>
         </div>
@@ -72,12 +72,12 @@ export function FlagshipSection() {
             key={pillar.title}
             className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
               pillar.isFlagship
-                ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
+                ? 'border-2 border-[#D13D00] shadow-xl relative transform md:-translate-y-2'
                 : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
             }`}
           >
             {pillar.isFlagship && (
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#D13D00] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                 Flagship Agensi
               </div>
             )}
@@ -85,13 +85,13 @@ export function FlagshipSection() {
               <div
                 className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${
                   pillar.isFlagship
-                    ? 'bg-[#FF5C28] text-white shadow-glow'
-                    : 'bg-[#FFF5F0] border border-orange-200/60 text-[#FF5C28]'
+                    ? 'bg-[#D13D00] text-white shadow-glow'
+                    : 'bg-[#FFF5F0] border border-orange-200/60 text-[#C23605]'
                 }`}
               >
                 <pillar.icon className="w-6 h-6" />
               </div>
-              <span className="text-[11px] font-bold text-[#FF5C28] uppercase tracking-wider">{pillar.badge}</span>
+              <span className="text-[11px] font-bold text-[#C23605] uppercase tracking-wider">{pillar.badge}</span>
               <h3 className="text-lg font-bold text-neutral-900 mt-1">{pillar.title}</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">{pillar.desc}</p>
 
@@ -102,14 +102,14 @@ export function FlagshipSection() {
               >
                 {pillar.features.map((feature) => (
                   <div key={feature} className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> {feature}
+                    <Check className="w-3.5 h-3.5 text-[#C23605]" /> {feature}
                   </div>
                 ))}
               </div>
             </div>
             <div
               className={`mt-6 pt-4 border-t border-neutral-100 text-[11px] ${
-                pillar.isFlagship ? 'text-[#FF5C28] font-semibold' : 'text-neutral-500'
+                pillar.isFlagship ? 'text-[#C23605] font-semibold' : 'text-neutral-500'
               }`}
             >
               {pillar.time}
@@ -128,7 +128,7 @@ export function FlagshipSection() {
                 <span className="w-3 h-3 rounded-full bg-emerald-400" />
                 <span className="text-xs font-medium text-neutral-500 ml-2">App Architecture • Sprint 04</span>
               </div>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#FFF5F0] text-[#EA4510] font-semibold border border-orange-100">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#FFF5F0] text-[#C23605] font-semibold border border-orange-200">
                 On Schedule
               </span>
             </div>
@@ -142,7 +142,7 @@ export function FlagshipSection() {
                 <p className="text-[11px] text-neutral-500 mt-1">Restrukturisasi cache &amp; CDN Next.js untuk loading time &lt; 0.8s.</p>
                 <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
                   <div className="flex -space-x-1.5">
-                    <span className="w-5 h-5 rounded-full bg-[#FF5C28] text-white flex items-center justify-center text-[9px] font-bold">FE</span>
+                    <span className="w-5 h-5 rounded-full bg-[#D13D00] text-white flex items-center justify-center text-[9px] font-bold">FE</span>
                     <span className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">BE</span>
                   </div>
                   <span>4 Subtasks selesai</span>
@@ -150,7 +150,7 @@ export function FlagshipSection() {
               </div>
 
               <div className="flex items-center gap-3 p-3 bg-white border border-neutral-200/70 rounded-xl shadow-xs">
-                <div className="w-8 h-8 rounded-full bg-[#FF5C28] flex items-center justify-center text-white shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#D13D00] flex items-center justify-center text-white shrink-0">
                   <BellRing className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -176,7 +176,7 @@ export function FlagshipSection() {
                   key={chip}
                   className="px-3 py-1.5 bg-white border border-neutral-200 rounded-full text-xs font-medium text-neutral-700 flex items-center gap-1.5"
                 >
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> {chip}
+                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> {chip}
                 </span>
               ))}
             </div>
@@ -184,7 +184,7 @@ export function FlagshipSection() {
             <div className="pt-2">
               <a
                 href="#konsultasi"
-                className="inline-flex items-center text-xs font-bold text-white bg-[#FF5C28] hover:bg-[#EA4510] px-5 py-2.5 rounded-full transition-all shadow-sm"
+                className="inline-flex items-center text-xs font-bold text-white bg-[#D13D00] hover:bg-[#B33400] px-5 py-2.5 rounded-full transition-all shadow-sm"
               >
                 Konsultasikan Solusi Teknis
                 <ChevronRight className="w-4 h-4 ml-1" />

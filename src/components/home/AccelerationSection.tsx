@@ -5,7 +5,7 @@ export function AccelerationSection() {
   return (
     <section id="akselerasi" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <TrendingUp className="w-3.5 h-3.5" />
           <span>Growth &amp; Acceleration</span>
         </div>
@@ -22,7 +22,7 @@ export function AccelerationSection() {
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605]">
                   <BarChart3 className="w-6 h-6" />
                 </div>
                 <div>
@@ -30,7 +30,7 @@ export function AccelerationSection() {
                   <span className="text-xs text-neutral-500">Kampanye Berbasis ROI &amp; Penjualan Nyata</span>
                 </div>
               </div>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                 +320% ROI
               </span>
             </div>
@@ -62,28 +62,28 @@ export function AccelerationSection() {
                   <span className="text-[9px] text-neutral-500">Bln 4</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-1">
-                  <div className="w-full bg-[#FF5C28] rounded-t h-18 shadow-glow" />
-                  <span className="text-[9px] font-bold text-[#EA4510]">Bln 5</span>
+                  <div className="w-full bg-[#D13D00] rounded-t h-18 shadow-glow" />
+                  <span className="text-[9px] font-bold text-[#C23605]">Bln 5</span>
                 </div>
               </div>
               <div className="mt-2 text-[11px] text-neutral-500 flex justify-between">
                 <span>Biaya Akuisisi (CAC): <strong>Turun 42%</strong></span>
-                <span className="text-emerald-600 font-semibold">Scaling Positif</span>
+                <span className="text-emerald-700 font-semibold">Scaling Positif</span>
               </div>
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-neutral-600">
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Meta &amp; Google Ads</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Organic SEO Rank #1</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Funnel Sales Audit</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Transparent Analytics</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Meta &amp; Google Ads</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Organic SEO Rank #1</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Funnel Sales Audit</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Transparent Analytics</div>
             </div>
           </div>
 
           <div className="mt-8 pt-4 border-t border-neutral-100">
             <Link
               href="/digital-marketing"
-              className="w-full py-3 px-5 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow flex items-center justify-center gap-2 transition-all"
+              className="w-full py-3 px-5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow flex items-center justify-center gap-2 transition-all"
             >
               <span>Jelajahi Layanan Digital Marketing</span>
               <ArrowRight className="w-4 h-4" />
@@ -95,7 +95,7 @@ export function AccelerationSection() {
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605]">
                   <Film className="w-6 h-6" />
                 </div>
                 <div>
@@ -103,7 +103,7 @@ export function AccelerationSection() {
                   <span className="text-xs text-neutral-500">Konten Penjualan Hook &amp; Retensi Tinggi</span>
                 </div>
               </div>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-50 text-[#EA4510] border border-orange-200">
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-50 text-[#C23605] border border-orange-200">
                 Hook 3 Detik
               </span>
             </div>
@@ -134,10 +134,10 @@ export function AccelerationSection() {
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-neutral-600">
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> TikTok &amp; Reels Ads</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Corporate Showreel</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Kinetic Typography &amp; SFX</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Monthly Retainer Squad</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> TikTok &amp; Reels Ads</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Corporate Showreel</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Kinetic Typography &amp; SFX</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Monthly Retainer Squad</div>
             </div>
           </div>
 

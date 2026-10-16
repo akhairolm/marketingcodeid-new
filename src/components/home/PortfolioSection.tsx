@@ -65,6 +65,7 @@ function PortfolioCard({ item }: { item: PortfolioProject }) {
       <div className="px-6 pb-6 pt-2 flex flex-col sm:flex-row gap-2.5">
         <Link
           href={`/portfolio/${item.slug}`}
+          aria-label={`Lihat Studi Kasus ${item.title}`}
           className="flex-1 py-2.5 px-4 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap"
         >
           <span>Lihat Studi Kasus</span>
@@ -74,7 +75,8 @@ function PortfolioCard({ item }: { item: PortfolioProject }) {
           href={getWhatsAppUrl('case-study', item.title)}
           target="_blank"
           rel="noopener noreferrer"
-          className="py-2.5 px-4 bg-neutral-50 hover:bg-[#FFF5F0] hover:text-[#EA4510] border border-neutral-200 text-neutral-700 text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap"
+          aria-label={`Diskusi via WhatsApp untuk proyek ${item.title}`}
+          className="py-2.5 px-4 bg-neutral-50 hover:bg-[#FFF5F0] hover:text-[#C23605] border border-neutral-200 text-neutral-700 text-xs font-semibold rounded-full flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap"
         >
           <span>Diskusi via WA</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -92,7 +94,7 @@ export function PortfolioSection({ projects }: { projects: PortfolioProject[] })
   return (
     <section id="portfolio" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <Route className="w-3.5 h-3.5" />
           <span>Studi Kasus &amp; Portofolio</span>
         </div>
@@ -132,10 +134,10 @@ export function PortfolioSection({ projects }: { projects: PortfolioProject[] })
       <div className="mt-10 text-center">
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-neutral-200/80 hover:border-[#FF5C28] text-xs font-bold text-neutral-800 hover:text-[#FF5C28] shadow-card transition-all transform hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-neutral-200/80 hover:border-[#C23605] text-xs font-bold text-neutral-800 hover:text-[#C23605] shadow-card transition-all transform hover:-translate-y-0.5"
         >
           <span>Lihat Seluruh Portofolio &amp; Studi Kasus</span>
-          <ArrowRight className="w-4 h-4 text-[#FF5C28]" />
+          <ArrowRight className="w-4 h-4 text-[#C23605]" />
         </Link>
       </div>
     </section>

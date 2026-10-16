@@ -59,18 +59,18 @@ export function ServicesHub() {
             className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all group flex flex-col justify-between"
           >
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4 shadow-xs group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605] mb-4 shadow-xs group-hover:scale-110 transition-transform">
                 <card.icon className="w-6 h-6" />
               </div>
-              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-[#EA4510] mb-2 border border-orange-100">
+              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-[#C23605] mb-2 border border-orange-200">
                 {card.badge}
               </span>
-              <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors">
+              <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#C23605] transition-colors">
                 {card.title}
               </h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">{card.desc}</p>
             </div>
-            <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-[#FF5C28]">
+            <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-bold text-[#C23605]">
               <span>{card.cta}</span>
               <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </div>

@@ -29,14 +29,14 @@ export function HeroSection() {
           <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a
               href="#konsultasi"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
             >
               <span>Mulai Konsultasi Gratis</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </a>
             <Link
               href="#web-services"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#FF5C28] border border-neutral-200 rounded-full transition-all duration-300"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300"
             >
               <span>Lihat Layanan Kami</span>
             </Link>
@@ -75,9 +75,9 @@ export function HeroSection() {
                 type="button"
                 onClick={() => setVideoModalOpen(true)}
                 aria-label="Putar Video Showreel Agensi MarketingCode.ID"
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 hover:bg-white text-[#FF5C28] rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md transition-all duration-300 transform hover:scale-110 group-hover:shadow-glow cursor-pointer"
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white hover:bg-neutral-100 text-[#D13D00] rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md transition-all duration-300 transform hover:scale-110 group-hover:shadow-glow cursor-pointer"
               >
-                <Play className="w-7 h-7 fill-[#FF5C28] text-[#FF5C28] translate-x-0.5" />
+                <Play className="w-7 h-7 fill-[#D13D00] text-[#D13D00] translate-x-0.5" />
               </button>
             </div>
 

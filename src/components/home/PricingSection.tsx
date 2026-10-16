@@ -17,7 +17,7 @@ export function PricingSection() {
   return (
     <div id="harga" className="max-w-5xl mx-auto mt-24 pt-8">
       <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <Tag className="w-3.5 h-3.5" />
           <span>Pilihan Paket Transparan</span>
         </div>
@@ -54,12 +54,12 @@ export function PricingSection() {
             key={item.tier}
             className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
               item.isPopular
-                ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
+                ? 'border-2 border-[#D13D00] shadow-xl relative transform md:-translate-y-2'
                 : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
             }`}
           >
             {item.isPopular && (
-              <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+              <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#D13D00] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
                 Paling Populer
               </div>
             )}
@@ -67,7 +67,7 @@ export function PricingSection() {
             <div>
               <span
                 className={`text-xs font-bold uppercase tracking-wider ${
-                  item.isPopular ? 'text-[#FF5C28]' : 'text-neutral-500'
+                  item.isPopular ? 'text-[#C23605]' : 'text-neutral-500'
                 }`}
               >
                 {item.tier}
@@ -84,7 +84,7 @@ export function PricingSection() {
                 rel="noopener noreferrer"
                 className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
                   item.isPopular
-                    ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow'
+                    ? 'bg-[#D13D00] hover:bg-[#B33400] text-white shadow-glow'
                     : 'bg-neutral-900 hover:bg-black text-white'
                 }`}
               >
@@ -94,7 +94,7 @@ export function PricingSection() {
               <div className="mt-6 pt-6 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
                 {item.features.map((feat) => (
                   <div key={feat} className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                    <Check className="w-4 h-4 text-[#C23605] shrink-0" />
                     <span>{feat}</span>
                   </div>
                 ))}

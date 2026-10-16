@@ -11,7 +11,7 @@ const SERVICE_OPTIONS = [
 ]
 
 const inputClass =
-  'w-full text-base px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#FF5C28] focus:border-transparent transition-all bg-neutral-50/50'
+  'w-full text-base px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#D13D00] focus:border-transparent transition-all bg-neutral-50/50'
 
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp'
 
@@ -42,7 +42,7 @@ export function ConsultationSection() {
   return (
     <>
       <section id="konsultasi" className="max-w-xl mx-auto px-4 sm:px-6 mt-28 text-center">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <MailCheck className="w-3.5 h-3.5" />
           <span>Konsultasi Proyek</span>
         </div>
@@ -57,8 +57,9 @@ export function ConsultationSection() {
         <div className="mt-8 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card text-left">
           <form onSubmit={handleFormSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Nama Lengkap</label>
+              <label htmlFor="consultation-name" className="block text-xs font-semibold text-neutral-700 mb-1.5">Nama Lengkap</label>
               <input
+                id="consultation-name"
                 type="text"
                 required
                 placeholder="Contoh: Budi Pratama"
@@ -69,8 +70,9 @@ export function ConsultationSection() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Alamat Email Bisnis</label>
+              <label htmlFor="consultation-email" className="block text-xs font-semibold text-neutral-700 mb-1.5">Alamat Email Bisnis</label>
               <input
+                id="consultation-email"
                 type="email"
                 required
                 placeholder="budi@perusahaan.com"
@@ -81,8 +83,9 @@ export function ConsultationSection() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Layanan yang Dibutuhkan</label>
+              <label htmlFor="consultation-service" className="block text-xs font-semibold text-neutral-700 mb-1.5">Layanan yang Dibutuhkan</label>
               <select
+                id="consultation-service"
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 className={inputClass}
@@ -96,8 +99,9 @@ export function ConsultationSection() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Ceritakan Singkat Rencana Anda</label>
+              <label htmlFor="consultation-notes" className="block text-xs font-semibold text-neutral-700 mb-1.5">Ceritakan Singkat Rencana Anda</label>
               <textarea
+                id="consultation-notes"
                 rows={3}
                 placeholder="Jelaskan kebutuhan fitur atau target yang ingin dicapai..."
                 value={formData.notes}
@@ -108,7 +112,7 @@ export function ConsultationSection() {
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+              className="w-full py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
             >
               Kirim Permintaan Konsultasi
             </button>
@@ -129,7 +133,7 @@ export function ConsultationSection() {
           <Check className="w-4 h-4" />
         </div>
         <div>
-          <h5 className="text-xs font-bold text-neutral-900">Permintaan Terkirim!</h5>
+          <p className="text-xs font-bold text-neutral-900">Permintaan Terkirim!</p>
           <p className="text-[11px] text-neutral-500">Membuka WhatsApp untuk terhubung dengan konsultan senior...</p>
         </div>
       </div>

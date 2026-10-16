@@ -18,7 +18,7 @@ export function SiteFooter() {
             M
           </span>
           <span className="font-extrabold tracking-tight text-xl text-neutral-900">
-            MarketingCode<span className="text-[#FF5C28]">.ID</span>
+            MarketingCode<span className="text-[#D13D00]">.ID</span>
           </span>
         </Link>
 
@@ -29,7 +29,7 @@ export function SiteFooter() {
 
         <nav aria-label="Navigasi footer" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs font-semibold text-neutral-600">
           {FOOTER_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="whitespace-nowrap hover:text-[#FF5C28] transition-colors">
+            <Link key={link.href} href={link.href} className="whitespace-nowrap hover:text-[#C23605] transition-colors">
               {link.label}
             </Link>
           ))}

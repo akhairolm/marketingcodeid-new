@@ -24,7 +24,7 @@ const steps = [
 export function WorkflowSection() {
   return (
     <section id="alur-kerja" className="max-w-4xl mx-auto px-4 sm:px-6 mt-28 text-center">
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
         <Route className="w-3.5 h-3.5" />
         <span>Alur Kerja Rapi</span>
       </div>
@@ -45,8 +45,8 @@ export function WorkflowSection() {
             <div
               className={`w-12 h-12 rounded-full font-extrabold text-sm flex items-center justify-center mb-4 ${
                 step.isHighlight
-                  ? 'bg-[#FF5C28] text-white shadow-glow'
-                  : 'bg-[#FFF5F0] text-[#EA4510] border border-orange-200'
+                  ? 'bg-[#D13D00] text-white shadow-glow'
+                  : 'bg-[#FFF5F0] text-[#C23605] border border-orange-200'
               }`}
             >
               {step.number}

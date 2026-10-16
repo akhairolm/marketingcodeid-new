@@ -9,7 +9,7 @@ export function FaqSection({ faqs }: { faqs: { q: string; a: string }[] }) {
   return (
     <section id="faq" className="max-w-3xl mx-auto px-4 sm:px-6 mt-28">
       <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <HelpCircle className="w-3.5 h-3.5" />
           <span>Tanya Jawab</span>
         </div>
@@ -28,11 +28,11 @@ export function FaqSection({ faqs }: { faqs: { q: string; a: string }[] }) {
             <button
               type="button"
               onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-              className="w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer"
+              className="w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#C23605] cursor-pointer"
             >
               <h3 className="font-bold">{faq.q}</h3>
               {openFaq === idx ? (
-                <Minus className="w-4 h-4 text-[#FF5C28] shrink-0" />
+                <Minus className="w-4 h-4 text-[#C23605] shrink-0" />
               ) : (
                 <Plus className="w-4 h-4 text-neutral-500 shrink-0" />
               )}

@@ -91,7 +91,7 @@ function InteriorNav({ pathname }: { pathname: string }) {
               href={getWhatsAppUrl('general')}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
+              className="bg-[#D13D00] hover:bg-[#B33400] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
               Konsultasi Gratis
             </a>
@@ -134,7 +134,7 @@ function InteriorNav({ pathname }: { pathname: string }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-2 py-3 px-4 rounded-2xl text-sm font-semibold text-center bg-[#FF5C28] hover:bg-[#EA4510] text-white transition-colors"
+              className="mt-2 py-3 px-4 rounded-2xl text-sm font-semibold text-center bg-[#D13D00] hover:bg-[#B33400] text-white transition-colors"
             >
               Konsultasi Gratis
             </a>

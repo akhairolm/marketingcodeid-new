@@ -18,7 +18,7 @@ export function FinalCtaSection() {
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href="#konsultasi"
-              className="w-full sm:w-auto px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all"
+              className="w-full sm:w-auto px-8 py-3 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all"
             >
               Jadwalkan Konsultasi Sekarang
             </a>
