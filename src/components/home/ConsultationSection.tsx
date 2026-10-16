@@ -113,7 +113,7 @@ export function ConsultationSection() {
               Kirim Permintaan Konsultasi
             </button>
 
-            <p className="text-[11px] text-center text-neutral-400 mt-2">
+            <p className="text-[11px] text-center text-neutral-500 mt-2">
               Privasi Anda terjamin. Kami tidak pernah membagikan email atau mengirim spam.
             </p>
           </form>

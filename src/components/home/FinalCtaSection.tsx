@@ -11,7 +11,7 @@ export function FinalCtaSection() {
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
             Siap Membangun Solusi Digital Terbaik Anda Hari Ini?
           </h2>
-          <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
+          <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
             Diskusikan ide Anda bersama lead developer dan digital marketer kami. Dapatkan saran arsitektur tanpa komitmen awal.
           </p>
 
@@ -33,7 +33,7 @@ export function FinalCtaSection() {
             </a>
           </div>
 
-          <div className="pt-4 flex items-center justify-center gap-6 text-[11px] text-neutral-400">
+          <div className="pt-4 flex items-center justify-center gap-6 text-[11px] text-neutral-300">
             <span className="flex items-center gap-1.5">
               <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Tanpa Kontrak Mengikat
             </span>

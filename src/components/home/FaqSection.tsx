@@ -34,7 +34,7 @@ export function FaqSection({ faqs }: { faqs: { q: string; a: string }[] }) {
               {openFaq === idx ? (
                 <Minus className="w-4 h-4 text-[#FF5C28] shrink-0" />
               ) : (
-                <Plus className="w-4 h-4 text-neutral-400 shrink-0" />
+                <Plus className="w-4 h-4 text-neutral-500 shrink-0" />
               )}
             </button>
             {openFaq === idx && (

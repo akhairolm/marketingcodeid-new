@@ -40,7 +40,7 @@ export function ServicesHub() {
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
       <div className="text-center mb-8">
-        <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
+        <span className="text-xs font-bold text-neutral-600 uppercase tracking-wider">
           Partner Transformasi Digital &amp; Pertumbuhan Bisnis Anda
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mt-1">

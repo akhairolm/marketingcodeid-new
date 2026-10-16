@@ -10,15 +10,15 @@ import { SITE_URL } from '@/lib/site'
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['400', '600', '700', '800'],
   display: 'swap',
+  preload: true,
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
-  weight: ['400', '500', '600'],
   display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -72,6 +72,24 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-team-mobile.webp"
+          type="image/webp"
+          media="(max-width: 640px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-team.webp"
+          type="image/webp"
+          media="(min-width: 641px)"
+          fetchPriority="high"
+        />
+      </head>
       <body className="font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
         <SiteHeader />
         {children}

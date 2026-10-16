@@ -109,7 +109,7 @@ export function FlagshipSection() {
             </div>
             <div
               className={`mt-6 pt-4 border-t border-neutral-100 text-[11px] ${
-                pillar.isFlagship ? 'text-[#FF5C28] font-semibold' : 'text-neutral-400'
+                pillar.isFlagship ? 'text-[#FF5C28] font-semibold' : 'text-neutral-500'
               }`}
             >
               {pillar.time}
@@ -126,7 +126,7 @@ export function FlagshipSection() {
                 <span className="w-3 h-3 rounded-full bg-red-400" />
                 <span className="w-3 h-3 rounded-full bg-amber-400" />
                 <span className="w-3 h-3 rounded-full bg-emerald-400" />
-                <span className="text-xs font-medium text-neutral-400 ml-2">App Architecture • Sprint 04</span>
+                <span className="text-xs font-medium text-neutral-500 ml-2">App Architecture • Sprint 04</span>
               </div>
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#FFF5F0] text-[#EA4510] font-semibold border border-orange-100">
                 On Schedule
@@ -140,7 +140,7 @@ export function FlagshipSection() {
                   <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Score 99</span>
                 </div>
                 <p className="text-[11px] text-neutral-500 mt-1">Restrukturisasi cache &amp; CDN Next.js untuk loading time &lt; 0.8s.</p>
-                <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-400">
+                <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
                   <div className="flex -space-x-1.5">
                     <span className="w-5 h-5 rounded-full bg-[#FF5C28] text-white flex items-center justify-center text-[9px] font-bold">FE</span>
                     <span className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[9px] font-bold">BE</span>
@@ -155,9 +155,9 @@ export function FlagshipSection() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-neutral-800 truncate">Mobile App iOS &amp; Android Ready</p>
-                  <p className="text-[10px] text-neutral-400">Build stabil siap diunggah ke Play Store &amp; App Store</p>
+                  <p className="text-[10px] text-neutral-500">Build stabil siap diunggah ke Play Store &amp; App Store</p>
                 </div>
-                <span className="text-[10px] text-neutral-400">Just now</span>
+                <span className="text-[10px] text-neutral-500">Just now</span>
               </div>
             </div>
           </div>

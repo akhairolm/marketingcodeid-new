@@ -27,7 +27,7 @@ export function AccelerationSection() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-neutral-900">Digital Marketing &amp; Performance Ads</h3>
-                  <span className="text-xs text-neutral-400">Kampanye Berbasis ROI &amp; Penjualan Nyata</span>
+                  <span className="text-xs text-neutral-500">Kampanye Berbasis ROI &amp; Penjualan Nyata</span>
                 </div>
               </div>
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
@@ -41,25 +41,25 @@ export function AccelerationSection() {
 
             <div className="mt-5 p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
               <div className="flex justify-between items-baseline mb-2">
-                <span className="text-[10px] text-neutral-400 font-semibold uppercase">Total Penjualan Klien</span>
+                <span className="text-[10px] text-neutral-500 font-semibold uppercase">Total Penjualan Klien</span>
                 <span className="text-sm font-black text-neutral-900">Rp 842.500.000</span>
               </div>
               <div className="flex items-end justify-between h-20 px-2 gap-2 border-b border-neutral-200/70 pb-2">
                 <div className="w-full flex flex-col items-center gap-1">
                   <div className="w-full bg-orange-100 rounded-t h-6" />
-                  <span className="text-[9px] text-neutral-400">Bln 1</span>
+                  <span className="text-[9px] text-neutral-500">Bln 1</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-1">
                   <div className="w-full bg-orange-200 rounded-t h-9" />
-                  <span className="text-[9px] text-neutral-400">Bln 2</span>
+                  <span className="text-[9px] text-neutral-500">Bln 2</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-1">
                   <div className="w-full bg-orange-300 rounded-t h-12" />
-                  <span className="text-[9px] text-neutral-400">Bln 3</span>
+                  <span className="text-[9px] text-neutral-500">Bln 3</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-1">
                   <div className="w-full bg-orange-400 rounded-t h-15" />
-                  <span className="text-[9px] text-neutral-400">Bln 4</span>
+                  <span className="text-[9px] text-neutral-500">Bln 4</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-1">
                   <div className="w-full bg-[#FF5C28] rounded-t h-18 shadow-glow" />
@@ -100,7 +100,7 @@ export function AccelerationSection() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-neutral-900">Creative Video Editing &amp; Motion</h3>
-                  <span className="text-xs text-neutral-400">Konten Penjualan Hook &amp; Retensi Tinggi</span>
+                  <span className="text-xs text-neutral-500">Konten Penjualan Hook &amp; Retensi Tinggi</span>
                 </div>
               </div>
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-50 text-[#EA4510] border border-orange-200">
@@ -124,10 +124,10 @@ export function AccelerationSection() {
               <div className="py-4 text-center">
                 <Sparkles className="w-8 h-8 text-[#FF5C28] mx-auto mb-2" />
                 <h4 className="text-xs font-bold text-white">Dynamic Transitions &amp; Sound Design</h4>
-                <p className="text-[11px] text-neutral-400 mt-0.5">Dirancang spesifik untuk algoritma FYP dan click conversion rate tinggi</p>
+                <p className="text-[11px] text-neutral-300 mt-0.5">Dirancang spesifik untuk algoritma FYP dan click conversion rate tinggi</p>
               </div>
 
-              <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-2 border-t border-neutral-800">
+              <div className="flex items-center justify-between text-[10px] text-neutral-300 pt-2 border-t border-neutral-800">
                 <span>Platform: TikTok • Reels • Shorts</span>
                 <span className="text-emerald-400 font-semibold">+280% Watch Retention</span>
               </div>
