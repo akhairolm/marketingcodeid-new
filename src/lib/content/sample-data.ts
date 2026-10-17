@@ -274,10 +274,10 @@ Domain, hosting, layanan email, dan pemeliharaan adalah biaya tahunan. Tanyakan 
 Jika Anda masih ragu menentukan cakupan yang tepat, tim kami bisa membantu menyusun daftar kebutuhan dan estimasi biaya tanpa komitmen di awal.
 
 <div class="prose-callout">
-  <div class="callout-title">💡 Butuh Estimasi Biaya Pembuatan Website yang Transparan?</div>
+  <div class="callout-title"><img src="/icons/flaticon/light-bulb.svg" alt="" class="callout-icon" /> Butuh Estimasi Biaya Pembuatan Website yang Transparan?</div>
   <p>Ceritakan kebutuhan dan skala usaha Anda. Kami buatkan proposal rincian fitur dan estimasi biaya tanpa biaya komitmen di awal—mulai Rp 1.5jt untuk UMKM.</p>
   <a href="https://wa.me/6285128038243?text=Halo%20Admin%20MarketingCode.ID%2C%20saya%20ingin%20konsultasi%20estimasi%20biaya%20pembuatan%20website%20setelah%20membaca%20artikel%20blog.%20Bisa%20dibantu%3F" target="_blank" rel="noopener noreferrer" class="callout-btn">
-    📲 Konsultasi Rencana Website via WhatsApp
+    <img src="/icons/flaticon/mobile.svg" alt="" /> Konsultasi Rencana Website via WhatsApp
   </a>
 </div>`,
   },

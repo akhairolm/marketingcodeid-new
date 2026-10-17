@@ -114,10 +114,10 @@ Punya website sendiri **bukan berarti Anda harus tutup akun Instagram atau menin
 * **Website Sendiri (namausahaanda.com)** dipakai sebagai **markas utama**: tempat menjaring pembeli serius dari Google, katalog lengkap bebas potongan admin, penambah kepercayaan klien kantor/instansi, sekaligus senjata utama saat pasang iklan.
 
 <div class="prose-callout">
-  <div class="callout-title">🚀 Penawaran Khusus UMKM Kalsel: Paket Ruko Digital Siap Pakai Mulai Rp 1.5 Jt</div>
+  <div class="callout-title"><img src="/icons/flaticon/startup.svg" alt="" class="callout-icon" /> Penawaran Khusus UMKM Kalsel: Paket Ruko Digital Siap Pakai Mulai Rp 1.5 Jt</div>
   <p>Ingin bisnis Anda gampang ditemukan di Google dan bebas potongan komisi aplikasi? Mulai dari <strong>Rp 1.500.000</strong> saja, Anda sudah mendapatkan website profesional berdomain .com/.id, cloud hosting super cepat 1 tahun, tombol order WhatsApp otomatis, dan gratis panduan kelola tanpa perlu paham koding.</p>
   <a href="https://wa.me/6285128038243?text=Halo%20Admin%20MarketingCode.ID%2C%20saya%20pemilik%20UMKM%20dan%20tertarik%20dengan%20Paket%20Website%20Ruko%20Digital%20Rp%201.5jt%20setelah%20membaca%20artikel%20blog.%20Bisa%20dibantu%3F" target="_blank" rel="noopener noreferrer" class="callout-btn">
-    📲 Klaim Paket Ruko Digital Rp 1.5jt via WhatsApp
+    <img src="/icons/flaticon/mobile.svg" alt="" /> Klaim Paket Ruko Digital Rp 1.5jt via WhatsApp
   </a>
 </div>
 
@@ -219,10 +219,10 @@ Biar lebih kebayang di kantong, coba kita lihat simulasi perbandingan sederhana 
 Dari simulasi di atas kelihatan jelas kan? Di dunia bisnis, **banyaknya jumlah chat WhatsApp itu belum tentu sama dengan banyaknya uang yang masuk ke rekening**. Lebih baik dapat 20 chat yang sudah matang dan menghasilkan 7 transaksi, daripada dapat 50 chat tapi admin stres dan cuma laku 2!
 
 <div class="prose-callout">
-  <div class="callout-title">📊 Akun Iklan Meta Ads Anda Boncos Terus & Minim Closing?</div>
+  <div class="callout-title"><img src="/icons/flaticon/dashboard.svg" alt="" class="callout-icon" /> Akun Iklan Meta Ads Anda Boncos Terus &amp; Minim Closing?</div>
   <p>Jangan buang anggaran iklan Anda ke klik yang salah sasaran. Kirimkan tangkapan layar (screenshot) Ads Manager Anda ke tim kami untuk mendapatkan <strong>Audit Akun Iklan Gratis</strong> dan temukan di mana titik kebocorannya.</p>
   <a href="https://wa.me/6285128038243?text=Halo%20Admin%20MarketingCode.ID%2C%20saya%20ingin%20audit%20gratis%20akun%20iklan%20Meta%20Ads%20saya%20yang%20sering%20boncos%20setelah%20membaca%20artikel%20blog.%20Bagaimana%20tahapannya%3F" target="_blank" rel="noopener noreferrer" class="callout-btn">
-    📊 Dapatkan Audit Akun Iklan Gratis via WhatsApp
+    <img src="/icons/flaticon/dashboard.svg" alt="" /> Dapatkan Audit Akun Iklan Gratis via WhatsApp
   </a>
 </div>
 
@@ -316,10 +316,10 @@ Anda mungkin sering melihat link di bio Instagram yang ketika diklik menampilkan
 * **Kekurangannya:** Versi gratisnya punya fitur yang sangat dibatasi, tampilannya seragam dengan jutaan toko lain, alamat domainnya masih menumpang di nama platform mereka, dan kurang kuat untuk bersaing di halaman pertama Google.
 
 <div class="prose-callout">
-  <div class="callout-title">💡 Butuh Website Katalog yang Siap Jualan dalam 3–5 Hari?</div>
+  <div class="callout-title"><img src="/icons/flaticon/light-bulb.svg" alt="" class="callout-icon" /> Butuh Website Katalog yang Siap Jualan dalam 3–5 Hari?</div>
   <p>Jangan biarkan calon pembeli kabur karena capek menunggu balasan rekap foto manual di WhatsApp. Kami bantu buatkan katalog online modern yang langsung terhubung ke WhatsApp bisnis Anda—tanpa potongan komisi per transaksi.</p>
   <a href="https://wa.me/6285128038243?text=Halo%20Admin%20MarketingCode.ID%2C%20saya%20tertarik%20membuat%20katalog%20produk%20online%20terhubung%20WhatsApp%20setelah%20membaca%20artikel%20blog.%20Bisa%20konsultasi%20paketnya%3F" target="_blank" rel="noopener noreferrer" class="callout-btn">
-    💬 Konsultasikan Katalog Usaha Anda via WhatsApp
+    <img src="/icons/flaticon/chat.svg" alt="" /> Konsultasikan Katalog Usaha Anda via WhatsApp
   </a>
 </div>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -9,7 +10,6 @@ import {
   Play,
   CheckCircle2,
   Check,
-  MessageCircle,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, serviceSchema, breadcrumbSchema } from '@/lib/seo'
@@ -74,10 +74,11 @@ export default function VideoEditingPage() {
               href={getWhatsAppUrl('video')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
             >
-              <span>🎬 Kirim Contoh Bahan Video &amp; Tanya Harga via WhatsApp</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <Image src="/icons/flaticon/clapperboard.svg" alt="" width={18} height={18} className="w-4 h-4 shrink-0" />
+              <span>Kirim Contoh Bahan Video &amp; Tanya Harga via WhatsApp</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
             </a>
             <div className="flex items-center gap-1.5 text-xs text-neutral-500">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
@@ -181,8 +182,8 @@ export default function VideoEditingPage() {
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  🎬 Kirim Bahan Video via WhatsApp
+                  <Image src="/icons/flaticon/clapperboard.svg" alt="" width={16} height={16} className="w-4 h-4 shrink-0" />
+                  Kirim Bahan Video via WhatsApp
                 </a>
 
                 <Link

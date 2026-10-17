@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -75,10 +76,11 @@ export default function DigitalMarketingPage() {
               href={getWhatsAppUrl('marketing')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
             >
-              <span>📊 Dapatkan Audit Akun Iklan Gratis via WhatsApp</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <Image src="/icons/flaticon/dashboard.svg" alt="" width={18} height={18} className="w-4 h-4 shrink-0" />
+              <span>Dapatkan Audit Akun Iklan Gratis via WhatsApp</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
             </a>
             <div className="flex items-center gap-1.5 text-xs text-neutral-500">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />

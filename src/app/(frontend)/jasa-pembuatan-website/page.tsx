@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   Code2,
@@ -12,7 +13,6 @@ import {
   LayoutDashboard,
   HelpCircle,
   MapPin,
-  MessageCircle,
   Check,
   Tag,
 } from 'lucide-react'
@@ -201,8 +201,8 @@ export default function JasaPembuatanWebsitePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              💬 Tanya Estimasi Biaya Website via WhatsApp
+              <Image src="/icons/flaticon/chat.svg" alt="" width={18} height={18} className="w-4 h-4 mr-2 shrink-0" />
+              Tanya Estimasi Biaya Website via WhatsApp
             </a>
             <a
               href="#paket-website"

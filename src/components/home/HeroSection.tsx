@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Play, X, Film } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
@@ -49,9 +50,10 @@ export function HeroSection() {
                 href={getWhatsAppUrl('hero')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
               >
-                <span>🟢 Konsultasi Gratis via WhatsApp (Respon Cepat)</span>
+                <Image src="/icons/flaticon/chat.svg" alt="" width={18} height={18} className="w-4 h-4 shrink-0" />
+                <span>Konsultasi Gratis via WhatsApp (Respon Cepat)</span>
               </a>
               <Link
                 href="#web-services"
@@ -61,7 +63,10 @@ export function HeroSection() {
               </Link>
             </div>
             <p className="text-xs text-neutral-500 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span>⚡ Konsultasi awal tanpa biaya</span>
+              <span className="inline-flex items-center gap-1">
+                <Image src="/icons/flaticon/quick.svg" alt="" width={14} height={14} className="w-3.5 h-3.5 shrink-0" />
+                Konsultasi awal tanpa biaya
+              </span>
               <span>•</span>
               <span>Siap pertemuan tatap muka di Kalsel</span>
               <span>•</span>

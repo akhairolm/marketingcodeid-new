@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -10,8 +11,6 @@ import {
   Globe,
   CloudUpload,
   HelpCircle,
-  MessageCircle,
-  ShieldCheck,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
@@ -138,8 +137,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              📲 Diskusikan Rencana Aplikasi Anda via WhatsApp
+              <Image src="/icons/flaticon/mobile.svg" alt="" width={18} height={18} className="w-4 h-4 mr-2 shrink-0" />
+              Diskusikan Rencana Aplikasi Anda via WhatsApp
             </a>
             <a
               href="#solusi-aplikasi"
@@ -194,12 +193,12 @@ export default function JasaPembuatanAplikasiMobilePage() {
         {/* Garansi Publikasi Toko Aplikasi */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-16">
           <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5 shadow-xs">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md">
-              <ShieldCheck className="w-7 h-7" />
+            <div className="w-14 h-14 rounded-2xl bg-emerald-100/90 border border-emerald-300/80 flex items-center justify-center shrink-0 shadow-sm">
+              <Image src="/icons/flaticon/guarantee.svg" alt="Garansi Publikasi" width={32} height={32} className="w-8 h-8 object-contain" />
             </div>
             <div className="space-y-1.5 text-center sm:text-left">
               <h3 className="text-base font-bold text-neutral-900">
-                🛡️ Garansi Publikasi Resmi Google Play Store &amp; Apple App Store
+                Garansi Publikasi Resmi Google Play Store &amp; Apple App Store
               </h3>
               <p className="text-xs text-neutral-600 leading-relaxed">
                 Anda tidak perlu khawatir proses review teknis yang rumit. Tim kami mengawal proses peninjauan Google &amp; Apple, sertifikasi privasi data (UU PDP), hingga aplikasi Anda lolos verifikasi dan siap diunduh oleh masyarakat luas.

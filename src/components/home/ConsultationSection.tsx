@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { MailCheck, Check } from 'lucide-react'
 
 const SERVICE_OPTIONS = [
@@ -129,7 +130,8 @@ export function ConsultationSection() {
               rel="noopener noreferrer"
               className="w-full py-3 border border-emerald-500 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs rounded-full transition-colors flex items-center justify-center gap-2"
             >
-              <span>💬 Chat Langsung ke WhatsApp Admin</span>
+              <Image src="/icons/flaticon/chat.svg" alt="" width={16} height={16} className="w-4 h-4 shrink-0" />
+              <span>Chat Langsung ke WhatsApp Admin</span>
             </a>
 
             <p className="text-[11px] text-center text-neutral-500 mt-2">

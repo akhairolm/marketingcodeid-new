@@ -74,8 +74,9 @@ export function ThumbnailPicker({
           Thumbnail / Gambar Cover {required && <span className="text-destructive font-bold">* (Wajib)</span>}
         </Label>
         {selectedId ? (
-          <span className="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-            ✓ Gambar Terpilih
+          <span className="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 inline-flex items-center gap-1">
+            <Image src="/icons/flaticon/quality-control.svg" alt="" width={12} height={12} className="w-3 h-3 shrink-0" />
+            Gambar Terpilih
           </span>
         ) : required ? (
           <span className="text-[11px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
