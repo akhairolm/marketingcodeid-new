@@ -1,32 +1,60 @@
+import { ShieldCheck, Smartphone, Sliders, FileCheck2, MapPin } from 'lucide-react'
+
+const reasons = [
+  {
+    icon: ShieldCheck,
+    title: 'Ruang Lingkup & Biaya Jelas di Awal (100% Hak Milik)',
+    desc: 'Tidak ada biaya tersembunyi atau sistem sewa bulanan yang mengunci. Website, domain, dan kode sepenuhnya menjadi aset milik bisnis Anda seutuhnya.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Tampilan Mobile-First & Waktu Muat Cepat',
+    desc: 'Lebih dari 80% calon pembeli membuka website melalui smartphone. Kami memastikan tata letak proporsional, teks mudah dibaca, dan tombol WhatsApp selalu mudah diakses.',
+  },
+  {
+    icon: Sliders,
+    title: 'Bisa Dikelola Sendiri Tanpa Perlu Paham Koding',
+    desc: 'Kami menyediakan panduan pengelolaan mandiri. Anda atau tim dapat dengan mudah memperbarui foto produk, mengubah harga promo, dan menambah informasi kapan saja.',
+  },
+  {
+    icon: FileCheck2,
+    title: 'Proses Revisi, Pengujian & Serah Terima yang Rapi',
+    desc: 'Setiap proyek melewati tahap pengujian fungsional dan memiliki alokasi revisi yang disepakati bersama sebelum website resmi diluncurkan ke publik.',
+  },
+  {
+    icon: MapPin,
+    title: 'Tim Lokal Kalimantan Selatan Siap Diskusi Tatap Muka',
+    desc: 'Berbasis di Kandangan (HSS), kami siap bertemu langsung untuk diskusi kebutuhan di wilayah Banua Enam, Banjarbaru, Banjarmasin, dan seluruh Kalimantan Selatan.',
+  },
+]
+
 export function TrustSection() {
   return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-20 sm:mt-24 text-center">
-      <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight max-w-xl mx-auto">
-        Mengapa Instansi dan Bisnis di Kalimantan Selatan Memilih Kami?
+    <section id="alasan-memilih" className="max-w-4xl mx-auto px-4 sm:px-6 mt-20 sm:mt-24 text-center">
+      <span className="text-xs font-bold text-neutral-600 uppercase tracking-wider">
+        Komitmen Layanan
+      </span>
+      <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight max-w-xl mx-auto mt-1">
+        Alasan Memilih MarketingCode untuk Pembuatan Website Bisnis Anda
       </h2>
-      <p className="text-neutral-500 text-sm mt-2">Dukungan teknologi solid &amp; eksekusi pemasaran presisi</p>
+      <p className="text-neutral-500 text-sm mt-2 max-w-lg mx-auto">
+        Prinsip kerja profesional yang transparan, mengutamakan kepuasan klien, dan bebas dari janji muluk tanpa dasar.
+      </p>
 
       <div className="mt-8 bg-white border border-neutral-200/70 rounded-3xl p-6 sm:p-8 shadow-card grid grid-cols-1 gap-6 divide-y divide-neutral-100 text-left">
-        <div className="pt-2">
-          <h3 className="text-base font-bold text-neutral-900">Pengembangan Kustom dengan Teknologi Modern &amp; Aman</h3>
-          <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-            Dibangun menggunakan arsitektur modern (Next.js, Laravel, Flutter/React Native) yang menjamin kecepatan muat tinggi, keamanan data, dan kemudahan pengembangan jangka panjang.
-          </p>
-        </div>
-
-        <div className="pt-4">
-          <h3 className="text-base font-bold text-neutral-900">Strategi Pemasaran Berfokus pada Konversi &amp; ROAS</h3>
-          <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-            Kami tidak sekadar mengejar tayangan atau klik kosong. Setiap kampanye iklan dirancang untuk menghasilkan kontak prospek nyata ke WhatsApp dan peningkatan omzet.
-          </p>
-        </div>
-
-        <div className="pt-4">
-          <h3 className="text-base font-bold text-neutral-900">Siap Diskusi Tatap Muka di Kandangan, HSS &amp; Area Kalimantan Selatan</h3>
-          <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-            Berbasis di Kandangan, Kabupaten Hulu Sungai Selatan, tim kami siap melakukan koordinasi langsung (onsite meeting) maupun daring untuk wilayah Banua Enam, Banjarbaru, Banjarmasin, dan seluruh Indonesia.
-          </p>
-        </div>
+        {reasons.map((r, i) => (
+          <div key={r.title} className={i === 0 ? 'pt-1' : 'pt-5'}>
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605] shrink-0 mt-0.5">
+                <r.icon className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-bold text-neutral-900">{r.title}</h3>
+                <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">{r.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -88,12 +88,12 @@ function InteriorNav({ pathname }: { pathname: string }) {
           <div className="flex items-center gap-2">
             <a
               id="header-cta-whatsapp"
-              href={getWhatsAppUrl('general')}
+              href={getWhatsAppUrl('website')}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#D13D00] hover:bg-[#B33400] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
-              Konsultasi Gratis
+              Konsultasi Website
             </a>
             <button
               type="button"
@@ -130,13 +130,13 @@ function InteriorNav({ pathname }: { pathname: string }) {
               </Link>
             ))}
             <a
-              href={getWhatsAppUrl('general')}
+              href={getWhatsAppUrl('website')}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="mt-2 py-3 px-4 rounded-2xl text-sm font-semibold text-center bg-[#D13D00] hover:bg-[#B33400] text-white transition-colors"
             >
-              Konsultasi Gratis
+              Konsultasi Website
             </a>
           </div>
         </>
