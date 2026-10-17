@@ -66,22 +66,22 @@ export default function VideoEditingPage() {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-            Tangkap perhatian audiens dalam 3 detik pertama. Kami memproduksi materi video iklan vertikal untuk TikTok, Instagram Reels, dan YouTube Shorts yang dirancang spesifik untuk meningkatkan konversi dan engagement.
+            Ubah penonton media sosial menjadi pembeli setia. Cukup kirimkan video rekaman dari kamera HP Anda, tim kami yang menyulapnya menjadi materi video iklan vertikal berkualitas tinggi lengkap dengan teks animasi dinamis, efek suara, dan pesan jualan yang memikat.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={getWhatsAppUrl('general', 'Video Editing Project')}
+              href={getWhatsAppUrl('video')}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
             >
-              <span>Diskusikan Konsep Video</span>
+              <span>🎬 Kirim Contoh Bahan Video &amp; Tanya Harga via WhatsApp</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </a>
             <div className="flex items-center gap-1.5 text-xs text-neutral-500">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-              <span>Revisi transparan & pengerjaan cepat</span>
+              <span>Bisa mulai dari rekaman kamera smartphone</span>
             </div>
           </div>
         </section>
@@ -93,16 +93,16 @@ export default function VideoEditingPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
                 <Smartphone className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-neutral-900">Short-Form Ads (TikTok & Reels)</h3>
+              <h3 className="text-lg font-bold text-neutral-900">Short-Form Ads (TikTok, Reels &amp; Shorts)</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Video format 9:16 vertikal dengan hook psikologis, transisi dinamis, kinetic typography, dan storytelling yang terbukti meningkatkan click-through rate (CTR).
+                Format 9:16 vertikal dengan hook 3 detik anti-skip. Cukup kirim video produk mentah dari HP, kami racik dengan kinetic text, sound effects, dan copywriting yang memicu klik beli.
               </p>
               <div className="mt-4 space-y-2 text-xs text-neutral-600">
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Hook 3 Detik Pertama Anti-Skip
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Caption Dinamis & Sound Effects SFX
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Caption Dinamis &amp; Sound Effects SFX
                 </div>
               </div>
             </div>
@@ -176,14 +176,15 @@ export default function VideoEditingPage() {
               </p>
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a
-                  href={getWhatsAppUrl('general', 'Video Editing Order')}
+                  href={getWhatsAppUrl('video')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  Chat Konsultasi Video
+                  🎬 Kirim Bahan Video via WhatsApp
                 </a>
+
                 <Link
                   href="/"
                   className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-full border border-white/15 transition-all"

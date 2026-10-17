@@ -57,8 +57,7 @@ export default async function PortfolioIndexPage() {
             Hasil Kerja Nyata yang <span className="text-[#FF5C28]">Telah Beroperasi</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-neutral-600 leading-relaxed">
-            Setiap proyek dimulai dari masalah bisnis yang spesifik. Buka studi kasusnya untuk melihat tantangan, solusi,
-            dan teknologi yang kami pakai.
+            Mulai dari sistem digitalisasi layanan publik di Kalimantan Selatan hingga website penjualan bisnis lokal. Lihat bagaimana solusi kami mempermudah operasional dan mendongkrak hasil nyata bagi klien.
           </p>
         </section>
 
@@ -68,12 +67,13 @@ export default async function PortfolioIndexPage() {
 
         <div className="mt-24">
           <CtaBanner
-            title="Proyek Anda Bisa Jadi Studi Kasus Berikutnya"
-            description="Ceritakan kebutuhan Anda — kami bantu petakan solusi, estimasi waktu, dan investasinya tanpa komitmen awal."
+            title="Punya Rencana Proyek Digital untuk Instansi atau Usaha Anda?"
+            description="Ceritakan kebutuhan Anda — kami bantu petakan solusi, estimasi anggaran, dokumen pengadaan resmi (SPK/BAST), atau strategi penjualan via WhatsApp tanpa komitmen awal."
             whatsappHref={getWhatsAppUrl('case-study')}
             secondary={{ href: '/blog', label: 'Baca Artikel Kami' }}
           />
         </div>
+
       </main>
     </div>
   )

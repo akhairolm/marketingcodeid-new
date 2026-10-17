@@ -103,7 +103,14 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
 
   const related = await getRelatedPortfolios(item.slug, item.category, 3)
 
-  const waHref = getWhatsAppUrl('case-study', item.title)
+  const isGovernment =
+    item.clientName.toLowerCase().includes('pemerintah') ||
+    item.clientName.toLowerCase().includes('dprd') ||
+    item.clientName.toLowerCase().includes('dinas') ||
+    item.clientName.toLowerCase().includes('instansi') ||
+    item.title.toLowerCase().startsWith('si ')
+
+  const waHref = isGovernment ? getWhatsAppUrl('government', item.title) : getWhatsAppUrl('case-study', item.title)
   const completed = formatMonth(item.completedDate)
 
   const facts = [
@@ -165,7 +172,7 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                   className="inline-flex items-center justify-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all hover:-translate-y-0.5"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  Bangun Solusi Serupa
+                  {isGovernment ? 'Konsultasi KAK & RAB via WhatsApp' : 'Bangun Solusi Serupa'}
                 </a>
                 {item.liveUrl && (
                   <a
@@ -285,21 +292,42 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
               </div>
             )}
 
-            <div className="rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#FFF5F0] to-white border border-orange-200/60">
-              <p className="text-sm font-bold text-neutral-900">Punya tantangan serupa?</p>
-              <p className="mt-1.5 text-xs text-neutral-600 leading-relaxed">
-                Ceritakan kondisi bisnis Anda. Kami bantu petakan solusi dan estimasinya tanpa biaya.
-              </p>
-              <a
-                href={waHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                Diskusi via WhatsApp
-              </a>
-            </div>
+            {isGovernment ? (
+              <div className="rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#FFF5F0] to-white border border-orange-200/60 shadow-sm">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-orange-100 text-[#EA4510] text-[10px] font-bold uppercase tracking-wider mb-2">
+                  Instansi & SPBE
+                </span>
+                <p className="text-sm font-bold text-neutral-900">Perlu Sistem SPBE untuk OPD Anda?</p>
+                <p className="mt-1.5 text-xs text-neutral-600 leading-relaxed">
+                  Konsultasikan Kerangka Acuan Kerja (KAK), estimasi RAB, serta dokumen BAST & Bimtek bersama kami.
+                </p>
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold rounded-full transition-all shadow-sm"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  Konsultasi KAK & RAB
+                </a>
+              </div>
+            ) : (
+              <div className="rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#FFF5F0] to-white border border-orange-200/60">
+                <p className="text-sm font-bold text-neutral-900">Punya tantangan serupa?</p>
+                <p className="mt-1.5 text-xs text-neutral-600 leading-relaxed">
+                  Ceritakan kondisi bisnis Anda. Kami bantu petakan solusi dan estimasinya tanpa biaya.
+                </p>
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  Diskusi via WhatsApp
+                </a>
+              </div>
+            )}
 
             <Link
               href="/portfolio"
@@ -360,8 +388,10 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
 
         <div className="mt-14 sm:mt-24">
           <CtaBanner
-            title="Siap Membangun Proyek Berikutnya Bersama Kami?"
-            description={`Ceritakan kebutuhan Anda — kami siapkan rancangan solusi seperti ${item.title} yang disesuaikan dengan target bisnis Anda.`}
+            title={isGovernment ? "Siap Mengembangkan Sistem SPBE untuk Instansi Anda?" : "Siap Membangun Proyek Berikutnya Bersama Kami?"}
+            description={isGovernment
+              ? `Konsultasikan Kerangka Acuan Kerja (KAK), estimasi RAB, dan dokumen pendukung BAST untuk sistem serupa ${item.title} bersama MarketingCode.ID.`
+              : `Ceritakan kebutuhan Anda — kami siapkan rancangan solusi seperti ${item.title} yang disesuaikan dengan target bisnis Anda.`}
             whatsappHref={waHref}
             secondary={{ href: '/portfolio', label: 'Lihat Portofolio Lain' }}
           />

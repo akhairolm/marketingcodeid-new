@@ -68,12 +68,13 @@ export default async function BlogIndexPage() {
 
         <div className="mt-24">
           <CtaBanner
-            title="Punya Pertanyaan yang Belum Terjawab?"
-            description="Tanyakan langsung ke tim kami. Konsultasi awal gratis dan tanpa komitmen."
+            title="Bingung Mau Mulai Digitalisasi Usaha dari Mana?"
+            description="Jangan ragu untuk berdiskusi santai. Ceritakan kendala jualan atau operasional usaha Anda saat ini, tim kami siap memberikan saran strategi yang paling hemat dan tepat sasaran."
             whatsappHref={getWhatsAppUrl('article')}
             secondary={{ href: '/portfolio', label: 'Lihat Studi Kasus' }}
           />
         </div>
+
       </main>
     </div>
   )

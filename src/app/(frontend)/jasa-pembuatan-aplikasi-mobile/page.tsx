@@ -11,6 +11,7 @@ import {
   CloudUpload,
   HelpCircle,
   MessageCircle,
+  ShieldCheck,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
@@ -47,7 +48,11 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: 'Apakah aplikasi yang dibuat bisa berjalan di HP Android sekaligus iPhone (iOS)?',
-    a: 'Ya, kami dapat mengembangkan aplikasi untuk platform Android saja maupun lintas platform (Android dan iOS sekaligus) sesuai dengan target pengguna dan anggaran proyek Anda.',
+    a: 'Ya, kami mengembangkan aplikasi lintas platform yang berjalan mulus di Android maupun iPhone (iOS) secara bersamaan, sehingga menghemat biaya pengembangan tanpa perlu membuat aplikasi dua kali.',
+  },
+  {
+    q: 'Bagaimana dengan proses upload ke Google Play Store dan Apple App Store?',
+    a: 'Kami mendampingi proses publikasi dari awal hingga tayang resmi, termasuk kepatuhan kebijakan privasi dan keamanan data (UU PDP). Aplikasi dijamin lolos review atau kami revisi sampai terbit.',
   },
   {
     q: 'Apakah sudah termasuk halaman admin (dashboard web) untuk mengelola isi aplikasi?',
@@ -55,7 +60,7 @@ const faqs = [
   },
   {
     q: 'Apakah melayani diskusi langsung untuk instansi atau perusahaan di Kalimantan Selatan?',
-    a: 'Sangat bisa. Tim kami yang berlokasi di Kandangan (HSS) siap melakukan paparan teknis dan diskusi langsung ke kantor atau instansi Anda di wilayah Hulu Sungai Selatan, Banua Enam, Banjarbaru, maupun Banjarmasin.',
+    a: 'Sangat bisa. Tim kami yang berlokasi di Kandangan (HSS) siap melakukan paparan teknis dan diskusi tatap muka ke kantor atau instansi Anda di wilayah Hulu Sungai Selatan, Banua Enam, Banjarbaru, maupun Banjarmasin.',
   },
 ]
 
@@ -124,7 +129,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
             Jasa Pembuatan Aplikasi Mobile (Android &amp; iOS) Kustom di Kalimantan Selatan
           </h1>
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mt-5 max-w-2xl mx-auto">
-            Hadirkan layanan instansi dan kemudahan transaksi bisnis langsung di genggaman pengguna. Kami merancang dan mengembangkan aplikasi Android dan iOS yang cepat, stabil, dan terintegrasi penuh dengan sistem basis data terpusat.
+            Miliki aplikasi Android dan iPhone resmi atas nama bisnis atau instansi Anda. Kami tangani semuanya dari rancang alur, pembuatan sistem, hingga terbit resmi di Google Play Store dan App Store. Tim lokal kami siap berdiskusi tatap muka di wilayah Kalimantan Selatan.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
@@ -134,7 +139,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              Konsultasi via WhatsApp
+              📲 Diskusikan Rencana Aplikasi Anda via WhatsApp
             </a>
             <a
               href="#solusi-aplikasi"
@@ -144,6 +149,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
             </a>
           </div>
         </section>
+
 
         {/* Solusi Aplikasi Mobile */}
         <section id="solusi-aplikasi" className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
@@ -185,8 +191,25 @@ export default function JasaPembuatanAplikasiMobilePage() {
           </div>
         </section>
 
+        {/* Garansi Publikasi Toko Aplikasi */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-16">
+          <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-5 shadow-xs">
+            <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md">
+              <ShieldCheck className="w-7 h-7" />
+            </div>
+            <div className="space-y-1.5 text-center sm:text-left">
+              <h3 className="text-base font-bold text-neutral-900">
+                🛡️ Garansi Publikasi Resmi Google Play Store &amp; Apple App Store
+              </h3>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Anda tidak perlu khawatir proses review teknis yang rumit. Tim kami mengawal proses peninjauan Google &amp; Apple, sertifikasi privasi data (UU PDP), hingga aplikasi Anda lolos verifikasi dan siap diunduh oleh masyarakat luas.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Cross-Selling */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-20">
           <div className="bg-[#121214] rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden">
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 text-center space-y-4">

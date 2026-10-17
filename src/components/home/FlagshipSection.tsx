@@ -4,39 +4,41 @@ const pillars = [
   {
     icon: Palette,
     badge: 'Kilat & Konversi',
-    title: 'High-Converting Landing Page',
-    desc: 'Solusi halaman promosi tunggal ultra-responsif yang dirancang untuk kampanye iklan berkonversi tinggi dan peluncuran produk cepat.',
+    title: 'Landing Page Promosi & Penjualan',
+    desc: 'Halaman penawaran produk tunggal yang sangat ringan dan terbukti efektif mengubah pengunjung iklan menjadi chat pemesanan WhatsApp.',
     features: [
-      'Waktu muat sub-detik (< 0.8s)',
-      'Integrasi Meta Pixel & Google Tag',
-      'WhatsApp CTA Auto-Dispatch',
+      'Waktu muat super cepat (< 0.8 detik)',
+      'Terpasang pelacak iklan Meta Pixel & Google Tag',
+      'Tombol order otomatis terhubung ke WhatsApp',
+      'Desain menarik & persuasif sesuai produk Anda',
     ],
     time: 'Pengerjaan: 5 - 7 Hari Kerja',
     isFlagship: false,
   },
   {
     icon: Code2,
-    badge: 'Enterprise Architecture',
-    title: 'Custom Web Platform & CMS',
-    desc: 'Aplikasi web korporat, dashboard internal, atau portal SaaS menggunakan Next.js 16 (App Router) dan dashboard admin custom.',
+    badge: 'Sistem & Portal Instansi',
+    title: 'Website Bisnis & Portal Custom',
+    desc: 'Website perusahaan, katalog produk online, atau portal sistem informasi instansi yang aman, cepat, dan bisa dikelola sendiri tanpa perlu paham koding.',
     features: [
-      'Full-stack Next.js 16 & React 19',
-      'Dashboard Admin Fullstack Custom',
-      'PostgreSQL Supabase Database',
-      '100% Hak Akses Repositori GitHub',
+      '100% Hak Milik Anda Seutuhnya (Tanpa Biaya Sewa)',
+      'Dashboard Admin Mudah Dikelola Langsung dari HP',
+      'Penyimpanan Data Toko Aman di Cloud Anti-Hilang',
+      'Garansi Pemeliharaan & Pendampingan Resmi',
     ],
     time: 'Pengerjaan: 14 - 21 Hari Kerja',
     isFlagship: true,
   },
   {
     icon: Smartphone,
-    badge: 'iOS & Android Dual Store',
-    title: 'Cross-Platform Mobile App',
-    desc: 'Pengembangan aplikasi mobile modern dengan Flutter cross-platform untuk e-commerce, booking engine, dan interaksi pengguna intensif.',
+    badge: 'Android & iPhone (iOS)',
+    title: 'Aplikasi Mobile Resmi',
+    desc: 'Aplikasi smartphone resmi untuk mempermudah layanan publik dinas, presensi pegawai berkoordinat GPS, maupun sistem booking operasional bisnis.',
     features: [
-      'Single Codebase Android & iOS',
-      'Integrasi Payment Gateway & Auth',
-      'Bantuan Publikasi ke Play/App Store',
+      'Satu kali buat, langsung jalan di Android & iPhone',
+      'Fitur notifikasi promo langsung ke layar HP pelanggan',
+      'Pendampingan publikasi resmi ke Play Store & App Store',
+      'Terhubung langsung ke sistem database & dashboard admin',
     ],
     time: 'Pengerjaan: 3 - 6 Minggu',
     isFlagship: false,
@@ -44,11 +46,12 @@ const pillars = [
 ]
 
 const techChips = [
-  'Next.js 16 & React 19',
-  'Dashboard Admin Custom',
-  'Supabase Managed PostgreSQL',
-  '100% Source Code Ownership',
+  '100% Hak Milik Tanpa Sewa',
+  'Dashboard Admin Praktis di HP',
+  'Penyimpanan Cloud Aman Anti-Hilang',
+  'Garansi Pemeliharaan Resmi',
 ]
+
 
 export function FlagshipSection() {
   return (

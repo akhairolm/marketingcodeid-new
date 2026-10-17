@@ -89,6 +89,10 @@ function PortfolioCard({ item }: { item: PortfolioProject }) {
 export function PortfolioSection({ projects }: { projects: PortfolioProject[] }) {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]['value']>('all')
 
+  const activeFilters = FILTERS.filter(
+    (f) => f.value === 'all' || projects.some((p) => p.category === f.value)
+  )
+
   const filteredProjects = filter === 'all' ? projects : projects.filter((p) => p.category === filter)
 
   return (
@@ -102,34 +106,41 @@ export function PortfolioSection({ projects }: { projects: PortfolioProject[] })
           Portofolio Proyek &amp; Studi Kasus Terpilih
         </h2>
         <p className="text-neutral-500 text-sm mt-2 max-w-2xl mx-auto">
-          Setiap proyek dibangun dengan arsitektur bersih, performa tinggi, dan terbukti menghasilkan dampak bisnis nyata bagi klien kami di Kalimantan Selatan dan seluruh Indonesia.
+          Mulai dari sistem digitalisasi instansi di Kalimantan Selatan hingga website bisnis komersial. Lihat bagaimana solusi kami mempermudah operasional dan mendongkrak hasil nyata.
         </p>
       </div>
 
-      <div className="flex justify-center mb-10">
-        <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {FILTERS.map((f) => (
-            <button
-              key={f.value}
-              type="button"
-              onClick={() => setFilter(f.value)}
-              className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer whitespace-nowrap ${
-                filter === f.value
-                  ? 'font-bold bg-white text-neutral-900 shadow-xs'
-                  : 'font-semibold text-neutral-600 hover:text-neutral-900'
-              }`}
-            >
-              {f.label}
-            </button>
+      {activeFilters.length > 1 && (
+        <div className="flex justify-center mb-10">
+          <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200 overflow-x-auto max-w-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {activeFilters.map((f) => (
+              <button
+                key={f.value}
+                type="button"
+                onClick={() => setFilter(f.value)}
+                className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer whitespace-nowrap ${
+                  filter === f.value
+                    ? 'font-bold bg-white text-neutral-900 shadow-xs'
+                    : 'font-semibold text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {filteredProjects.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredProjects.map((item) => (
+            <PortfolioCard key={item.slug} item={item} />
           ))}
         </div>
-      </div>
+      ) : (
+        <p className="text-center text-sm text-neutral-500 py-12">Belum ada proyek pada kategori ini.</p>
+      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {filteredProjects.map((item) => (
-          <PortfolioCard key={item.slug} item={item} />
-        ))}
-      </div>
 
       <div className="mt-10 text-center">
         <Link

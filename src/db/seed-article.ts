@@ -151,6 +151,8 @@ async function main() {
       coverImageId = cover[0].id
     }
 
+    const existing = await db.select({ id: articles.id, coverImageId: articles.coverImageId }).from(articles).where(eq(articles.slug, seed.slug)).limit(1)
+
     const values = {
       title: seed.title,
       slug: seed.slug,
@@ -158,7 +160,7 @@ async function main() {
       publishedAt: seed.publishedAt,
       categoryId,
       excerpt: seed.excerpt,
-      coverImageId,
+      coverImageId: coverImageId ?? existing[0]?.coverImageId ?? null,
       tags: seed.tags,
       authorName: 'MarketingCode ID',
       authorRole: 'Digital Agency',
@@ -168,7 +170,6 @@ async function main() {
       updatedAt: new Date(),
     }
 
-    const existing = await db.select({ id: articles.id }).from(articles).where(eq(articles.slug, seed.slug)).limit(1)
     if (existing[0]) {
       await db.update(articles).set(values).where(eq(articles.id, existing[0].id))
       console.log(`Artikel "${seed.slug}" diperbarui.`)

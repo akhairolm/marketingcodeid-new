@@ -63,21 +63,21 @@ export default function DigitalMarketingPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.15]">
-            Digital Marketing Berbasis <span className="text-[#FF5C28]">ROI & Konversi Omzet</span>
+            Strategi Pemasaran Digital: <span className="text-[#FF5C28]">Iklan Tepat Sasaran &amp; Konversi Omzet</span>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-            Hentikan pemborosan budget iklan tanpa hasil terukur. Kami merancang strategi funnel pemasaran presisi melalui Meta Ads, Google Search, SEO teknis, dan tracking CAPI server-side anti-bocor.
+            Jangan biarkan biaya promosi terbuang tanpa hasil. Kami bantu bisnis Anda ditemukan calon pembeli yang siap belanja di Google dan media sosial, lalu mengarahkannya langsung ke WhatsApp Anda dengan hasil yang terukur.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={getWhatsAppUrl('ads')}
+              href={getWhatsAppUrl('marketing')}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
             >
-              <span>Audit Akun Iklan Gratis</span>
+              <span>📊 Dapatkan Audit Akun Iklan Gratis via WhatsApp</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </a>
             <div className="flex items-center gap-1.5 text-xs text-neutral-500">
@@ -94,16 +94,16 @@ export default function DigitalMarketingPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-neutral-900">Meta Ads (Facebook & Instagram)</h3>
+              <h3 className="text-lg font-bold text-neutral-900">Meta Ads (Facebook &amp; Instagram)</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Penargetan audiens berbasis data perilaku, integrasi Meta Conversions API (CAPI) server-side anti-kebocoran iOS 14+, dan variasi materi visual berkonversi tinggi.
+                Penargetan audiens pembeli potensial di Instagram &amp; Facebook, pelacakan hasil iklan yang akurat, serta materi video dan banner yang langsung mengarahkan calon pembeli ke chat WhatsApp Anda.
               </p>
               <div className="mt-4 space-y-2 text-xs text-neutral-600">
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Setup CAPI Server Gateway
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Setup Pelacakan Konversi Akurat
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Retargeting & Lookalike Audience
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Target Audiens Minat Beli Tinggi
                 </div>
               </div>
             </div>
@@ -112,16 +112,16 @@ export default function DigitalMarketingPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
                 <Search className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-neutral-900">Google Ads & Organic SEO</h3>
+              <h3 className="text-lg font-bold text-neutral-900">Google Ads &amp; SEO Lokal</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Tangkap calon pembeli yang memiliki intensi beli tinggi melalui Google Search Ads, Performance Max, dan optimasi struktur SEO organik jangka panjang.
+                Jangkau calon pelanggan yang memang sedang aktif mencari produk atau jasa Anda di Google Search pada saat mereka butuh dan siap bertransaksi.
               </p>
               <div className="mt-4 space-y-2 text-xs text-neutral-600">
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Riset Kata Kunci Buying Intent
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Riset Kata Kunci Pembeli Siap Transaksi
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Optimasi Skor Kualitas Iklan (Quality Score)
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Tampil di Halaman Pertama Google
                 </div>
               </div>
             </div>
@@ -130,16 +130,16 @@ export default function DigitalMarketingPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
                 <Filter className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-neutral-900">Funnel & CRO Optimization</h3>
+              <h3 className="text-lg font-bold text-neutral-900">Funnel &amp; Optimasi Konversi (CRO)</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Memperbaiki alur perjalanan pengunjung dari klik iklan pertama hingga transfer pembayaran, menurunkan rasio bounce, dan meningkatkan persentase konversi.
+                Memperbaiki alur perjalanan calon pembeli: dari klik iklan pertama hingga mantap chat WhatsApp, mengurangi chat PHP, dan mendongkrak rasio penutupan penjualan (closing).
               </p>
               <div className="mt-4 space-y-2 text-xs text-neutral-600">
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Heatmap & User Session Recording
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Evaluasi &amp; Perbaikan Alur Chat WA
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> A/B Testing Copywriting & Penawaran
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Uji Coba Naskah Penawaran Promo
                 </div>
               </div>
             </div>
@@ -148,21 +148,22 @@ export default function DigitalMarketingPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
                 <PieChart className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-neutral-900">Live Transparent Analytics</h3>
+              <h3 className="text-lg font-bold text-neutral-900">Laporan Transparan yang Mudah Dipahami</h3>
               <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Dashboard monitoring Looker Studio real-time sehingga Anda dapat melihat setiap rupiah biaya iklan dan omzet yang dihasilkan secara transparan 24/7.
+                Laporan berkala yang jelas dan tanpa istilah rumit: Anda bisa melihat dengan pasti berapa rupiah biaya promosi yang keluar dan berapa jumlah orderan yang masuk setiap minggunya.
               </p>
               <div className="mt-4 space-y-2 text-xs text-neutral-600">
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Dashboard Realtime Looker Studio
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Laporan Mingguan Terbuka &amp; Jelas
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Laporan Kinerja & Evaluasi Mingguan
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Evaluasi &amp; Rekomendasi Pertumbuhan
                 </div>
               </div>
             </div>
           </div>
         </section>
+
 
         {/* CTA Card */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-20">

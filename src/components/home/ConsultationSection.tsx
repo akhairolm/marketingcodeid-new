@@ -13,11 +13,11 @@ const SERVICE_OPTIONS = [
 const inputClass =
   'w-full text-base px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#D13D00] focus:border-transparent transition-all bg-neutral-50/50'
 
-import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp'
+import { DEFAULT_WHATSAPP_NUMBER, getWhatsAppUrl } from '@/lib/whatsapp'
 
 export function ConsultationSection() {
   const [toastOpen, setToastOpen] = useState(false)
-  const [formData, setFormData] = useState({ name: '', email: '', service: 'web', notes: '' })
+  const [formData, setFormData] = useState({ name: '', phone: '', service: 'web', notes: '' })
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -25,14 +25,14 @@ export function ConsultationSection() {
     setToastOpen(true)
 
     const serviceName = SERVICE_OPTIONS.find((o) => o.value === formData.service)?.name ?? 'Konsultasi'
-    const waText = `Halo MarketingCode.ID, saya ${formData.name} (${formData.email}) ingin konsultasi terkait ${serviceName}. Detail rencana: ${formData.notes || '-'}`
+    const waText = `Halo MarketingCode.ID, saya ${formData.name} (No. WA: ${formData.phone}) ingin konsultasi terkait ${serviceName}. Detail rencana: ${formData.notes || '-'}`
 
     setTimeout(() => {
       const cleanPhone = DEFAULT_WHATSAPP_NUMBER.replace(/[^0-9]/g, '')
       window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(waText)}`, '_blank')
     }, 1000)
 
-    setFormData({ name: '', email: '', service: 'web', notes: '' })
+    setFormData({ name: '', phone: '', service: 'web', notes: '' })
 
     setTimeout(() => {
       setToastOpen(false)
@@ -51,7 +51,7 @@ export function ConsultationSection() {
           Klaim Diskusi &amp; Audit Website Gratis
         </h2>
         <p className="text-neutral-500 text-xs sm:text-sm mt-2">
-          Isi formulir singkat ini, tim konsultan senior kami akan menganalisis kebutuhan Anda dan mengirimkan proposal dalam 24 jam.
+          Ceritakan kebutuhan Anda atau kirim via formulir di bawah. Tim kami siap memberikan estimasi biaya dan rancangan solusi dalam waktu singkat.
         </p>
 
         <div className="mt-8 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card text-left">
@@ -70,14 +70,14 @@ export function ConsultationSection() {
             </div>
 
             <div>
-              <label htmlFor="consultation-email" className="block text-xs font-semibold text-neutral-700 mb-1.5">Alamat Email Bisnis</label>
+              <label htmlFor="consultation-phone" className="block text-xs font-semibold text-neutral-700 mb-1.5">Nomor WhatsApp (Aktif)</label>
               <input
-                id="consultation-email"
-                type="email"
+                id="consultation-phone"
+                type="tel"
                 required
-                placeholder="budi@perusahaan.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="Contoh: 08123456789 atau 628xxxxxxxxxx"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className={inputClass}
               />
             </div>
@@ -114,11 +114,26 @@ export function ConsultationSection() {
               type="submit"
               className="w-full py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              Kirim Permintaan Konsultasi
+              Kirim Permintaan Konsultasi via WhatsApp
             </button>
 
+            <div className="relative flex py-2 items-center">
+              <div className="flex-grow border-t border-neutral-200" />
+              <span className="flex-shrink mx-3 text-[11px] text-neutral-400 font-medium">atau tanpa isi form</span>
+              <div className="flex-grow border-t border-neutral-200" />
+            </div>
+
+            <a
+              href={getWhatsAppUrl('general')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 border border-emerald-500 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs rounded-full transition-colors flex items-center justify-center gap-2"
+            >
+              <span>💬 Chat Langsung ke WhatsApp Admin</span>
+            </a>
+
             <p className="text-[11px] text-center text-neutral-500 mt-2">
-              Privasi Anda terjamin. Kami tidak pernah membagikan email atau mengirim spam.
+              Privasi Anda terjamin. Kontak Anda hanya digunakan untuk konsultasi proyek bersama MarketingCode.ID.
             </p>
           </form>
         </div>

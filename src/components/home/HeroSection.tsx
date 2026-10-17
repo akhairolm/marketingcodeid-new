@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Play, X, Film, ArrowRight } from 'lucide-react'
+import { Play, X, Film } from 'lucide-react'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
 
 export function HeroSection() {
   const [videoModalOpen, setVideoModalOpen] = useState(false)
@@ -34,28 +35,38 @@ export function HeroSection() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
-            Solusi Pembuatan <span className="text-[#FF5C28]">Website</span>,{' '}
-            <span className="text-[#FF5C28]">Aplikasi Mobile</span> &amp; Digital Marketing di Kalimantan Selatan
+            Jasa Pembuatan <span className="text-[#FF5C28]">Website</span>,{' '}
+            <span className="text-[#FF5C28]">Aplikasi Mobile</span> &amp; Iklan Digital di Kalimantan Selatan
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
-            Kami membantu instansi pemerintah, perusahaan, dan pelaku usaha di Kandangan (Hulu Sungai Selatan), Banua Enam, hingga seluruh Kalimantan Selatan membangun sistem teknologi kustom dan mendatangkan prospek berkualitas melalui strategi periklanan terukur.
+            Bantu bisnis UMKM kebanjiran orderan WhatsApp dan bantu instansi pemerintahan mendigitalkan layanan publik secara transparan. Tim lokal siap diskusi tatap muka di wilayah Kandangan, Banua Enam, Banjarmasin, Banjarbaru, dan seluruh Kalsel.
           </p>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <a
-              href="#konsultasi"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <span>Mulai Konsultasi Gratis</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-            <Link
-              href="#web-services"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300"
-            >
-              <span>Lihat Layanan Kami</span>
-            </Link>
+          <div className="pt-2 flex flex-col items-start gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+              <a
+                href={getWhatsAppUrl('hero')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <span>🟢 Konsultasi Gratis via WhatsApp (Respon Cepat)</span>
+              </a>
+              <Link
+                href="#web-services"
+                className="inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300 text-center"
+              >
+                <span>Lihat Layanan Kami</span>
+              </Link>
+            </div>
+            <p className="text-xs text-neutral-500 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span>⚡ Konsultasi awal tanpa biaya</span>
+              <span>•</span>
+              <span>Siap pertemuan tatap muka di Kalsel</span>
+              <span>•</span>
+              <span>Bergaransi</span>
+            </p>
           </div>
         </div>
 

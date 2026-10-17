@@ -36,7 +36,7 @@ export function AccelerationSection() {
             </div>
 
             <p className="text-xs text-neutral-600 mt-4 leading-relaxed">
-              Lupakan anggaran iklan yang terbuang sia-sia. Spesialis digital marketing kami memanfaatkan tracking CAPI server-side, riset kata kunci Google Ads intensi beli tinggi, dan optimasi alur funnel.
+              Lupakan anggaran iklan yang terbuang sia-sia. Spesialis pemasaran digital kami merancang iklan yang presisi: setiap rupiah biaya promosi terlacak akurat, menjangkau calon pembeli siap transaksi, dan mengarahkannya langsung ke WhatsApp bisnis Anda.
             </p>
 
             <div className="mt-5 p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
@@ -123,8 +123,8 @@ export function AccelerationSection() {
 
               <div className="py-4 text-center">
                 <Sparkles className="w-8 h-8 text-[#FF5C28] mx-auto mb-2" />
-                <h4 className="text-xs font-bold text-white">Dynamic Transitions &amp; Sound Design</h4>
-                <p className="text-[11px] text-neutral-300 mt-0.5">Dirancang spesifik untuk algoritma FYP dan click conversion rate tinggi</p>
+                <h4 className="text-xs font-bold text-white">Video Iklan Vertikal Kreatif &amp; Berkonversi Tinggi</h4>
+                <p className="text-[11px] text-neutral-300 mt-0.5">Teks animasi memikat, transisi rapi, dan pesan jualan tajam untuk FYP &amp; orderan langsung</p>
               </div>
 
               <div className="flex items-center justify-between text-[10px] text-neutral-300 pt-2 border-t border-neutral-800">

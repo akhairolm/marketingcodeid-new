@@ -13,6 +13,8 @@ import {
   HelpCircle,
   MapPin,
   MessageCircle,
+  Check,
+  Tag,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
@@ -51,17 +53,18 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: 'Berapa biaya pembuatan website di Kandangan dan Kalimantan Selatan?',
-    a: 'Biaya pembuatan website disesuaikan dengan tingkat kompleksitas fitur, mulai dari paket terjangkau untuk Landing Page dan Company Profile UMKM, hingga pengembangan kustom untuk Sistem Informasi Instansi atau Perusahaan. Hubungi kami untuk mendapatkan rincian penawaran resmi.',
+    a: 'Biaya sangat transparan: Paket Landing Page Promosi mulai dari Rp 1,5 Juta, Paket Katalog Produk & Toko UMKM mulai dari Rp 3,5 Juta (sudah termasuk domain .com, cloud hosting 1 tahun, dan panduan admin HP), hingga Paket Sistem Informasi Instansi/Dinas yang disesuaikan dengan Surat Perjanjian Kerja (SPK) dan kelengkapan dokumen BAST resmi.',
   },
   {
     q: 'Berapa lama waktu pengerjaan sebuah website hingga siap online?',
-    a: 'Untuk Landing Page dan Company Profile standar berkisar antara 5 hingga 14 hari kerja. Sedangkan untuk Sistem Informasi berbasis web dengan fitur kustom membutuhkan waktu sekitar 3 hingga 8 minggu tergantung cakupan modul.',
+    a: 'Untuk Landing Page Promosi berkisar 3-5 hari kerja, Katalog Produk UMKM dan Company Profile berkisar 7-14 hari kerja, sedangkan Sistem Informasi berbasis web instansi membutuhkan 3-8 minggu tergantung cakupan modul.',
   },
   {
     q: 'Apakah layanan ini sudah termasuk domain, hosting/server, dan garansi maintenance?',
-    a: 'Ya, paket pembuatan website kami dapat mencakup pendaftaran domain (.com, .id, .co.id, dll), konfigurasi cloud server/hosting, sertifikat SSL (HTTPS), panduan pengelolaan admin, serta garansi pemeliharaan teknis.',
+    a: 'Ya, seluruh paket kami sudah mencakup pendaftaran domain (.com / .id), konfigurasi cloud hosting/server cepat, sertifikat SSL HTTPS aman, panduan video/tatap muka pengelolaan admin, serta garansi pemeliharaan teknis resmi.',
   },
 ]
+
 
 const kategori = [
   {
@@ -111,6 +114,55 @@ const alur = [
   'Uji Coba, Pelatihan Admin & Peluncuran',
 ]
 
+const paketWebsite = [
+  {
+    tier: 'Paket Landing Page Promosi',
+    price: 'Mulai Rp 1,5 Juta',
+    desc: '1 Halaman penjualan fokus konversi tinggi. Sangat cocok untuk produk kuliner, fashion, jasa servis, atau pendamping kampanye iklan Meta Ads.',
+    isPopular: false,
+    features: [
+      '1 Halaman Penjualan Fokus Konversi',
+      'Terhubung Langsung ke Tombol Order WhatsApp',
+      'Terpasang Meta Pixel & Google Analytics',
+      'Desain Mobile-First & Waktu Muat < 0.8 Detik',
+    ],
+    time: 'Pengerjaan: 3 - 5 Hari Kerja',
+    btnText: 'Pilih Landing Page',
+    subject: 'Paket Landing Page Promosi (Rp 1.5jt)',
+  },
+  {
+    tier: 'Paket Katalog Produk & Bisnis Lokal',
+    price: 'Mulai Rp 3,5 Juta',
+    desc: 'Website katalog interaktif dengan tombol order WhatsApp otomatis dan dashboard admin mandiri yang mudah dikelola dari smartphone.',
+    isPopular: true,
+    features: [
+      'Katalog Produk + Tombol Order WhatsApp Otomatis',
+      'Admin Mandiri: Ganti Foto & Harga dari HP',
+      'Gratis Domain .com & Cloud Hosting 1 Tahun',
+      'Optimasi SEO Lokal Kalimantan Selatan',
+      'Garansi Pemeliharaan & Pendampingan 3 Bulan',
+    ],
+    time: 'Pengerjaan: 7 - 14 Hari Kerja',
+    btnText: 'Pilih Paket Katalog',
+    subject: 'Paket Katalog Produk & Bisnis Lokal (Rp 3.5jt)',
+  },
+  {
+    tier: 'Paket Sistem Informasi & Portal Custom',
+    price: 'Sesuai Spesifikasi (SPK)',
+    desc: 'Sistem informasi manajemen daerah, e-office, buku tamu digital QR Code, pelaporan aduan masyarakat, hingga portal dinas/BUMN.',
+    isPopular: false,
+    features: [
+      'Kepatuhan Standar SPBE & Akuntabilitas BAST',
+      'Surat Perjanjian Kerja (SPK) & Faktur Pajak Resmi',
+      'Enkripsi Data & Multi-Level Hak Akses Petugas',
+      'Pelatihan Langsung Staf Operator (Bimtek di Kantor Anda)',
+    ],
+    time: 'Timeline Sesuai Dokumen Pengadaan',
+    btnText: 'Konsultasi Kebutuhan Instansi',
+    subject: 'Paket Sistem Informasi Instansi & Portal Custom',
+  },
+]
+
 export default function JasaPembuatanWebsitePage() {
   return (
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
@@ -140,7 +192,7 @@ export default function JasaPembuatanWebsitePage() {
             Jasa Pembuatan Website &amp; Sistem Informasi Profesional di Kalimantan Selatan
           </h1>
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mt-5 max-w-2xl mx-auto">
-            Bangun kredibilitas bisnis dan efisiensi kerja instansi Anda dengan website yang cepat, aman, mobile-friendly, dan teroptimasi SEO. Melayani wilayah Kandangan (Hulu Sungai Selatan), Banua Enam, Banjarmasin, Banjarbaru, dan seluruh Indonesia.
+            Tingkatkan omzet toko Anda dengan website yang langsung terhubung ke order WhatsApp, atau hadirkan portal dinas yang tertib administrasi dan lolos uji SPBE. 100% hak milik Anda tanpa sistem sewa. Tim kami siap hadir tatap muka di wilayah Kandangan, Banua Enam, Banjarmasin, Banjarbaru, dan seluruh Kalimantan Selatan.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
@@ -150,13 +202,13 @@ export default function JasaPembuatanWebsitePage() {
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              Konsultasi via WhatsApp
+              💬 Tanya Estimasi Biaya Website via WhatsApp
             </a>
             <a
-              href="#kategori-layanan"
+              href="#paket-website"
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white border border-neutral-200 hover:border-[#FF5C28] rounded-full transition-all"
             >
-              Lihat Solusi Website
+              Lihat Pilihan Paket
             </a>
           </div>
         </section>
@@ -180,6 +232,82 @@ export default function JasaPembuatanWebsitePage() {
             ))}
           </div>
         </section>
+
+        {/* Paket Investasi Website */}
+        <section id="paket-website" className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
+              <Tag className="w-3.5 h-3.5" />
+              <span>Simulasi Investasi Transparan</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              Pilihan Paket Website Sesuai Kebutuhan Anda
+            </h2>
+            <p className="text-sm text-neutral-500 mt-2 max-w-xl mx-auto">
+              Investasi transparan tanpa biaya sewa tersembunyi. 100% hak milik website menjadi aset mandiri usaha Anda.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            {paketWebsite.map((item) => (
+              <div
+                key={item.tier}
+                className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
+                  item.isPopular
+                    ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
+                    : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
+                }`}
+              >
+                {item.isPopular && (
+                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    Pilihan Favorit UMKM
+                  </div>
+                )}
+
+                <div>
+                  <span
+                    className={`text-xs font-bold uppercase tracking-wider ${
+                      item.isPopular ? 'text-[#EA4510]' : 'text-neutral-500'
+                    }`}
+                  >
+                    {item.tier}
+                  </span>
+                  <div className="mt-3 flex items-baseline">
+                    <span className="text-2xl sm:text-3xl font-extrabold text-neutral-900">{item.price}</span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-2.5 leading-relaxed">{item.desc}</p>
+
+                  <a
+                    href={getWhatsAppUrl('website', item.subject)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
+                      item.isPopular
+                        ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow'
+                        : 'bg-neutral-900 hover:bg-black text-white'
+                    }`}
+                  >
+                    {item.btnText}
+                  </a>
+
+                  <div className="mt-6 pt-6 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
+                    {item.features.map((feat) => (
+                      <div key={feat} className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-[#EA4510] shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-500 text-center">
+                  {item.time}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
 
         {/* Keunggulan Teknis */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">

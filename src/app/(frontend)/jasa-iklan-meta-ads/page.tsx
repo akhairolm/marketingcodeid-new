@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: 'Berapa minimal anggaran iklan (ad spend) untuk mulai menggunakan jasa Meta Ads ini?',
-    a: 'Anggaran iklan sangat fleksibel dan dapat dimulai dari skala uji coba (testing) harian yang terukur sesuai kapasitas bisnis atau UMKM Anda, kemudian ditingkatkan (scaling) seiring ditemukannya pola kampanye yang menghasilkan profit.',
+    a: 'Anggaran iklan sangat fleksibel dan dapat dimulai dari Rp 50.000/hari (skala uji coba/testing terukur). Setelah menemukan kombinasi materi video dan audiens yang terbukti menghasilkan chat orderan WhatsApp dengan biaya murah (low CPR), barulah anggaran dinaikkan secara bertahap (scaling).',
   },
   {
     q: 'Apakah materi gambar dan video iklan disiapkan oleh tim agensi?',
@@ -57,6 +57,7 @@ const faqs = [
     a: 'Layanan ini sangat efektif untuk bisnis lokal maupun nasional seperti Agen Tour & Travel/Umroh, Klinik Kecantikan & Kesehatan, Properti, Kuliner, Pendidikan/Pelatihan, Otomotif, hingga UMKM dan Toko Online di Kalimantan Selatan maupun seluruh Indonesia.',
   },
 ]
+
 
 const painPoints = [
   {
@@ -138,7 +139,7 @@ export default function JasaIklanMetaAdsPage() {
               className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              Konsultasi via WhatsApp
+              📊 Dapatkan Audit Akun Iklan Gratis via WhatsApp
             </a>
             <a
               href="#strategi"
@@ -189,8 +190,38 @@ export default function JasaIklanMetaAdsPage() {
           </div>
         </section>
 
-        {/* Cross-Selling */}
+        {/* Transparansi Modal Iklan */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card">
+            <div className="flex items-center gap-2 text-[#EA4510] text-xs font-semibold mb-2">
+              <Target className="w-4 h-4" />
+              <span>Transparansi Biaya &amp; Anggaran</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
+              Berapa Modal untuk Mulai Beriklan?
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
+              Kami menjunjung transparansi 100%. Saldo iklan dibayarkan langsung ke akun Meta Anda tanpa markup tersembunyi.
+            </p>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-neutral-50 rounded-2xl border border-neutral-100">
+                <h3 className="text-sm font-bold text-neutral-900">1. Anggaran Iklan (Ad Spend ke Meta)</h3>
+                <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
+                  Mulai dari <strong>Rp 50.000 / hari</strong> (sekitar Rp 1,5 juta / bulan). Dana ini dibayarkan langsung dari rekening/kartu Anda ke akun Meta Ads pribadi atau bisnis Anda.
+                </p>
+              </div>
+              <div className="p-5 bg-[#FFF5F0] rounded-2xl border border-orange-200/60">
+                <h3 className="text-sm font-bold text-neutral-900">2. Jasa Manajemen &amp; Kreatif Agensi</h3>
+                <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
+                  Mencakup riset target pasar lokal Kalimantan Selatan, pembuatan materi video/desain iklan, copywriting penawaran, dan pemantauan performa harian agar terhindar dari boncos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Cross-Selling */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-16">
           <div className="bg-[#121214] rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden">
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 text-center space-y-4">
