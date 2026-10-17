@@ -107,6 +107,25 @@ export function PricingSection() {
           </div>
         ))}
       </div>
+
+      <div className="mt-8 bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+        <div>
+          <h4 className="text-xs sm:text-sm font-bold text-neutral-900">
+            Butuh Portal Instansi, Sistem Kustom, atau Integrasi Khusus?
+          </h4>
+          <p className="text-xs text-neutral-500 mt-1">
+            Tersedia skema penawaran resmi dengan Surat Perjanjian Kerja (SPK), standar SPBE, dan kelengkapan administrasi BAST.
+          </p>
+        </div>
+        <a
+          href={getWhatsAppUrl('website', 'Konsultasi Sistem Kustom / Instansi')}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whitespace-nowrap px-5 py-2.5 bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 font-semibold text-xs rounded-full transition-all shrink-0"
+        >
+          Konsultasi Kustom
+        </a>
+      </div>
     </div>
   )
 }

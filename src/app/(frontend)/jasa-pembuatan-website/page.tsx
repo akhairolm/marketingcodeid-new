@@ -68,24 +68,32 @@ const faqs = [
 
 const kategori = [
   {
-    icon: Code2,
-    title: 'Sistem Informasi & Portal Aplikasi Berbasis Web (Instansi, Dinas & Enterprise)',
-    desc: 'Pengembangan aplikasi web kustom untuk mendukung digitalisasi layanan publik dan operasional internal, seperti e-office, sistem informasi manajemen daerah, pendataan terpadu, buku tamu digital, hingga dashboard pelaporan real-time.',
-  },
-  {
     icon: Globe,
-    title: 'Website Bisnis Spesifik: Tour & Travel, Properti, dan Katalog Produk',
-    desc: 'Dirancang khusus untuk mempermudah pelanggan melihat paket layanan, jadwal keberangkatan, simulasi harga, hingga pemesanan langsung yang terintegrasi dengan WhatsApp admin Anda.',
+    title: 'Website UMKM & Katalog Produk Lokal',
+    desc: 'Dirancang khusus untuk mempermudah pelanggan melihat produk, layanan, atau menu kuliner dengan integrasi tombol pemesanan WhatsApp langsung.',
+    href: '/website-umkm',
+    ctaText: 'Pelajari Website UMKM',
   },
   {
     icon: Briefcase,
-    title: 'Website Company Profile Perusahaan, BUMN/BUMD, & Sekolah',
-    desc: 'Tingkatkan kepercayaan mitra bisnis, investor, dan masyarakat melalui situs profil resmi berdesain eksklusif yang merepresentasikan profesionalisme organisasi Anda.',
+    title: 'Website Company Profile Perusahaan & B2B',
+    desc: 'Tingkatkan kepercayaan mitra bisnis, investor, dan calon klien melalui situs profil resmi berdesain elegan yang merepresentasikan profesionalisme organisasi Anda.',
+    href: '/company-profile',
+    ctaText: 'Pelajari Company Profile',
   },
   {
     icon: Rocket,
     title: 'Landing Page Promosi Berkonversi Tinggi',
     desc: 'Halaman penawaran khusus dengan struktur copywriting persuasif dan waktu muat super cepat, sangat efektif untuk mendampingi kampanye iklan Meta Ads dan Google Ads.',
+    href: '/landing-page',
+    ctaText: 'Pelajari Landing Page',
+  },
+  {
+    icon: Code2,
+    title: 'Sistem Informasi & Portal Custom (Instansi & Enterprise)',
+    desc: 'Pengembangan aplikasi web kustom untuk mendukung digitalisasi layanan publik dan operasional internal, seperti e-office, buku tamu digital QR Code, hingga dashboard pelaporan real-time.',
+    href: '#paket-website',
+    ctaText: 'Konsultasi Sistem Kustom',
   },
 ]
 
@@ -222,12 +230,23 @@ export default function JasaPembuatanWebsitePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {kategori.map((item) => (
-              <div key={item.title} className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-orange-200 transition-all">
-                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
-                  <item.icon className="w-6 h-6" />
+              <div key={item.title} className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#D13D00] transition-all flex flex-col justify-between group">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605] mb-4 group-hover:scale-105 transition-transform">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#C23605] transition-colors">{item.title}</h3>
+                  <p className="text-xs text-neutral-600 mt-2 leading-relaxed">{item.desc}</p>
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 leading-snug">{item.title}</h3>
-                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">{item.desc}</p>
+                <div className="mt-5 pt-4 border-t border-neutral-100">
+                  <Link
+                    href={item.href}
+                    className="inline-flex items-center text-xs font-bold text-[#C23605] hover:text-[#B33400] transition-colors"
+                  >
+                    <span>{item.ctaText}</span>
+                    <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

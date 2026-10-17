@@ -139,10 +139,10 @@ export function FlagshipSection() {
             <div className="mt-4 space-y-3">
               <div className="p-3.5 bg-neutral-50 rounded-xl border border-neutral-100">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-neutral-800">Optimasi Kecepatan Core Web Vitals</h4>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Score 99</span>
+                  <h4 className="text-xs font-bold text-neutral-800">Optimasi Kecepatan &amp; Core Web Vitals</h4>
+                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">Performa Optimal</span>
                 </div>
-                <p className="text-[11px] text-neutral-500 mt-1">Restrukturisasi cache &amp; CDN Next.js untuk loading time &lt; 0.8s.</p>
+                <p className="text-[11px] text-neutral-500 mt-1">Optimasi struktur cache &amp; kompresi aset Next.js untuk akses cepat dan hemat kuota pengguna.</p>
                 <div className="mt-3 flex items-center justify-between text-[11px] text-neutral-500">
                   <div className="flex -space-x-1.5">
                     <span className="w-5 h-5 rounded-full bg-[#D13D00] text-white flex items-center justify-center text-[9px] font-bold">FE</span>

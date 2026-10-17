@@ -6,22 +6,23 @@ import { getPortfolioCards } from '@/lib/content/queries'
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: 'Software House & Digital Agency Kalimantan Selatan | MarketingCode.ID',
+  title: 'Jasa Pembuatan Website Profesional Kalimantan Selatan | MarketingCode.ID',
   description:
-    'Agensi pembuatan website, aplikasi mobile Android/iOS, dan iklan Meta Ads di Kandangan, HSS, Kalimantan Selatan. Solusi digital kustom untuk instansi, UMKM, & perusahaan.',
+    'Jasa pembuatan website profesional untuk UMKM dan bisnis di Banjarmasin, Banjarbaru, Kandangan, dan Kalimantan Selatan. Cepat, mobile-friendly, dan 100% hak milik tanpa biaya sewa.',
   keywords: [
-    'software house kalimantan selatan',
-    'digital agency kandangan',
-    'jasa it hulu sungai selatan',
-    'jasa pembuatan website kalsel',
-    'jasa aplikasi mobile kalsel',
-    'jasa meta ads kalsel',
+    'jasa pembuatan website kalimantan selatan',
+    'jasa website banjarmasin',
+    'jasa website banjarbaru',
+    'jasa website kandangan',
+    'jasa website umkm kalsel',
+    'jasa company profile kalsel',
+    'web developer kalimantan selatan',
   ],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Software House & Digital Agency Kalimantan Selatan | MarketingCode.ID',
+    title: 'Jasa Pembuatan Website Profesional Kalimantan Selatan | MarketingCode.ID',
     description:
-      'Agensi pembuatan website, aplikasi mobile Android/iOS, dan iklan Meta Ads di Kandangan, HSS, Kalimantan Selatan. Solusi digital kustom untuk instansi, UMKM, & perusahaan.',
+      'Jasa pembuatan website profesional untuk UMKM dan bisnis di Banjarmasin, Banjarbaru, Kandangan, dan Kalimantan Selatan. Cepat, mobile-friendly, dan 100% hak milik tanpa biaya sewa.',
     url: '/',
     siteName: 'MarketingCode.ID',
     locale: 'id_ID',
@@ -29,24 +30,44 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Software House & Digital Agency Kalimantan Selatan | MarketingCode.ID',
+    title: 'Jasa Pembuatan Website Profesional Kalimantan Selatan | MarketingCode.ID',
     description:
-      'Agensi pembuatan website, aplikasi mobile Android/iOS, dan iklan Meta Ads di Kandangan, HSS, Kalimantan Selatan.',
+      'Jasa pembuatan website profesional untuk UMKM dan bisnis di Banjarmasin, Banjarbaru, Kandangan, dan Kalimantan Selatan.',
   },
 }
 
 const homeFaqs = [
   {
-    q: 'Apakah melayani pengerjaan proyek di luar Kandangan dan Hulu Sungai Selatan?',
-    a: 'Ya. Selain melayani tatap muka langsung di area Kandangan (HSS) dan Banua Enam (Tapin, Barabai/HST, Amuntai/HSU, Balangan, Tabalong), kami juga menangani klien di Banjarbaru, Banjarmasin, serta berbagai kota di seluruh Indonesia secara online maupun onsite.',
+    q: 'Berapa biaya pembuatan website di MarketingCode?',
+    a: 'Biaya pembuatan website sangat transparan: mulai dari Rp 1,5 Juta untuk Landing Page Promosi, Rp 3,5 Juta untuk Website Katalog UMKM, hingga Rp 5,5 Juta untuk Company Profile Bisnis. Untuk kebutuhan portal instansi atau sistem kustom, biaya disesuaikan dengan Surat Perjanjian Kerja (SPK) resmi.',
   },
   {
-    q: 'Apakah website dan aplikasi yang dibuat bisa disesuaikan dengan kebutuhan spesifik instansi atau perusahaan?',
-    a: 'Tentu. Kami mengkhususkan diri pada pengembangan sistem kustom (tailor-made) yang mengikuti alur kerja, regulasi instansi/dinas, maupun proses bisnis unik perusahaan Anda.',
+    q: 'Berapa lama waktu pengerjaan website hingga siap online?',
+    a: 'Waktu pengerjaan berkisar antara 3 - 5 hari kerja untuk Landing Page, 7 - 14 hari kerja untuk Website UMKM, dan 10 - 21 hari kerja untuk Company Profile. Waktu pengerjaan bergantung pada kelengkapan materi dan kecepatan koordinasi revisi.',
   },
   {
-    q: 'Bagaimana cara memulai konsultasi pembuatan aplikasi atau kampanye iklan digital?',
-    a: 'Anda dapat menghubungi tim kami melalui tombol WhatsApp yang tersedia untuk menjadwalkan sesi diskusi kebutuhan dan estimasi anggaran secara gratis.',
+    q: 'Apakah biaya sudah termasuk domain dan cloud hosting?',
+    a: 'Ya, untuk paket Website UMKM dan Company Profile sudah termasuk gratis pendaftaran nama domain (.com atau .id) dan cloud hosting berkecepatan tinggi selama 1 tahun pertama. Pada tahun berikutnya, Anda hanya membayar biaya perpanjangan domain dan hosting standar.',
+  },
+  {
+    q: 'Apakah klien harus menyediakan seluruh materi tulisan dan foto sendiri?',
+    a: 'Jika Anda sudah memiliki foto produk, profil, atau logo, tim kami akan mengolah dan menatanya ke dalam website. Jika belum lengkap, kami siap membantu menyusun struktur teks dasar dan memilih visual pendukung yang relevan dengan bidang usaha Anda.',
+  },
+  {
+    q: 'Apakah website dapat dikelola sendiri setelah selesai dibuat?',
+    a: 'Tentu bisa. Kami menyediakan dashboard admin yang praktis dan mudah diakses langsung dari smartphone atau laptop. Kami juga memberikan panduan singkat agar Anda atau staf dapat menambah foto produk, mengganti harga, dan memperbarui informasi secara mandiri tanpa paham koding.',
+  },
+  {
+    q: 'Apakah bisa menambahkan fitur khusus atau aplikasi mobile di masa depan?',
+    a: 'Bisa. Website dibangun dengan arsitektur modern (Next.js) yang modular sehingga dapat ditingkatkan sewaktu-waktu, misalnya integrasi payment gateway, sistem booking, atau dikembangkan menjadi aplikasi mobile Android & iOS.',
+  },
+  {
+    q: 'Apakah tersedia garansi pemeliharaan dan dukungan teknis?',
+    a: 'Ya, seluruh paket mencakup garansi pemeliharaan teknis resmi untuk memastikan website tetap online, aman dari bug fungsional, dan tombol pemesanan WhatsApp berjalan normal.',
+  },
+  {
+    q: 'Apakah MarketingCode melayani klien di luar Banjarmasin dan Kandangan?',
+    a: 'Ya. Selain siap berdiskusi tatap muka di area Kandangan (HSS), Banua Enam (Tapin, HST, HSU, Balangan, Tabalong), Banjarbaru, dan Banjarmasin, kami juga melayani klien dari berbagai kota di seluruh Indonesia secara daring melalui WhatsApp dan Google Meet.',
   },
 ]
 

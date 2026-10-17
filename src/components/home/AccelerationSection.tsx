@@ -7,13 +7,13 @@ export function AccelerationSection() {
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
           <TrendingUp className="w-3.5 h-3.5" />
-          <span>Growth &amp; Acceleration</span>
+          <span>Layanan Pendukung Pertumbuhan</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-          Skalakan Website Anda dengan Pemasaran &amp; Konten Kreatif
+          Dukung Website Anda dengan Pemasaran Digital &amp; Konten Kreatif
         </h2>
         <p className="text-neutral-500 text-sm mt-2 max-w-2xl mx-auto">
-          Website hebat membutuhkan traffic pembeli dan materi video memikat. Padukan arsitektur digital Anda dengan strategi akuisisi teruji untuk melipatgandakan return on investment (ROI).
+          Website yang baik membutuhkan calon pelanggan yang tepat. Lengkapi kehadiran online bisnis Anda dengan pengelolaan iklan digital dan video promosi yang terstruktur.
         </p>
       </div>
 
@@ -26,66 +26,53 @@ export function AccelerationSection() {
                   <BarChart3 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-neutral-900">Digital Marketing &amp; Performance Ads</h3>
-                  <span className="text-xs text-neutral-500">Kampanye Berbasis ROI &amp; Penjualan Nyata</span>
+                  <h3 className="text-lg font-bold text-neutral-900">Pengelolaan Iklan Meta Ads (FB &amp; IG)</h3>
+                  <span className="text-xs text-neutral-500">Iklan Terarah &amp; Terhubung ke WhatsApp</span>
                 </div>
               </div>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                +320% ROI
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-50 text-[#C23605] border border-orange-200">
+                Terukur
               </span>
             </div>
 
             <p className="text-xs text-neutral-600 mt-4 leading-relaxed">
-              Lupakan anggaran iklan yang terbuang sia-sia. Spesialis pemasaran digital kami merancang iklan yang presisi: setiap rupiah biaya promosi terlacak akurat, menjangkau calon pembeli siap transaksi, dan mengarahkannya langsung ke WhatsApp bisnis Anda.
+              Jangkau calon pembeli potensial di Kalimantan Selatan maupun seluruh Indonesia. Kami membantu menyusun penargetan audiens berbasis data, pemasangan pelacak piksel yang benar, serta materi iklan yang mendorong kontak WhatsApp langsung.
             </p>
 
             <div className="mt-5 p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
-              <div className="flex justify-between items-baseline mb-2">
-                <span className="text-[10px] text-neutral-500 font-semibold uppercase">Total Penjualan Klien</span>
-                <span className="text-sm font-black text-neutral-900">Rp 842.500.000</span>
-              </div>
-              <div className="flex items-end justify-between h-20 px-2 gap-2 border-b border-neutral-200/70 pb-2">
-                <div className="w-full flex flex-col items-center gap-1">
-                  <div className="w-full bg-orange-100 rounded-t h-6" />
-                  <span className="text-[9px] text-neutral-500">Bln 1</span>
+              <span className="text-[10px] text-neutral-500 font-semibold uppercase tracking-wider block mb-3">
+                Alur Kerja Pengelolaan Iklan
+              </span>
+              <div className="space-y-2 text-xs text-neutral-700">
+                <div className="flex items-center justify-between p-2 bg-white rounded-xl border border-neutral-200/60">
+                  <span className="font-medium">1. Riset Audiens &amp; Kata Kunci</span>
+                  <span className="text-[10px] text-neutral-500">Target Geografis</span>
                 </div>
-                <div className="w-full flex flex-col items-center gap-1">
-                  <div className="w-full bg-orange-200 rounded-t h-9" />
-                  <span className="text-[9px] text-neutral-500">Bln 2</span>
+                <div className="flex items-center justify-between p-2 bg-white rounded-xl border border-neutral-200/60">
+                  <span className="font-medium">2. Setup Meta Pixel &amp; CAPI</span>
+                  <span className="text-[10px] text-emerald-600 font-semibold">Pelacakan Akurat</span>
                 </div>
-                <div className="w-full flex flex-col items-center gap-1">
-                  <div className="w-full bg-orange-300 rounded-t h-12" />
-                  <span className="text-[9px] text-neutral-500">Bln 3</span>
+                <div className="flex items-center justify-between p-2 bg-white rounded-xl border border-neutral-200/60">
+                  <span className="font-medium">3. Pengujian Materi &amp; Evaluasi</span>
+                  <span className="text-[10px] text-neutral-500">Laporan Mingguan</span>
                 </div>
-                <div className="w-full flex flex-col items-center gap-1">
-                  <div className="w-full bg-orange-400 rounded-t h-15" />
-                  <span className="text-[9px] text-neutral-500">Bln 4</span>
-                </div>
-                <div className="w-full flex flex-col items-center gap-1">
-                  <div className="w-full bg-[#D13D00] rounded-t h-18 shadow-glow" />
-                  <span className="text-[9px] font-bold text-[#C23605]">Bln 5</span>
-                </div>
-              </div>
-              <div className="mt-2 text-[11px] text-neutral-500 flex justify-between">
-                <span>Biaya Akuisisi (CAC): <strong>Turun 42%</strong></span>
-                <span className="text-emerald-700 font-semibold">Scaling Positif</span>
               </div>
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-neutral-600">
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Meta &amp; Google Ads</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Organic SEO Rank #1</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Funnel Sales Audit</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Transparent Analytics</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Meta Ads (FB &amp; IG)</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Google Search Ads</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Pengaturan Click-to-WA</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Laporan Transparan</div>
             </div>
           </div>
 
           <div className="mt-8 pt-4 border-t border-neutral-100">
             <Link
-              href="/digital-marketing"
+              href="/jasa-iklan-meta-ads"
               className="w-full py-3 px-5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow flex items-center justify-center gap-2 transition-all"
             >
-              <span>Jelajahi Layanan Digital Marketing</span>
+              <span>Pelajari Layanan Meta Ads</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -99,45 +86,45 @@ export function AccelerationSection() {
                   <Film className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-neutral-900">Creative Video Editing &amp; Motion</h3>
-                  <span className="text-xs text-neutral-500">Konten Penjualan Hook &amp; Retensi Tinggi</span>
+                  <h3 className="text-lg font-bold text-neutral-900">Produksi &amp; Editing Video Kreatif</h3>
+                  <span className="text-xs text-neutral-500">Format Vertikal Reels, TikTok &amp; Shorts</span>
                 </div>
               </div>
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-50 text-[#C23605] border border-orange-200">
-                Hook 3 Detik
+                Format 9:16
               </span>
             </div>
 
             <p className="text-xs text-neutral-600 mt-4 leading-relaxed">
-              Tingkatkan retensi audiens dengan materi video berstandar tinggi. Dari video iklan ads vertikal (TikTok/Reels) yang memicu klik hingga company showreel yang membangun kredibilitas instan.
+              Tingkatkan daya tarik produk Anda melalui materi video yang rapi dan komunikatif. Dirancang untuk menyampaikan pesan inti dalam beberapa detik pertama agar calon pembeli tertarik berkunjung ke website atau menghubungi WhatsApp Anda.
             </p>
 
             <div className="mt-5 p-4 bg-neutral-900 text-white rounded-2xl border border-neutral-800 relative overflow-hidden">
               <div className="flex items-center justify-between text-xs pb-3 border-b border-neutral-800">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <span className="text-[11px] font-mono text-neutral-300">Format 9:16 Vertical Ads</span>
+                  <span className="text-[11px] font-mono text-neutral-300">Format 9:16 Vertical Video</span>
                 </div>
-                <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-neutral-300">4K 60fps Master</span>
+                <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-neutral-300">Full HD Export</span>
               </div>
 
               <div className="py-4 text-center">
                 <Sparkles className="w-8 h-8 text-[#FF5C28] mx-auto mb-2" />
-                <h4 className="text-xs font-bold text-white">Video Iklan Vertikal Kreatif &amp; Berkonversi Tinggi</h4>
-                <p className="text-[11px] text-neutral-300 mt-0.5">Teks animasi memikat, transisi rapi, dan pesan jualan tajam untuk FYP &amp; orderan langsung</p>
+                <h4 className="text-xs font-bold text-white">Materi Video Pendukung Promosi Produk &amp; Jasa</h4>
+                <p className="text-[11px] text-neutral-300 mt-0.5">Penataan narasi, subtitle dinamis, pemotongan ritme rapi, dan ajakan pesan yang jelas.</p>
               </div>
 
               <div className="flex items-center justify-between text-[10px] text-neutral-300 pt-2 border-t border-neutral-800">
-                <span>Platform: TikTok • Reels • Shorts</span>
-                <span className="text-emerald-400 font-semibold">+280% Watch Retention</span>
+                <span>Platform: Instagram Reels • TikTok • YouTube Shorts</span>
+                <span className="text-neutral-400">Siap Pasang Iklan</span>
               </div>
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-2 text-xs text-neutral-600">
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> TikTok &amp; Reels Ads</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Corporate Showreel</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Kinetic Typography &amp; SFX</div>
-              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Monthly Retainer Squad</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Video Iklan Vertikal (9:16)</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Subtitle &amp; Motion Typography</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Video Profil Usaha Ringkas</div>
+              <div className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#C23605]" /> Format Siap Pakai untuk Medsos</div>
             </div>
           </div>
 
@@ -146,7 +133,7 @@ export function AccelerationSection() {
               href="/video-editing"
               className="w-full py-3 px-5 bg-neutral-900 hover:bg-black text-white font-bold text-xs rounded-full flex items-center justify-center gap-2 transition-all"
             >
-              <span>Jelajahi Layanan Video Editing</span>
+              <span>Pelajari Layanan Video Editing</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
