@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Sparkles } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { trackWhatsAppClick } from '@/lib/analytics'
 
@@ -12,7 +11,7 @@ export function HeroSection() {
       <link
         rel="preload"
         as="image"
-        href="/images/hero-team-mobile.webp"
+        href="/images/hero-illustration-mobile.webp"
         type="image/webp"
         media="(max-width: 640px)"
         fetchPriority="high"
@@ -20,7 +19,7 @@ export function HeroSection() {
       <link
         rel="preload"
         as="image"
-        href="/images/hero-team.webp"
+        href="/images/hero-illustration.webp"
         type="image/webp"
         media="(min-width: 641px)"
         fetchPriority="high"
@@ -85,59 +84,34 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="lg:col-span-5">
-          <div className="relative bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-neutral-200/80 aspect-[16/10] sm:aspect-[4/3] group">
+        <div className="lg:col-span-5 flex justify-center items-center">
+          <div className="relative w-full max-w-lg lg:max-w-none">
+            <div
+              className="absolute -inset-4 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-2xl -z-10"
+              aria-hidden="true"
+            />
             <picture>
               <source
                 media="(max-width: 640px)"
-                srcSet="/images/hero-team-mobile.webp"
+                srcSet="/images/hero-illustration-mobile.webp"
                 type="image/webp"
               />
-              <source srcSet="/images/hero-team.webp" type="image/webp" />
+              <source
+                srcSet="/images/hero-illustration.webp"
+                type="image/webp"
+              />
               <img
-                src="/images/hero-team.webp"
-                alt="Pratinjau rancangan website modern dan responsif untuk UMKM Kalimantan Selatan"
-                title="Website Modern & Responsif MarketingCode.ID"
-                width={1200}
-                height={800}
+                src="/images/hero-illustration.png"
+                alt="Solusi Pembuatan Website, Aplikasi Mobile, dan Optimasi Digital MarketingCode.ID Kalimantan Selatan"
+                title="Layanan Digital MarketingCode.ID Kalimantan Selatan"
+                width={1024}
+                height={682}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-500 ease-out"
               />
             </picture>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
-
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-medium mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-[#FF5C28]" />
-                <span>Next.js · Mobile First · Cepat</span>
-              </div>
-              <h2 className="text-lg sm:text-xl font-bold tracking-tight max-w-xs text-white">
-                Rancangan Website Terstruktur &amp; Ramah Pelanggan
-              </h2>
-              <p className="text-xs text-neutral-300 mt-2 max-w-xs leading-relaxed">
-                Katalog produk teratur, tampilan ringan di ponsel, dan tombol pemesanan WhatsApp langsung.
-              </p>
-              <Link
-                href="#portfolio"
-                className="mt-4 inline-flex items-center gap-1.5 px-5 py-2.5 bg-white hover:bg-neutral-100 text-neutral-900 text-xs font-bold rounded-full shadow-lg transition-all transform hover:scale-105"
-              >
-                <span>Eksplorasi Studi Kasus</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#D13D00]" />
-              </Link>
-            </div>
-
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs">
-              <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px]">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Standar Modern Web 2026</span>
-              </div>
-              <span className="bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white">
-                Kalimantan Selatan
-              </span>
-            </div>
           </div>
         </div>
       </div>
