@@ -128,16 +128,20 @@ export function TestimonialsSection() {
         </div>
       </div>
 
-      {/* Alternating Zigzag Story Cards */}
+      {/* Unified Story Cards */}
       <div className="space-y-6 sm:space-y-8">
         {STORIES.map((story, index) => {
           const isEven = index % 2 === 0
 
-          // Visual Preview Card Component
-          const visualCard = (
+          // Visual Preview Column
+          const visualColumn = (
             <div
               key={`visual-${story.id}`}
-              className="bg-white rounded-3xl overflow-hidden border border-neutral-200/80 shadow-card hover:border-[#D13D00]/50 transition-all flex flex-col justify-between group"
+              className={`flex flex-col justify-between h-full bg-neutral-50/50 ${
+                isEven
+                  ? 'order-1 md:order-1 border-b md:border-b-0 md:border-r border-neutral-200/70'
+                  : 'order-1 md:order-2 border-b md:border-b-0 border-neutral-200/70'
+              }`}
             >
               {/* Browser Mockup Top Bar */}
               <div className="bg-neutral-100/90 px-4 py-2.5 border-b border-neutral-200/70 flex items-center justify-between">
@@ -153,7 +157,7 @@ export function TestimonialsSection() {
               </div>
 
               {/* Project Image & Badge Overlay */}
-              <div className="relative aspect-video sm:aspect-16/10 overflow-hidden bg-neutral-100">
+              <div className="relative min-h-[240px] sm:min-h-[280px] flex-1 overflow-hidden bg-neutral-100">
                 <Image
                   src={story.image}
                   alt={story.imageAlt}
@@ -185,18 +189,22 @@ export function TestimonialsSection() {
               </div>
 
               {/* Bottom Card Footer */}
-              <div className="p-4 bg-white border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-600">
+              <div className="px-4 py-3 bg-white border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-600">
                 <span className="font-medium text-neutral-800">{story.businessType}</span>
                 <span className="text-[11px] text-neutral-600">{story.location}</span>
               </div>
             </div>
           )
 
-          // Testimonial Quote Card Component
-          const quoteCard = (
+          // Testimonial Quote Column
+          const quoteColumn = (
             <div
               key={`quote-${story.id}`}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card flex flex-col justify-between hover:border-[#D13D00]/50 transition-all relative overflow-hidden"
+              className={`p-6 sm:p-8 flex flex-col justify-between h-full relative overflow-hidden bg-white ${
+                isEven
+                  ? 'order-2 md:order-2'
+                  : 'order-2 md:order-1 md:border-r border-neutral-200/70'
+              }`}
             >
               {/* Subtle background glow */}
               <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-[#FFF5F0] rounded-full blur-2xl pointer-events-none" />
@@ -240,18 +248,14 @@ export function TestimonialsSection() {
           )
 
           return (
-            <div key={story.id} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-              {isEven ? (
-                <>
-                  <div className="order-1 md:order-1">{visualCard}</div>
-                  <div className="order-2 md:order-2">{quoteCard}</div>
-                </>
-              ) : (
-                <>
-                  <div className="order-2 md:order-1">{quoteCard}</div>
-                  <div className="order-1 md:order-2">{visualCard}</div>
-                </>
-              )}
+            <div
+              key={story.id}
+              className="bg-white rounded-3xl overflow-hidden border border-neutral-200/80 shadow-card hover:border-[#D13D00]/50 transition-all group"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 items-stretch">
+                {visualColumn}
+                {quoteColumn}
+              </div>
             </div>
           )
         })}
