@@ -1,6 +1,7 @@
 'use client'
 
-import { Check, MessageCircle } from 'lucide-react'
+import Image from 'next/image'
+import { Check } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { trackWhatsAppClick } from '@/lib/analytics'
 
@@ -26,7 +27,13 @@ export function FinalCtaSection() {
               onClick={() => trackWhatsAppClick({ position: 'final_cta_primary', service: 'website' })}
               className="w-full sm:w-auto px-8 py-3 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4 text-white" />
+              <Image
+                src="/icons/flaticon/whatsapp.svg"
+                alt=""
+                width={16}
+                height={16}
+                className="w-4 h-4 shrink-0 object-contain"
+              />
               Konsultasi Website Sekarang
             </a>
           </div>

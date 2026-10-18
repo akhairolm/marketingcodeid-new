@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import '@/app/(frontend)/tiptap.css'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Clock, MessageCircle } from 'lucide-react'
+import { ArrowLeft, Clock } from 'lucide-react'
 import {
   getArticleBySlug,
   getArticleSitemapEntries,
@@ -236,7 +236,13 @@ export default async function ArticleDetailPage({ params }: PageProps<'/blog/[sl
                     rel="noopener noreferrer"
                     className="mt-4 w-full inline-flex items-center justify-center gap-1.5 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors whitespace-nowrap"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <Image
+                      src="/icons/flaticon/whatsapp.svg"
+                      alt=""
+                      width={14}
+                      height={14}
+                      className="w-3.5 h-3.5 shrink-0 object-contain"
+                    />
                     Chat WhatsApp
                   </a>
                 </div>

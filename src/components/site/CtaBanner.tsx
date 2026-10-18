@@ -1,6 +1,7 @@
 import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Check, MessageCircle } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 interface CtaBannerProps {
   title: string
@@ -25,7 +26,13 @@ export function CtaBanner({ title, description, whatsappHref, secondary }: CtaBa
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-7 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 whitespace-nowrap"
             >
-              <MessageCircle className="w-4 h-4" />
+              <Image
+                src="/icons/flaticon/whatsapp.svg"
+                alt=""
+                width={16}
+                height={16}
+                className="w-4 h-4 shrink-0 object-contain"
+              />
               Diskusi via WhatsApp
             </a>
             {secondary && (

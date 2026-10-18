@@ -10,7 +10,6 @@ import {
   CalendarDays,
   Layers,
   Lightbulb,
-  MessageCircle,
   Quote,
   Target,
   Timer,
@@ -171,7 +170,13 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all hover:-translate-y-0.5"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 shrink-0 object-contain"
+                  />
                   {isGovernment ? 'Konsultasi KAK & RAB via WhatsApp' : 'Bangun Solusi Serupa'}
                 </a>
                 {item.liveUrl && (
@@ -307,7 +312,13 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                   rel="noopener noreferrer"
                   className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#FF5C28] hover:bg-[#EA4510] text-white text-xs font-semibold rounded-full transition-all shadow-sm"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" />
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="w-3.5 h-3.5 shrink-0 object-contain"
+                  />
                   Konsultasi KAK & RAB
                 </a>
               </div>
@@ -323,7 +334,13 @@ export default async function PortfolioDetailPage({ params }: PageProps<'/portfo
                   rel="noopener noreferrer"
                   className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" />
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="w-3.5 h-3.5 shrink-0 object-contain"
+                  />
                   Diskusi via WhatsApp
                 </a>
               </div>

@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useMemo, useState } from 'react'
+import Image from 'next/image'
 import {
   HelpCircle,
   Plus,
   Minus,
   Search,
   X,
-  MessageCircle,
   Sparkles,
   ShieldCheck,
   CheckCircle2,
@@ -195,7 +195,13 @@ export function FaqClient({ faqs }: { faqs: FaqItem[] }) {
                 }
                 className="px-4 py-2 bg-[#D13D00] hover:bg-[#B33400] text-xs font-bold text-white rounded-full transition-colors inline-flex items-center gap-1.5 shadow-sm"
               >
-                <MessageCircle className="w-3.5 h-3.5" />
+                <Image
+                  src="/icons/flaticon/whatsapp.svg"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="w-3.5 h-3.5 shrink-0 object-contain"
+                />
                 Tanya Tim via WhatsApp
               </a>
             </div>
@@ -266,7 +272,13 @@ export function FaqClient({ faqs }: { faqs: FaqItem[] }) {
             }
             className="bg-[#D13D00] hover:bg-[#B33400] text-white text-xs font-bold px-6 py-3.5 rounded-full shadow-glow whitespace-nowrap inline-flex items-center gap-2 hover:-translate-y-0.5 active:translate-y-0 transition-all shrink-0"
           >
-            <MessageCircle className="w-4 h-4" />
+            <Image
+              src="/icons/flaticon/whatsapp.svg"
+              alt=""
+              width={16}
+              height={16}
+              className="w-4 h-4 shrink-0 object-contain"
+            />
             Tanya Tim via WhatsApp
           </a>
         </div>

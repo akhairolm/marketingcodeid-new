@@ -11,7 +11,6 @@ import {
   TrendingUp,
   CheckCircle2,
   Check,
-  MessageCircle,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, serviceSchema, breadcrumbSchema } from '@/lib/seo'
@@ -185,7 +184,13 @@ export default function DigitalMarketingPage() {
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 shrink-0 object-contain"
+                  />
                   Mulai Konsultasi via WhatsApp
                 </a>
                 <Link

@@ -9,10 +9,21 @@ import {
   Video,
   BarChart3,
   HelpCircle,
-  MessageCircle,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <Image
+      src="/icons/flaticon/whatsapp.svg"
+      alt="WhatsApp"
+      width={24}
+      height={24}
+      className={className ?? 'w-6 h-6 shrink-0'}
+    />
+  )
+}
 
 export const metadata: Metadata = {
   title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA',
@@ -80,7 +91,7 @@ const painPoints = [
 
 const strategi = [
   {
-    icon: MessageCircle,
+    icon: WhatsAppIcon,
     title: 'Optimasi Kampanye Click-to-WhatsApp (CTWA) & Pelacakan Konversi',
     desc: 'Kami mengarahkan algoritma Meta untuk mencari profil pengguna yang paling berpotensi menghubungi WhatsApp Anda dan melakukan pembelian.',
   },
