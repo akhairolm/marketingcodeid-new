@@ -7,7 +7,7 @@ import { trackWhatsAppClick } from '@/lib/analytics'
 
 export function HeroSection() {
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 lg:pt-12">
       <link
         rel="preload"
         as="image"
@@ -24,8 +24,8 @@ export function HeroSection() {
         media="(min-width: 641px)"
         fetchPriority="high"
       />
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        <div className="lg:col-span-7 space-y-6 text-left">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+        <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
             <span className="text-xs font-semibold text-neutral-700 tracking-tight">
               Jasa Pembuatan Website · Kalimantan Selatan
@@ -84,10 +84,10 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 flex justify-center items-center">
-          <div className="relative w-full max-w-lg lg:max-w-none">
+        <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
+          <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
             <div
-              className="absolute -inset-4 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-2xl -z-10"
+              className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-3xl -z-10"
               aria-hidden="true"
             />
             <picture>
@@ -109,7 +109,7 @@ export function HeroSection() {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="w-full h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-500 ease-out"
+                className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out"
               />
             </picture>
           </div>
