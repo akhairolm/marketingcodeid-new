@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
-import { Tag, Check, ArrowRight } from 'lucide-react'
+import { Tag, Check } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { trackWhatsAppClick } from '@/lib/analytics'
 import { pricingData } from './home-data'
@@ -138,68 +137,6 @@ export function PricingSection() {
         <span className="shrink-0 text-[11px] font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-1 rounded-full w-fit">
           100% Hak Milik
         </span>
-      </div>
-
-      {tab === 'web' && (
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-          <div className="p-5 bg-white border border-neutral-200/80 rounded-2xl shadow-card flex flex-col justify-between">
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Layanan Pendukung</span>
-              <h4 className="text-sm font-bold text-neutral-900 mt-1">Aplikasi Mobile (Android &amp; iOS)</h4>
-              <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
-                Pengembangan aplikasi cross-platform Flutter untuk presensi, e-government, dan booking operasional. Mulai Rp 18 Juta.
-              </p>
-            </div>
-            <Link
-              href="/jasa-pembuatan-aplikasi-mobile"
-              className="inline-flex items-center text-xs font-bold text-[#D13D00] hover:underline mt-3"
-            >
-              <span>Pelajari Layanan Mobile App</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Link>
-          </div>
-          <div className="p-5 bg-white border border-neutral-200/80 rounded-2xl shadow-card flex flex-col justify-between">
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Layanan Pendukung</span>
-              <h4 className="text-sm font-bold text-neutral-900 mt-1">Manajemen Iklan Meta Ads</h4>
-              <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
-                Setup riset audiens tertarget, Meta Pixel, video Reels promosi, dan optimasi Click-to-WhatsApp. Mulai Rp 3,5 Juta/bln.
-              </p>
-            </div>
-            <Link
-              href="/jasa-iklan-meta-ads"
-              className="inline-flex items-center text-xs font-bold text-[#D13D00] hover:underline mt-3"
-            >
-              <span>Pelajari Layanan Meta Ads</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Link>
-          </div>
-        </div>
-      )}
-
-      <div className="mt-8 bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
-        <div>
-          <h4 className="text-xs sm:text-sm font-bold text-neutral-900">
-            Butuh Portal Instansi, Sistem Kustom, atau Integrasi Khusus?
-          </h4>
-          <p className="text-xs text-neutral-500 mt-1">
-            Tersedia skema penawaran resmi dengan Surat Perjanjian Kerja (SPK), standar SPBE, dan kelengkapan administrasi BAST.
-          </p>
-        </div>
-        <a
-          href={getWhatsAppUrl('website', 'Konsultasi Sistem Kustom / Instansi')}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() =>
-            trackWhatsAppClick({
-              position: 'pricing_custom_system',
-              service: 'custom',
-            })
-          }
-          className="whitespace-nowrap px-5 py-2.5 bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 font-semibold text-xs rounded-full transition-all shrink-0"
-        >
-          Konsultasi Kustom
-        </a>
       </div>
     </div>
   )
