@@ -33,11 +33,15 @@ export function HeroSection() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
-            Website Profesional untuk <span className="text-[#FF5C28]">UMKM &amp; Bisnis</span> yang Ingin Tampil Lebih Dipercaya
+            Website Profesional untuk <span className="text-[#FF5C28]">UMKM &amp; Bisnis</span> yang
+            Ingin Tampil Lebih Dipercaya
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
-            Kami membantu bisnis menampilkan layanan, produk, dan informasi penting melalui website yang rapi, responsif, dan memudahkan calon pelanggan menghubungi Anda. Mulai dari landing page sederhana hingga company profile bisnis di Banjarmasin, Banjarbaru, Kandangan, dan seluruh Kalimantan Selatan.
+            Kami membantu bisnis menampilkan layanan, produk, dan informasi penting melalui website
+            yang rapi, responsif, dan memudahkan calon pelanggan menghubungi Anda. Mulai dari
+            landing page sederhana hingga company profile bisnis di Banjarmasin, Banjarbaru,
+            Kandangan, dan seluruh Kalimantan Selatan.
           </p>
 
           <div className="pt-2 flex flex-col items-start gap-3">
@@ -50,11 +54,11 @@ export function HeroSection() {
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
               >
                 <Image
-                  src="/icons/flaticon/chat.svg"
+                  src="/icons/flaticon/whatsapp.svg"
                   alt=""
-                  width={22}
-                  height={22}
-                  className="w-5 h-5 shrink-0"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 shrink-0"
                 />
                 <span>Konsultasi Website via WhatsApp</span>
               </a>
@@ -65,22 +69,6 @@ export function HeroSection() {
                 <span>Lihat Portofolio</span>
               </Link>
             </div>
-            <p className="text-xs sm:text-sm text-neutral-500 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="inline-flex items-center gap-1">
-                <Image
-                  src="/icons/flaticon/quick.svg"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="w-3.5 h-3.5 shrink-0"
-                />
-                Konsultasi awal tanpa biaya
-              </span>
-              <span>•</span>
-              <span>Siap diskusi tatap muka di Kalsel</span>
-              <span>•</span>
-              <span>100% Hak Milik Tanpa Biaya Sewa</span>
-            </p>
           </div>
         </div>
 
@@ -96,10 +84,7 @@ export function HeroSection() {
                 srcSet="/images/hero-illustration-mobile.webp"
                 type="image/webp"
               />
-              <source
-                srcSet="/images/hero-illustration.webp"
-                type="image/webp"
-              />
+              <source srcSet="/images/hero-illustration.webp" type="image/webp" />
               <img
                 src="/images/hero-illustration.png"
                 alt="Solusi Pembuatan Website, Aplikasi Mobile, dan Optimasi Digital MarketingCode.ID Kalimantan Selatan"
