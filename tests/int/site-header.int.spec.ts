@@ -15,33 +15,44 @@ import DigitalMarketingPage from '@/app/(frontend)/digital-marketing/page'
 import VideoEditingPage from '@/app/(frontend)/video-editing/page'
 import HomePageClient from '@/components/home/home-client'
 
-describe('SiteHeader route-based nav', () => {
+describe('SiteHeader unified public nav', () => {
   beforeEach(() => cleanup())
 
-  it('renders the homepage nav with services dropdown on "/"', () => {
+  it('renders the unified nav with services dropdown on "/" without anchor smooth scrolls', () => {
     pathnameRef.current = '/'
     render(React.createElement(SiteHeader))
 
-    // Homepage nav exposes the "Layanan Utama" dropdown trigger.
-    expect(screen.getByRole('button', { name: /layanan utama/i })).toBeTruthy()
+    // Exposes the "Layanan" dropdown trigger.
+    expect(screen.getByRole('button', { name: /layanan/i })).toBeTruthy()
+    // Exposes "Beranda", "Portofolio", and "Blog" links.
+    expect(screen.getByRole('link', { name: 'Beranda' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Portofolio' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Blog' })).toBeTruthy()
     // Only one <header> element should exist on the page.
     expect(document.querySelectorAll('header').length).toBe(1)
-  })
-
-  it('labels homepage navigation and preserves anchors', () => {
-    pathnameRef.current = '/'
-    render(React.createElement(SiteHeader))
-    expect(screen.getByRole('navigation', { name: 'Navigasi utama' })).toBeTruthy()
-    for (const href of ['#akselerasi', '#harga', '#faq', '#konsultasi']) {
-      expect(document.querySelector(`a[href="${href}"]`)).not.toBeNull()
+    // No internal smooth scroll anchors in the header
+    for (const href of ['#akselerasi', '#harga', '#faq', '#konsultasi', '#alur-kerja']) {
+      expect(document.querySelector(`header a[href="${href}"]`)).toBeNull()
     }
   })
 
-  it('closes homepage dropdown and mobile drawer with Escape', () => {
+  it('renders identical unified nav structure on interior routes like "/blog"', () => {
+    pathnameRef.current = '/blog'
+    render(React.createElement(SiteHeader))
+
+    // On interior routes, the same "Layanan" dropdown and top-level links exist.
+    expect(screen.getByRole('button', { name: /layanan/i })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Beranda' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Portofolio' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Blog' })).toBeTruthy()
+    expect(document.querySelectorAll('header').length).toBe(1)
+  })
+
+  it('closes services dropdown and mobile drawer with Escape key', () => {
     pathnameRef.current = '/'
     render(React.createElement(SiteHeader))
-    const dropdown = screen.getByRole('button', { name: /layanan utama/i })
-    const mobile = screen.getByRole('button', { name: 'Toggle Menu' })
+    const dropdown = screen.getByRole('button', { name: /layanan/i })
+    const mobile = screen.getByRole('button', { name: /buka menu/i })
     fireEvent.click(dropdown)
     fireEvent.click(mobile)
     expect(dropdown.getAttribute('aria-expanded')).toBe('true')
@@ -67,15 +78,5 @@ describe('SiteHeader route-based nav', () => {
       React.createElement(SiteFooter),
     ))
     expect(document.querySelectorAll('footer').length).toBe(1)
-  })
-
-  it('renders the interior-page capsule nav on non-home routes', () => {
-    pathnameRef.current = '/blog'
-    render(React.createElement(SiteHeader))
-
-    // Interior nav has an explicit top-level "Beranda" link, no dropdown trigger.
-    expect(screen.getByRole('link', { name: 'Beranda' })).toBeTruthy()
-    expect(screen.queryByRole('button', { name: /layanan utama/i })).toBeNull()
-    expect(document.querySelectorAll('header').length).toBe(1)
   })
 })
