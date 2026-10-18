@@ -24,10 +24,11 @@ describe('SiteHeader unified public nav', () => {
 
     // Exposes the "Layanan" dropdown trigger.
     expect(screen.getByRole('button', { name: /layanan/i })).toBeTruthy()
-    // Exposes "Beranda", "Portofolio", and "Blog" links.
+    // Exposes "Beranda", "Portofolio", "Blog", and "Pertanyaan" links.
     expect(screen.getByRole('link', { name: 'Beranda' })).toBeTruthy()
     expect(screen.getByRole('link', { name: 'Portofolio' })).toBeTruthy()
     expect(screen.getByRole('link', { name: 'Blog' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Pertanyaan' })).toBeTruthy()
     // Only one <header> element should exist on the page.
     expect(document.querySelectorAll('header').length).toBe(1)
     // No internal smooth scroll anchors in the header
@@ -45,6 +46,7 @@ describe('SiteHeader unified public nav', () => {
     expect(screen.getByRole('link', { name: 'Beranda' })).toBeTruthy()
     expect(screen.getByRole('link', { name: 'Portofolio' })).toBeTruthy()
     expect(screen.getByRole('link', { name: 'Blog' })).toBeTruthy()
+    expect(screen.getByRole('link', { name: 'Pertanyaan' })).toBeTruthy()
     expect(document.querySelectorAll('header').length).toBe(1)
   })
 

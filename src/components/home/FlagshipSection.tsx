@@ -1,4 +1,5 @@
 import { Code, Code2, Palette, Smartphone, Check, BellRing, ChevronRight } from 'lucide-react'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
 
 const pillars = [
   {
@@ -186,7 +187,9 @@ export function FlagshipSection() {
 
             <div className="pt-2">
               <a
-                href="#konsultasi"
+                href={getWhatsAppUrl('website')}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center text-xs font-bold text-white bg-[#D13D00] hover:bg-[#B33400] px-5 py-2.5 rounded-full transition-all shadow-sm"
               >
                 Konsultasikan Solusi Teknis

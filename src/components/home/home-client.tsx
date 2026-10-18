@@ -8,16 +8,13 @@ import { TrustSection } from './TrustSection'
 import type { PortfolioProject } from './home-data'
 
 const FlagshipSection = dynamic(() => import('./FlagshipSection').then((m) => m.FlagshipSection))
-const AccelerationSection = dynamic(() => import('./AccelerationSection').then((m) => m.AccelerationSection))
-const FaqSection = dynamic(() => import('./FaqSection').then((m) => m.FaqSection))
-const ConsultationSection = dynamic(() => import('./ConsultationSection').then((m) => m.ConsultationSection))
 const FinalCtaSection = dynamic(() => import('./FinalCtaSection').then((m) => m.FinalCtaSection))
 
+
 export default function HomePageClient({
-  faqs,
   portfolioHighlights,
 }: {
-  faqs: { q: string; a: string }[]
+  faqs?: { q: string; a: string }[]
   portfolioHighlights: PortfolioProject[]
 }) {
   return (
@@ -26,34 +23,28 @@ export default function HomePageClient({
         {/* 1. Hero */}
         <HeroSection />
 
-        {/* 2 & 3. Pilih Layanan Sesuai Kebutuhan & Jalur Audiens */}
+        {/* 2. Pilih Layanan Sesuai Kebutuhan */}
         <ServicesHub />
 
-        {/* 4. Portofolio & Studi Kasus Nyata */}
+        {/* 3. Portofolio & Studi Kasus Nyata */}
         <PortfolioSection projects={portfolioHighlights} />
 
-        {/* 5. Paket & Harga Transparan */}
+        {/* 4. Paket & Harga Transparan */}
         <PricingSection />
 
-        {/* 6. Cara Kerja 6 Langkah Terstruktur */}
+        {/* 5. Cara Kerja 6 Langkah Terstruktur */}
         <WorkflowSection />
 
-        {/* 7. Alasan Memilih MarketingCode (Nilai Pembeda Jujur & Nyata) */}
+        {/* 6. Alasan Memilih MarketingCode (Nilai Pembeda Jujur & Nyata) */}
         <TrustSection />
 
-        {/* 8. Arsitektur Teknis & Layanan Pendukung (Mobile & Ads) */}
+        {/* 7. Arsitektur Teknis */}
         <FlagshipSection />
-        <AccelerationSection />
 
-        {/* 9. FAQ Lengkap */}
-        <FaqSection faqs={faqs} />
-
-        {/* 10. Formulir Konsultasi Proyek & Kontak WhatsApp */}
-        <ConsultationSection />
-
-        {/* 11. Final Closing Banner */}
+        {/* 8. Final Closing Banner */}
         <FinalCtaSection />
       </main>
     </div>
   )
 }
+

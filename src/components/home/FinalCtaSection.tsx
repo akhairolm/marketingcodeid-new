@@ -20,20 +20,14 @@ export function FinalCtaSection() {
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="#konsultasi"
-              className="w-full sm:w-auto px-8 py-3 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all"
-            >
-              Konsultasi Website Sekarang
-            </a>
-            <a
               href={getWhatsAppUrl('website')}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackWhatsAppClick({ position: 'final_cta_section', service: 'website' })}
-              className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-full border border-white/15 transition-all flex items-center justify-center gap-2"
+              onClick={() => trackWhatsAppClick({ position: 'final_cta_primary', service: 'website' })}
+              className="w-full sm:w-auto px-8 py-3 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              Chat via WhatsApp
+              <MessageCircle className="w-4 h-4 text-white" />
+              Konsultasi Website Sekarang
             </a>
           </div>
 

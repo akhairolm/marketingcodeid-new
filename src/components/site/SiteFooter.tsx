@@ -10,6 +10,7 @@ const FOOTER_LINKS = [
   { href: '/jasa-iklan-meta-ads', label: 'Iklan Meta Ads' },
   { href: '/portfolio', label: 'Portofolio' },
   { href: '/blog', label: 'Blog' },
+  { href: '/pertanyaan', label: 'Pertanyaan (FAQ)' },
 ]
 
 export function SiteFooter() {

@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         destination: '/jasa-pembuatan-website',
         permanent: true,
       },
+      {
+        source: '/faq',
+        destination: '/pertanyaan',
+        permanent: true,
+      },
     ]
   },
   async headers() {

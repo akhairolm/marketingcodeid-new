@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Store, Building2, Rocket, ArrowRight, ChevronRight, Check } from 'lucide-react'
+import { Store, Building2, Rocket, ChevronRight } from 'lucide-react'
 
 const websiteTypes = [
   {
@@ -76,68 +76,7 @@ export function ServicesHub() {
           </Link>
         ))}
       </div>
-
-      {/* Jalur Audiens (Section 4 in Brief) */}
-      <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-card">
-        <div className="text-center sm:text-left mb-6">
-          <span className="text-[11px] font-bold text-[#C23605] uppercase tracking-wider">Jalur Audiens</span>
-          <h3 className="text-lg sm:text-xl font-bold text-neutral-900 mt-1">
-            Bantu Kami Menyesuaikan dengan Profil Kebutuhan Anda
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200/70 flex flex-col justify-between">
-            <div>
-              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-100 text-amber-800 mb-2">
-                UMKM &amp; Bisnis Lokal
-              </span>
-              <h4 className="text-sm font-bold text-neutral-900">Mulai Digitalisasi Praktis Tanpa Biaya Rumit</h4>
-              <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-                Fokus pada kemudahan akses bagi pelanggan sekitar Kalimantan Selatan. Website ringan, etalase produk jelas, dan tombol pemesanan WhatsApp yang langsung aktif.
-              </p>
-              <div className="mt-3 space-y-1.5 text-xs text-neutral-700">
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> Paket terjangkau mulai Rp 1,5 Juta
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> Update konten &amp; ganti foto sendiri dari smartphone
-                </div>
-              </div>
-            </div>
-            <div className="mt-5 pt-3 border-t border-neutral-200/60">
-              <Link href="#harga" className="inline-flex items-center text-xs font-bold text-[#C23605] hover:underline">
-                Lihat Paket Harga UMKM <ArrowRight className="w-3.5 h-3.5 ml-1" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200/70 flex flex-col justify-between">
-            <div>
-              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-100 text-blue-800 mb-2">
-                Perusahaan, B2B &amp; Instansi
-              </span>
-              <h4 className="text-sm font-bold text-neutral-900">Kredibilitas, Portofolio &amp; Kesepakatan Resmi</h4>
-              <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-                Struktur company profile komprehensif, formulir penawaran, serta kepatuhan administrasi (Surat Perjanjian Kerja / SPK resmi dan dokumen teknis).
-              </p>
-              <div className="mt-3 space-y-1.5 text-xs text-neutral-700">
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> Kesepakatan kerja tertulis &amp; SPK resmi
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> Koordinasi tatap muka di Banjarmasin, Banjarbaru, &amp; Kalsel
-                </div>
-              </div>
-            </div>
-            <div className="mt-5 pt-3 border-t border-neutral-200/60">
-              <Link href="#konsultasi" className="inline-flex items-center text-xs font-bold text-[#C23605] hover:underline">
-                Konsultasikan Kebutuhan Proyek <ArrowRight className="w-3.5 h-3.5 ml-1" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   )
 }
+

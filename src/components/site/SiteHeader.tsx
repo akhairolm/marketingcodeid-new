@@ -21,6 +21,7 @@ export const NAV_LINKS = [
   { href: '/', label: 'Beranda' },
   { href: '/portfolio', label: 'Portofolio' },
   { href: '/blog', label: 'Blog' },
+  { href: '/pertanyaan', label: 'Pertanyaan' },
 ]
 
 /** Unified navbar rendered consistently across all public pages (no smooth scrolls/anchors). */
@@ -180,6 +181,20 @@ export function SiteHeader() {
             >
               Blog
             </Link>
+
+            {/* Pertanyaan */}
+            <Link
+              href="/pertanyaan"
+              aria-current={pathname.startsWith('/pertanyaan') ? 'page' : undefined}
+              className={cn(
+                'px-3.5 py-2 rounded-full whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C28]',
+                pathname.startsWith('/pertanyaan')
+                  ? 'bg-white/10 text-white font-semibold'
+                  : 'text-neutral-300 hover:text-white',
+              )}
+            >
+              Pertanyaan
+            </Link>
           </div>
 
           {/* Right Action: CTA & Mobile Hamburger */}
@@ -280,6 +295,18 @@ export function SiteHeader() {
               )}
             >
               Blog &amp; Insight
+            </Link>
+
+            {/* Pertanyaan */}
+            <Link
+              href="/pertanyaan"
+              onClick={closeAll}
+              className={cn(
+                'py-2.5 px-4 rounded-2xl text-sm transition-colors font-medium',
+                pathname.startsWith('/pertanyaan') ? 'bg-white/10 text-white font-bold' : 'text-neutral-300 hover:text-white',
+              )}
+            >
+              Pertanyaan &amp; FAQ
             </Link>
 
             {/* CTA Button */}
