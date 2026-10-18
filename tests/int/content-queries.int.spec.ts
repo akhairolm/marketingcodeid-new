@@ -91,3 +91,12 @@ it('related queries in demo mode filter current slug and prioritize matching cat
   expect(relatedA.some((a) => a.slug === 'panduan-lengkap-seo-lokal-kalimantan-selatan')).toBe(false)
 })
 
+it('getFeaturedPortfolioCards prioritizes featured items and respects limit in demo mode', async () => {
+  vi.stubEnv('CONTENT_DEMO_MODE', '1')
+  const { getFeaturedPortfolioCards } = await import('@/lib/content/queries')
+  const featured = await getFeaturedPortfolioCards(3)
+  expect(featured).toHaveLength(3)
+  expect(featured.every((item) => item.isFeatured)).toBe(true)
+  expect(featured[0]).not.toHaveProperty('content')
+})
+

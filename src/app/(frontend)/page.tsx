@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import HomePageClient from '@/components/home/home-client'
 import { JsonLd, orgSchema, faqSchema } from '@/lib/seo'
-import { getPortfolioCards } from '@/lib/content/queries'
+import { getFeaturedPortfolioCards } from '@/lib/content/queries'
 
 export const revalidate = 60
 
@@ -47,7 +47,7 @@ const homeFaqs = [
   },
   {
     q: 'Apakah biaya sudah termasuk domain dan cloud hosting?',
-    a: 'Ya, untuk paket Website UMKM dan Company Profile sudah termasuk gratis pendaftaran nama domain (.com atau .id) dan cloud hosting berkecepatan tinggi selama 1 tahun pertama. Pada tahun berikutnya, Anda hanya membayar biaya perpanjangan domain dan hosting standar.',
+    a: 'Ya, untuk paket Website UMKM (domain .com) dan Company Profile (domain .com atau .id) sudah termasuk pendaftaran nama domain dan cloud hosting berkecepatan tinggi selama 1 tahun pertama. Pada tahun berikutnya, Anda hanya membayar biaya perpanjangan domain dan cloud hosting tahunan standar tanpa biaya sewa sistem bulanan.',
   },
   {
     q: 'Apakah klien harus menyediakan seluruh materi tulisan dan foto sendiri?',
@@ -72,7 +72,7 @@ const homeFaqs = [
 ]
 
 export default async function Page() {
-  const portfolioItems = await getPortfolioCards(4)
+  const portfolioItems = await getFeaturedPortfolioCards(4)
   const portfolioHighlights = portfolioItems.map((item) => ({
     slug: item.slug,
     title: item.title,

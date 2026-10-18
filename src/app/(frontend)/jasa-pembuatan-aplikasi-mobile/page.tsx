@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     q: 'Bagaimana dengan proses upload ke Google Play Store dan Apple App Store?',
-    a: 'Kami mendampingi proses publikasi dari awal hingga tayang resmi, termasuk kepatuhan kebijakan privasi dan keamanan data (UU PDP). Aplikasi dijamin lolos review atau kami revisi sampai terbit.',
+    a: 'Kami mendampingi proses publikasi dari awal hingga tayang resmi, termasuk penyesuaian kebijakan privasi dan keamanan data (UU PDP), serta revisi teknis bila diperlukan agar aplikasi memenuhi pedoman store.',
   },
   {
     q: 'Apakah sudah termasuk halaman admin (dashboard web) untuk mengelola isi aplikasi?',

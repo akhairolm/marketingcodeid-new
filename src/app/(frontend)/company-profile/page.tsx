@@ -58,7 +58,7 @@ const companyFaqs = [
   },
   {
     q: 'Apakah MarketingCode dapat menerbitkan invoice resmi dan Surat Perjanjian Kerja (SPK)?',
-    a: 'Ya. Kami melayani kerja sama formal untuk perusahaan swasta, BUMN/BUMD, maupun instansi dengan kelengkapan kontrak kerja (SPK), faktur pajak, dan Berita Acara Serah Terima (BAST).',
+    a: 'Ya. Kami melayani kerja sama formal untuk perusahaan swasta, badan usaha, maupun instansi dengan kelengkapan kontrak kerja tertulis (SPK), invoice penagihan resmi, dan Berita Acara Serah Terima (BAST).',
   },
   {
     q: 'Apakah website company profile sudah ramah SEO Google?',
@@ -225,7 +225,7 @@ export default function CompanyProfilePage() {
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
-                <span>Gratis Domain (.com / .id) &amp; Cloud Hosting 1 Tahun</span>
+                <span>Gratis Domain (.com / .id) &amp; Cloud Hosting 1 Tahun Pertama</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
@@ -237,7 +237,7 @@ export default function CompanyProfilePage() {
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
-                <span>Surat Perjanjian Kerja (SPK) &amp; Faktur Resmi</span>
+                <span>Surat Perjanjian Kerja (SPK) &amp; Invoice Resmi</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />

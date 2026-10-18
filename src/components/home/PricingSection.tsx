@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Tag, Check } from 'lucide-react'
+import Link from 'next/link'
+import { Tag, Check, ArrowRight } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 import { pricingData } from './home-data'
 
 const TABS = [
-  { value: 'web', label: 'Website Development' },
+  { value: 'web', label: 'Website Development (Utama)' },
   { value: 'app', label: 'Mobile Application' },
   { value: 'ads', label: 'Digital Marketing' },
 ] as const
@@ -25,17 +27,26 @@ export function PricingSection() {
           Paket Investasi Transparan Sesuai Skala Bisnis
         </h2>
         <p className="text-neutral-500 text-sm mt-2 max-w-lg mx-auto">
-          Pilih paket yang paling pas untuk akselerasi bisnis Anda. Tersedia garansi performa dan purna jual.
+          Pilih paket yang paling pas untuk akselerasi bisnis Anda. Tersedia garansi pemeliharaan teknis dan serah terima aset 100%.
         </p>
 
         <div className="mt-8 flex justify-center">
-          <div className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200">
+          <div
+            role="tablist"
+            aria-label="Kategori paket harga"
+            className="bg-neutral-100 p-1.5 rounded-full inline-flex border border-neutral-200"
+          >
             {TABS.map((t) => (
               <button
                 key={t.value}
+                id={`pricing-tab-${t.value}`}
                 type="button"
+                role="tab"
+                aria-selected={tab === t.value}
+                aria-controls={`pricing-tabpanel-${t.value}`}
+                tabIndex={tab === t.value ? 0 : -1}
                 onClick={() => setTab(t.value)}
-                className={`px-5 py-2 text-xs rounded-full transition-all cursor-pointer ${
+                className={`px-4 sm:px-5 py-2 text-xs rounded-full transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#D13D00] ${
                   tab === t.value
                     ? 'font-bold bg-white text-neutral-900 shadow-xs'
                     : 'font-semibold text-neutral-600 hover:text-neutral-900'
@@ -48,7 +59,12 @@ export function PricingSection() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+      <div
+        id={`pricing-tabpanel-${tab}`}
+        role="tabpanel"
+        aria-labelledby={`pricing-tab-${tab}`}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left"
+      >
         {pricingData[tab].map((item) => (
           <div
             key={item.tier}
@@ -60,7 +76,7 @@ export function PricingSection() {
           >
             {item.isPopular && (
               <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#D13D00] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                Paling Populer
+                Paling Diminati
               </div>
             )}
 
@@ -82,6 +98,13 @@ export function PricingSection() {
                 href={getWhatsAppUrl(item.ctaContext, `${item.tier} (${item.price})`)}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackWhatsAppClick({
+                    position: 'pricing_card',
+                    packageTitle: item.tier,
+                    service: item.ctaContext,
+                  })
+                }
                 className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
                   item.isPopular
                     ? 'bg-[#D13D00] hover:bg-[#B33400] text-white shadow-glow'
@@ -108,6 +131,52 @@ export function PricingSection() {
         ))}
       </div>
 
+      <div className="mt-6 p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-left">
+        <p className="leading-relaxed">
+          <span className="font-bold">Ketentuan Domain &amp; Cloud Hosting:</span> Domain (.com/.id) dan cloud hosting berkecepatan tinggi gratis selama 1 tahun pertama untuk paket UMKM &amp; Company Profile. Pada tahun berikutnya berlaku biaya perpanjangan tahunan standar tanpa biaya sewa sistem.
+        </p>
+        <span className="shrink-0 text-[11px] font-semibold text-amber-800 bg-amber-100/90 px-2.5 py-1 rounded-full w-fit">
+          100% Hak Milik
+        </span>
+      </div>
+
+      {tab === 'web' && (
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+          <div className="p-5 bg-white border border-neutral-200/80 rounded-2xl shadow-card flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Layanan Pendukung</span>
+              <h4 className="text-sm font-bold text-neutral-900 mt-1">Aplikasi Mobile (Android &amp; iOS)</h4>
+              <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
+                Pengembangan aplikasi cross-platform Flutter untuk presensi, e-government, dan booking operasional. Mulai Rp 18 Juta.
+              </p>
+            </div>
+            <Link
+              href="/jasa-pembuatan-aplikasi-mobile"
+              className="inline-flex items-center text-xs font-bold text-[#D13D00] hover:underline mt-3"
+            >
+              <span>Pelajari Layanan Mobile App</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            </Link>
+          </div>
+          <div className="p-5 bg-white border border-neutral-200/80 rounded-2xl shadow-card flex flex-col justify-between">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Layanan Pendukung</span>
+              <h4 className="text-sm font-bold text-neutral-900 mt-1">Manajemen Iklan Meta Ads</h4>
+              <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
+                Setup riset audiens tertarget, Meta Pixel, video Reels promosi, dan optimasi Click-to-WhatsApp. Mulai Rp 3,5 Juta/bln.
+              </p>
+            </div>
+            <Link
+              href="/jasa-iklan-meta-ads"
+              className="inline-flex items-center text-xs font-bold text-[#D13D00] hover:underline mt-3"
+            >
+              <span>Pelajari Layanan Meta Ads</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            </Link>
+          </div>
+        </div>
+      )}
+
       <div className="mt-8 bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
         <div>
           <h4 className="text-xs sm:text-sm font-bold text-neutral-900">
@@ -121,6 +190,12 @@ export function PricingSection() {
           href={getWhatsAppUrl('website', 'Konsultasi Sistem Kustom / Instansi')}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            trackWhatsAppClick({
+              position: 'pricing_custom_system',
+              service: 'custom',
+            })
+          }
           className="whitespace-nowrap px-5 py-2.5 bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-300 font-semibold text-xs rounded-full transition-all shrink-0"
         >
           Konsultasi Kustom

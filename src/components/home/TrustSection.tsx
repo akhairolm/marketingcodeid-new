@@ -4,12 +4,12 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: 'Ruang Lingkup & Biaya Jelas di Awal (100% Hak Milik)',
-    desc: 'Tidak ada biaya tersembunyi atau sistem sewa bulanan yang mengunci. Website, domain, dan kode sepenuhnya menjadi aset milik bisnis Anda seutuhnya.',
+    desc: 'Tidak ada biaya sewa sistem bulanan yang mengunci operasional bisnis Anda. Website dan kode sepenuhnya menjadi aset milik Anda, dengan biaya perpanjangan domain & hosting standar di tahun berikutnya.',
   },
   {
     icon: Smartphone,
     title: 'Tampilan Mobile-First & Waktu Muat Cepat',
-    desc: 'Lebih dari 80% calon pembeli membuka website melalui smartphone. Kami memastikan tata letak proporsional, teks mudah dibaca, dan tombol WhatsApp selalu mudah diakses.',
+    desc: 'Mayoritas calon pembeli membuka website melalui smartphone. Kami memastikan tata letak proporsional, teks mudah dibaca, dan tombol WhatsApp selalu mudah diakses.',
   },
   {
     icon: Sliders,

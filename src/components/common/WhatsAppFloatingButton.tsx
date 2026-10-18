@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 export function WhatsAppFloatingButton() {
   const waUrl = getWhatsAppUrl('floating')
@@ -25,6 +26,7 @@ export function WhatsAppFloatingButton() {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackWhatsAppClick({ position: 'floating_button', service: 'floating' })}
         aria-label="Chat WhatsApp dengan Admin MarketingCode.ID"
         className="flex items-center justify-center w-14 h-14 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 relative focus:outline-none focus:ring-4 focus:ring-emerald-300"
       >

@@ -1,5 +1,8 @@
+'use client'
+
 import { Check, MessageCircle } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 
 export function FinalCtaSection() {
   return (
@@ -26,6 +29,7 @@ export function FinalCtaSection() {
               href={getWhatsAppUrl('website')}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick({ position: 'final_cta_section', service: 'website' })}
               className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-full border border-white/15 transition-all flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-4 h-4 text-emerald-400" />

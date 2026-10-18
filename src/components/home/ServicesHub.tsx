@@ -117,13 +117,13 @@ export function ServicesHub() {
               <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-100 text-blue-800 mb-2">
                 Perusahaan, B2B &amp; Instansi
               </span>
-              <h4 className="text-sm font-bold text-neutral-900">Kredibilitas, Portofolio &amp; Legalitas Lengkap</h4>
+              <h4 className="text-sm font-bold text-neutral-900">Kredibilitas, Portofolio &amp; Kesepakatan Resmi</h4>
               <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-                Struktur company profile komprehensif, formulir penawaran, serta kepatuhan administrasi (Surat Perjanjian Kerja / SPK resmi dan standar SPBE).
+                Struktur company profile komprehensif, formulir penawaran, serta kepatuhan administrasi (Surat Perjanjian Kerja / SPK resmi dan dokumen teknis).
               </p>
               <div className="mt-3 space-y-1.5 text-xs text-neutral-700">
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> Legalitas resmi, SPK &amp; faktur pajak
+                  <Check className="w-3.5 h-3.5 text-[#C23605]" /> Kesepakatan kerja tertulis &amp; SPK resmi
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-[#C23605]" /> Koordinasi tatap muka di Banjarmasin, Banjarbaru, &amp; Kalsel

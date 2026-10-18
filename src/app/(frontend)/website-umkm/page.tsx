@@ -121,7 +121,7 @@ export default function WebsiteUmkmPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
-            Bantu Usaha UMKM Anda Tampil Lebih Profesional &amp; Kebanjiran Order WhatsApp
+            Bantu Usaha UMKM Anda Tampil Lebih Profesional &amp; Memudahkan Pemesanan via WhatsApp
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mt-5 max-w-2xl mx-auto">
@@ -225,11 +225,11 @@ export default function WebsiteUmkmPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
-                <span>Gratis Domain .com Resmi 1 Tahun</span>
+                <span>Gratis Domain (.com) Resmi 1 Tahun Pertama</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
-                <span>Gratis Cloud Hosting Cepat 1 Tahun</span>
+                <span>Gratis Cloud Hosting Cepat 1 Tahun Pertama</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
@@ -241,7 +241,7 @@ export default function WebsiteUmkmPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />
-                <span>Garansi Pemeliharaan &amp; Bantuan Teknis</span>
+                <span>Garansi Pemeliharaan Teknis &amp; Bantuan Penggunaan</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#C23605] shrink-0" />

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { trackWhatsAppClick } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 import { HomeNavbar } from '@/components/home/HomeNavbar'
 
@@ -91,6 +92,7 @@ function InteriorNav({ pathname }: { pathname: string }) {
               href={getWhatsAppUrl('website')}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick({ position: 'header_interior', service: 'website' })}
               className="bg-[#D13D00] hover:bg-[#B33400] text-white text-xs font-semibold px-4 py-2.5 min-h-[40px] flex items-center rounded-full shadow-glow whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
               Konsultasi Website

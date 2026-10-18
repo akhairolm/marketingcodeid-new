@@ -182,6 +182,48 @@ export const getPortfolioCards = cache(async (limit = 100): Promise<PortfolioCar
   return rows.map((r) => mapPortfolioCard(r.portfolio, r.thumbnail))
 })
 
+export const getFeaturedPortfolioCards = cache(async (limit = 4): Promise<PortfolioCard[]> => {
+  if (DEMO) {
+    const featured = samplePortfolios.filter((p) => p.isFeatured)
+    const fallback = samplePortfolios.filter((p) => !p.isFeatured)
+    return [...featured, ...fallback].slice(0, limit).map(portfolioItemToCard)
+  }
+
+  // 1. Fetch featured published portfolios first
+  const featuredRows = await db
+    .select({ portfolio: portfolios, thumbnail: media })
+    .from(portfolios)
+    .leftJoin(media, eq(portfolios.thumbnailId, media.id))
+    .where(and(eq(portfolios.status, 'published'), eq(portfolios.isFeatured, true)))
+    .orderBy(desc(portfolios.completedDate))
+    .limit(limit)
+
+  if (featuredRows.length >= limit) {
+    return featuredRows.map((r) => mapPortfolioCard(r.portfolio, r.thumbnail))
+  }
+
+  // 2. If fewer featured items than limit, backfill with remaining published portfolios
+  const featuredSlugs = featuredRows.map((r) => r.portfolio.slug)
+  const remainingLimit = limit - featuredRows.length
+
+  const additionalRows = await db
+    .select({ portfolio: portfolios, thumbnail: media })
+    .from(portfolios)
+    .leftJoin(media, eq(portfolios.thumbnailId, media.id))
+    .where(
+      and(
+        eq(portfolios.status, 'published'),
+        featuredSlugs.length > 0
+          ? sql`${portfolios.slug} not in (${sql.join(featuredSlugs.map((s) => sql`${s}`), sql`, `)})`
+          : sql`1=1`,
+      ),
+    )
+    .orderBy(desc(portfolios.completedDate))
+    .limit(remainingLimit)
+
+  return [...featuredRows, ...additionalRows].map((r) => mapPortfolioCard(r.portfolio, r.thumbnail))
+})
+
 export const getArticleCards = cache(async (limit = 100): Promise<ArticleCard[]> => {
   if (DEMO) return sampleArticles.slice(0, limit).map(articleItemToCard)
   const rows = await db

@@ -17,7 +17,7 @@ import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
 export const metadata: Metadata = {
   title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA',
   description:
-    'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk banjir prospek & closing.',
+    'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk menghubungkan prospek potensial & meningkatkan penjualan.',
   keywords: [
     'jasa iklan meta ads',
     'jasa iklan facebook instagram kalsel',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Jasa Iklan Meta Ads (FB & IG) Fokus Konversi WA | MarketingCode.ID',
     description:
-      'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk banjir prospek & closing.',
+      'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk menghubungkan prospek potensial & meningkatkan penjualan.',
     url: '/jasa-iklan-meta-ads',
     siteName: 'MarketingCode.ID',
     locale: 'id_ID',
@@ -108,7 +108,7 @@ export default function JasaIklanMetaAdsPage() {
         data={[
           serviceSchema(
             'Jasa Kelola Iklan Meta Ads (Facebook & Instagram)',
-            'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk banjir prospek & closing.',
+            'Jasa kelola iklan Meta Ads (Facebook & Instagram Ads) profesional di Kalimantan Selatan. Optimasi kampanye Click-to-WhatsApp untuk menghubungkan prospek potensial & meningkatkan penjualan.',
             '/jasa-iklan-meta-ads'
           ),
           faqSchema(faqs),

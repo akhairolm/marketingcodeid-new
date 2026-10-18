@@ -146,9 +146,9 @@ const paketWebsite = [
     features: [
       'Katalog Produk + Tombol Order WhatsApp Otomatis',
       'Admin Mandiri: Ganti Foto & Harga dari HP',
-      'Gratis Domain .com & Cloud Hosting 1 Tahun',
+      'Gratis Domain (.com) & Cloud Hosting 1 Tahun Pertama',
       'Optimasi SEO Lokal Kalimantan Selatan',
-      'Garansi Pemeliharaan & Pendampingan 3 Bulan',
+      'Garansi Pemeliharaan Teknis & Pendampingan 3 Bulan',
     ],
     time: 'Pengerjaan: 7 - 14 Hari Kerja',
     btnText: 'Pilih Paket Katalog',
@@ -161,7 +161,7 @@ const paketWebsite = [
     isPopular: false,
     features: [
       'Kepatuhan Standar SPBE & Akuntabilitas BAST',
-      'Surat Perjanjian Kerja (SPK) & Faktur Pajak Resmi',
+      'Surat Perjanjian Kerja (SPK) & Invoice Resmi',
       'Enkripsi Data & Multi-Level Hak Akses Petugas',
       'Pelatihan Langsung Staf Operator (Bimtek di Kantor Anda)',
     ],
@@ -392,7 +392,7 @@ export default function JasaPembuatanWebsitePage() {
                 Maximize Hasil Website Baru Anda
               </h2>
               <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto">
-                Ingin website baru Anda langsung kebanjiran pengunjung dan calon pembeli potensial? Padukan website Anda dengan layanan{' '}
+                Ingin website baru Anda menjangkau lebih banyak calon pelanggan potensial? Padukan website Anda dengan layanan{' '}
                 <Link href="/jasa-iklan-meta-ads" className="text-[#FF5C28] font-semibold hover:underline">
                   Jasa Kelola Iklan Meta Ads
                 </Link>{' '}
