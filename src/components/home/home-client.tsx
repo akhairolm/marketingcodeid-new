@@ -8,6 +8,7 @@ import { TrustSection } from './TrustSection'
 import type { PortfolioProject } from './home-data'
 
 const FlagshipSection = dynamic(() => import('./FlagshipSection').then((m) => m.FlagshipSection))
+const TestimonialsSection = dynamic(() => import('./TestimonialsSection').then((m) => m.TestimonialsSection))
 const FinalCtaSection = dynamic(() => import('./FinalCtaSection').then((m) => m.FinalCtaSection))
 
 
@@ -41,7 +42,10 @@ export default function HomePageClient({
         {/* 7. Arsitektur Teknis */}
         <FlagshipSection />
 
-        {/* 8. Final Closing Banner */}
+        {/* 8. Suara Pengguna (Cerita & Pengalaman Klien) */}
+        <TestimonialsSection />
+
+        {/* 9. Final Closing Banner */}
         <FinalCtaSection />
       </main>
     </div>
