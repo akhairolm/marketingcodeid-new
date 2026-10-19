@@ -28,7 +28,7 @@ export function HeroSection() {
         <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
             <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-              Jasa Pembuatan Website · Kalimantan Selatan
+              Jasa Pembuatan Website & Sistem Digital — Melayani Seluruh Indonesia
             </span>
           </div>
 

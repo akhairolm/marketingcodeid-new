@@ -2,12 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import {
-  Tag,
-  Check,
-  Clock,
-  Sparkles,
-} from 'lucide-react'
+import { Tag, Check, Clock, Sparkles } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { trackWhatsAppClick } from '@/lib/analytics'
 import { pricingData, type PricingFeatureItem } from './home-data'
@@ -26,7 +21,11 @@ export function PricingSection() {
   const [tab, setTab] = useState<(typeof TABS)[number]['value']>('web')
 
   return (
-    <section id="harga" aria-label="Paket Harga Investasi" className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-24 pt-8">
+    <section
+      id="harga"
+      aria-label="Paket Harga Investasi"
+      className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-24 pt-8"
+    >
       {/* Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
@@ -37,7 +36,8 @@ export function PricingSection() {
           Paket Investasi Transparan Sesuai Skala Bisnis
         </h2>
         <p className="text-neutral-500 text-sm mt-2 max-w-xl mx-auto leading-relaxed">
-          Investasi terukur tanpa biaya sewa sistem bulanan. Tersedia garansi pemeliharaan teknis resmi, server cepat, dan serah terima aset 100% hak milik.
+          Investasi terukur tanpa biaya sewa sistem bulanan. Tersedia garansi pemeliharaan teknis
+          resmi, server cepat, dan serah terima aset 100% hak milik.
         </p>
 
         {/* Tab Switcher */}
@@ -93,7 +93,7 @@ export function PricingSection() {
               {isHighlight && (
                 <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#FF5C28] to-[#EA4510] text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap z-20">
                   <Sparkles className="w-3 h-3" />
-                  <span>{item.badgeTop || '🔥 PALING DIMINATI'}</span>
+                  <span>{item.badgeTop || 'xsPALING DIMINATI'}</span>
                 </div>
               )}
 
@@ -133,9 +133,7 @@ export function PricingSection() {
                     <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
                       {item.price}
                     </span>
-                    <span className="text-xs text-neutral-500 font-medium">
-                      {item.unit}
-                    </span>
+                    <span className="text-xs text-neutral-500 font-medium">{item.unit}</span>
                   </div>
                 </div>
 
