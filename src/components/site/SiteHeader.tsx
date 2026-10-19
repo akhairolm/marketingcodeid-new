@@ -36,9 +36,12 @@ export function SiteHeader() {
   }, [])
 
   // Close drawers/menus on route change
-  useEffect(() => {
-    closeAll()
-  }, [closeAll, pathname])
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
+    setMobileMenuOpen(false)
+    setServicesDropdownOpen(false)
+  }
 
   // Close on Escape key
   useEffect(() => {

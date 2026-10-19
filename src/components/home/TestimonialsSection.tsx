@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Star, MessageSquareQuote, CheckCircle2, TrendingUp, Sparkles } from 'lucide-react'
+import { Star, MessageSquareQuote, CheckCircle2 } from 'lucide-react'
 
 export interface TestimonialStory {
   id: string

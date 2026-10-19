@@ -1,81 +1,99 @@
-import type { PortfolioCategory } from '@/lib/content/types'
-
-export interface PortfolioProject {
-  slug: string
-  title: string
-  client: string
-  category: PortfolioCategory
-  categoryLabel: string
-  techStack: string[]
-  description: string
-  highlight: string
-  image: string
+export interface PricingFeatureItem {
+  text: string
+  subItems?: string[]
 }
+
+
+export type PricingFeature = string | PricingFeatureItem
 
 export interface PricingTier {
   tier: string
+  badgeTop?: string
+  originalPrice?: string
   price: string
   unit: string
   desc: string
   isPopular: boolean
   btnText: string
   ctaContext: 'website' | 'mobile' | 'ads'
-  features: string[]
-  time: string
+  features: PricingFeature[]
+  renewal?: string
+  time?: string
 }
 
 export const pricingData: Record<'web' | 'app' | 'ads', PricingTier[]> = {
   web: [
     {
-      tier: 'Landing Page Promosi',
-      price: 'Rp 1.5jt',
-      unit: '/ project',
-      desc: 'Satu halaman penawaran fokus konversi tinggi untuk promosi produk unggulan atau pendamping kampanye iklan.',
+      tier: 'Landing Page Konversi',
+      badgeTop: 'Hemat & Cepat Jadi',
+      originalPrice: 'Rp 1.850.000',
+      price: 'Rp 1.190.000',
+      unit: 'Bayar sekali • Terima beres',
+      desc: 'Cocok untuk promosi 1 produk/jasa unggulan & kampanye iklan (Meta/Google Ads) yang fokus mengarahkan prospek ke WhatsApp.',
       isPopular: false,
-      btnText: 'Pilih Landing Page',
+      btnText: 'Pesan Landing Page',
       ctaContext: 'website',
       features: [
-        '1 Halaman Penjualan Terstruktur & Cepat',
-        'Mobile-First Responsive & Ringan',
-        'Tombol Order Langsung ke WhatsApp',
-        'Pemasangan Meta Pixel & Google Analytics',
-        '100% Hak Milik Tanpa Biaya Sewa Bulanan',
-        'Konfigurasi Hosting Sesuai Kebutuhan',
+        '1 Halaman Panjang (Single Page) dengan struktur copywriting persuasif',
+        'Arsitektur Statis Ultra-Cepat (Loading < 2 detik, ringan di HP & aman)',
+        'Terima Beres Tanpa Repot (Tidak perlu pusing kelola dashboard sendiri)',
+        'Gratis Domain .com & Cloud Server (Aktif 1 Tahun)',
+        'Integrasi Tombol CTA WhatsApp & Formulir Prospek',
+        'Siap Dipasang Meta Pixel & Google Analytics untuk iklan',
+        'Gratis Bantu Update Ringan (Ganti teks/foto promo hingga 2x setelah rilis)',
+        'Garansi Maintenance & SSL Keamanan',
       ],
+      renewal: 'Perpanjangan tahun ke-2 hanya Rp 600rb/thn (Domain & Server)',
       time: 'Pengerjaan: 3 - 5 Hari Kerja',
     },
     {
-      tier: 'Website UMKM & Katalog',
-      price: 'Rp 3.5jt',
-      unit: '/ project',
-      desc: 'Website usaha lengkap dengan profil, etalase katalog produk/layanan, tombol WhatsApp, dan dashboard mandiri.',
+      tier: 'Web Katalog, Profil & Blog',
+      badgeTop: 'PALING DIMINATI',
+      originalPrice: 'Rp 3.200.000',
+      price: 'Rp 2.190.000',
+      unit: 'Bayar sekali • Bisa kelola mandiri',
+      desc: 'Solusi ideal untuk UMKM, toko lokal, & usaha jasa yang ingin memiliki katalog produk, profil usaha, serta artikel SEO yang bisa diedit sendiri.',
       isPopular: true,
-      btnText: 'Pilih Paket UMKM',
+      btnText: 'Ambil Paket UMKM Sekarang',
       ctaContext: 'website',
       features: [
-        'Profil Usaha, Galeri & Katalog Produk/Jasa',
-        'Tombol Order WhatsApp Otomatis per Produk',
-        'Dashboard Admin: Kelola Foto & Info dari HP',
-        'Gratis Domain (.com) & Cloud Hosting 1 Tahun Pertama',
-        'Garansi Pemeliharaan Teknis & Panduan Penggunaan',
+        'Hingga 5–7 Halaman Menu (Beranda, Tentang, Katalog/Layanan, Blog, Kontak)',
+        'Dilengkapi Dashboard Admin Mudah (Tambah/edit produk & layanan semudah upload sosmed)',
+        'Fitur Katalog & Order Otomatis ke WhatsApp (0% potongan komisi admin)',
+        'Fitur Blog / Artikel untuk mendongkrak peringkat SEO di Google',
+        'Gratis Domain .com / .id & Cloud Server (Aktif 1 Tahun)',
+        'Optimasi On-Page SEO Dasar & Integrasi Peta Lokasi Google Maps',
+        'Gratis Video Panduan / Training Admin sampai bisa',
+        'Garansi Maintenance 1 Tahun & SSL',
       ],
+      renewal: 'Perpanjangan tahun ke-2 hanya Rp 750rb/thn (Domain & Server)',
       time: 'Pengerjaan: 7 - 14 Hari Kerja',
     },
     {
-      tier: 'Company Profile Bisnis',
-      price: 'Rp 5.5jt',
-      unit: '/ project',
-      desc: 'Website representatif untuk perusahaan, agensi, atau bisnis B2B yang ingin tampil kredibel di hadapan klien dan mitra.',
+      tier: 'Company Profile Pro / Toko Online',
+      badgeTop: 'Fitur Terlengkap',
+      originalPrice: 'Rp 5.500.000',
+      price: 'Rp 3.490.000',
+      unit: 'Bayar sekali • Sistem skala bisnis',
+      desc: 'Dirancang untuk perusahaan (PT/CV/B2B) yang butuh kredibilitas tinggi atau toko online dengan pembayaran otomatis (Payment Gateway).',
       isPopular: false,
-      btnText: 'Pilih Company Profile',
+      btnText: 'Konsultasi Paket Pro',
       ctaContext: 'website',
       features: [
-        'Halaman Profil, Layanan, Tim & Portofolio',
-        'Formulir Penawaran & Integrasi Kontak WhatsApp',
-        'Optimasi On-Page SEO & Performa Cepat',
-        'Gratis Domain (.com/.id) & Cloud Hosting 1 Tahun Pertama',
-        'Panduan Pengelolaan & Garansi Pemeliharaan Teknis',
+        'Hingga 12+ Halaman Eksklusif dengan Desain UI/UX Kustom Korporat',
+        {
+          text: 'Bebas Pilih Fokus Mode Sistem:',
+          subItems: [
+            'Mode E-Commerce: Integrasi Payment Gateway (Bayar otomatis via QRIS, Virtual Account Bank, E-Wallet) & Hitung Ongkir',
+            'Mode Korporat: Company Profile Eksklusif (Portofolio Proyek, Klien, Karir, & Unduh Company Profile PDF)',
+          ],
+        },
+        'Dashboard Admin Lengkap (CMS) untuk kelola seluruh halaman & data',
+        'Gratis Domain .com / .co.id / .id & High-Performance Server (1 Tahun)',
+        'Riset Keyword Dasar & Setup SEO Teknis',
+        'Prioritas Support Teknis & Training Tim',
       ],
+      renewal: 'Perpanjangan tahun ke-2 menyesuaikan kapasitas server',
       time: 'Pengerjaan: 10 - 21 Hari Kerja',
     },
   ],

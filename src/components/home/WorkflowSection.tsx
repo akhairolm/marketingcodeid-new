@@ -1,80 +1,148 @@
-import { Route } from 'lucide-react'
+import { Clock, CheckCircle2 } from 'lucide-react'
 
-const steps = [
+interface ProcessStep {
+  id: number
+  number: string
+  title: string
+  desc: string
+  duration: string
+  output: string
+}
+
+const steps: ProcessStep[] = [
   {
+    id: 1,
     number: '01',
-    title: 'Konsultasi Kebutuhan',
-    desc: 'Diskusi awal terkait jenis usaha, tujuan pembuatan website, sasaran pelanggan, dan fitur utama yang Anda perlukan.',
-    isHighlight: false,
+    title: 'Konsultasi & Pemilihan Solusi',
+    desc: 'Diskusikan model bisnis, target audiens, dan kebutuhan fitur Anda. Kami berikan rekomendasi jenis website dan paket investasi paling efisien tanpa biaya terselubung.',
+    duration: '± 15 Menit',
+    output: 'Rekomendasi paket & ruang lingkup kerja disepakati',
   },
   {
+    id: 2,
     number: '02',
-    title: 'Penawaran & Ruang Lingkup',
-    desc: 'Penyusunan rincian ruang lingkup kerja (scope), pilihan paket biaya transparan, serta estimasi jadwal pengerjaan yang disepakati.',
-    isHighlight: false,
+    title: 'Perancangan UI/UX & Struktur',
+    desc: 'Penyusunan tata letak visual modern, copywriting persuasif, navigasi mobile-first, dan penataan katalog/layanan agar nyaman diakses pelanggan dari HP.',
+    duration: '1 - 3 Hari Kerja',
+    output: 'Konsep desain & copywriting disetujui',
   },
   {
+    id: 3,
     number: '03',
-    title: 'Perancangan Desain UI/UX',
-    desc: 'Pembuatan tata letak halaman yang nyaman dibuka di smartphone maupun laptop, memastikan keterbacaan teks dan posisi tombol CTA jelas.',
-    isHighlight: true,
+    title: 'Coding & Integrasi Sistem',
+    desc: 'Pengembangan arsitektur web berkecepatan tinggi, integrasi WhatsApp order otomatis, setup formulir leads, aktivasi server cloud, dan konfigurasi Meta Pixel/GA.',
+    duration: '3 - 7 Hari Kerja',
+    output: 'Website fungsional & siap tahap uji coba',
   },
   {
+    id: 4,
     number: '04',
-    title: 'Pengembangan & Integrasi',
-    desc: 'Pengkodean website modern dengan kecepatan muat tinggi, integrasi WhatsApp otomatis, serta konfigurasi dashboard admin mandiri.',
-    isHighlight: false,
-  },
-  {
-    number: '05',
-    title: 'Pengujian & Revisi',
-    desc: 'Pengujian performa, verifikasi seluruh link dan tombol pemesanan di berbagai perangkat, serta penyesuaian detail sesuai kuota revisi.',
-    isHighlight: false,
-  },
-  {
-    number: '06',
-    title: 'Peluncuran & Pendampingan',
-    desc: 'Aktivasi domain dan hosting resmi, serah terima kepemilikan aset 100%, panduan pengelolaan, serta garansi pemeliharaan teknis.',
-    isHighlight: false,
+    title: 'Review Akhir & Go Live',
+    desc: 'Uji responsivitas lintas browser dan perangkat, penyerahan akses dashboard admin, serah terima aset 100% hak milik, dan aktivasi garansi pemeliharaan resmi.',
+    duration: 'Live & Bergaransi',
+    output: 'Website resmi tayang & 100% hak milik Anda',
   },
 ]
 
 export function WorkflowSection() {
   return (
-    <section id="alur-kerja" className="max-w-5xl mx-auto px-4 sm:px-6 mt-28 text-center">
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
-        <Route className="w-3.5 h-3.5" />
-        <span>Alur Kerja Rapi &amp; Transparan</span>
+    <section
+      id="alur-kerja"
+      aria-label="Alur Proses Pengerjaan"
+      className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-28"
+    >
+      {/* Top Header Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-neutral-900">
+        <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
+          § 08 · Proses
+        </span>
+        <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-500">
+          Dari Konsultasi ke Website Live &amp; Bergaransi
+        </span>
       </div>
 
-      <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-        6 Tahapan Kerja Terstruktur dari Diskusi Hingga Website Live
-      </h2>
-      <p className="text-neutral-500 text-sm mt-2 max-w-xl mx-auto">
-        Setiap proses dijalankan secara bertahap dan terukur agar website selesai tepat waktu sesuai spesifikasi yang disepakati.
-      </p>
+      {/* Main Title & Description Grid */}
+      <div className="mt-10 lg:mt-14 mb-14 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end text-left">
+        <h2 className="lg:col-span-8 font-extrabold text-3xl sm:text-4xl lg:text-[3.25rem] text-neutral-900 leading-[1.25] sm:leading-[1.2] lg:leading-[1.18] tracking-tight">
+          Alur kerja terstruktur,{' '}
+          <span className="italic font-medium">website &amp; sistem live</span>{' '}
+          tepat waktu tanpa kendala teknis.
+        </h2>
 
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-left">
-        {steps.map((step) => (
-          <div
-            key={step.number}
-            className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card flex flex-col justify-between"
-          >
-            <div>
-              <div
-                className={`w-11 h-11 rounded-2xl font-extrabold text-sm flex items-center justify-center mb-4 ${
-                  step.isHighlight
-                    ? 'bg-[#D13D00] text-white shadow-glow'
-                    : 'bg-[#FFF5F0] text-[#C23605] border border-orange-200'
-                }`}
-              >
-                {step.number}
-              </div>
-              <h3 className="text-sm font-bold text-neutral-900">{step.title}</h3>
-              <p className="text-xs text-neutral-600 mt-2 leading-relaxed">{step.desc}</p>
-            </div>
+
+
+        <div className="lg:col-span-4 space-y-4">
+          <p className="font-medium text-xs sm:text-sm text-neutral-600 leading-relaxed">
+            Tidak ada proses yang membingungkan atau antrean lama. Setiap tahapan terpantau jelas
+            dengan jadwal terukur, serah terima aset 100%, serta garansi pendampingan resmi.
+          </p>
+          <div className="flex items-center gap-3 pt-1">
+            <span className="w-8 h-px bg-[#FF5C28]" />
+            <span className="font-semibold text-[10px] tracking-[0.24em] uppercase text-neutral-500">
+              Transparan, Cepat &amp; Bergaransi
+            </span>
           </div>
-        ))}
+        </div>
+      </div>
+
+      {/* 4 Process Step Cards with Connecting Dashed Line */}
+      <div className="relative">
+        {/* Dashed Connecting Line for Desktop */}
+        <div
+          aria-hidden="true"
+          className="hidden lg:block absolute top-10 left-[calc(12.5%-12px)] right-[calc(12.5%-12px)] h-0 border-t-[2px] border-dashed border-[#FF5C28]/50"
+        />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
+          {steps.map((step) => (
+            <div key={step.id} className="relative flex flex-col gap-5">
+              {/* Top Step Number Circle */}
+              <div className="relative w-20 h-20 flex items-center justify-center z-10 bg-white self-center">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-orange-50/70 border-2 border-dashed border-[#FF5C28]"
+                />
+                <div aria-hidden="true" className="absolute -inset-1 rounded-full" />
+                <span className="relative font-extrabold text-2xl text-neutral-900">
+                  {step.number}
+                </span>
+              </div>
+
+              {/* Step Card Body */}
+              <div className="bg-white border border-neutral-200/90 rounded-2xl p-5 lg:p-6 flex-1 flex flex-col gap-4 hover:border-[#FF5C28] hover:shadow-lg transition-all text-left shadow-card group">
+                {/* Duration & Counter Header */}
+                <div className="flex items-center gap-2 pb-3 border-b border-neutral-100">
+                  <Clock className="w-3 h-3 text-[#FF5C28] shrink-0" />
+                  <span className="font-semibold text-[10px] tracking-[0.2em] uppercase text-neutral-600 whitespace-nowrap">
+                    {step.duration}
+                  </span>
+                  <span className="flex-1 h-px bg-neutral-100" />
+                  <span className="font-bold text-[10px] tracking-[0.2em] uppercase text-[#FF5C28] shrink-0">
+                    {step.number}/04
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="font-bold text-lg lg:text-xl text-neutral-900 leading-tight group-hover:text-[#FF5C28] transition-colors">
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+                <p className="font-medium text-xs sm:text-[13px] text-neutral-600 leading-relaxed flex-1">
+                  {step.desc}
+                </p>
+
+                {/* Output Deliverable */}
+                <div className="flex items-start gap-2 pt-3 border-t border-neutral-100">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5C28] shrink-0 mt-0.5" />
+                  <span className="font-semibold text-[11px] text-neutral-900 leading-snug">
+                    {step.output}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

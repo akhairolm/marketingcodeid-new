@@ -15,7 +15,6 @@ export function WhatsAppFloatingButton() {
     >
       {/* Tooltip Badge */}
       <span className="hidden sm:inline-flex items-center gap-1.5 bg-white text-neutral-800 text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-lg border border-neutral-200/80 transition-all duration-300 group-hover:shadow-xl group-hover:border-emerald-300">
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
         <Image
           src="/icons/flaticon/goodbye.svg"
           alt=""

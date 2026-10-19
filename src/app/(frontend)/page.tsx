@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import HomePageClient from '@/components/home/home-client'
 import { JsonLd, orgSchema } from '@/lib/seo'
-import { getFeaturedPortfolioCards } from '@/lib/content/queries'
+import { getArticleCards } from '@/lib/content/queries'
 
 export const revalidate = 60
 
@@ -37,27 +37,14 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const portfolioItems = await getFeaturedPortfolioCards(4)
-  const portfolioHighlights = portfolioItems.map((item) => ({
-    slug: item.slug,
-    title: item.title,
-    client: item.clientName,
-    category: item.category,
-    categoryLabel: item.categoryLabel,
-    techStack: item.techStack,
-    description: item.summary,
-    highlight: item.headlineResult
-      ? `${item.headlineResult.value} · ${item.headlineResult.label}`
-      : item.summary.slice(0, 40),
-    image: item.thumbnail?.url ?? '',
-    imageAlt: item.thumbnail?.alt ?? `Portofolio ${item.title}`,
-  }))
+  const articles = await getArticleCards(3)
 
   return (
     <>
       <JsonLd data={[orgSchema]} />
-      <HomePageClient portfolioHighlights={portfolioHighlights} />
+      <HomePageClient articles={articles} />
     </>
   )
 }
+
 

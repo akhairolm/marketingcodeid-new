@@ -17,6 +17,14 @@ export type ConsultationContext =
   | 'article'
   | 'floating'
 
+export function getWhatsAppDirectUrl(
+  message: string,
+  phoneNumber: string = DEFAULT_WHATSAPP_NUMBER
+): string {
+  const cleanPhone = phoneNumber.replace(/[^0-9]/g, '')
+  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`
+}
+
 export function getWhatsAppUrl(
   context: ConsultationContext = 'general',
   customSubject?: string,

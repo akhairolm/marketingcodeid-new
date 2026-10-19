@@ -1,54 +1,56 @@
 import dynamic from 'next/dynamic'
 import { HeroSection } from './HeroSection'
 import { ServicesHub } from './ServicesHub'
-import { PortfolioSection } from './PortfolioSection'
 import { PricingSection } from './PricingSection'
 import { WorkflowSection } from './WorkflowSection'
-import { TrustSection } from './TrustSection'
-import type { PortfolioProject } from './home-data'
+import { ComparisonSection } from './ComparisonSection'
+import type { ArticleCard as ArticleCardType } from '@/lib/content/types'
 
-const FlagshipSection = dynamic(() => import('./FlagshipSection').then((m) => m.FlagshipSection))
-const TestimonialsSection = dynamic(() => import('./TestimonialsSection').then((m) => m.TestimonialsSection))
+const TestimonialsSection = dynamic(() =>
+  import('./TestimonialsSection').then((m) => m.TestimonialsSection),
+)
+const HomeBlogSection = dynamic(() =>
+  import('./HomeBlogSection').then((m) => m.HomeBlogSection),
+)
 const FinalCtaSection = dynamic(() => import('./FinalCtaSection').then((m) => m.FinalCtaSection))
 
+export interface HomePageClientProps {
+  articles?: ArticleCardType[]
+  /** @deprecated Kept for test compatibility */
+  portfolioHighlights?: unknown[]
+  /** @deprecated Kept for test compatibility */
+  faqs?: unknown[]
+}
 
-export default function HomePageClient({
-  portfolioHighlights,
-}: {
-  faqs?: { q: string; a: string }[]
-  portfolioHighlights: PortfolioProject[]
-}) {
+export default function HomePageClient({ articles = [] }: HomePageClientProps) {
+
   return (
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
       <main className="relative bg-grid-pattern pt-28 sm:pt-32 pb-20 overflow-hidden">
         {/* 1. Hero */}
         <HeroSection />
 
-        {/* 2. Pilih Layanan Sesuai Kebutuhan */}
+        {/* 2. Pilih Layanan Sesuai Kebutuhan (3 Layanan Utama) */}
         <ServicesHub />
 
-        {/* 3. Portofolio & Studi Kasus Nyata */}
-        <PortfolioSection projects={portfolioHighlights} />
-
-        {/* 4. Paket & Harga Transparan */}
+        {/* 3. Paket & Harga Transparan */}
         <PricingSection />
 
-        {/* 5. Cara Kerja 6 Langkah Terstruktur */}
-        <WorkflowSection />
-
-        {/* 6. Alasan Memilih MarketingCode (Nilai Pembeda Jujur & Nyata) */}
-        <TrustSection />
-
-        {/* 7. Arsitektur Teknis */}
-        <FlagshipSection />
-
-        {/* 8. Suara Pengguna (Cerita & Pengalaman Klien) */}
+        {/* 4. Suara Pengguna (Cerita & Pengalaman Klien) */}
         <TestimonialsSection />
 
-        {/* 9. Final Closing Banner */}
+        {/* 5. Alur Kerja (08 · Proses) */}
+        <WorkflowSection />
+
+        {/* 6. Perbandingan Solusi (08 · Perbandingan) */}
+        <ComparisonSection />
+
+        {/* 7. Artikel & Edukasi Bisnis (Menggantikan Flagship Solutions) */}
+        <HomeBlogSection articles={articles} />
+
+        {/* 8. Final Closing Banner */}
         <FinalCtaSection />
       </main>
     </div>
   )
 }
-

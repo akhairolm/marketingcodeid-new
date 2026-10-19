@@ -9,11 +9,11 @@ import {
   ShieldCheck,
   FileText,
   Search,
-  Users2,
   HelpCircle,
   MapPin,
   Tag,
 } from 'lucide-react'
+
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
 
