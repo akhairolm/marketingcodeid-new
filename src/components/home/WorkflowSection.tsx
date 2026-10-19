@@ -54,7 +54,7 @@ export function WorkflowSection() {
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-neutral-900">
         <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
-          § 08 · Proses
+          Proses
         </span>
         <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-500">
           Dari Konsultasi ke Website Live &amp; Bergaransi
@@ -65,11 +65,9 @@ export function WorkflowSection() {
       <div className="mt-10 lg:mt-14 mb-14 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end text-left">
         <h2 className="lg:col-span-8 font-extrabold text-3xl sm:text-4xl lg:text-[3.25rem] text-neutral-900 leading-[1.25] sm:leading-[1.2] lg:leading-[1.18] tracking-tight">
           Alur kerja terstruktur,{' '}
-          <span className="italic font-medium">website &amp; sistem live</span>{' '}
-          tepat waktu tanpa kendala teknis.
+          <span className="italic font-medium">website &amp; sistem live</span> tepat waktu tanpa
+          kendala teknis.
         </h2>
-
-
 
         <div className="lg:col-span-4 space-y-4">
           <p className="font-medium text-xs sm:text-sm text-neutral-600 leading-relaxed">

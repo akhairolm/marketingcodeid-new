@@ -152,7 +152,7 @@ export function ComparisonSection() {
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-neutral-900">
         <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
-          § 08 · Perbandingan
+          Perbandingan
         </span>
         <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-500">
           MarketingCode vs Solusi Lain

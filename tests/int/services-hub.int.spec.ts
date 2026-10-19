@@ -31,10 +31,10 @@ describe('ServicesHub and Homepage layout', () => {
     expect(mobileLink.getAttribute('href')).toBe('/jasa-pembuatan-aplikasi-mobile')
   })
 
-  it('renders WorkflowSection matching Section 08 · Proses', () => {
+  it('renders WorkflowSection matching Section Proses', () => {
     render(React.createElement(WorkflowSection))
 
-    expect(screen.getByText(/§ 08 · Proses/i)).toBeTruthy()
+    expect(screen.getByText('Proses')).toBeTruthy()
     expect(screen.getByText(/Dari Konsultasi ke Website Live & Bergaransi/i)).toBeTruthy()
     expect(screen.getByRole('heading', { level: 3, name: 'Konsultasi & Pemilihan Solusi' })).toBeTruthy()
     expect(screen.getByRole('heading', { level: 3, name: 'Review Akhir & Go Live' })).toBeTruthy()
@@ -42,10 +42,10 @@ describe('ServicesHub and Homepage layout', () => {
     expect(screen.getByText('04')).toBeTruthy()
   })
 
-  it('renders ComparisonSection matching Section 08 · Perbandingan', () => {
+  it('renders ComparisonSection matching Section Perbandingan', () => {
     render(React.createElement(ComparisonSection))
 
-    expect(screen.getByText(/§ 08 · Perbandingan/i)).toBeTruthy()
+    expect(screen.getByText(/Perbandingan/i)).toBeTruthy()
     expect(screen.getByText(/MarketingCode vs Solusi Lain/i)).toBeTruthy()
     expect(screen.getByText(/menang jangka panjang\./i)).toBeTruthy()
     expect(screen.getAllByText('MarketingCode.ID').length).toBeGreaterThan(0)

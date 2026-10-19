@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Star, MessageSquareQuote, CheckCircle2 } from 'lucide-react'
+import { Star, MessageSquareQuote, CheckCircle2, ExternalLink } from 'lucide-react'
 
 export interface TestimonialStory {
   id: string
@@ -17,80 +17,86 @@ export interface TestimonialStory {
   statLabel: string
   image: string
   imageAlt: string
+  domain?: string
+  projectUrl?: string
 }
 
 const STORIES: TestimonialStory[] = [
   {
-    id: 'sasirangan-banua',
-    clientName: 'Sasirangan Banua Lestari',
-    businessType: 'Retail & Kerajinan Khas Kalsel',
-    location: 'Banjarmasin',
-    serviceTag: 'Website Katalog UMKM',
+    id: 'dispora-youthpreneur-tapin',
+    clientName: 'Dispora Kabupaten Tapin',
+    businessType: 'Inkubasi Wirausaha Muda Daerah 2026',
+    location: 'Rantau, Kab. Tapin',
+    serviceTag: 'Web App & Portal Inkubasi',
+    domain: 'youthpreneur.tapinkab.go.id',
+    projectUrl: 'https://youthpreneur.tapinkab.go.id/',
     quote:
-      'Dulu kami kewalahan harus kirim foto katalog satu per satu lewat chat dan sering tertimbun. Sekarang pelanggan tinggal buka katalog website, pilih motif, dan klik beli yang langsung membuka WhatsApp dengan rincian pesanan. Sangat praktis dan hemat waktu staf!',
-    authorName: 'Hj. Noor Aida',
-    authorRole: 'Owner Sasirangan Banua',
-    authorInitials: 'NA',
+      'Platform Youthpreneur menjadi wadah pemuda daerah bertumbuh jadi motor ekonomi nusantara. Seleksi wirausaha muda, mentoring digital marketing, hingga permodalan terkelola rapi dalam satu sistem terintegrasi yang sangat cepat dan mudah diakses.',
+    authorName: 'EKO HARYONO, S.E., M.M',
+    authorRole: 'Kepala Dinas Pemuda dan Olahraga Kabupaten Tapin',
+    authorInitials: 'EH',
     rating: 5,
-    statValue: '+280%',
-    statLabel: 'Efisiensi Chat Order WhatsApp',
-    image:
-      'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Produksi motif kain Sasirangan tradisional khas Kalimantan Selatan',
+    statValue: '900+',
+    statLabel: 'Pemuda & Wirausaha Terfasilitasi',
+    image: '/images/porto-1.webp',
+    imageAlt: 'Platform Inkubasi Wirausaha Muda Daerah Dispora Tapin 2026',
   },
   {
-    id: 'borneo-sarana',
-    clientName: 'PT Borneo Sarana Perkasa',
-    businessType: 'Kontraktor & Pengadaan B2B',
-    location: 'Banjarbaru',
-    serviceTag: 'Company Profile Bisnis',
+    id: 'agan-trans-travel',
+    clientName: 'AGAN TRANS (Travel Bandung Bali)',
+    businessType: 'Layanan Transportasi & Sewa Hiace',
+    location: 'Bandung & Denpasar',
+    serviceTag: 'Website Booking & SEO Travel',
+    domain: 'travelbandungbali.id',
+    projectUrl: 'https://travelbandungbali.id/',
     quote:
-      'Company profile yang rapi dan cepat dibuka di laptop dinas sangat menunjang kredibilitas kami saat presentasi lelang proyek dan tender instansi. Dokumen legalitas dan portofolio tertata resmi tanpa ada plugin lambat. Komunikasi timnya ramah dan transparan.',
-    authorName: 'Ir. Bambang Triyono',
-    authorRole: 'Direktur Operasional',
-    authorInitials: 'BT',
+      'Website travel kami mendominasi pencarian Google untuk rute antar pulau Bandung - Bali. Alur reservasi armada Hiace door-to-door langsung terhubung ke WhatsApp admin, membuat konversi pemesanan tiket naik pesat tanpa kendala teknis.',
+    authorName: 'Muhammad Abdul Gani',
+    authorRole: 'Pemilik Bisnis Travel',
+    authorInitials: 'MG',
+    rating: 5,
+    statValue: '+320%',
+    statLabel: 'Kenaikan Booking Tiket via WhatsApp',
+    image: '/images/porto-2.webp',
+    imageAlt: 'Website Layanan Sewa Hiace dan Travel Bandung Bali AGAN TRANS',
+  },
+  {
+    id: 'siakoor-sekretariat-dprd',
+    clientName: 'Sekretariat DPRD Kabupaten Tapin',
+    businessType: 'Sistem Informasi Kedisiplinan & Koordinasi',
+    location: 'Kabupaten Tapin',
+    serviceTag: 'Web App Geofencing & Disposisi',
+    domain: 'siakoor.tapinkab.go.id',
+    projectUrl: 'https://siakoor.tapinkab.go.id/',
+    quote:
+      'Si Akoor mentransformasi presensi apel pagi dari absensi paraf kertas manual ke sistem digital dengan radius GPS 25 meter yang ketat. Arahan pimpinan apel langsung terdisposisi ke seluruh bagian, dan rekapitulasi kedisiplinan tersinkronisasi otomatis.',
+    authorName: 'Dr. Padlian Noor, S.Sos., M.A.P.',
+    authorRole: 'Sekretaris DPRD (Sekwan) Kabupaten Tapin',
+    authorInitials: 'PN',
     rating: 5,
     statValue: '100%',
-    statLabel: 'Kesesuaian Administrasi Tender',
-    image:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Gedung korporasi dan kantor representatif mitra konstruksi',
+    statLabel: 'Akurasi Presensi GPS & Disposisi Cepat',
+    image: '/images/porto-3.webp',
+    imageAlt: 'Sistem Informasi Apel dan Koordinasi Si Akoor Sekretariat DPRD Tapin',
   },
   {
-    id: 'kopi-senja',
-    clientName: 'Kopi Senja Kandangan',
-    businessType: 'F&B & Kuliner Unggulan',
-    location: 'Hulu Sungai Selatan',
-    serviceTag: 'Landing Page Promosi',
+    id: 'pentasjapin-setda-tapin',
+    clientName: 'Bagian Organisasi Setda Kab. Tapin',
+    businessType: 'Platform Penilaian Kinerja Pegawai',
+    location: 'Rantau, Kab. Tapin',
+    serviceTag: 'Sistem Kinerja ASN & Non-ASN',
+    domain: 'pentasjapin.tapinkab.go.id',
+    projectUrl: 'https://pentasjapin.tapinkab.go.id/',
     quote:
-      'Kami mengarahkan promosi iklan Instagram ke landing page buatan MarketingCode. Calon pengunjung tidak kabur karena waktu muat websitenya luar biasa kencang walau dari sinyal HP biasa. Banyak pelanggan dari luar kota mampir setelah lihat menu dan lokasi di web.',
-    authorName: 'M. Rizky Ramadhan',
-    authorRole: 'Co-Founder Kopi Senja',
-    authorInitials: 'RR',
+      'Pentas Japin menghadirkan platform penilaian kinerja pegawai ASN dan non-ASN yang objektif, transparan, dan efisien bagi Pemerintah Kabupaten Tapin. Seluruh instrumen capaian kinerja terdata rapi tanpa beban administrasi berkas manual.',
+    authorName: 'Rini Yusnita, S.STP, MM',
+    authorRole: 'Kepala Bagian Organisasi',
+    authorInitials: 'RY',
     rating: 5,
-    statValue: '0.6 Detik',
-    statLabel: 'Waktu Muat Cepat di Smartphone',
-    image:
-      'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Suasana kedai kopi artisan modern di Kandangan',
-  },
-  {
-    id: 'klinik-sehat',
-    clientName: 'Klinik Pratama Sehat Utama',
-    businessType: 'Fasilitas Layanan Medis',
-    location: 'Banjarmasin',
-    serviceTag: 'Website Profil & Jadwal',
-    quote:
-      'Informasi jadwal praktek dokter spesialis kini bisa diakses pasien 24 jam secara teratur. Staf administrasi kami juga mudah mengupdate informasi dari smartphone berkat dashboard admin yang praktis. Sangat kami rekomendasikan untuk profesional di Kalsel.',
-    authorName: 'dr. Hendra Gunawan, Sp.A',
-    authorRole: 'Penanggung Jawab Medis',
-    authorInitials: 'HG',
-    rating: 5,
-    statValue: '24 Jam',
-    statLabel: 'Akses Jadwal Mandiri Pasien',
-    image:
-      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80',
-    imageAlt: 'Ruang konsultasi dan layanan fasilitas medis profesional',
+    statValue: '10x Lebih Cepat',
+    statLabel: 'Rekapitulasi Evaluasi Kinerja Pegawai',
+    image: '/images/porto-4.webp',
+    imageAlt: 'Aplikasi Pentas Japin Penilaian Kinerja Terintegrasi Setda Tapin',
   },
 ]
 
@@ -107,23 +113,32 @@ export function TestimonialsSection() {
           Cerita &amp; Pengalaman Nyata Klien Kami
         </h2>
         <p className="text-neutral-500 text-sm sm:text-base mt-2.5 max-w-2xl mx-auto leading-relaxed">
-          Dengarkan langsung bagaimana website yang cepat, mobile-friendly, dan terhubung ke
-          WhatsApp membantu para pemilik usaha di Kalimantan Selatan berkembang lebih efisien.
+          Dengarkan langsung bagaimana website dan aplikasi sistem informasi yang cepat, aman, dan
+          tepat guna membantu instansi pemerintah daerah serta pelaku bisnis berkembang lebih
+          efisien.
         </p>
 
         {/* Highlight Stats Strip */}
         <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-6 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-neutral-200/80 shadow-soft max-w-2xl mx-auto">
           <div className="text-center">
             <span className="block text-2xl sm:text-3xl font-extrabold text-neutral-900">50+</span>
-            <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">Proyek Selesai &amp; Online</span>
+            <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
+              Proyek Selesai &amp; Online
+            </span>
           </div>
           <div className="text-center border-x border-neutral-100">
             <span className="block text-2xl sm:text-3xl font-extrabold text-[#D13D00]">98%</span>
-            <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">Tingkat Kepuasan Klien</span>
+            <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
+              Tingkat Kepuasan Klien
+            </span>
           </div>
           <div className="text-center">
-            <span className="block text-2xl sm:text-3xl font-extrabold text-neutral-900">4.9/5</span>
-            <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">Rating Kualitas Layanan</span>
+            <span className="block text-2xl sm:text-3xl font-extrabold text-neutral-900">
+              4.9/5
+            </span>
+            <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
+              Rating Kualitas Layanan
+            </span>
           </div>
         </div>
       </div>
@@ -150,48 +165,58 @@ export function TestimonialsSection() {
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                 </div>
-                <span className="text-[10px] font-mono text-neutral-700 font-medium truncate max-w-[200px]">
-                  {story.clientName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
-                </span>
+                {story.projectUrl ? (
+                  <a
+                    href={story.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-mono text-neutral-600 hover:text-[#C23605] font-medium truncate max-w-[220px] transition-colors flex items-center gap-1 group/link"
+                    title={`Kunjungi ${story.domain || story.clientName}`}
+                  >
+                    <span>{story.domain || story.clientName}</span>
+                    <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover/link:opacity-100 transition-opacity" />
+                  </a>
+                ) : (
+                  <span className="text-[10px] font-mono text-neutral-700 font-medium truncate max-w-[200px]">
+                    {story.domain ||
+                      story.clientName.toLowerCase().replace(/[^a-z0-9]/g, '') + '.com'}
+                  </span>
+                )}
                 <span className="w-3" />
               </div>
 
-              {/* Project Image & Badge Overlay */}
-              <div className="relative min-h-[240px] sm:min-h-[280px] flex-1 overflow-hidden bg-neutral-100">
+              {/* Project Image Container - Uncropped Display */}
+              <div className="relative w-full aspect-[800/533] bg-neutral-100/60 overflow-hidden flex items-center justify-center group-hover:brightness-[1.02] transition-all">
                 <Image
                   src={story.image}
                   alt={story.imageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                {/* Outcome Pill Overlay */}
-                <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 text-white">
-                  <div>
-                    <span className="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#D13D00] text-white uppercase tracking-wider mb-1">
-                      {story.serviceTag}
-                    </span>
-                    <h3 className="text-sm sm:text-base font-bold text-white drop-shadow-xs">
-                      {story.clientName}
-                    </h3>
-                  </div>
-                  <div className="bg-white/95 text-neutral-900 rounded-xl px-3 py-1.5 text-right shrink-0 shadow-md">
-                    <span className="block text-xs sm:text-sm font-extrabold text-[#D13D00]">
-                      {story.statValue}
-                    </span>
-                    <span className="text-[9px] text-neutral-600 font-medium block">
-                      {story.statLabel}
-                    </span>
-                  </div>
-                </div>
               </div>
 
-              {/* Bottom Card Footer */}
-              <div className="px-4 py-3 bg-white border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-600">
-                <span className="font-medium text-neutral-800">{story.businessType}</span>
-                <span className="text-[11px] text-neutral-600">{story.location}</span>
+              {/* Bottom Card Meta & Outcome */}
+              <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-white border-t border-neutral-200/70 flex items-center justify-between gap-3 text-xs mt-auto">
+                <div className="min-w-0">
+                  <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFF0EB] text-[#C23605] uppercase tracking-wider mb-1">
+                    {story.serviceTag}
+                  </span>
+                  <h3 className="font-bold text-neutral-900 truncate text-xs sm:text-sm">
+                    {story.clientName}
+                  </h3>
+                  <p className="text-[11px] text-neutral-500 truncate mt-0.5">
+                    {story.businessType} &bull; {story.location}
+                  </p>
+                </div>
+                <div className="bg-[#FFF5F0] border border-orange-200/60 rounded-xl px-3 py-1.5 text-right shrink-0">
+                  <span className="block text-xs sm:text-sm font-extrabold text-[#D13D00]">
+                    {story.statValue}
+                  </span>
+                  <span className="text-[9px] text-neutral-600 font-medium block">
+                    {story.statLabel}
+                  </span>
+                </div>
               </div>
             </div>
           )
@@ -212,7 +237,11 @@ export function TestimonialsSection() {
               <div>
                 {/* Header: Rating & Verified Badge */}
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <div role="img" aria-label={`Rating ${story.rating} dari 5 bintang`} className="flex items-center gap-1 text-amber-400">
+                  <div
+                    role="img"
+                    aria-label={`Rating ${story.rating} dari 5 bintang`}
+                    className="flex items-center gap-1 text-amber-400"
+                  >
                     {Array.from({ length: story.rating }).map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
@@ -240,7 +269,8 @@ export function TestimonialsSection() {
                     {story.authorName}
                   </h4>
                   <p className="text-xs text-neutral-600 mt-0.5">
-                    {story.authorRole} &bull; <span className="text-[#C23605] font-semibold">{story.location}</span>
+                    {story.authorRole} &bull;{' '}
+                    <span className="text-[#C23605] font-semibold">{story.location}</span>
                   </p>
                 </div>
               </div>

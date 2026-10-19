@@ -30,19 +30,19 @@ describe('TestimonialsSection (Suara Pengguna)', () => {
     render(React.createElement(TestimonialsSection))
 
     // Check author names
-    expect(screen.getByText('Hj. Noor Aida')).toBeTruthy()
-    expect(screen.getByText('Ir. Bambang Triyono')).toBeTruthy()
-    expect(screen.getByText('M. Rizky Ramadhan')).toBeTruthy()
-    expect(screen.getByText('dr. Hendra Gunawan, Sp.A')).toBeTruthy()
+    expect(screen.getByText('EKO HARYONO, S.E., M.M')).toBeTruthy()
+    expect(screen.getByText('Muhammad Abdul Gani')).toBeTruthy()
+    expect(screen.getByText('Dr. Padlian Noor, S.Sos., M.A.P.')).toBeTruthy()
+    expect(screen.getByText('Rini Yusnita, S.STP, MM')).toBeTruthy()
 
     // Verified badges (all 4 should be verified)
     const verifiedBadges = screen.getAllByText(/Klien Terverifikasi/i)
     expect(verifiedBadges.length).toBe(4)
 
     // Stat outcomes
-    expect(screen.getByText('+280%')).toBeTruthy()
+    expect(screen.getByText('900+')).toBeTruthy()
+    expect(screen.getByText('+320%')).toBeTruthy()
     expect(screen.getByText('100%')).toBeTruthy()
-    expect(screen.getByText('0.6 Detik')).toBeTruthy()
-    expect(screen.getByText('24 Jam')).toBeTruthy()
+    expect(screen.getByText('10x Lebih Cepat')).toBeTruthy()
   })
 })
