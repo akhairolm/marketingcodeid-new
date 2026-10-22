@@ -18,9 +18,9 @@ test.describe('Jasa Pembuatan Website UX & Responsiveness', () => {
     expect(hasNoOverflow).toBe(true)
 
     // Pricing tiers matching homepage
-    await expect(page.locator('text=Rp 1.190.000')).toBeVisible()
-    await expect(page.locator('text=Rp 2.190.000')).toBeVisible()
-    await expect(page.locator('text=Rp 3.490.000')).toBeVisible()
+    await expect(page.getByText('Rp 1.190.000', { exact: true })).toBeVisible()
+    await expect(page.getByText('Rp 2.190.000', { exact: true })).toBeVisible()
+    await expect(page.getByText('Rp 3.490.000', { exact: true })).toBeVisible()
     await expect(page.locator('text=PALING DIMINATI')).toBeVisible()
 
     const waLinks = await page.$$eval('a[href*="wa.me"]', (links) =>

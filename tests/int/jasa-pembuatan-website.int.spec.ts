@@ -100,15 +100,16 @@ describe('JasaPembuatanWebsitePage', () => {
 
     // FAQ: each disclosure uses <details><summary> with question + answer preserved.
     const detailsEls = container.querySelectorAll('details')
-    expect(detailsEls.length).toBe(6)
+    expect(detailsEls.length).toBe(7)
 
     const expectedFaq: Array<[RegExp, RegExp]> = [
+      [/Apakah ada sistem sewa bulanan yang mengikat/i, /Sama sekali tidak ada biaya sewa bulanan/i],
+      [/Apakah biaya paket sudah termasuk nama domain/i, /pendaftaran nama domain resmi/i],
+      [/Bagaimana dengan jaminan kepuasan & garansi purna jual/i, /garansi 7 hari uang kembali/i],
+      [/Berapa lama waktu yang dibutuhkan hingga website siap digunakan/i, /3 - 5 hari kerja/i],
       [/Saya gaptek dan tidak paham koding/i, /panel admin yang sangat simpel/i],
       [/Bagaimana alur pemesanan produk oleh pembeli/i, /tombol pesan WhatsApp/i],
-      [/Apakah biaya paket sudah termasuk nama domain/i, /pendaftaran nama domain resmi/i],
       [/Bagaimana proses pengerjaan jika lokasi saya berada di luar kota/i, /100% online secara profesional/i],
-      [/Apakah ada sistem sewa bulanan yang mengikat/i, /Sama sekali tidak ada biaya sewa bulanan/i],
-      [/Berapa lama waktu yang dibutuhkan hingga website siap digunakan/i, /3 - 5 hari kerja/i],
     ]
     detailsEls.forEach((details, idx) => {
       const summary = details.querySelector('summary')

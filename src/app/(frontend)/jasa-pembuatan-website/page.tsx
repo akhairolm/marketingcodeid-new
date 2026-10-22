@@ -27,7 +27,7 @@ import {
   ChevronDown,
   type LucideIcon,
 } from 'lucide-react'
-import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { getWhatsAppUrl, getWhatsAppDirectUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
 import { TestimonialsSection } from '@/components/home/TestimonialsSection'
 
@@ -64,6 +64,22 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
+    q: 'Apakah ada sistem sewa bulanan yang mengikat?',
+    a: 'Sama sekali tidak ada biaya sewa bulanan. Website, nama domain, data produk, dan seluruh aset adalah 100% hak milik Anda seutuhnya. Pada tahun kedua dan seterusnya, Anda hanya membayar biaya perpanjangan tahunan standar untuk domain dan server yang sangat terjangkau.',
+  },
+  {
+    q: 'Apakah biaya paket sudah termasuk nama domain (.com) dan server hosting?',
+    a: 'Ya, seluruh paket kami sudah termasuk pendaftaran nama domain resmi (.com / .id) dan server berkecepatan tinggi selama 1 tahun pertama. Tidak ada biaya tambahan tersembunyi.',
+  },
+  {
+    q: 'Bagaimana dengan jaminan kepuasan & garansi purna jual?',
+    a: 'Kami memberikan garansi pemeliharaan resmi selama 1 tahun penuh yang mencakup perbaikan bug, pembaruan keamanan, dan monitoring server. Selain itu, kami memberikan garansi 7 hari uang kembali jika konsep awal website terbukti tidak sesuai dengan kesepakatan brief. Anda aman 100% tanpa risiko.',
+  },
+  {
+    q: 'Berapa lama waktu yang dibutuhkan hingga website siap digunakan?',
+    a: 'Untuk Paket Landing Page Promosi berkisar 3 - 5 hari kerja, Paket Website Toko UMKM berkisar 7 - 14 hari kerja, dan Paket Company Profile Pro berkisar 10 - 21 hari kerja setelah materi foto produk dan informasi usaha kami terima.',
+  },
+  {
     q: 'Saya gaptek dan tidak paham koding, apakah saya bisa mengelola website ini?',
     a: 'Tentu saja bisa. Kami menyediakan panel admin yang sangat simpel dan bisa dibuka langsung dari layar HP atau laptop. Anda dapat menambah foto produk baru, mengganti harga promo, atau memperbarui informasi usaha semudah mengunggah status di WhatsApp atau media sosial. Tim kami juga memberikan video panduan dan siap mengajari Anda sampai benar-benar bisa.',
   },
@@ -72,20 +88,8 @@ const faqs = [
     a: 'Setiap produk yang Anda pajang dilengkapi tombol pesan WhatsApp. Begitu calon pembeli mengklik tombol tersebut, aplikasi WhatsApp mereka otomatis terbuka dengan pesan pemesanan yang rapi mencantumkan nama barang, varian, dan jumlah yang dipilih. Anda tinggal membalas total transfer dan ongkos kirim seperti biasa tanpa ribet.',
   },
   {
-    q: 'Apakah biaya paket sudah termasuk nama domain (.com) dan server hosting?',
-    a: 'Ya, seluruh paket kami sudah termasuk pendaftaran nama domain resmi (.com / .id) dan server berkecepatan tinggi selama 1 tahun pertama. Tidak ada biaya tambahan tersembunyi.',
-  },
-  {
     q: 'Bagaimana proses pengerjaan jika lokasi saya berada di luar kota atau luar pulau?',
     a: 'Seluruh proses pengerjaan kami lakukan 100% online secara profesional. Kami melayani klien UMKM dan pebisnis dari Sumatra, Jawa, Kalimantan, Sulawesi, hingga Papua. Koordinasi konsep, pengiriman materi foto produk, hingga serah terima dilakukan dengan mudah via chat WhatsApp atau Google Meet.',
-  },
-  {
-    q: 'Apakah ada sistem sewa bulanan yang mengikat?',
-    a: 'Sama sekali tidak ada biaya sewa bulanan. Website, nama domain, data produk, dan seluruh aset adalah 100% hak milik Anda seutuhnya. Pada tahun kedua dan seterusnya, Anda hanya membayar biaya perpanjangan tahunan standar untuk domain dan server yang sangat terjangkau.',
-  },
-  {
-    q: 'Berapa lama waktu yang dibutuhkan hingga website siap digunakan?',
-    a: 'Untuk Paket Landing Page Promosi berkisar 3 - 5 hari kerja, Paket Website Toko UMKM berkisar 7 - 14 hari kerja, dan Paket Company Profile Pro berkisar 10 - 21 hari kerja setelah materi foto produk dan informasi usaha kami terima.',
   },
 ]
 
@@ -93,22 +97,22 @@ const problems = [
   {
     number: '01',
     title: 'Marketplace Memotong Margin Anda',
-    desc: 'Komisi per transaksi makin tinggi (5–12%) ditambah biaya iklan internal yang makin mahal. Makin banyak terjual, potongan keuntungan justru makin besar.',
+    desc: 'Rp 1.500.000+ lenyap tiap omzet Rp 10 juta hanya untuk potongan komisi 5–12% dan biaya admin. Makin keras Anda jualan, margin keuntungan bersih Anda justru makin tergerus setiap bulannya.',
   },
   {
     number: '02',
     title: 'Bersaing di Rak yang Sama dengan Ratusan Kompetitor',
-    desc: 'Di marketplace, pembeli gampang pindah ke toko lain hanya karena beda harga seribu rupiah. Nama toko dan nilai brand Anda sulit diingat pembeli.',
+    desc: 'Di marketplace, pembeli sangat mudah berpaling ke toko lain hanya karena beda harga seribu rupiah. Nama toko dan nilai brand unik Anda tenggelam tanpa pernah diingat pembeli.',
   },
   {
     number: '03',
     title: 'Data Pembeli Dikunci & Bukan Milik Anda',
-    desc: 'Nomor WhatsApp dan data kontak pembeli disensor oleh platform. Anda tidak bisa menghubungi mereka untuk menawarkan promo produk baru atau repeat order.',
+    desc: 'Kontak WhatsApp dan nomor pembeli disensor oleh platform. Saat merilis produk baru atau promo hari raya, Anda tidak bisa menghubungi pelanggan lama untuk repeat order gratis.',
   },
   {
     number: '04',
     title: 'Website Asal-Asalan Terlihat Kurang Meyakinkan',
-    desc: 'Menggunakan template murahan atau subdomain gratisan membuat pembeli ragu untuk transfer dan meragukan keaslian toko Anda.',
+    desc: 'Menggunakan template murahan atau link bio gratisan membuat pembeli ragu transfer dan mempertanyakan keaslian toko Anda. Kepercayaan pembeli hilang sebelum transaksi terjadi.',
   },
 ]
 
@@ -154,7 +158,11 @@ const pricingPackages = [
     unit: 'Bayar sekali • Terima beres',
     desc: 'Cocok untuk promosi 1 produk/jasa unggulan & kampanye iklan (Meta/Google Ads) yang fokus mengarahkan prospek langsung ke WhatsApp.',
     isPopular: false,
-    btnText: 'Konsultasi Gratis',
+    btnText: 'Pesan Paket Landing (Rp 1.190.000)',
+    ariaLabel: 'Pesan Paket Landing Page Konversi via WhatsApp',
+    directUrl: getWhatsAppDirectUrl(
+      'Halo Admin MarketingCode.ID, saya mau ambil Paket Landing Page Konversi (Rp 1.190.000). Nama usaha saya: ____'
+    ),
     subject: 'Paket Landing Page Promosi (Rp 1.190.000)',
     features: [
       '1 Halaman Panjang (Single Page) dengan susunan penawaran persuasif',
@@ -166,18 +174,24 @@ const pricingPackages = [
       'Gratis Bantu Update Ringan (Ganti teks/foto promo hingga 2x setelah rilis)',
       'Garansi Pemeliharaan Resmi & Sertifikat Keamanan SSL',
     ],
+    limitationNote: '⚠️ Catatan: Tidak termasuk dashboard admin mandiri & multi-halaman blog SEO',
     renewal: 'Perpanjangan tahun ke-2 hanya Rp 600rb/thn (Domain & Server)',
-    time: 'Pengerjaan Cepat: 3 - 5 Hari Kerja',
+    time: 'Siap Rilis: 3 - 5 Hari Kerja (Cocok untuk Launching Cepat)',
   },
   {
     tier: 'Web Katalog, Profil & Blog',
     badgeTop: 'PALING DIMINATI',
+    topHighlightNote: '✨ Paling Lengkap & Fleksibel — Dipilih 70% Klien UMKM',
     originalPrice: 'Rp 3.200.000',
     price: 'Rp 2.190.000',
     unit: 'Bayar sekali • Bisa kelola mandiri',
     desc: 'Solusi ideal untuk UMKM, toko lokal, kuliner, fashion, & usaha jasa yang ingin memiliki katalog produk, profil usaha, serta artikel informasi yang bisa diedit sendiri.',
     isPopular: true,
-    btnText: 'Konsultasi Gratis',
+    btnText: 'Ambil Paket Katalog via WhatsApp',
+    ariaLabel: 'Pesan Paket Web Katalog, Profil & Blog via WhatsApp',
+    directUrl: getWhatsAppDirectUrl(
+      'Halo Admin MarketingCode.ID, saya mau ambil Paket Web Katalog, Profil & Blog (Rp 2.190.000). Nama usaha saya: ____'
+    ),
     subject: 'Paket Web UMKM & Katalog (Rp 2.190.000)',
     features: [
       'Hingga 5–7 Halaman Menu (Beranda, Tentang Kami, Katalog/Layanan, Artikel, Kontak)',
@@ -190,7 +204,7 @@ const pricingPackages = [
       'Garansi Pemeliharaan Resmi 1 Tahun Penuh & Keamanan SSL',
     ],
     renewal: 'Perpanjangan tahun ke-2 hanya Rp 750rb/thn (Domain & Server)',
-    time: 'Pengerjaan: 7 - 14 Hari Kerja',
+    time: 'Pengerjaan Detail: 7 - 14 Hari Kerja (Setiap Halaman & Produk Dioptimasi)',
   },
   {
     tier: 'Company Profile Pro / Toko Online',
@@ -200,7 +214,11 @@ const pricingPackages = [
     unit: 'Bayar sekali • Sistem skala bisnis',
     desc: 'Dirancang untuk perusahaan (PT/CV/B2B) yang butuh kredibilitas tinggi atau toko online dengan sistem transaksi otomatis (Payment Gateway).',
     isPopular: false,
-    btnText: 'Konsultasi Gratis',
+    btnText: 'Diskusi Kustomisasi Pro via WhatsApp',
+    ariaLabel: 'Konsultasi Paket Company Profile Pro / Toko Online via WhatsApp',
+    directUrl: getWhatsAppDirectUrl(
+      'Halo Admin MarketingCode.ID, saya tertarik konsultasi Paket Company Profile Pro / Toko Online (Rp 3.490.000). Kebutuhan saya: ____'
+    ),
     subject: 'Paket Company Profile Pro / Toko Online (Rp 3.490.000)',
     features: [
       'Hingga 12+ Halaman Eksklusif dengan Desain Kustom Elegan & Representatif',
@@ -213,7 +231,7 @@ const pricingPackages = [
       'Prioritas Bantuan Pendampingan & Training Tim',
     ],
     renewal: 'Perpanjangan tahun ke-2 menyesuaikan kapasitas server',
-    time: 'Pengerjaan: 10 - 21 Hari Kerja',
+    time: 'Build Mendalam: 10 - 21 Hari Kerja (Desain & Arsitektur Kustom)',
   },
 ]
 
@@ -289,6 +307,13 @@ const comparisonRows = [
     marketingCode: { status: 'check', text: 'Bayar sekali (100% aset hak milik)' },
     marketplace: { status: 'cross', text: 'Potongan komisi terus bertambah' },
     diy: { status: 'cross', text: 'Banyak biaya langganan dolar bulanan' },
+  },
+  {
+    number: '08',
+    criteria: 'Kebebasan modifikasi koding mandiri',
+    marketingCode: { status: 'check', text: 'Melalui dashboard admin simpel & opsi request kustom' },
+    marketplace: { status: 'cross', text: 'Sistem dikunci mati oleh platform' },
+    diy: { status: 'check', text: 'Bebas utak-atik koding (jika menguasai teknis)' },
   },
 ]
 
@@ -833,9 +858,9 @@ export default function JasaPembuatanWebsitePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
             <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
-                <Store className="w-3.5 h-3.5 text-[#FF5C28]" />
+                <Store className="w-3.5 h-3.5 text-[#C23605]" />
                 <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-                  Layanan Pembuatan Website &amp; Toko Online — Melayani Seluruh Indonesia
+                  🚀 Agency Boutique — Fokus Maksimal 10 Klien/Bulan • Melayani Seluruh Indonesia
                 </span>
               </div>
 
@@ -852,7 +877,7 @@ export default function JasaPembuatanWebsitePage() {
               <div className="pt-2 flex flex-col items-start gap-3">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                   <a
-                    href={getWhatsAppUrl('website', 'Konsultasi Jasa Pembuatan Website')}
+                    href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya mau konsultasi pembuatan website toko online. Usaha saya: ____')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
@@ -864,7 +889,7 @@ export default function JasaPembuatanWebsitePage() {
                       height={22}
                       className="w-5 h-5 shrink-0"
                     />
-                    <span>Konsultasi Gratis via WhatsApp</span>
+                    <span>Konsultasi Rencana Toko via WhatsApp</span>
                   </a>
                   <a
                     href="#paket-harga"
@@ -886,6 +911,41 @@ export default function JasaPembuatanWebsitePage() {
                   <span>•</span>
                   <span className="flex items-center gap-1.5">
                     <Check className="w-4 h-4 text-[#FF5C28]" /> Diajari Sampai Bisa
+                  </span>
+                </div>
+
+                {/* Founder Personal Touch Card */}
+                <div className="pt-3 border-t border-neutral-200/70 mt-2 flex items-center gap-3.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/70 max-w-xl">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#FF5C28] to-amber-500 text-white font-extrabold flex items-center justify-center text-sm shadow-sm ring-2 ring-white shrink-0">
+                    AK
+                  </div>
+                  <div className="text-left">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-bold text-xs sm:text-sm text-neutral-900">
+                        Dikerjakan Langsung oleh Ahmad Khairol M.
+                      </span>
+                      <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold">
+                        Lead Developer
+                      </span>
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-neutral-600 mt-0.5 leading-snug">
+                      Full-stack web dev (5+ thn) • Ditangani personal &amp; terarah, bukan diserahkan ke tim lepas pemula.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3 Real Guarantees Strip */}
+                <div className="pt-1 flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1.5 text-xs text-neutral-700 font-medium">
+                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
+                    <Clock className="w-3.5 h-3.5 text-[#C23605]" /> Balas chat &lt; 10 menit
+                  </span>
+                  <span className="text-neutral-300">•</span>
+                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" /> Garansi 7 hari uang kembali
+                  </span>
+                  <span className="text-neutral-300">•</span>
+                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
+                    <Sparkles className="w-3.5 h-3.5 text-[#C23605]" /> Revisi desain sampai puas
                   </span>
                 </div>
               </div>
@@ -1117,127 +1177,147 @@ export default function JasaPembuatanWebsitePage() {
           />
           <section id="paket-harga" className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="frame-ticks bg-[#FBFBFB]/70 px-3 sm:px-8 lg:px-10 py-10 sm:py-14">
-              <div className="text-center mb-12">
+              <div className="text-center mb-10">
                 <SectionMark num="04" icon={Tag} eyebrow="Pilihan Paket Transparan" />
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-              Investasi Transparan Sesuai Skala Usaha Anda
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
-              Bayar sekali tanpa biaya sewa sistem bulanan. Sudah termasuk nama domain resmi (.com / .id), cloud server cepat 1 tahun pertama, dan garansi pemeliharaan resmi.
-            </p>
-          </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                  Investasi Transparan Sesuai Skala Usaha Anda
+                </h2>
+                <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                  Bayar sekali tanpa biaya sewa sistem bulanan. Sudah termasuk nama domain resmi (.com / .id), cloud server cepat 1 tahun pertama, dan garansi pemeliharaan resmi.
+                </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch text-left">
-            {pricingPackages.map((item) => {
-              const isHighlight = item.isPopular
+                {/* Honest Boutique Scarcity Trigger */}
+                <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF5F0] border border-orange-200/80 text-xs sm:text-sm font-semibold text-[#C23605] shadow-xs text-left">
+                  <span className="flex h-2 w-2 rounded-full bg-[#C23605] animate-pulse shrink-0" />
+                  <span>Slot Terbatas Bulan Ini: Maksimal 10 klien per bulan demi pengerjaan teliti &amp; pendampingan intensif.</span>
+                </div>
+              </div>
 
-              return (
-                <div
-                  key={item.tier}
-                  className={`bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
-                    isHighlight
-                      ? 'border-2 border-[#FF5C28] shadow-xl shadow-orange-500/10 lg:-translate-y-2 lg:scale-[1.02] z-10'
-                      : 'border border-neutral-200/80 shadow-card hover:border-orange-200/80 hover:shadow-lg'
-                  }`}
-                >
-                  {/* Decoy Top Badge */}
-                  {isHighlight && (
-                    <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#FF5C28] to-[#EA4510] text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap z-20">
-                      <Sparkles className="w-3 h-3" />
-                      <span>{item.badgeTop}</span>
-                    </div>
-                  )}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch text-left">
+                {pricingPackages.map((item) => {
+                  const isHighlight = item.isPopular
 
-                  <div>
-                    {!isHighlight && item.badgeTop && (
-                      <div className="mb-3">
-                        <span className="inline-flex items-center text-[11px] font-bold text-neutral-600 bg-neutral-100 border border-neutral-200/80 px-2.5 py-0.5 rounded-full">
-                          {item.badgeTop}
-                        </span>
-                      </div>
-                    )}
-
-                    <h3 className="text-xl font-extrabold text-neutral-900 tracking-tight">
-                      {item.tier}
-                    </h3>
-
-                    <p className="text-xs sm:text-[13px] text-neutral-600 mt-2.5 leading-relaxed min-h-[44px]">
-                      {item.desc}
-                    </p>
-
-                    {/* Price with anchoring */}
-                    <div className="mt-5 pt-4 border-t border-neutral-100">
-                      {item.originalPrice && (
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs sm:text-sm text-neutral-400 line-through font-medium">
-                            {item.originalPrice}
-                          </span>
-                          <span className="text-[10px] font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/60 px-2 py-0.5 rounded-full">
-                            Hemat Promo
-                          </span>
-                        </div>
-                      )}
-                      <div className="flex items-baseline gap-1.5 flex-wrap">
-                        <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-                          {item.price}
-                        </span>
-                        <span className="text-xs text-neutral-500 font-medium">{item.unit}</span>
-                      </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <a
-                      href={getWhatsAppUrl('website', item.subject)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Konsultasi Gratis via WhatsApp (${item.tier})`}
-                      className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                  return (
+                    <div
+                      key={item.tier}
+                      className={`bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
                         isHighlight
-                          ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow hover:scale-[1.01]'
-                          : 'bg-neutral-900 hover:bg-neutral-800 text-white hover:scale-[1.01]'
+                          ? 'border-2 border-[#FF5C28] shadow-xl shadow-orange-500/10 lg:-translate-y-2 lg:scale-[1.02] z-10'
+                          : 'border border-neutral-200/80 shadow-card hover:border-orange-200/80 hover:shadow-lg'
                       }`}
                     >
-                      <Image
-                        src="/icons/flaticon/whatsapp.svg"
-                        alt=""
-                        width={16}
-                        height={16}
-                        className="w-4 h-4 shrink-0 object-contain"
-                      />
-                      <span>{item.btnText}</span>
-                    </a>
-
-                    {/* Feature Checklist */}
-                    <div className="mt-6 pt-6 border-t border-neutral-100 space-y-3 text-xs sm:text-[13px] text-neutral-700">
-                      {item.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-4 h-4 rounded-full bg-orange-100 text-[#C23605] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-2.5 h-2.5 stroke-[3]" />
-                          </div>
-                          <span className="leading-snug">{feat}</span>
+                      {/* Decoy Top Badge */}
+                      {isHighlight && (
+                        <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#FF5C28] to-[#EA4510] text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap z-20">
+                          <Sparkles className="w-3 h-3" />
+                          <span>{item.badgeTop}</span>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                      )}
 
-                  {/* Card Footer info */}
-                  <div className="mt-6 pt-4 border-t border-neutral-100 space-y-1.5">
-                    {item.renewal && (
-                      <div className="text-[11px] text-neutral-500 flex items-start gap-1.5 bg-neutral-50 p-2 rounded-xl border border-neutral-100">
-                        <Clock className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
-                        <span className="leading-tight">{item.renewal}</span>
+                      <div>
+                        {item.topHighlightNote && (
+                          <div className="mb-3 px-3 py-1.5 rounded-xl bg-orange-50 border border-orange-200/80 text-[11px] font-bold text-[#C23605] flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                            <span>{item.topHighlightNote}</span>
+                          </div>
+                        )}
+
+                        {!isHighlight && item.badgeTop && (
+                          <div className="mb-3">
+                            <span className="inline-flex items-center text-[11px] font-bold text-neutral-600 bg-neutral-100 border border-neutral-200/80 px-2.5 py-0.5 rounded-full">
+                              {item.badgeTop}
+                            </span>
+                          </div>
+                        )}
+
+                        <h3 className="text-xl font-extrabold text-neutral-900 tracking-tight">
+                          {item.tier}
+                        </h3>
+
+                        <p className="text-xs sm:text-[13px] text-neutral-600 mt-2.5 leading-relaxed min-h-[44px]">
+                          {item.desc}
+                        </p>
+
+                        {/* Price with anchoring */}
+                        <div className="mt-5 pt-4 border-t border-neutral-100">
+                          {item.originalPrice && (
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-xs sm:text-sm text-neutral-400 line-through font-medium">
+                                {item.originalPrice}
+                              </span>
+                              <span className="text-[10px] font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/60 px-2 py-0.5 rounded-full">
+                                Hemat Promo
+                              </span>
+                            </div>
+                          )}
+                          <div className="flex items-baseline gap-1.5 flex-wrap">
+                            <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                              {item.price}
+                            </span>
+                            <span className="text-xs text-neutral-500 font-medium">{item.unit}</span>
+                          </div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <a
+                          href={item.directUrl || getWhatsAppUrl('website', item.subject)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={item.ariaLabel || `Pesan Paket via WhatsApp (${item.tier})`}
+                          className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                            isHighlight
+                              ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow hover:scale-[1.01]'
+                              : 'bg-neutral-900 hover:bg-neutral-800 text-white hover:scale-[1.01]'
+                          }`}
+                        >
+                          <Image
+                            src="/icons/flaticon/whatsapp.svg"
+                            alt=""
+                            width={16}
+                            height={16}
+                            className="w-4 h-4 shrink-0 object-contain"
+                          />
+                          <span>{item.btnText}</span>
+                        </a>
+
+                        {/* Feature Checklist */}
+                        <div className="mt-6 pt-6 border-t border-neutral-100 space-y-3 text-xs sm:text-[13px] text-neutral-700">
+                          {item.features.map((feat, idx) => (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <div className="w-4 h-4 rounded-full bg-orange-100 text-[#C23605] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-2.5 h-2.5 stroke-[3]" />
+                              </div>
+                              <span className="leading-snug">{feat}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Optional Limitation Note */}
+                        {item.limitationNote && (
+                          <div className="mt-4 p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-[11px] text-amber-900 leading-snug">
+                            {item.limitationNote}
+                          </div>
+                        )}
                       </div>
-                    )}
-                    {item.time && (
-                      <div className="text-[11px] text-neutral-400 text-center font-medium pt-1">
-                        {item.time}
+
+                      {/* Card Footer info */}
+                      <div className="mt-6 pt-4 border-t border-neutral-100 space-y-1.5">
+                        {item.renewal && (
+                          <div className="text-[11px] text-neutral-500 flex items-start gap-1.5 bg-neutral-50 p-2 rounded-xl border border-neutral-100">
+                            <Clock className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
+                            <span className="leading-tight">{item.renewal}</span>
+                          </div>
+                        )}
+                        {item.time && (
+                          <div className="text-[11px] text-neutral-600 text-center font-semibold pt-1">
+                            {item.time}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </section>
         </div>
@@ -1341,7 +1421,7 @@ export default function JasaPembuatanWebsitePage() {
                   </span>
                   <h3 className="font-bold text-sm text-neutral-900">Jalur Chat WhatsApp Langsung</h3>
                   <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-                    Terhubung langsung dengan tim kami. Bukan bot otomatis atau antrean tiket yang lama dibalas.
+                    Terhubung langsung dengan developer &amp; tim teknis. Bukan bot otomatis atau antrean tiket yang lama dibalas.
                   </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
@@ -1350,18 +1430,46 @@ export default function JasaPembuatanWebsitePage() {
                   </span>
                   <h3 className="font-bold text-sm text-neutral-900">Bantuan Update Ringan</h3>
                   <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-                    Mau ganti banner promo atau ganti info kontak toko? Cukup chat kami, kami bantu pengerjaannya.
+                    Mau ganti banner promo, ubah info kontak, atau update harga? Cukup chat kami, kami bantu pengerjaannya.
                   </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
                   <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
                     03
                   </span>
-                  <h3 className="font-bold text-sm text-neutral-900">Panduan Sampai Lancar</h3>
+                  <h3 className="font-bold text-sm text-neutral-900">Garansi 1 Tahun &amp; 7 Hari Uang Kembali</h3>
                   <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-                    Disediakan video panduan langkah demi langkah cara mengelola toko sendiri dari smartphone.
+                    Garansi pemeliharaan 1 tahun penuh, monitoring server, dan garansi 7 hari uang kembali jika konsep awal tidak sesuai brief.
                   </p>
                 </div>
+              </div>
+
+              {/* Mini-CTA for Section 6 */}
+              <div className="mt-8 pt-6 border-t border-orange-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <div className="font-bold text-sm text-neutral-900">
+                    Punya pertanyaan spesifik seputar garansi &amp; layanan purna jual?
+                  </div>
+                  <p className="text-xs text-neutral-600 mt-0.5">
+                    Diskusikan kebutuhan toko Anda langsung dengan developer kami tanpa ragu.
+                  </p>
+                </div>
+                <a
+                  href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya ingin tanya detail garansi dan layanan purna jual website.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Tanya Garansi dan Purna Jual via WhatsApp"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-orange-50 border border-neutral-300 hover:border-[#C23605] text-[#C23605] text-xs font-bold transition-all shadow-xs shrink-0"
+                >
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 shrink-0"
+                  />
+                  <span>Tanya Garansi via WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>
@@ -1550,12 +1658,13 @@ export default function JasaPembuatanWebsitePage() {
               </p>
             </div>
             <a
-              href={getWhatsAppUrl('website', 'Konsultasi Jasa Pembuatan Website Seluruh Indonesia')}
+              href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya ingin cek ketersediaan slot pengerjaan website untuk bulan ini.')}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Cek Ketersediaan Slot Bulan Ini via WhatsApp"
               className="inline-flex items-center px-7 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all whitespace-nowrap shrink-0"
             >
-              <span>Mulai Konsultasi Online</span>
+              <span>Cek Slot Pengerjaan Bulan Ini</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </a>
           </div>
@@ -1620,9 +1729,10 @@ export default function JasaPembuatanWebsitePage() {
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a
-                  href={getWhatsAppUrl('website', 'Konsultasi Jasa Pembuatan Website')}
+                  href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya ingin diskusi rencana pembuatan website toko saya secara gratis.')}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Diskusi Rencana Toko via WhatsApp — 100% Gratis"
                   className="w-full sm:w-auto px-8 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
                 >
                   <Image
@@ -1632,7 +1742,7 @@ export default function JasaPembuatanWebsitePage() {
                     height={18}
                     className="w-4 h-4 shrink-0 object-contain"
                   />
-                  <span>Mulai Konsultasi Gratis via WhatsApp</span>
+                  <span>Diskusi Rencana Toko via WhatsApp — 100% Gratis</span>
                 </a>
               </div>
 
