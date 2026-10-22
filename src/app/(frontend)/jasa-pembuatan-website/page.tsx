@@ -1,42 +1,54 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
-  Code2,
-  ArrowRight,
-  ChevronRight,
   Globe,
-  Briefcase,
-  Rocket,
-  ShieldCheck,
+  Store,
+  ShoppingBag,
+  Smartphone,
   Search,
-  LayoutDashboard,
-  HelpCircle,
-  MapPin,
+  MessageSquare,
+  ShieldCheck,
   Check,
+  X,
+  Circle,
+  Clock,
+  Sparkles,
   Tag,
+  ArrowRight,
+  TrendingDown,
+  Lock,
+  AlertTriangle,
+  Receipt,
+  ShieldAlert,
+  Percent,
+  HelpCircle,
+  Users,
+  CheckCircle2,
+  ChevronDown,
+  type LucideIcon,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
+import { TestimonialsSection } from '@/components/home/TestimonialsSection'
 
 export const metadata: Metadata = {
-  title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS',
+  title: 'Jasa Pembuatan Website & Toko Online Profesional | MarketingCode.ID',
   description:
-    'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan. Spesialis sistem informasi instansi, web company profile, travel, & landing page SEO.',
+    'Jasa pembuatan website & toko online profesional untuk UMKM & bisnis di seluruh Indonesia. Terima beres tanpa ribet koding, order otomatis ke WhatsApp, dan 100% hak milik tanpa sewa bulanan.',
   keywords: [
-    'jasa pembuatan website kalimantan selatan',
-    'jasa pembuatan website kandangan',
-    'jasa bikin web hulu sungai selatan',
-    'jasa website hss',
-    'jasa pembuatan sistem informasi kalsel',
-    'jasa pembuatan landing page kandangan',
-    'web developer kalsel',
+    'jasa pembuatan website',
+    'jasa bikin website toko online',
+    'jasa website umkm indonesia',
+    'jasa pembuatan landing page',
+    'jasa bikin web toko online',
+    'buat website tanpa koding',
+    'jasa web developer profesional',
   ],
   alternates: { canonical: '/jasa-pembuatan-website' },
   openGraph: {
-    title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS | MarketingCode.ID',
+    title: 'Jasa Pembuatan Website & Toko Online Profesional | MarketingCode.ID',
     description:
-      'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan. Spesialis sistem informasi instansi, web company profile, travel, & landing page SEO.',
+      'Jasa pembuatan website & toko online profesional untuk UMKM & bisnis di seluruh Indonesia. Terima beres tanpa ribet koding, order otomatis ke WhatsApp, dan 100% hak milik tanpa sewa bulanan.',
     url: '/jasa-pembuatan-website',
     siteName: 'MarketingCode.ID',
     locale: 'id_ID',
@@ -44,141 +56,747 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jasa Pembuatan Website Kalimantan Selatan & HSS | MarketingCode.ID',
+    title: 'Jasa Pembuatan Website & Toko Online Profesional | MarketingCode.ID',
     description:
-      'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan. Spesialis sistem informasi instansi, web company profile, & landing page SEO.',
+      'Jasa pembuatan website & toko online profesional untuk UMKM & bisnis di seluruh Indonesia. Terima beres tanpa ribet koding, order langsung ke WhatsApp.',
   },
 }
 
 const faqs = [
   {
-    q: 'Berapa biaya pembuatan website di Kandangan dan Kalimantan Selatan?',
-    a: 'Biaya sangat transparan: Paket Landing Page Promosi mulai dari Rp 1,5 Juta, Paket Katalog Produk & Toko UMKM mulai dari Rp 3,5 Juta (sudah termasuk domain .com, cloud hosting 1 tahun, dan panduan admin HP), hingga Paket Sistem Informasi Instansi/Dinas yang disesuaikan dengan Surat Perjanjian Kerja (SPK) dan kelengkapan dokumen BAST resmi.',
+    q: 'Saya gaptek dan tidak paham koding, apakah saya bisa mengelola website ini?',
+    a: 'Tentu saja bisa. Kami menyediakan panel admin yang sangat simpel dan bisa dibuka langsung dari layar HP atau laptop. Anda dapat menambah foto produk baru, mengganti harga promo, atau memperbarui informasi usaha semudah mengunggah status di WhatsApp atau media sosial. Tim kami juga memberikan video panduan dan siap mengajari Anda sampai benar-benar bisa.',
   },
   {
-    q: 'Berapa lama waktu pengerjaan sebuah website hingga siap online?',
-    a: 'Untuk Landing Page Promosi berkisar 3-5 hari kerja, Katalog Produk UMKM dan Company Profile berkisar 7-14 hari kerja, sedangkan Sistem Informasi berbasis web instansi membutuhkan 3-8 minggu tergantung cakupan modul.',
+    q: 'Bagaimana alur pemesanan produk oleh pembeli di website saya?',
+    a: 'Setiap produk yang Anda pajang dilengkapi tombol pesan WhatsApp. Begitu calon pembeli mengklik tombol tersebut, aplikasi WhatsApp mereka otomatis terbuka dengan pesan pemesanan yang rapi mencantumkan nama barang, varian, dan jumlah yang dipilih. Anda tinggal membalas total transfer dan ongkos kirim seperti biasa tanpa ribet.',
   },
   {
-    q: 'Apakah layanan ini sudah termasuk domain, hosting/server, dan garansi maintenance?',
-    a: 'Ya, seluruh paket kami sudah mencakup pendaftaran domain (.com / .id), konfigurasi cloud hosting/server cepat, sertifikat SSL HTTPS aman, panduan video/tatap muka pengelolaan admin, serta garansi pemeliharaan teknis resmi.',
+    q: 'Apakah biaya paket sudah termasuk nama domain (.com) dan server hosting?',
+    a: 'Ya, seluruh paket kami sudah termasuk pendaftaran nama domain resmi (.com / .id) dan server berkecepatan tinggi selama 1 tahun pertama. Tidak ada biaya tambahan tersembunyi.',
+  },
+  {
+    q: 'Bagaimana proses pengerjaan jika lokasi saya berada di luar kota atau luar pulau?',
+    a: 'Seluruh proses pengerjaan kami lakukan 100% online secara profesional. Kami melayani klien UMKM dan pebisnis dari Sumatra, Jawa, Kalimantan, Sulawesi, hingga Papua. Koordinasi konsep, pengiriman materi foto produk, hingga serah terima dilakukan dengan mudah via chat WhatsApp atau Google Meet.',
+  },
+  {
+    q: 'Apakah ada sistem sewa bulanan yang mengikat?',
+    a: 'Sama sekali tidak ada biaya sewa bulanan. Website, nama domain, data produk, dan seluruh aset adalah 100% hak milik Anda seutuhnya. Pada tahun kedua dan seterusnya, Anda hanya membayar biaya perpanjangan tahunan standar untuk domain dan server yang sangat terjangkau.',
+  },
+  {
+    q: 'Berapa lama waktu yang dibutuhkan hingga website siap digunakan?',
+    a: 'Untuk Paket Landing Page Promosi berkisar 3 - 5 hari kerja, Paket Website Toko UMKM berkisar 7 - 14 hari kerja, dan Paket Company Profile Pro berkisar 10 - 21 hari kerja setelah materi foto produk dan informasi usaha kami terima.',
   },
 ]
 
+const problems = [
+  {
+    number: '01',
+    title: 'Marketplace Memotong Margin Anda',
+    desc: 'Komisi per transaksi makin tinggi (5–12%) ditambah biaya iklan internal yang makin mahal. Makin banyak terjual, potongan keuntungan justru makin besar.',
+  },
+  {
+    number: '02',
+    title: 'Bersaing di Rak yang Sama dengan Ratusan Kompetitor',
+    desc: 'Di marketplace, pembeli gampang pindah ke toko lain hanya karena beda harga seribu rupiah. Nama toko dan nilai brand Anda sulit diingat pembeli.',
+  },
+  {
+    number: '03',
+    title: 'Data Pembeli Dikunci & Bukan Milik Anda',
+    desc: 'Nomor WhatsApp dan data kontak pembeli disensor oleh platform. Anda tidak bisa menghubungi mereka untuk menawarkan promo produk baru atau repeat order.',
+  },
+  {
+    number: '04',
+    title: 'Website Asal-Asalan Terlihat Kurang Meyakinkan',
+    desc: 'Menggunakan template murahan atau subdomain gratisan membuat pembeli ragu untuk transfer dan meragukan keaslian toko Anda.',
+  },
+]
 
-const kategori = [
+const solutions = [
   {
     icon: Globe,
-    title: 'Website UMKM & Katalog Produk Lokal',
-    desc: 'Dirancang khusus untuk mempermudah pelanggan melihat produk, layanan, atau menu kuliner dengan integrasi tombol pemesanan WhatsApp langsung.',
-    href: '/website-umkm',
-    ctaText: 'Pelajari Website UMKM',
+    title: 'Alamat Toko Resmi Milik Sendiri (.com / .id)',
+    desc: 'Pembeli langsung mengingat nama brand Anda sendiri. Toko Anda terlihat lebih resmi, terpercaya, dan berkelas di mata calon pembeli.',
   },
   {
-    icon: Briefcase,
-    title: 'Website Company Profile Perusahaan & B2B',
-    desc: 'Tingkatkan kepercayaan mitra bisnis, investor, dan calon klien melalui situs profil resmi berdesain elegan yang merepresentasikan profesionalisme organisasi Anda.',
-    href: '/company-profile',
-    ctaText: 'Pelajari Company Profile',
+    icon: ShoppingBag,
+    title: 'Tampilan Rapi Sesuai Karakter Produk',
+    desc: 'Desain dirancang khusus mengikuti karakter jualan Anda. Terasa nyaman, elegan, dan sangat memikat saat dibuka lewat smartphone.',
   },
   {
-    icon: Rocket,
-    title: 'Landing Page Promosi Berkonversi Tinggi',
-    desc: 'Halaman penawaran khusus dengan struktur copywriting persuasif dan waktu muat super cepat, sangat efektif untuk mendampingi kampanye iklan Meta Ads dan Google Ads.',
-    href: '/landing-page',
-    ctaText: 'Pelajari Landing Page',
+    icon: MessageSquare,
+    title: 'Pemesanan Otomatis ke WhatsApp (0% Potongan)',
+    desc: 'Pembeli klik beli, format pesanan otomatis terisi di chat WhatsApp Anda. Semua uang pembayaran 100% masuk ke rekening Anda tanpa potongan admin.',
   },
   {
-    icon: Code2,
-    title: 'Sistem Informasi & Portal Custom (Instansi & Enterprise)',
-    desc: 'Pengembangan aplikasi web kustom untuk mendukung digitalisasi layanan publik dan operasional internal, seperti e-office, buku tamu digital QR Code, hingga dashboard pelaporan real-time.',
-    href: '#paket-website',
-    ctaText: 'Konsultasi Sistem Kustom',
-  },
-]
-
-const keunggulan = [
-  {
-    icon: ShieldCheck,
-    title: 'Teknologi Modern (Next.js & Laravel) dengan Performa Tinggi',
-    desc: 'Kode program yang bersih dan terstruktur memastikan website berjalan ringan di berbagai perangkat smartphone maupun desktop serta mudah dikembangkan di masa depan.',
+    icon: Smartphone,
+    title: 'Bisa Ganti Foto & Harga dari Layar HP',
+    desc: 'Disediakan panel admin yang sangat simpel. Tambah menu baru, ubah harga diskon, atau tandai stok habis semudah membuat status WhatsApp.',
   },
   {
     icon: Search,
-    title: 'Struktur On-Page SEO Friendly Sejak Hari Pertama',
-    desc: 'Dilengkapi pengaturan meta tag dinamis, struktur heading semantik, sitemap otomatis, dan optimasi Core Web Vitals agar website Anda lebih cepat ditemukan di halaman pertama Google.',
+    title: 'Gampang Ditemukan Calon Pembeli di Google',
+    desc: 'Struktur website sudah disiapkan agar nama toko dan produk Anda mudah muncul saat calon pembeli mencari nama produk Anda di Google.',
   },
   {
-    icon: LayoutDashboard,
-    title: 'Dashboard Admin Mudah Dikelola, Aman, & Bergaransi',
-    desc: 'Dilengkapi panel manajemen konten (CMS) yang ramah pengguna, perlindungan keamanan berlapis, serta dukungan teknis dan pelatihan penggunaan bagi tim Anda.',
+    icon: ShieldCheck,
+    title: 'Didampingi Tim Ramah via WhatsApp',
+    desc: 'Tidak perlu takut bingung atau gaptek. Tim kami standby mendampingi dan siap membantu jika Anda butuh panduan cara menggunakannya.',
   },
 ]
 
-const alur = [
-  'Konsultasi & Analisis Kebutuhan',
-  'Perancangan Desain UI/UX',
-  'Pengembangan (Coding) & Integrasi Sistem',
-  'Uji Coba, Pelatihan Admin & Peluncuran',
-]
-
-const paketWebsite = [
+const pricingPackages = [
   {
-    tier: 'Paket Landing Page Promosi',
-    price: 'Mulai Rp 1,5 Juta',
-    desc: '1 Halaman penjualan fokus konversi tinggi. Sangat cocok untuk produk kuliner, fashion, jasa servis, atau pendamping kampanye iklan Meta Ads.',
+    tier: 'Landing Page Konversi',
+    badgeTop: 'Hemat & Cepat Jadi',
+    originalPrice: 'Rp 1.850.000',
+    price: 'Rp 1.190.000',
+    unit: 'Bayar sekali • Terima beres',
+    desc: 'Cocok untuk promosi 1 produk/jasa unggulan & kampanye iklan (Meta/Google Ads) yang fokus mengarahkan prospek langsung ke WhatsApp.',
     isPopular: false,
+    btnText: 'Konsultasi Gratis',
+    subject: 'Paket Landing Page Promosi (Rp 1.190.000)',
     features: [
-      '1 Halaman Penjualan Fokus Konversi',
-      'Terhubung Langsung ke Tombol Order WhatsApp',
-      'Terpasang Meta Pixel & Google Analytics',
-      'Desain Mobile-First & Waktu Muat < 0.8 Detik',
+      '1 Halaman Panjang (Single Page) dengan susunan penawaran persuasif',
+      'Tampilan Sangat Cepat & Ringan dibuka di HP (Loading < 2 detik)',
+      'Terima Beres Tanpa Repot (Tidak perlu pusing kelola dashboard sendiri)',
+      'Gratis Domain .com & Cloud Server Resmi (Aktif 1 Tahun)',
+      'Tombol Pemesanan Langsung ke WhatsApp & Formulir Prospek',
+      'Siap Dipasang Pelacak Iklan (Meta Pixel & Google Analytics)',
+      'Gratis Bantu Update Ringan (Ganti teks/foto promo hingga 2x setelah rilis)',
+      'Garansi Pemeliharaan Resmi & Sertifikat Keamanan SSL',
     ],
-    time: 'Pengerjaan: 3 - 5 Hari Kerja',
-    btnText: 'Pilih Landing Page',
-    subject: 'Paket Landing Page Promosi (Rp 1.5jt)',
+    renewal: 'Perpanjangan tahun ke-2 hanya Rp 600rb/thn (Domain & Server)',
+    time: 'Pengerjaan Cepat: 3 - 5 Hari Kerja',
   },
   {
-    tier: 'Paket Katalog Produk & Bisnis Lokal',
-    price: 'Mulai Rp 3,5 Juta',
-    desc: 'Website katalog interaktif dengan tombol order WhatsApp otomatis dan dashboard admin mandiri yang mudah dikelola dari smartphone.',
+    tier: 'Web Katalog, Profil & Blog',
+    badgeTop: 'PALING DIMINATI',
+    originalPrice: 'Rp 3.200.000',
+    price: 'Rp 2.190.000',
+    unit: 'Bayar sekali • Bisa kelola mandiri',
+    desc: 'Solusi ideal untuk UMKM, toko lokal, kuliner, fashion, & usaha jasa yang ingin memiliki katalog produk, profil usaha, serta artikel informasi yang bisa diedit sendiri.',
     isPopular: true,
+    btnText: 'Konsultasi Gratis',
+    subject: 'Paket Web UMKM & Katalog (Rp 2.190.000)',
     features: [
-      'Katalog Produk + Tombol Order WhatsApp Otomatis',
-      'Admin Mandiri: Ganti Foto & Harga dari HP',
-      'Gratis Domain (.com) & Cloud Hosting 1 Tahun Pertama',
-      'Optimasi SEO Lokal Kalimantan Selatan',
-      'Garansi Pemeliharaan Teknis & Pendampingan 3 Bulan',
+      'Hingga 5–7 Halaman Menu (Beranda, Tentang Kami, Katalog/Layanan, Artikel, Kontak)',
+      'Dilengkapi Dashboard Admin Sederhana (Tambah/edit produk & layanan dari HP tanpa koding, praktis & tidak rumit)',
+      'Fitur Katalog Produk + Tombol Pesan Otomatis ke WhatsApp (0% Potongan Komisi)',
+      'Fitur Artikel & Informasi untuk mempermudah calon pembeli menemukan Anda di Google',
+      'Gratis Domain .com / .id & Cloud Server Cepat (Aktif 1 Tahun)',
+      'Optimasi Tampilan Ramah Smartphone & Integrasi Peta Lokasi Google Maps',
+      'Gratis Video Panduan & Diajari Cara Kelolanya Sampai Bisa',
+      'Garansi Pemeliharaan Resmi 1 Tahun Penuh & Keamanan SSL',
     ],
+    renewal: 'Perpanjangan tahun ke-2 hanya Rp 750rb/thn (Domain & Server)',
     time: 'Pengerjaan: 7 - 14 Hari Kerja',
-    btnText: 'Pilih Paket Katalog',
-    subject: 'Paket Katalog Produk & Bisnis Lokal (Rp 3.5jt)',
   },
   {
-    tier: 'Paket Sistem Informasi & Portal Custom',
-    price: 'Sesuai Spesifikasi (SPK)',
-    desc: 'Sistem informasi manajemen daerah, e-office, buku tamu digital QR Code, pelaporan aduan masyarakat, hingga portal dinas/BUMN.',
+    tier: 'Company Profile Pro / Toko Online',
+    badgeTop: 'Fitur Terlengkap',
+    originalPrice: 'Rp 5.500.000',
+    price: 'Rp 3.490.000',
+    unit: 'Bayar sekali • Sistem skala bisnis',
+    desc: 'Dirancang untuk perusahaan (PT/CV/B2B) yang butuh kredibilitas tinggi atau toko online dengan sistem transaksi otomatis (Payment Gateway).',
     isPopular: false,
+    btnText: 'Konsultasi Gratis',
+    subject: 'Paket Company Profile Pro / Toko Online (Rp 3.490.000)',
     features: [
-      'Kepatuhan Standar SPBE & Akuntabilitas BAST',
-      'Surat Perjanjian Kerja (SPK) & Invoice Resmi',
-      'Enkripsi Data & Multi-Level Hak Akses Petugas',
-      'Pelatihan Langsung Staf Operator (Bimtek di Kantor Anda)',
+      'Hingga 12+ Halaman Eksklusif dengan Desain Kustom Elegan & Representatif',
+      'Bebas Pilih Fokus Mode Sistem:',
+      '• Mode Toko Online: Pembayaran otomatis (QRIS, Transfer Bank, E-Wallet) & Hitung Ongkir Otomatis',
+      '• Mode Profil Perusahaan: Profil Resmi Perusahaan, Portofolio Proyek Klien, Izin Legalitas, & Tombol Unduh Profil PDF',
+      'Dashboard Admin Lengkap (CMS) untuk mengelola seluruh halaman & data produk',
+      'Gratis Domain .com / .id / .co.id & High-Performance Server (Aktif 1 Tahun)',
+      'Riset Kata Kunci Dasar & Setup Pengaturan Ramah Google',
+      'Prioritas Bantuan Pendampingan & Training Tim',
     ],
-    time: 'Timeline Sesuai Dokumen Pengadaan',
-    btnText: 'Konsultasi Kebutuhan Instansi',
-    subject: 'Paket Sistem Informasi Instansi & Portal Custom',
+    renewal: 'Perpanjangan tahun ke-2 menyesuaikan kapasitas server',
+    time: 'Pengerjaan: 10 - 21 Hari Kerja',
   },
 ]
+
+const steps = [
+  {
+    number: '01',
+    title: 'Konsultasi Santai via WhatsApp',
+    desc: 'Ceritakan jenis usaha dan produk yang ingin Anda tampilkan. Kami berikan rekomendasi paket yang paling pas dan hemat biaya.',
+  },
+  {
+    number: '02',
+    title: 'Kirim Foto & Rincian Produk',
+    desc: 'Cukup kirimkan materi foto produk, harga, dan nomor WhatsApp toko Anda dengan mudah lewat chat WA atau Google Drive.',
+  },
+  {
+    number: '03',
+    title: 'Tim Kami Kerjakan Semuanya',
+    desc: 'Kami susun tampilan profesional, tata letak produk yang menarik, kata-kata penawaran meyakinkan, dan tombol pemesanan WhatsApp.',
+  },
+  {
+    number: '04',
+    title: 'Website Siap Pakai & Serah Terima',
+    desc: 'Website resmi tayang dan siap jualan. Kami serahkan seluruh akses 100% milik Anda dan kami ajari cara pakainya sampai mahir.',
+  },
+]
+
+const comparisonRows = [
+  {
+    number: '01',
+    criteria: 'Biaya per transaksi penjualan',
+    marketingCode: { status: 'check', text: 'Gratis (0% Potongan Admin)' },
+    marketplace: { status: 'cross', text: 'Dipotong komisi 5–12% per order' },
+    diy: { status: 'neutral', text: 'Gratis (tapi ada biaya gateway)' },
+  },
+  {
+    number: '02',
+    criteria: 'Alamat nama toko sendiri (.com / .id)',
+    marketingCode: { status: 'check', text: 'Termasuk resmi milik sendiri' },
+    marketplace: { status: 'cross', text: 'Numpang alamat nama marketplace' },
+    diy: { status: 'cross', text: 'Harus beli domain terpisah' },
+  },
+  {
+    number: '03',
+    criteria: 'Kepemilikan data pembeli & kontak',
+    marketingCode: { status: 'check', text: '100% Milik Anda untuk repeat order' },
+    marketplace: { status: 'cross', text: 'Dikunci & disensor oleh platform' },
+    diy: { status: 'neutral', text: 'Milik Anda (harus atur sendiri)' },
+  },
+  {
+    number: '04',
+    criteria: 'Perlu keahlian teknis / koding',
+    marketingCode: { status: 'check', text: 'Tidak perlu, kami siapkan terima beres' },
+    marketplace: { status: 'neutral', text: 'Tidak, tapi fitur sangat terbatas' },
+    diy: { status: 'cross', text: 'Tinggi (pusing hosting & koding plugin)' },
+  },
+  {
+    number: '05',
+    criteria: 'Bantuan & pendampingan tim',
+    marketingCode: { status: 'check', text: 'Langsung chat tim WhatsApp kami' },
+    marketplace: { status: 'cross', text: 'Antrean tiket & robot CS otomatis' },
+    diy: { status: 'cross', text: 'Cari solusi sendiri di forum internet' },
+  },
+  {
+    number: '06',
+    criteria: 'Kemudahan ditemukan di Google',
+    marketingCode: { status: 'check', text: 'Sudah disiapkan ramah Google' },
+    marketplace: { status: 'cross', text: 'Hanya bersaing di dalam aplikasi' },
+    diy: { status: 'cross', text: 'Perlu pengaturan teknis manual' },
+  },
+  {
+    number: '07',
+    criteria: 'Transparansi biaya',
+    marketingCode: { status: 'check', text: 'Bayar sekali (100% aset hak milik)' },
+    marketplace: { status: 'cross', text: 'Potongan komisi terus bertambah' },
+    diy: { status: 'cross', text: 'Banyak biaya langganan dolar bulanan' },
+  },
+]
+
+function StatusIcon({ status }: { status: 'check' | 'cross' | 'neutral' }) {
+  if (status === 'check') {
+    return <Check className="w-4 h-4 shrink-0 text-[#FF5C28]" strokeWidth={2.5} />
+  }
+  if (status === 'cross') {
+    return <X className="w-4 h-4 shrink-0 text-neutral-400" strokeWidth={2.5} />
+  }
+  return <Circle className="w-3.5 h-3.5 shrink-0 text-neutral-500" strokeWidth={2.5} />
+}
+
+function ProblemMarginMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Floating Deductions Badges */}
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FF5C28]" />
+          Komisi 6.5%
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+          Layanan 4%
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+          Iklan 5%
+        </span>
+      </div>
+
+      {/* Subtle connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Elevated Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-lg bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+              <Receipt className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-xs font-bold text-neutral-800">Simulasi Marketplace</span>
+          </div>
+          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-red-50 border border-red-200/70 text-red-600 text-[10px] font-bold">
+            <TrendingDown className="w-2.5 h-2.5" />
+            -15.5% Cut
+          </span>
+        </div>
+
+        <div className="bg-neutral-50 rounded-xl p-2.5 border border-neutral-100">
+          <div className="flex items-baseline justify-between">
+            <span className="text-[10px] text-neutral-600 font-medium">Omzet Kotor Toko:</span>
+            <span className="text-xs sm:text-sm font-extrabold text-neutral-900">Rp 10.000.000</span>
+          </div>
+
+          {/* Cut visual bar */}
+          <div className="h-2 w-full rounded-full bg-neutral-200 flex overflow-hidden my-2">
+            <div className="w-[84.5%] bg-emerald-500" />
+            <div className="w-[15.5%] bg-gradient-to-r from-[#FF5C28] to-red-500" />
+          </div>
+
+          <div className="flex items-center justify-between text-[10px]">
+            <span className="text-emerald-700 font-semibold">Bersih: Rp 8.450.000</span>
+            <span className="text-red-600 font-bold">Potongan: Rp 1.550.000</span>
+          </div>
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-neutral-100 flex items-center justify-center">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-neutral-50 border border-neutral-200/60 text-neutral-700 text-[10px] font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            Makin banyak terjual, potongan makin besar
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProblemCompetitorMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Search Pill */}
+      <div className="relative z-10 mb-2">
+        <div className="bg-white px-3 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[11px] text-neutral-700">
+          <Search className="w-3 h-3 text-[#FF5C28]" />
+          <span className="text-neutral-500 font-normal">Cari:</span>
+          <span className="font-semibold text-neutral-800">&quot;Produk Jualan Anda&quot;</span>
+        </div>
+      </div>
+
+      {/* Subtle connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Shelf Comparison Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-2.5 sm:p-3 border border-neutral-200/80 shadow-md space-y-1.5 transition-transform duration-300 group-hover:scale-[1.02]">
+        {/* Competitor 1 */}
+        <div className="flex items-center justify-between p-1.5 sm:p-2 rounded-xl bg-neutral-50/90 border border-neutral-200/50">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg bg-orange-100 text-orange-700 font-bold text-[10px] flex items-center justify-center shrink-0">
+              T1
+            </div>
+            <div>
+              <div className="font-bold text-neutral-800 text-[11px] leading-tight">Toko Banting Harga</div>
+              <div className="text-[9px] text-neutral-500">⭐ 4.8 • Terjual 2rb+</div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="font-extrabold text-neutral-900 text-xs">Rp 88.500</div>
+            <span className="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1 py-0.2 rounded">Termurah</span>
+          </div>
+        </div>
+
+        {/* Competitor 2 */}
+        <div className="flex items-center justify-between p-1.5 sm:p-2 rounded-xl bg-neutral-50/90 border border-neutral-200/50">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 font-bold text-[10px] flex items-center justify-center shrink-0">
+              T2
+            </div>
+            <div>
+              <div className="font-bold text-neutral-800 text-[11px] leading-tight">Grosir Murah Jaya</div>
+              <div className="text-[9px] text-neutral-500">⭐ 4.7 • Beda Rp 500</div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="font-extrabold text-neutral-900 text-xs">Rp 89.000</div>
+            <span className="text-[9px] font-bold text-amber-600 bg-amber-50 px-1 py-0.2 rounded">Perang Harga</span>
+          </div>
+        </div>
+
+        {/* Your Store */}
+        <div className="flex items-center justify-between p-1.5 sm:p-2 rounded-xl bg-[#FFF5F0]/80 border border-orange-200/80">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg bg-[#FF5C28] text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+              Anda
+            </div>
+            <div>
+              <div className="font-bold text-neutral-900 text-[11px] leading-tight">Brand &amp; Toko Anda</div>
+              <div className="text-[9px] text-orange-700 font-medium">Kualitas Asli Terjamin</div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="font-extrabold text-neutral-900 text-xs">Rp 95.000</div>
+            <span className="text-[9px] font-bold text-red-600 bg-red-50 px-1 py-0.2 rounded">Tersisih Harga</span>
+          </div>
+        </div>
+
+        {/* Bottom Tag */}
+        <div className="pt-1 flex items-center justify-between text-[10px] text-neutral-500 px-1">
+          <span className="flex items-center gap-1 text-red-600 font-medium">
+            <AlertTriangle className="w-3 h-3 text-red-500" />
+            Pembeli pindah demi Rp 500
+          </span>
+          <span className="text-neutral-500">250+ toko serupa</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProblemDataLockedMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Floating Buyer Avatars */}
+      <div className="relative z-10 flex items-center justify-center gap-2 mb-2">
+        <div className="flex -space-x-1.5">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 text-white font-bold text-[10px] sm:text-xs flex items-center justify-center shadow-xs border-2 border-white ring-1 ring-neutral-200/60">
+            BS
+          </div>
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-rose-500 to-orange-400 text-white font-bold text-[10px] sm:text-xs flex items-center justify-center shadow-xs border-2 border-white ring-1 ring-neutral-200/60">
+            RN
+          </div>
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 text-white font-bold text-[10px] sm:text-xs flex items-center justify-center shadow-xs border-2 border-white ring-1 ring-neutral-200/60">
+            DA
+          </div>
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-teal-500 to-emerald-500 text-white font-bold text-[10px] sm:text-xs flex items-center justify-center shadow-xs border-2 border-white ring-1 ring-neutral-200/60">
+            MY
+          </div>
+        </div>
+        <span className="text-[10px] font-semibold text-neutral-700 bg-white px-2.5 py-0.5 rounded-full border border-neutral-200/80 shadow-xs">
+          Pelanggan Marketplace
+        </span>
+      </div>
+
+      {/* Subtle connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Locked Modal Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-100">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-lg bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+              <Lock className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-xs font-bold text-neutral-800">Data Pelanggan</span>
+          </div>
+          <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
+            DIKUNCI
+          </span>
+        </div>
+
+        <div className="space-y-1.5 text-xs">
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">No. WhatsApp:</span>
+            <span className="font-mono text-neutral-600 text-[11px] tracking-wider flex items-center gap-1.5 font-semibold">
+              0812-****-****
+              <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.2 rounded font-sans font-bold">Sensor</span>
+            </span>
+          </div>
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Email Kontak:</span>
+            <span className="font-mono text-neutral-600 text-[11px] tracking-wider flex items-center gap-1.5 font-semibold">
+              b***@*****com
+              <span className="text-[9px] bg-neutral-200/80 text-neutral-700 px-1.5 py-0.2 rounded font-sans font-bold">Kunci</span>
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-neutral-100 flex items-center justify-center">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-neutral-50 border border-neutral-200/60 text-neutral-700 text-[10px] font-medium">
+            <ShieldAlert className="w-3.5 h-3.5 text-[#FF5C28]" />
+            Nol database untuk repeat order sendiri
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProblemCredibilityMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Floating Format Chips */}
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="text-red-500 font-bold">✕</span> .blogspot.xyz
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="text-red-500 font-bold">✕</span> Tanpa SSL
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="text-amber-500 font-bold">!</span> Loading 6.8s
+        </span>
+      </div>
+
+      {/* Subtle connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Elevated Browser / Trust Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-3 sm:p-3.5 border border-neutral-200/80 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+        {/* Miniature Address Bar */}
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-neutral-100/90 border border-neutral-200 text-[10px] mb-2.5">
+          <AlertTriangle className="w-3 h-3 text-red-500 shrink-0" />
+          <span className="text-red-600 font-mono truncate font-semibold">http://tokoanda.gratisan.net</span>
+          <span className="ml-auto text-[9px] font-bold bg-red-100 text-red-700 px-1 py-0.2 rounded shrink-0">
+            Tidak Aman
+          </span>
+        </div>
+
+        {/* Content Skeleton & Warning Banner */}
+        <div className="p-2 sm:p-2.5 rounded-xl bg-orange-50/90 border border-orange-200/80 text-[11px] text-orange-950 font-medium flex items-center gap-2">
+          <div className="w-5 h-5 rounded-lg bg-[#FF5C28] text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-xs">
+            !
+          </div>
+          <span className="text-[10px] sm:text-[11px] leading-snug">
+            <strong className="text-[#C23205]">78% pembeli ragu transfer</strong> dan langsung keluar halaman
+          </span>
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-neutral-100 flex items-center justify-center">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-neutral-50 border border-neutral-200/60 text-neutral-700 text-[10px] font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            Butuh Domain Resmi (.com) agar Dipercaya
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const solutionGradients = [
+  'bg-gradient-to-br from-[#FF7A45] to-[#FF5C28] shadow-orange-500/25',
+  'bg-gradient-to-br from-[#FB7185] to-[#E11D48] shadow-rose-500/25',
+  'bg-gradient-to-br from-[#34D399] to-[#059669] shadow-emerald-500/25',
+  'bg-gradient-to-br from-[#FBBF24] to-[#D97706] shadow-amber-500/25',
+  'bg-gradient-to-br from-[#38BDF8] to-[#2563EB] shadow-blue-500/25',
+  'bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] shadow-purple-500/25',
+]
+
+function SolutionDomainMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
+        <span className="text-[11px] font-bold text-neutral-700">Status Domain Toko</span>
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-bold">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          Aktif 1 Tahun
+        </span>
+      </div>
+
+      <div className="space-y-2 py-1">
+        <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-50 border border-neutral-200/80 shadow-xs">
+          <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+          <span className="text-xs font-bold text-neutral-900 font-mono truncate">
+            https://tokosaya.com
+          </span>
+          <span className="ml-auto text-[9px] font-bold bg-neutral-200/70 text-neutral-700 px-1.5 py-0.2 rounded shrink-0">
+            SSL Resmi
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between text-[10px] text-neutral-600 px-1">
+          <span className="text-emerald-700 font-medium">✓ 100% Hak Milik Anda</span>
+          <span className="text-neutral-600 font-medium">DNS Cloudflare</span>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
+        <span className="font-medium">Toko terlihat profesional &amp; resmi</span>
+        <span className="font-bold text-neutral-900">Bebas Subdomain</span>
+      </div>
+    </div>
+  )
+}
+
+function SolutionDesignMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
+        <span className="text-[11px] font-bold text-neutral-700">Preview Katalog HP</span>
+        <span className="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">
+          Responsif 100%
+        </span>
+      </div>
+
+      <div className="flex items-center gap-2.5 p-2 rounded-xl bg-neutral-50 border border-neutral-200/80">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-100 to-orange-100 border border-rose-200/60 flex items-center justify-center text-rose-600 shrink-0 font-bold text-xs">
+          Foto
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="font-bold text-neutral-900 text-[11px] truncate">Kemeja Linen Signature</div>
+          <div className="text-[10px] text-neutral-600 font-medium">Rp 149.000 • Stok Ready</div>
+        </div>
+        <span className="text-[9px] font-bold bg-[#FF5C28] text-white px-2 py-1 rounded-lg shrink-0">
+          Order
+        </span>
+      </div>
+
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
+        <span className="flex items-center gap-1 text-amber-600 font-semibold">
+          ⭐⭐⭐⭐⭐ 4.9
+        </span>
+        <span className="text-neutral-700 font-medium">Tampilan Elegan di Smartphone</span>
+      </div>
+    </div>
+  )
+}
+
+function SolutionWhatsAppMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
+        <span className="text-[11px] font-bold text-neutral-700">WhatsApp Checkout</span>
+        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+          0% Potongan
+        </span>
+      </div>
+
+      <div className="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-200/70 text-[10px] text-emerald-950 space-y-1">
+        <div className="font-bold text-emerald-900 flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+          Format Otomatis Rapi:
+        </div>
+        <p className="font-mono text-[9px] text-emerald-800 leading-tight">
+          &quot;Halo Kak, saya mau pesan 1x Kemeja Linen (L) ke Jakarta. Total: Rp 149.000...&quot;
+        </p>
+      </div>
+
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
+        <span className="text-emerald-700 font-bold">100% Uang ke Rekening Anda</span>
+        <span className="text-neutral-600 font-medium">Tanpa Biaya Admin</span>
+      </div>
+    </div>
+  )
+}
+
+function SolutionMobileAdminMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
+        <span className="text-[11px] font-bold text-neutral-700">Panel Kelola Toko</span>
+        <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
+          Bisa Lewat HP
+        </span>
+      </div>
+
+      <div className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-200/80 space-y-1.5 text-xs">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] text-neutral-600 font-medium">Harga Produk:</span>
+          <span className="font-bold text-neutral-900 text-[11px]">Rp 149.000</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] text-neutral-600 font-medium">Status Stok:</span>
+          <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded">
+            ● Tersedia (Ready)
+          </span>
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
+        <span className="text-neutral-800 font-medium">+ Tambah Foto Semudah Update Story</span>
+      </div>
+    </div>
+  )
+}
+
+function SolutionGoogleSeoMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
+        <span className="text-[11px] font-bold text-neutral-700">Google Search Result</span>
+        <span className="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full">
+          SEO Friendly
+        </span>
+      </div>
+
+      <div className="p-2 rounded-xl bg-neutral-50 border border-neutral-200/80 space-y-1">
+        <div className="text-[9px] text-neutral-600 font-mono truncate">
+          https://tokosaya.com › katalog
+        </div>
+        <div className="text-[11px] font-bold text-blue-700 leading-tight">
+          Toko Resmi Jualan Anda — Katalog &amp; Promo
+        </div>
+        <div className="text-[9px] text-neutral-600 line-clamp-1">
+          Koleksi terlengkap, pesan langsung via WhatsApp resmi...
+        </div>
+      </div>
+
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
+        <span className="text-emerald-700 font-semibold">✓ Terindeks Otomatis di Google</span>
+      </div>
+    </div>
+  )
+}
+
+function SolutionSupportMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col justify-between">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
+        <span className="text-[11px] font-bold text-neutral-700">Layanan Pendampingan</span>
+        <span className="text-[10px] font-bold text-purple-700 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded-full">
+          Respon Cepat
+        </span>
+      </div>
+
+      <div className="p-2.5 rounded-xl bg-purple-50/70 border border-purple-200/70 text-[10px] text-purple-950 space-y-1">
+        <div className="font-bold text-purple-900 flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-emerald-500" />
+          <span>Support MarketingCode.ID:</span>
+        </div>
+        <p className="text-[9px] text-purple-800 leading-tight">
+          &quot;Halo Kak! Ada yang perlu dibantu untuk update produk atau panduan website?&quot;
+        </p>
+      </div>
+
+      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
+        <span className="text-neutral-800 font-semibold">Siap Pandu Sampai Bisa</span>
+        <span className="text-neutral-600 font-medium">Gratis Konsultasi</span>
+      </div>
+    </div>
+  )
+}
+
+/* Mono eyebrow: decorative § NN · hairline · Icon + original eyebrow. */
+function SectionMark({
+  num,
+  icon: Icon,
+  eyebrow,
+}: {
+  num: string
+  icon: LucideIcon
+  eyebrow: string
+}) {
+  return (
+    <div className="mb-4 flex items-center justify-center gap-2.5 text-neutral-600">
+      <span
+        aria-hidden="true"
+        className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500"
+      >
+        § {num}
+      </span>
+      <span aria-hidden="true" className="h-px w-8 bg-neutral-300" />
+      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
+        <Icon aria-hidden="true" className="h-3.5 w-3.5 text-[#C23605]" />
+        <span>{eyebrow}</span>
+      </span>
+    </div>
+  )
+}
 
 export default function JasaPembuatanWebsitePage() {
   return (
-    <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
+    <div className="website-service min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
       <JsonLd
         data={[
           serviceSchema(
-            'Jasa Pembuatan Website & Sistem Informasi',
-            'Jasa pembuatan website profesional di Kandangan (HSS) & Kalimantan Selatan: sistem informasi instansi, company profile, travel, & landing page SEO friendly.',
+            'Jasa Pembuatan Website & Toko Online Profesional',
+            'Jasa pembuatan website & toko online profesional untuk UMKM & bisnis di seluruh Indonesia. Terima beres tanpa ribet koding, order otomatis ke WhatsApp, dan 100% hak milik tanpa sewa bulanan.',
             '/jasa-pembuatan-website'
           ),
           faqSchema(faqs),
@@ -189,264 +807,850 @@ export default function JasaPembuatanWebsitePage() {
         ]}
       />
 
+      <main className="relative overflow-hidden">
+        {/* ============================================================== */}
+        {/* 1. HERO SECTION                                                */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-cream-glow bg-dot-fine pt-28 sm:pt-36 pb-16 sm:pb-24">
+          <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <link
+            rel="preload"
+            as="image"
+            href="/images/hero-illustration-mobile.avif"
+            type="image/avif"
+            media="(max-width: 640px)"
+            fetchPriority="high"
+          />
+          <link
+            rel="preload"
+            as="image"
+            href="/images/hero-illustration.avif"
+            type="image/avif"
+            media="(min-width: 641px)"
+            fetchPriority="high"
+          />
 
-      <main className="pt-28 sm:pt-32 pb-24">
-        {/* Hero */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-4">
-            Layanan Web Development &amp; Sistem Informasi
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
-            Jasa Pembuatan Website &amp; Sistem Informasi Profesional di Kalimantan Selatan
-          </h1>
-          <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mt-5 max-w-2xl mx-auto">
-            Tingkatkan omzet toko Anda dengan website yang langsung terhubung ke order WhatsApp, atau hadirkan portal dinas yang tertib administrasi dan lolos uji SPBE. 100% hak milik Anda tanpa sistem sewa. Tim kami siap hadir tatap muka di wilayah Kandangan, Banua Enam, Banjarmasin, Banjarbaru, dan seluruh Kalimantan Selatan.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href={getWhatsAppUrl('website')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all"
-            >
-              <Image src="/icons/flaticon/chat.svg" alt="" width={18} height={18} className="w-4 h-4 mr-2 shrink-0" />
-              Tanya Estimasi Biaya Website via WhatsApp
-            </a>
-            <a
-              href="#paket-website"
-              className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white border border-neutral-200 hover:border-[#FF5C28] rounded-full transition-all"
-            >
-              Lihat Pilihan Paket
-            </a>
-          </div>
-        </section>
-
-        {/* Kategori Layanan */}
-        <section id="kategori-layanan" className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-              Solusi Pembuatan Website Sesuai Kebutuhan Sektor Anda
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {kategori.map((item) => (
-              <div key={item.title} className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#D13D00] transition-all flex flex-col justify-between group">
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605] mb-4 group-hover:scale-105 transition-transform">
-                    <item.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-lg font-bold text-neutral-900 leading-snug group-hover:text-[#C23605] transition-colors">{item.title}</h3>
-                  <p className="text-xs text-neutral-600 mt-2 leading-relaxed">{item.desc}</p>
-                </div>
-                <div className="mt-5 pt-4 border-t border-neutral-100">
-                  <Link
-                    href={item.href}
-                    className="inline-flex items-center text-xs font-bold text-[#C23605] hover:text-[#B33400] transition-colors"
-                  >
-                    <span>{item.ctaText}</span>
-                    <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+            <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
+                <Store className="w-3.5 h-3.5 text-[#FF5C28]" />
+                <span className="text-xs font-semibold text-neutral-700 tracking-tight">
+                  Layanan Pembuatan Website &amp; Toko Online — Melayani Seluruh Indonesia
+                </span>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* Paket Investasi Website */}
-        <section id="paket-website" className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
-              <Tag className="w-3.5 h-3.5" />
-              <span>Simulasi Investasi Transparan</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-              Pilihan Paket Website Sesuai Kebutuhan Anda
-            </h2>
-            <p className="text-sm text-neutral-500 mt-2 max-w-xl mx-auto">
-              Investasi transparan tanpa biaya sewa tersembunyi. 100% hak milik website menjadi aset mandiri usaha Anda.
-            </p>
-          </div>
+              <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
+                Miliki Website &amp; Toko Online Profesional{' '}
+                <span className="text-[#FF5C28]">Tanpa Ribet Koding</span>
+              </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            {paketWebsite.map((item) => (
-              <div
-                key={item.tier}
-                className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all ${
-                  item.isPopular
-                    ? 'border-2 border-[#FF5C28] shadow-xl relative transform md:-translate-y-2'
-                    : 'border border-neutral-200/80 shadow-card hover:border-orange-200'
-                }`}
-              >
-                {item.isPopular && (
-                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-[#FF5C28] text-white text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                    Pilihan Favorit UMKM
-                  </div>
-                )}
+              <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
+                Bebas dari potongan komisi marketplace yang makin tinggi. Pajang produk Anda secara rapi, dan pembeli bisa langsung memesan via WhatsApp dalam satu klik. Terima beres, siap pakai dari HP tanpa perlu paham koding.
+              </p>
 
-                <div>
-                  <span
-                    className={`text-xs font-bold uppercase tracking-wider ${
-                      item.isPopular ? 'text-[#EA4510]' : 'text-neutral-500'
-                    }`}
-                  >
-                    {item.tier}
-                  </span>
-                  <div className="mt-3 flex items-baseline">
-                    <span className="text-2xl sm:text-3xl font-extrabold text-neutral-900">{item.price}</span>
-                  </div>
-                  <p className="text-xs text-neutral-500 mt-2.5 leading-relaxed">{item.desc}</p>
-
+              {/* CTA Buttons */}
+              <div className="pt-2 flex flex-col items-start gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                   <a
-                    href={getWhatsAppUrl('website', item.subject)}
+                    href={getWhatsAppUrl('website', 'Konsultasi Jasa Pembuatan Website')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-6 w-full py-2.5 px-4 font-semibold text-xs rounded-full flex items-center justify-center transition-all ${
-                      item.isPopular
-                        ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow'
-                        : 'bg-neutral-900 hover:bg-black text-white'
-                    }`}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
                   >
-                    {item.btnText}
+                    <Image
+                      src="/icons/flaticon/whatsapp.svg"
+                      alt=""
+                      width={22}
+                      height={22}
+                      className="w-5 h-5 shrink-0"
+                    />
+                    <span>Konsultasi Gratis via WhatsApp</span>
                   </a>
+                  <a
+                    href="#paket-harga"
+                    className="inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300 text-center"
+                  >
+                    <span>Lihat Pilihan Paket &amp; Biaya</span>
+                  </a>
+                </div>
 
-                  <div className="mt-6 pt-6 border-t border-neutral-100 space-y-2.5 text-xs text-neutral-600">
-                    {item.features.map((feat) => (
-                      <div key={feat} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#EA4510] shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
+                {/* Trust Proof */}
+                <div className="pt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-700 font-medium">
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-4 h-4 text-[#FF5C28]" /> Domain &amp; Server 1 Tahun
+                  </span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-4 h-4 text-[#FF5C28]" /> 100% Hak Milik Tanpa Sewa
+                  </span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-4 h-4 text-[#FF5C28]" /> Diajari Sampai Bisa
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Visual Image */}
+            <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
+              <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
+                <div
+                  className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-3xl -z-10"
+                  aria-hidden="true"
+                />
+                <picture>
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet="/images/hero-illustration-mobile.avif"
+                    type="image/avif"
+                  />
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet="/images/hero-illustration-mobile.webp"
+                    type="image/webp"
+                  />
+                  <source srcSet="/images/hero-illustration.avif" type="image/avif" />
+                  <source srcSet="/images/hero-illustration.webp" type="image/webp" />
+                  <img
+                    src="/images/hero-illustration.png"
+                    alt="Layanan Pembuatan Website dan Toko Online MarketingCode.ID"
+                    title="Website Toko Online Profesional MarketingCode.ID"
+                    width={1024}
+                    height={682}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
+
+          {/* Ecosystem Strip (Kanal Penjualan) Redesigned Banner */}
+          <div className="mt-8 sm:mt-12 bg-white/95 rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/90 shadow-md shadow-neutral-900/5 max-w-5xl mx-auto">
+            <div className="flex items-center justify-between gap-2 pb-3 mb-3.5 border-b border-neutral-100">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-neutral-800">
+                  Ekosistem Toko Mandiri Anda
+                </span>
+              </div>
+              <span className="text-[10px] sm:text-xs font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/70 px-2.5 py-0.5 rounded-full">
+                Multi-Kanal Terpadu
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              {/* Channel 1: Marketplace */}
+              <div className="bg-neutral-50/90 hover:bg-neutral-50 rounded-xl p-3 border border-neutral-200/70 flex flex-col justify-between transition-all group">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">
+                      <Store className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-md">
+                      Tetap Jalan
+                    </span>
+                  </div>
+                  <div className="font-bold text-neutral-900 text-xs sm:text-sm">Shopee &amp; Tokopedia</div>
+                  <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
+                    Tetap aktif menjaring calon pembeli baru dari luar.
+                  </p>
+                </div>
+              </div>
+
+              {/* Channel 2: Social Media */}
+              <div className="bg-neutral-50/90 hover:bg-neutral-50 rounded-xl p-3 border border-neutral-200/70 flex flex-col justify-between transition-all group">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">
+                      <Smartphone className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[9px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded-md">
+                      Kanal Promosi
+                    </span>
+                  </div>
+                  <div className="font-bold text-neutral-900 text-xs sm:text-sm">Instagram &amp; TikTok</div>
+                  <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
+                    Konten &amp; link bio diarahkan langsung ke web toko.
+                  </p>
+                </div>
+              </div>
+
+              {/* Channel 3: Official Store & WA (Hero Pillar) */}
+              <div className="bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5] rounded-xl p-3 border-2 border-[#FF5C28]/40 shadow-xs flex flex-col justify-between relative overflow-hidden group">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-6 h-6 rounded-lg bg-[#FF5C28] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[9px] font-extrabold text-[#C23605] bg-white border border-orange-300 px-1.5 py-0.5 rounded-md shadow-xs">
+                      Order 0% Potongan
+                    </span>
+                  </div>
+                  <div className="font-extrabold text-[#C23605] text-xs sm:text-sm">Website &amp; WhatsApp</div>
+                  <p className="text-[11px] text-neutral-700 mt-1 leading-snug font-medium">
+                    Semua transaksi 100% masuk rekening Anda tanpa komisi.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3.5 pt-2.5 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-600">
+              <span className="flex items-center gap-1.5 font-medium">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                Kombinasi terbaik: pembeli tetap banyak, keuntungan 100% milik Anda
+              </span>
+            </div>
+          </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* 2. MASALAH NYATA UMKM                                          */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-warm section-rule py-20 sm:py-24">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <SectionMark num="02" icon={Percent} eyebrow="Tantangan Bisnis Saat Ini" />
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              Sebagian Besar Pemilik Usaha Mengalami 4 Hal Ini
+            </h2>
+            <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+              Jika Anda merasakan hal yang sama, memiliki website sendiri adalah langkah terbaik berikutnya untuk mengamankan keuntungan dan masa depan usaha Anda.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {problems.map((item, idx) => (
+              <div
+                key={item.number}
+                className="bg-white rounded-3xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col justify-between group"
+              >
+                {/* Visual Preview Area (Mockup with Circuit Wireframe - Reference Design) */}
+                <div className="relative h-64 sm:h-72 rounded-2xl bg-[#F8F9FB] border border-neutral-200/60 overflow-hidden flex flex-col items-center justify-center p-3 sm:p-4 select-none">
+                  {idx === 0 && <ProblemMarginMockup />}
+                  {idx === 1 && <ProblemCompetitorMockup />}
+                  {idx === 2 && <ProblemDataLockedMockup />}
+                  {idx === 3 && <ProblemCredibilityMockup />}
+                </div>
+
+                {/* Text Content Area */}
+                <div className="px-3 sm:px-4 pt-4 sm:pt-5 pb-2 sm:pb-3">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold mb-2.5">
+                    <span>Tantangan {item.number}</span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* 3. 6 KEUNTUNGAN LANGSUNG AKTIF                                 */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-right-glow bg-dot-fine py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <SectionMark num="03" icon={Sparkles} eyebrow="Keuntungan Nyata Sejak Hari Pertama" />
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              6 Hal yang Langsung Aktif di Website Toko Anda
+            </h2>
+            <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+              Bukan janji kosong atau fitur tambahan berbayar. Seluruh fondasi ini kami siapkan lengkap sejak awal agar toko Anda langsung siap jualan.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+            {solutions.map((item, idx) => (
+              <div
+                key={item.title}
+                className="bg-[#F8F7F4] rounded-3xl p-6 sm:p-7 border border-neutral-200/70 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div>
+                  {/* Top Squircle Icon with 3D Gradient */}
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-md ${solutionGradients[idx]}`}>
+                    <item.icon className="w-6 h-6" />
+                  </div>
+
+                  {/* Title directly below icon */}
+                  <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug tracking-tight mt-4 sm:mt-5 mb-5 sm:mb-6">
+                    {item.title}
+                  </h3>
+
+                  {/* Middle Elevated White Mockup */}
+                  <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-neutral-200/80 shadow-xs min-h-[200px] flex flex-col justify-between group-hover:scale-[1.01] transition-transform duration-300">
+                    {idx === 0 && <SolutionDomainMockup />}
+                    {idx === 1 && <SolutionDesignMockup />}
+                    {idx === 2 && <SolutionWhatsAppMockup />}
+                    {idx === 3 && <SolutionMobileAdminMockup />}
+                    {idx === 4 && <SolutionGoogleSeoMockup />}
+                    {idx === 5 && <SolutionSupportMockup />}
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-neutral-100 text-[11px] text-neutral-500 text-center">
-                  {item.time}
-                </div>
+                {/* Bottom Description */}
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mt-4 sm:mt-5">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
-        </section>
+          </section>
+        </div>
 
-
-        {/* Keunggulan Teknis */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-24">
-          <div className="text-center mb-12">
+        {/* ============================================================== */}
+        {/* 4. PAKET & HARGA TRANSPARAN (HOMEPAGE BENCHMARK)                */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-cream py-20 sm:py-24 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-blueprint opacity-70"
+          />
+          <section id="paket-harga" className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="frame-ticks bg-[#FBFBFB]/70 px-3 sm:px-8 lg:px-10 py-10 sm:py-14">
+              <div className="text-center mb-12">
+                <SectionMark num="04" icon={Tag} eyebrow="Pilihan Paket Transparan" />
             <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-              Standar Kualitas &amp; Keunggulan Teknis Website Kami
+              Investasi Transparan Sesuai Skala Usaha Anda
             </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {keunggulan.map((item) => (
-              <div key={item.title} className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card">
-                <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-base font-bold text-neutral-900 leading-snug">{item.title}</h3>
-                <p className="text-xs text-neutral-500 mt-2 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Alur Kerja */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-24 text-center">
-          <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-            Tahapan Pengerjaan Pembuatan Website
-          </h2>
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {alur.map((step, i) => (
-              <div key={step} className="bg-white rounded-3xl p-6 border border-neutral-200/70 shadow-card">
-                <div className="w-12 h-12 mx-auto rounded-full bg-[#FFF5F0] text-[#EA4510] font-extrabold text-sm flex items-center justify-center border border-orange-200 mb-4">
-                  {i + 1}
-                </div>
-                <h3 className="text-sm font-bold text-neutral-900 leading-snug">
-                  {i + 1}. {step}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Cakupan Wilayah */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-24">
-          <div className="bg-gradient-to-br from-neutral-100 to-neutral-200/60 rounded-3xl p-8 sm:p-10 border border-neutral-200/80">
-            <div className="flex items-center gap-2 text-[#EA4510] text-xs font-semibold mb-3">
-              <MapPin className="w-4 h-4" />
-              <span>Local SEO Booster</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Area Layanan Pembuatan Website di Kalimantan Selatan
-            </h2>
-            <p className="text-sm text-neutral-600 leading-relaxed mt-3">
-              Sebagai tim pengembang yang berfokus di Kalimantan Selatan, kami siap memberikan layanan konsultasi dan pendampingan pembuatan website untuk klien di Kandangan (Kabupaten Hulu Sungai Selatan / HSS), Rantau (Tapin), Barabai (Hulu Sungai Tengah), Amuntai (Hulu Sungai Utara), Balangan, Tabalong, hingga Banjarbaru dan Banjarmasin.
+            <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+              Bayar sekali tanpa biaya sewa sistem bulanan. Sudah termasuk nama domain resmi (.com / .id), cloud server cepat 1 tahun pertama, dan garansi pemeliharaan resmi.
             </p>
           </div>
-        </section>
 
-        {/* Cross-Selling */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-16">
-          <div className="bg-[#121214] rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10 text-center space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Maximize Hasil Website Baru Anda
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch text-left">
+            {pricingPackages.map((item) => {
+              const isHighlight = item.isPopular
+
+              return (
+                <div
+                  key={item.tier}
+                  className={`bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
+                    isHighlight
+                      ? 'border-2 border-[#FF5C28] shadow-xl shadow-orange-500/10 lg:-translate-y-2 lg:scale-[1.02] z-10'
+                      : 'border border-neutral-200/80 shadow-card hover:border-orange-200/80 hover:shadow-lg'
+                  }`}
+                >
+                  {/* Decoy Top Badge */}
+                  {isHighlight && (
+                    <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#FF5C28] to-[#EA4510] text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap z-20">
+                      <Sparkles className="w-3 h-3" />
+                      <span>{item.badgeTop}</span>
+                    </div>
+                  )}
+
+                  <div>
+                    {!isHighlight && item.badgeTop && (
+                      <div className="mb-3">
+                        <span className="inline-flex items-center text-[11px] font-bold text-neutral-600 bg-neutral-100 border border-neutral-200/80 px-2.5 py-0.5 rounded-full">
+                          {item.badgeTop}
+                        </span>
+                      </div>
+                    )}
+
+                    <h3 className="text-xl font-extrabold text-neutral-900 tracking-tight">
+                      {item.tier}
+                    </h3>
+
+                    <p className="text-xs sm:text-[13px] text-neutral-600 mt-2.5 leading-relaxed min-h-[44px]">
+                      {item.desc}
+                    </p>
+
+                    {/* Price with anchoring */}
+                    <div className="mt-5 pt-4 border-t border-neutral-100">
+                      {item.originalPrice && (
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs sm:text-sm text-neutral-400 line-through font-medium">
+                            {item.originalPrice}
+                          </span>
+                          <span className="text-[10px] font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/60 px-2 py-0.5 rounded-full">
+                            Hemat Promo
+                          </span>
+                        </div>
+                      )}
+                      <div className="flex items-baseline gap-1.5 flex-wrap">
+                        <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                          {item.price}
+                        </span>
+                        <span className="text-xs text-neutral-500 font-medium">{item.unit}</span>
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <a
+                      href={getWhatsAppUrl('website', item.subject)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Konsultasi Gratis via WhatsApp (${item.tier})`}
+                      className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                        isHighlight
+                          ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow hover:scale-[1.01]'
+                          : 'bg-neutral-900 hover:bg-neutral-800 text-white hover:scale-[1.01]'
+                      }`}
+                    >
+                      <Image
+                        src="/icons/flaticon/whatsapp.svg"
+                        alt=""
+                        width={16}
+                        height={16}
+                        className="w-4 h-4 shrink-0 object-contain"
+                      />
+                      <span>{item.btnText}</span>
+                    </a>
+
+                    {/* Feature Checklist */}
+                    <div className="mt-6 pt-6 border-t border-neutral-100 space-y-3 text-xs sm:text-[13px] text-neutral-700">
+                      {item.features.map((feat, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5">
+                          <div className="w-4 h-4 rounded-full bg-orange-100 text-[#C23605] flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-2.5 h-2.5 stroke-[3]" />
+                          </div>
+                          <span className="leading-snug">{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Card Footer info */}
+                  <div className="mt-6 pt-4 border-t border-neutral-100 space-y-1.5">
+                    {item.renewal && (
+                      <div className="text-[11px] text-neutral-500 flex items-start gap-1.5 bg-neutral-50 p-2 rounded-xl border border-neutral-100">
+                        <Clock className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
+                        <span className="leading-tight">{item.renewal}</span>
+                      </div>
+                    )}
+                    {item.time && (
+                      <div className="text-[11px] text-neutral-400 text-center font-medium pt-1">
+                        {item.time}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+            </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* SUARA PENGGUNA (BUKTI & TESTIMONI KLIEN REAL)                  */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-warm section-rule py-20 sm:py-24 overflow-hidden">
+          <TestimonialsSection className="mt-0" />
+        </div>
+
+        {/* ============================================================== */}
+        {/* 5. ALUR KERJA TERIMA BERES                                     */}
+        {/* ============================================================== */}
+        <div className="relative bg-ink-panel py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-white/20">
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
+                <span aria-hidden="true">§ 05 · </span>Alur Pengerjaan
+              </span>
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-400">
+                Proses Mudah &amp; Terima Beres
+              </span>
+            </div>
+
+            <div className="mt-10 lg:mt-14 mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end text-left">
+              <h2 className="lg:col-span-8 font-extrabold text-3xl sm:text-4xl lg:text-[3rem] text-white leading-[1.2] tracking-tight">
+                Alur pembuatan mudah, Anda cukup kirim materi produk lewat chat.
               </h2>
-              <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto">
-                Ingin website baru Anda menjangkau lebih banyak calon pelanggan potensial? Padukan website Anda dengan layanan{' '}
-                <Link href="/jasa-iklan-meta-ads" className="text-[#FF5C28] font-semibold hover:underline">
-                  Jasa Kelola Iklan Meta Ads
-                </Link>{' '}
-                atau kembangkan ekosistem bisnis Anda ke platform smartphone melalui{' '}
-                <Link href="/jasa-pembuatan-aplikasi-mobile" className="text-[#FF5C28] font-semibold hover:underline">
-                  Jasa Pembuatan Aplikasi Mobile
-                </Link>{' '}
-                kami.
+              <div className="lg:col-span-4 space-y-3">
+                <p className="font-medium text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                  Tidak ada proses rumit yang menyita waktu Anda. Cukup sediakan foto barang dan daftar harga, sisanya tim kami yang selesaikan sampai siap pakai.
+                </p>
+                <div className="flex items-center gap-3 pt-1">
+                  <span className="w-8 h-px bg-[#FF5C28]" />
+                  <span className="font-semibold text-[10px] tracking-[0.24em] uppercase text-neutral-400">
+                    Praktis, Cepat &amp; Transparan
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {steps.map((step, i) => (
+                <div
+                  key={step.number}
+                  className="bg-white border border-neutral-200/80 rounded-3xl p-6 shadow-card hover:border-[#FF5C28] hover:shadow-xl transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 text-[#C23605] font-extrabold text-base flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                      {step.number}
+                    </div>
+                    <h3 className="font-bold text-lg text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-2.5 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-neutral-100 flex items-center gap-1.5 text-[11px] font-semibold text-[#C23605]">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Tahap {i + 1} dari 4</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* 6. LAYANAN PURNA JUAL (SETELAH LIVE TIDAK DITINGGAL)            */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-warm section-rule py-20 sm:py-24">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="bg-gradient-to-br from-[#FFF5F0] via-white to-orange-50/50 rounded-3xl p-8 sm:p-12 border border-orange-200/80 shadow-card">
+            <div className="max-w-3xl">
+              <div className="mb-3 flex items-center gap-2.5 text-neutral-600">
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500"
+                >
+                  § 06
+                </span>
+                <span aria-hidden="true" className="h-px w-8 bg-neutral-300" />
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
+                  <Users aria-hidden="true" className="h-3.5 w-3.5 text-[#C23605]" />
+                  <span>Komitmen Layanan Purna Jual</span>
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                Setelah Website Live, Anda Tidak Ditinggal Sendirian
+              </h2>
+              <p className="text-sm sm:text-base text-neutral-600 mt-3 leading-relaxed">
+                Banyak pemilik usaha ragu membuat website karena takut tidak bisa mengoperasikannya atau ditinggal begitu saja oleh pembuatnya. Di MarketingCode.ID, kami mendampingi Anda sampai benar-benar lancar.
               </p>
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link
-                  href="/"
-                  className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-full border border-white/15 transition-all"
-                >
-                  Kembali ke Beranda
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </Link>
-                <a
-                  href={getWhatsAppUrl('website')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all"
-                >
-                  Mulai Konsultasi
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </a>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
+                  <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
+                    01
+                  </span>
+                  <h3 className="font-bold text-sm text-neutral-900">Jalur Chat WhatsApp Langsung</h3>
+                  <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
+                    Terhubung langsung dengan tim kami. Bukan bot otomatis atau antrean tiket yang lama dibalas.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
+                  <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
+                    02
+                  </span>
+                  <h3 className="font-bold text-sm text-neutral-900">Bantuan Update Ringan</h3>
+                  <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
+                    Mau ganti banner promo atau ganti info kontak toko? Cukup chat kami, kami bantu pengerjaannya.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
+                  <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
+                    03
+                  </span>
+                  <h3 className="font-bold text-sm text-neutral-900">Panduan Sampai Lancar</h3>
+                  <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
+                    Disediakan video panduan langkah demi langkah cara mengelola toko sendiri dari smartphone.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+          </section>
+        </div>
 
-        {/* FAQ */}
-        <section className="max-w-3xl mx-auto px-4 sm:px-6 mt-24">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-3">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Tanya Jawab</span>
+        {/* ============================================================== */}
+        {/* 7. TABEL KOMPARASI (KENAPA WEBSITE SENDIRI MENANG)             */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-right-glow py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-neutral-900">
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
+                <span aria-hidden="true">§ 07 · </span>Perbandingan
+              </span>
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-500">
+                MarketingCode.ID vs Solusi Lain
+              </span>
             </div>
+
+          <div className="mt-8 sm:mt-12 mb-8 sm:mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+            <div className="lg:col-span-8 space-y-3">
+              <h2 className="text-3xl sm:text-4xl lg:text-[3rem] font-extrabold text-neutral-900 leading-[1.2] tracking-tight">
+                Kenapa website toko sendiri jauh lebih menguntungkan jangka panjang.
+              </h2>
+            </div>
+            <div className="lg:col-span-4 space-y-3">
+              <p className="font-medium text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Marketplace cocok untuk pelengkap. Tapi untuk membangun aset bisnis yang kuat dan bebas potongan komisi, website sendiri adalah investasi paling aman.
+              </p>
+            </div>
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden md:block bg-white border border-neutral-200/90 rounded-3xl overflow-hidden shadow-card">
+            <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] border-b-2 border-neutral-900">
+              <div className="p-5 lg:p-6 font-semibold text-[11px] tracking-[0.28em] uppercase text-neutral-500 flex items-center">
+                Kriteria Pembanding
+              </div>
+              <div className="p-5 lg:p-6 border-l border-neutral-200 bg-neutral-900 text-white">
+                <div className="font-extrabold text-lg lg:text-xl leading-tight text-white">
+                  MarketingCode.ID
+                </div>
+                <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-[#FF5C28]">
+                  Website Milik Sendiri
+                </div>
+              </div>
+              <div className="p-5 lg:p-6 border-l border-neutral-200">
+                <div className="font-extrabold text-lg lg:text-xl leading-tight text-neutral-900">
+                  Marketplace
+                </div>
+                <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-neutral-500">
+                  Shopee / Tokopedia
+                </div>
+              </div>
+              <div className="p-5 lg:p-6 border-l border-neutral-200">
+                <div className="font-extrabold text-lg lg:text-xl leading-tight text-neutral-900">
+                  Bikin Sendiri (DIY)
+                </div>
+                <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-neutral-500">
+                  Wix / WordPress Gratisan
+                </div>
+              </div>
+            </div>
+
+            {comparisonRows.map((row, idx) => (
+              <div
+                key={row.number}
+                className={`grid grid-cols-[1.4fr_1fr_1fr_1fr] ${
+                  idx !== comparisonRows.length - 1 ? 'border-b border-neutral-200/80' : ''
+                }`}
+              >
+                <div className="p-5 lg:p-6 flex items-center gap-3">
+                  <span className="font-semibold text-[10px] tracking-[0.22em] uppercase text-[#FF5C28] min-w-[2rem]">
+                    {row.number}
+                  </span>
+                  <span className="font-semibold text-sm lg:text-base text-neutral-900">
+                    {row.criteria}
+                  </span>
+                </div>
+
+                <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5 bg-[#FF5C28]/5">
+                  <StatusIcon status={row.marketingCode.status as 'check' | 'cross' | 'neutral'} />
+                  <span className="text-sm leading-snug font-semibold text-neutral-900">
+                    {row.marketingCode.text}
+                  </span>
+                </div>
+
+                <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5">
+                  <StatusIcon status={row.marketplace.status as 'check' | 'cross' | 'neutral'} />
+                  <span className="text-sm leading-snug font-medium text-neutral-600">
+                    {row.marketplace.text}
+                  </span>
+                </div>
+
+                <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5">
+                  <StatusIcon status={row.diy.status as 'check' | 'cross' | 'neutral'} />
+                  <span className="text-sm leading-snug font-medium text-neutral-600">
+                    {row.diy.text}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Stacked View */}
+          <div className="md:hidden space-y-4">
+            <div className="rounded-3xl p-6 border bg-neutral-900 border-[#FF5C28] text-white shadow-xl">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/15">
+                <div>
+                  <div className="font-extrabold text-lg text-white">MarketingCode.ID</div>
+                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-[#FF5C28]">
+                    Website Milik Sendiri
+                  </div>
+                </div>
+                <span className="text-[10px] tracking-wider uppercase font-bold bg-[#C23605] text-white px-2.5 py-1 rounded-full">
+                  Pilihan Terbaik
+                </span>
+              </div>
+              <ul className="space-y-3.5">
+                {comparisonRows.map((row) => (
+                  <li key={row.number} className="flex items-start gap-3">
+                    <StatusIcon status={row.marketingCode.status as 'check' | 'cross' | 'neutral'} />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-xs text-white/60">{row.criteria}</div>
+                      <div className="font-medium text-sm text-white mt-0.5">
+                        {row.marketingCode.text}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-3xl p-6 border bg-white border-neutral-200 text-neutral-900 shadow-sm">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-200">
+                <div>
+                  <div className="font-extrabold text-lg text-neutral-900">Marketplace</div>
+                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-neutral-500">
+                    Shopee / Tokopedia
+                  </div>
+                </div>
+              </div>
+              <ul className="space-y-3.5">
+                {comparisonRows.map((row) => (
+                  <li key={row.number} className="flex items-start gap-3">
+                    <StatusIcon status={row.marketplace.status as 'check' | 'cross' | 'neutral'} />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-xs text-neutral-500">{row.criteria}</div>
+                      <div className="font-medium text-sm text-neutral-800 mt-0.5">
+                        {row.marketplace.text}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* 8. JANGKAUAN LAYANAN NASIONAL (SELURUH INDONESIA)              */}
+        {/* ============================================================== */}
+        <div className="relative bg-ink-panel py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="rounded-3xl p-8 sm:p-10 border border-white/15 bg-transparent text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="max-w-2xl space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-400"
+                >
+                  § 08
+                </span>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/15 text-orange-200 text-xs font-semibold">
+                  <Globe aria-hidden="true" className="w-3.5 h-3.5" />
+                  <span>Melayani Klien Seluruh Indonesia</span>
+                </div>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Solusi Website &amp; Toko Online untuk Pengusaha di Seluruh Indonesia
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed pt-1">
+                Seluruh alur diskusi, pengiriman materi produk, hingga serah terima website dapat dilakukan 100% online dengan cepat dan transparan via WhatsApp. Kami siap mendampingi UMKM dan perintis bisnis dari Sumatra, Jawa, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Maluku, hingga Papua untuk memiliki kehadiran digital yang mandiri dan terpercaya.
+              </p>
+            </div>
+            <a
+              href={getWhatsAppUrl('website', 'Konsultasi Jasa Pembuatan Website Seluruh Indonesia')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-7 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all whitespace-nowrap shrink-0"
+            >
+              <span>Mulai Konsultasi Online</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* 9. TANYA JAWAB (FAQ) RAMAH PEMILIK USAHA                       */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-cream-left-glow bg-dot-fine py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-3xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-10">
+              <SectionMark num="09" icon={HelpCircle} eyebrow="Tanya Jawab Seputar Layanan" />
             <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Pertanyaan Umum (FAQ) Jasa Pembuatan Website
+              Pertanyaan yang Sering Diajukan Pemilik Usaha
             </h2>
           </div>
+
           <div className="space-y-3">
             {faqs.map((faq) => (
-              <details key={faq.q} className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs group">
-                <summary className="w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer list-none">
-                  <h3 className="font-bold">{faq.q}</h3>
+              <details
+                key={faq.q}
+                className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs group"
+              >
+                <summary className="w-full px-5 py-4 text-left flex items-center justify-between gap-3 text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer list-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5C28]">
+                  <h3 className="font-bold min-w-0 flex-1">{faq.q}</h3>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 group-open:rotate-180"
+                  />
                 </summary>
-                <div className="px-5 pb-4 text-xs text-neutral-500 leading-relaxed">{faq.a}</div>
+                <div className="px-5 pb-5 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+                  {faq.a}
+                </div>
               </details>
             ))}
           </div>
-        </section>
+          </section>
+        </div>
 
+        {/* ============================================================== */}
+        {/* 10. FINAL CLOSING CTA BANNER                                   */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-warm py-20 sm:py-24 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 font-mono text-[18rem] font-bold text-neutral-900/[0.025] select-none leading-none tracking-tighter"
+          >
+            §
+          </div>
+          <section className="relative max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
+            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 max-w-xl mx-auto space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Siap Bikin Usaha Anda Naik Kelas &amp; Terlihat Lebih Profesional?
+              </h2>
+              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+                Diskusikan rencana toko online Anda bersama tim kami sekarang secara gratis. Dapatkan saran paket yang paling pas dengan anggaran usaha Anda tanpa komitmen awal.
+              </p>
+
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href={getWhatsAppUrl('website', 'Konsultasi Jasa Pembuatan Website')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
+                >
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={18}
+                    height={18}
+                    className="w-4 h-4 shrink-0 object-contain"
+                  />
+                  <span>Mulai Konsultasi Gratis via WhatsApp</span>
+                </a>
+              </div>
+
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] text-neutral-300">
+                <span className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Hak Milik Tanpa Sewa
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Gratis Domain &amp; Server 1 Tahun
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Garansi Pendampingan Resmi
+                </span>
+              </div>
+            </div>
+          </div>
+          </section>
+        </div>
       </main>
     </div>
   )

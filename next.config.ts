@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/website-umkm',
+        destination: '/jasa-pembuatan-website',
+        permanent: true,
+      },
+      {
         source: '/faq',
         destination: '/pertanyaan',
         permanent: true,

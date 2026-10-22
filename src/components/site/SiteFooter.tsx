@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 const FOOTER_LINKS = [
   { href: '/jasa-pembuatan-website', label: 'Jasa Pembuatan Website' },
-  { href: '/website-umkm', label: 'Website UMKM' },
   { href: '/company-profile', label: 'Company Profile' },
   { href: '/landing-page', label: 'Landing Page' },
   { href: '/jasa-pembuatan-aplikasi-mobile', label: 'Aplikasi Mobile' },

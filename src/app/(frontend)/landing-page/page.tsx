@@ -238,15 +238,20 @@ export default function LandingPageServicePage() {
 
             <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs text-neutral-500">
-                Butuh banyak halaman dan katalog produk? Tersedia paket <strong>Website UMKM (Rp 3.5jt)</strong>.
+                Butuh katalog produk dan banyak halaman? Lihat{' '}
+                <Link href="/jasa-pembuatan-website" className="text-[#FF5C28] font-bold hover:underline">
+                  Paket Website UMKM
+                </Link>
+                .
               </span>
               <a
                 href={getWhatsAppUrl('website', 'Paket Landing Page Promosi (Rp 1.5jt)')}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Konsultasi Gratis via WhatsApp (Paket Landing Page Promosi)"
                 className="w-full sm:w-auto px-7 py-3 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs rounded-full shadow-glow transition-all whitespace-nowrap text-center"
               >
-                Pilih Landing Page
+                Konsultasi Gratis
               </a>
             </div>
           </div>

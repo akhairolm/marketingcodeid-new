@@ -100,9 +100,9 @@ const STORIES: TestimonialStory[] = [
   },
 ]
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ className }: { className?: string } = {}) {
   return (
-    <section id="suara-pengguna" className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
+    <section id="suara-pengguna" className={`max-w-6xl mx-auto px-4 sm:px-6 ${className ?? 'mt-28'}`}>
       {/* Header Section */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
@@ -127,7 +127,7 @@ export function TestimonialsSection() {
             </span>
           </div>
           <div className="text-center border-x border-neutral-100">
-            <span className="block text-2xl sm:text-3xl font-extrabold text-[#D13D00]">98%</span>
+            <span className="block text-2xl sm:text-3xl font-extrabold text-[#C23605]">98%</span>
             <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
               Tingkat Kepuasan Klien
             </span>
@@ -210,7 +210,7 @@ export function TestimonialsSection() {
                   </p>
                 </div>
                 <div className="bg-[#FFF5F0] border border-orange-200/60 rounded-xl px-3 py-1.5 text-right shrink-0">
-                  <span className="block text-xs sm:text-sm font-extrabold text-[#D13D00]">
+                  <span className="block text-xs sm:text-sm font-extrabold text-[#C23605]">
                     {story.statValue}
                   </span>
                   <span className="text-[9px] text-neutral-600 font-medium block">

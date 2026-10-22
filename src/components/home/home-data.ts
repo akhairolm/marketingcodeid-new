@@ -31,7 +31,7 @@ export const pricingData: Record<'web' | 'app' | 'ads', PricingTier[]> = {
       unit: 'Bayar sekali • Terima beres',
       desc: 'Cocok untuk promosi 1 produk/jasa unggulan & kampanye iklan (Meta/Google Ads) yang fokus mengarahkan prospek ke WhatsApp.',
       isPopular: false,
-      btnText: 'Pesan Landing Page',
+      btnText: 'Konsultasi Gratis',
       ctaContext: 'website',
       features: [
         '1 Halaman Panjang (Single Page) dengan struktur copywriting persuasif',
@@ -54,7 +54,7 @@ export const pricingData: Record<'web' | 'app' | 'ads', PricingTier[]> = {
       unit: 'Bayar sekali • Bisa kelola mandiri',
       desc: 'Solusi ideal untuk UMKM, toko lokal, & usaha jasa yang ingin memiliki katalog produk, profil usaha, serta artikel SEO yang bisa diedit sendiri.',
       isPopular: true,
-      btnText: 'Ambil Paket UMKM Sekarang',
+      btnText: 'Konsultasi Gratis',
       ctaContext: 'website',
       features: [
         'Hingga 5–7 Halaman Menu (Beranda, Tentang, Katalog/Layanan, Blog, Kontak)',
@@ -77,7 +77,7 @@ export const pricingData: Record<'web' | 'app' | 'ads', PricingTier[]> = {
       unit: 'Bayar sekali • Sistem skala bisnis',
       desc: 'Dirancang untuk perusahaan (PT/CV/B2B) yang butuh kredibilitas tinggi atau toko online dengan pembayaran otomatis (Payment Gateway).',
       isPopular: false,
-      btnText: 'Konsultasi Paket Pro',
+      btnText: 'Konsultasi Gratis',
       ctaContext: 'website',
       features: [
         'Hingga 12+ Halaman Eksklusif dengan Desain UI/UX Kustom Korporat',
