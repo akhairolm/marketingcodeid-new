@@ -28,3 +28,15 @@ Setiap kali agent selesai mengerjakan tugas (fitur baru, refactoring, perubahan 
 4. **Agentic Browsing & Visual UX Verification:**
    - Lakukan penjelajahan interaktif via browser subagent pada mode **Desktop (1280x800)** dan **Mobile (390x844)**.
    - Pastikan link CTA (terutama tombol WhatsApp resmi `6285128038243`), menu navigasi/hamburger mobile, sticky floating button, dan responsivitas layout bekerja optimal tanpa kebocoran horizontal scroll.
+
+# Strict No-Emoji Rule (Aturan Mutlak Tanpa Emoji)
+
+AI agent, subagent, maupun automated script dilarang keras menambahkan karakter emoji Unicode (misalnya: 🚀, ⚡, 🛡️, 🎨, ✨, ⚠️, 📦, 🔥, ⭐, ❌, ✅, dsb.) pada project ini:
+1. **Dilarang di UI & Copywriting:**
+   - Tidak boleh menggunakan emoji di headline, subheadline, teks paragraf, kartu, badge, tombol/CTA, daftar fitur, maupun FAQ.
+2. **Dilarang di Metadata & Kode:**
+   - Tidak boleh ada emoji di `title`, `description`, commit message, maupun komentar kode.
+3. **Standar Pengganti (Visual Alternatif):**
+   - Jika membutuhkan penanda visual, selalu gunakan icon SVG resmi (seperti Lucide React Icons: `<Star />`, `<Check />`, `<X />`, `<Clock />`, `<Sparkles />`, atau SVG kustom di `/icons/`).
+   - Pertahankan gaya desain profesional, bersih, elegan, dan berbobot tanpa dekorasi emoji.
+

@@ -20,3 +20,6 @@ Setiap kali agent selesai mengerjakan tugas atau perubahan kode pada project ini
      - Sticky floating WhatsApp button tampil konsisten dan responsif.
      - Tampilan mobile (390px) responsif tanpa kebocoran scroll horizontal.
      - Navigasi hamburger menu mobile berfungsi dengan baik.
+5. **No-Emoji Compliance:**
+   - Pastikan tidak ada karakter emoji Unicode di seluruh teks UI, kode, maupun metadata. Gunakan icon SVG jika membutuhkan elemen visual.
+

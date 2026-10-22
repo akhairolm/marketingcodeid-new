@@ -13,6 +13,7 @@ import {
   Circle,
   Clock,
   Sparkles,
+  Star,
   Tag,
   ArrowRight,
   TrendingDown,
@@ -174,14 +175,14 @@ const pricingPackages = [
       'Gratis Bantu Update Ringan (Ganti teks/foto promo hingga 2x setelah rilis)',
       'Garansi Pemeliharaan Resmi & Sertifikat Keamanan SSL',
     ],
-    limitationNote: '⚠️ Catatan: Tidak termasuk dashboard admin mandiri & multi-halaman blog SEO',
+    limitationNote: 'Catatan: Tidak termasuk dashboard admin mandiri & multi-halaman blog SEO',
     renewal: 'Perpanjangan tahun ke-2 hanya Rp 600rb/thn (Domain & Server)',
     time: 'Siap Rilis: 3 - 5 Hari Kerja (Cocok untuk Launching Cepat)',
   },
   {
     tier: 'Web Katalog, Profil & Blog',
     badgeTop: 'PALING DIMINATI',
-    topHighlightNote: '✨ Paling Lengkap & Fleksibel — Dipilih 70% Klien UMKM',
+    topHighlightNote: 'Paling Lengkap & Fleksibel — Dipilih 70% Klien UMKM',
     originalPrice: 'Rp 3.200.000',
     price: 'Rp 2.190.000',
     unit: 'Bayar sekali • Bisa kelola mandiri',
@@ -418,7 +419,10 @@ function ProblemCompetitorMockup() {
             </div>
             <div>
               <div className="font-bold text-neutral-800 text-[11px] leading-tight">Toko Banting Harga</div>
-              <div className="text-[9px] text-neutral-500">⭐ 4.8 • Terjual 2rb+</div>
+              <div className="text-[9px] text-neutral-500 flex items-center gap-1">
+                <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400 shrink-0" />
+                <span>4.8 • Terjual 2rb+</span>
+              </div>
             </div>
           </div>
           <div className="text-right">
@@ -435,7 +439,10 @@ function ProblemCompetitorMockup() {
             </div>
             <div>
               <div className="font-bold text-neutral-800 text-[11px] leading-tight">Grosir Murah Jaya</div>
-              <div className="text-[9px] text-neutral-500">⭐ 4.7 • Beda Rp 500</div>
+              <div className="text-[9px] text-neutral-500 flex items-center gap-1">
+                <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400 shrink-0" />
+                <span>4.7 • Beda Rp 500</span>
+              </div>
             </div>
           </div>
           <div className="text-right">
@@ -548,14 +555,14 @@ function ProblemCredibilityMockup() {
     <div className="relative w-full h-full flex flex-col items-center justify-center">
       {/* Top Floating Format Chips */}
       <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
-        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
-          <span className="text-red-500 font-bold">✕</span> .blogspot.xyz
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <X className="w-2.5 h-2.5 text-red-500 stroke-[3]" /> .blogspot.xyz
         </span>
-        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
-          <span className="text-red-500 font-bold">✕</span> Tanpa SSL
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <X className="w-2.5 h-2.5 text-red-500 stroke-[3]" /> Tanpa SSL
         </span>
-        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
-          <span className="text-amber-500 font-bold">!</span> Loading 6.8s
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <AlertTriangle className="w-2.5 h-2.5 text-amber-500" /> Loading 6.8s
         </span>
       </div>
 
@@ -626,7 +633,10 @@ function SolutionDomainMockup() {
         </div>
 
         <div className="flex items-center justify-between text-[10px] text-neutral-600 px-1">
-          <span className="text-emerald-700 font-medium">✓ 100% Hak Milik Anda</span>
+          <span className="text-emerald-700 font-medium flex items-center gap-1">
+            <Check className="w-3 h-3 stroke-[3]" />
+            <span>100% Hak Milik Anda</span>
+          </span>
           <span className="text-neutral-600 font-medium">DNS Cloudflare</span>
         </div>
       </div>
@@ -663,8 +673,13 @@ function SolutionDesignMockup() {
       </div>
 
       <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
-        <span className="flex items-center gap-1 text-amber-600 font-semibold">
-          ⭐⭐⭐⭐⭐ 4.9
+        <span className="flex items-center gap-0.5 text-amber-500 font-semibold">
+          <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+          <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+          <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+          <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+          <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+          <span className="ml-1 text-neutral-800 text-[10px]">4.9</span>
         </span>
         <span className="text-neutral-700 font-medium">Tampilan Elegan di Smartphone</span>
       </div>
@@ -753,7 +768,10 @@ function SolutionGoogleSeoMockup() {
       </div>
 
       <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-[10px] text-neutral-700">
-        <span className="text-emerald-700 font-semibold">✓ Terindeks Otomatis di Google</span>
+        <span className="text-emerald-700 font-semibold flex items-center gap-1">
+          <Check className="w-3 h-3 stroke-[3]" />
+          <span>Terindeks Otomatis di Google</span>
+        </span>
       </div>
     </div>
   )
@@ -860,7 +878,7 @@ export default function JasaPembuatanWebsitePage() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
                 <Store className="w-3.5 h-3.5 text-[#C23605]" />
                 <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-                  🚀 Agency Boutique — Fokus Maksimal 10 Klien/Bulan • Melayani Seluruh Indonesia
+                  Agency Boutique — Fokus Maksimal 10 Klien/Bulan • Melayani Seluruh Indonesia
                 </span>
               </div>
 
