@@ -470,6 +470,25 @@ export default function JasaIklanAdsPage() {
             </div>
           </section>
         </div>
+        {/* 5. PILL INDUSTRI */}
+        <div className="relative bg-paper-warm py-10 sm:py-12 border-y border-neutral-200/60">
+          <section className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200/80 text-[11px] font-bold text-neutral-700 mb-4">
+              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+              <span>Cocok untuk Berbagai Jenis Usaha</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
+              {industryPills.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 text-neutral-700 font-semibold hover:border-[#C23605] hover:text-[#C23605] transition-colors shadow-xs"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   )
