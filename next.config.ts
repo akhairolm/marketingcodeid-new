@@ -23,6 +23,21 @@ const nextConfig: NextConfig = {
         destination: '/pertanyaan',
         permanent: true,
       },
+      {
+        source: '/company-profile',
+        destination: '/jasa-pembuatan-website',
+        permanent: true,
+      },
+      {
+        source: '/landing-page',
+        destination: '/jasa-pembuatan-website',
+        permanent: true,
+      },
+      {
+        source: '/jasa-iklan-meta-ads',
+        destination: '/jasa-iklan-ads',
+        permanent: true,
+      },
     ]
   },
   async headers() {
