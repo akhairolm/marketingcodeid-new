@@ -7,7 +7,7 @@ import { trackWhatsAppClick } from '@/lib/analytics'
 
 export function HeroSection() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 lg:pt-12">
+    <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <link
         rel="preload"
         as="image"

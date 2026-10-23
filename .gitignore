@@ -52,3 +52,7 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Local Audits & Scratch
+/scratch/
+/.lighthouse-reports/

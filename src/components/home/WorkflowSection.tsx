@@ -49,7 +49,7 @@ export function WorkflowSection() {
     <section
       id="alur-kerja"
       aria-label="Alur Proses Pengerjaan"
-      className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-28"
+      className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6"
     >
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-neutral-900">
@@ -93,15 +93,14 @@ export function WorkflowSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
           {steps.map((step) => (
-            <div key={step.id} className="relative flex flex-col gap-5">
+            <div key={step.id} className="relative flex flex-col gap-5 group">
               {/* Top Step Number Circle */}
-              <div className="relative w-20 h-20 flex items-center justify-center z-10 bg-white self-center">
+              <div className="relative w-20 h-20 rounded-full flex items-center justify-center z-10 bg-white border-2 border-dashed border-[#FF5C28] self-center shadow-xs group-hover:scale-105 group-hover:border-[#D13D00] transition-all duration-300">
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 rounded-full bg-orange-50/70 border-2 border-dashed border-[#FF5C28]"
+                  className="absolute inset-1 rounded-full bg-orange-50/80 group-hover:bg-orange-100/90 transition-colors"
                 />
-                <div aria-hidden="true" className="absolute -inset-1 rounded-full" />
-                <span className="relative font-extrabold text-2xl text-neutral-900">
+                <span className="relative font-extrabold text-2xl text-neutral-900 tracking-tight">
                   {step.number}
                 </span>
               </div>

@@ -12,7 +12,7 @@ describe('JasaPembuatanWebsitePage', () => {
 
     // H1 Heading
     const h1 = screen.getByRole('heading', { level: 1 })
-    expect(h1.textContent).toContain('Miliki Website & Toko Online Profesional')
+    expect(h1.textContent).toContain('Miliki Website Bisnis & Toko Online Profesional')
     expect(h1.textContent).toContain('Tanpa Ribet Koding')
 
     // National scope (not restricted to local only)
@@ -80,7 +80,7 @@ describe('JasaPembuatanWebsitePage', () => {
 
     // 10 sections: 1 Hero (h1) + 9 subsequent (h2)
     const headingTexts = [
-      /Miliki Website & Toko Online Profesional/i, // 1. Hero
+      /Miliki Website Bisnis & Toko Online Profesional/i, // 1. Hero
       /Sebagian Besar Pemilik Usaha Mengalami 4 Hal Ini/i, // 2. Masalah
       /6 Hal yang Langsung Aktif di Website Toko Anda/i, // 3. Keuntungan
       /Investasi Transparan Sesuai Skala Usaha Anda/i, // 4. Paket

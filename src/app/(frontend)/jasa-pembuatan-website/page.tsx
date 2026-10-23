@@ -26,6 +26,7 @@ import {
   Users,
   CheckCircle2,
   ChevronDown,
+  ExternalLink,
   type LucideIcon,
 } from 'lucide-react'
 import { getWhatsAppUrl, getWhatsAppDirectUrl } from '@/lib/whatsapp'
@@ -159,10 +160,10 @@ const pricingPackages = [
     unit: 'Bayar sekali • Terima beres',
     desc: 'Cocok untuk promosi 1 produk/jasa unggulan & kampanye iklan (Meta/Google Ads) yang fokus mengarahkan prospek langsung ke WhatsApp.',
     isPopular: false,
-    btnText: 'Pesan Paket Landing (Rp 1.190.000)',
+    btnText: 'Pesan Paket Landing',
     ariaLabel: 'Pesan Paket Landing Page Konversi via WhatsApp',
     directUrl: getWhatsAppDirectUrl(
-      'Halo Admin MarketingCode.ID, saya mau ambil Paket Landing Page Konversi (Rp 1.190.000). Nama usaha saya: ____'
+      'Halo Admin MarketingCode.ID, saya mau ambil Paket Landing Page Konversi (Rp 1.190.000). Nama usaha saya: ____',
     ),
     subject: 'Paket Landing Page Promosi (Rp 1.190.000)',
     features: [
@@ -171,7 +172,7 @@ const pricingPackages = [
       'Terima Beres Tanpa Repot (Tidak perlu pusing kelola dashboard sendiri)',
       'Gratis Domain .com & Cloud Server Resmi (Aktif 1 Tahun)',
       'Tombol Pemesanan Langsung ke WhatsApp & Formulir Prospek',
-      'Siap Dipasang Pelacak Iklan (Meta Pixel & Google Analytics)',
+      'Siap Pasang Pixel Iklan (Meta Pixel, TikTok Pixel, Google Tag & Analytics) — Ready untuk Google Ads/Meta Ads',
       'Gratis Bantu Update Ringan (Ganti teks/foto promo hingga 2x setelah rilis)',
       'Garansi Pemeliharaan Resmi & Sertifikat Keamanan SSL',
     ],
@@ -182,25 +183,30 @@ const pricingPackages = [
   {
     tier: 'Web Katalog, Profil & Blog',
     badgeTop: 'PALING DIMINATI',
-    topHighlightNote: 'Paling Lengkap & Fleksibel — Dipilih 70% Klien UMKM',
+    topHighlightNote: 'Paling Lengkap & Pilihan Utama Mayoritas Klien UMKM',
+    bonusStack:
+      'Bonus Senilai Rp 850rb: Setup Google Analytics + Google Search Console + Copywriting Jualan 1 Halaman',
     originalPrice: 'Rp 3.200.000',
     price: 'Rp 2.190.000',
     unit: 'Bayar sekali • Bisa kelola mandiri',
+    installmentNote:
+      'Opsi bertahap: DP 50% di muka & 50% setelah website siap rilis (Rp 1.095.000 x 2)',
     desc: 'Solusi ideal untuk UMKM, toko lokal, kuliner, fashion, & usaha jasa yang ingin memiliki katalog produk, profil usaha, serta artikel informasi yang bisa diedit sendiri.',
     isPopular: true,
-    btnText: 'Ambil Paket Katalog via WhatsApp',
+    btnText: 'Pesan Paket Katalog',
     ariaLabel: 'Pesan Paket Web Katalog, Profil & Blog via WhatsApp',
     directUrl: getWhatsAppDirectUrl(
-      'Halo Admin MarketingCode.ID, saya mau ambil Paket Web Katalog, Profil & Blog (Rp 2.190.000). Nama usaha saya: ____'
+      'Halo Admin MarketingCode.ID, saya mau ambil Paket Web Katalog, Profil & Blog (Rp 2.190.000). Nama usaha saya: ____',
     ),
     subject: 'Paket Web UMKM & Katalog (Rp 2.190.000)',
     features: [
       'Hingga 5–7 Halaman Menu (Beranda, Tentang Kami, Katalog/Layanan, Artikel, Kontak)',
       'Dilengkapi Dashboard Admin Sederhana (Tambah/edit produk & layanan dari HP tanpa koding, praktis & tidak rumit)',
       'Fitur Katalog Produk + Tombol Pesan Otomatis ke WhatsApp (0% Potongan Komisi)',
-      'Fitur Artikel & Informasi untuk mempermudah calon pembeli menemukan Anda di Google',
-      'Gratis Domain .com / .id & Cloud Server Cepat (Aktif 1 Tahun)',
-      'Optimasi Tampilan Ramah Smartphone & Integrasi Peta Lokasi Google Maps',
+      'Fitur Artikel & Informasi untuk mempermudah calon pembeli menemukan Anda di Google (SEO Friendly)',
+      'Gratis Bantu Input 10–20 Produk/Layanan Pertama (Anda cukup kirim foto & deskripsi)',
+      'Gratis Domain .com / .id & Cloud Server Cepat + SSL/HTTPS (Aktif 1 Tahun)',
+      'Optimasi Mobile Responsive & Fast Loading + Integrasi Peta Lokasi Google Maps',
       'Gratis Video Panduan & Diajari Cara Kelolanya Sampai Bisa',
       'Garansi Pemeliharaan Resmi 1 Tahun Penuh & Keamanan SSL',
     ],
@@ -215,10 +221,10 @@ const pricingPackages = [
     unit: 'Bayar sekali • Sistem skala bisnis',
     desc: 'Dirancang untuk perusahaan (PT/CV/B2B) yang butuh kredibilitas tinggi atau toko online dengan sistem transaksi otomatis (Payment Gateway).',
     isPopular: false,
-    btnText: 'Diskusi Kustomisasi Pro via WhatsApp',
+    btnText: 'Pesan Paket Pro',
     ariaLabel: 'Konsultasi Paket Company Profile Pro / Toko Online via WhatsApp',
     directUrl: getWhatsAppDirectUrl(
-      'Halo Admin MarketingCode.ID, saya tertarik konsultasi Paket Company Profile Pro / Toko Online (Rp 3.490.000). Kebutuhan saya: ____'
+      'Halo Admin MarketingCode.ID, saya tertarik konsultasi Paket Company Profile Pro / Toko Online (Rp 3.490.000). Kebutuhan saya: ____',
     ),
     subject: 'Paket Company Profile Pro / Toko Online (Rp 3.490.000)',
     features: [
@@ -231,6 +237,8 @@ const pricingPackages = [
       'Riset Kata Kunci Dasar & Setup Pengaturan Ramah Google',
       'Prioritas Bantuan Pendampingan & Training Tim',
     ],
+    limitationNote:
+      'Catatan: Mode Payment Gateway memerlukan registrasi akun gerbang pembayaran resmi (Midtrans/Xendit) atas nama usaha Anda (kami dampingi setup teknisnya).',
     renewal: 'Perpanjangan tahun ke-2 menyesuaikan kapasitas server',
     time: 'Build Mendalam: 10 - 21 Hari Kerja (Desain & Arsitektur Kustom)',
   },
@@ -312,7 +320,10 @@ const comparisonRows = [
   {
     number: '08',
     criteria: 'Kebebasan modifikasi koding mandiri',
-    marketingCode: { status: 'check', text: 'Melalui dashboard admin simpel & opsi request kustom' },
+    marketingCode: {
+      status: 'check',
+      text: 'Melalui dashboard admin simpel & opsi request kustom',
+    },
     marketplace: { status: 'cross', text: 'Sistem dikunci mati oleh platform' },
     diy: { status: 'check', text: 'Bebas utak-atik koding (jika menguasai teknis)' },
   },
@@ -323,7 +334,7 @@ function StatusIcon({ status }: { status: 'check' | 'cross' | 'neutral' }) {
     return <Check className="w-4 h-4 shrink-0 text-[#FF5C28]" strokeWidth={2.5} />
   }
   if (status === 'cross') {
-    return <X className="w-4 h-4 shrink-0 text-neutral-400" strokeWidth={2.5} />
+    return <X className="w-4 h-4 shrink-0 text-neutral-500" strokeWidth={2.5} />
   }
   return <Circle className="w-3.5 h-3.5 shrink-0 text-neutral-500" strokeWidth={2.5} />
 }
@@ -368,7 +379,9 @@ function ProblemMarginMockup() {
         <div className="bg-neutral-50 rounded-xl p-2.5 border border-neutral-100">
           <div className="flex items-baseline justify-between">
             <span className="text-[10px] text-neutral-600 font-medium">Omzet Kotor Toko:</span>
-            <span className="text-xs sm:text-sm font-extrabold text-neutral-900">Rp 10.000.000</span>
+            <span className="text-xs sm:text-sm font-extrabold text-neutral-900">
+              Rp 10.000.000
+            </span>
           </div>
 
           {/* Cut visual bar */}
@@ -418,7 +431,9 @@ function ProblemCompetitorMockup() {
               T1
             </div>
             <div>
-              <div className="font-bold text-neutral-800 text-[11px] leading-tight">Toko Banting Harga</div>
+              <div className="font-bold text-neutral-800 text-[11px] leading-tight">
+                Toko Banting Harga
+              </div>
               <div className="text-[9px] text-neutral-500 flex items-center gap-1">
                 <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400 shrink-0" />
                 <span>4.8 • Terjual 2rb+</span>
@@ -427,7 +442,9 @@ function ProblemCompetitorMockup() {
           </div>
           <div className="text-right">
             <div className="font-extrabold text-neutral-900 text-xs">Rp 88.500</div>
-            <span className="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1 py-0.2 rounded">Termurah</span>
+            <span className="text-[9px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
+              Termurah
+            </span>
           </div>
         </div>
 
@@ -438,7 +455,9 @@ function ProblemCompetitorMockup() {
               T2
             </div>
             <div>
-              <div className="font-bold text-neutral-800 text-[11px] leading-tight">Grosir Murah Jaya</div>
+              <div className="font-bold text-neutral-800 text-[11px] leading-tight">
+                Grosir Murah Jaya
+              </div>
               <div className="text-[9px] text-neutral-500 flex items-center gap-1">
                 <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400 shrink-0" />
                 <span>4.7 • Beda Rp 500</span>
@@ -447,7 +466,9 @@ function ProblemCompetitorMockup() {
           </div>
           <div className="text-right">
             <div className="font-extrabold text-neutral-900 text-xs">Rp 89.000</div>
-            <span className="text-[9px] font-bold text-amber-600 bg-amber-50 px-1 py-0.2 rounded">Perang Harga</span>
+            <span className="text-[9px] font-bold text-amber-900 bg-amber-100/90 px-1.5 py-0.5 rounded">
+              Perang Harga
+            </span>
           </div>
         </div>
 
@@ -458,13 +479,17 @@ function ProblemCompetitorMockup() {
               Anda
             </div>
             <div>
-              <div className="font-bold text-neutral-900 text-[11px] leading-tight">Brand &amp; Toko Anda</div>
+              <div className="font-bold text-neutral-900 text-[11px] leading-tight">
+                Brand &amp; Toko Anda
+              </div>
               <div className="text-[9px] text-orange-700 font-medium">Kualitas Asli Terjamin</div>
             </div>
           </div>
           <div className="text-right">
             <div className="font-extrabold text-neutral-900 text-xs">Rp 95.000</div>
-            <span className="text-[9px] font-bold text-red-600 bg-red-50 px-1 py-0.2 rounded">Tersisih Harga</span>
+            <span className="text-[9px] font-bold text-red-600 bg-red-50 px-1 py-0.2 rounded">
+              Tersisih Harga
+            </span>
           </div>
         </div>
 
@@ -527,14 +552,18 @@ function ProblemDataLockedMockup() {
             <span className="text-neutral-600 text-[11px] font-medium">No. WhatsApp:</span>
             <span className="font-mono text-neutral-600 text-[11px] tracking-wider flex items-center gap-1.5 font-semibold">
               0812-****-****
-              <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.2 rounded font-sans font-bold">Sensor</span>
+              <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.2 rounded font-sans font-bold">
+                Sensor
+              </span>
             </span>
           </div>
           <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
             <span className="text-neutral-600 text-[11px] font-medium">Email Kontak:</span>
             <span className="font-mono text-neutral-600 text-[11px] tracking-wider flex items-center gap-1.5 font-semibold">
               b***@*****com
-              <span className="text-[9px] bg-neutral-200/80 text-neutral-700 px-1.5 py-0.2 rounded font-sans font-bold">Kunci</span>
+              <span className="text-[9px] bg-neutral-200/80 text-neutral-700 px-1.5 py-0.2 rounded font-sans font-bold">
+                Kunci
+              </span>
             </span>
           </div>
         </div>
@@ -574,8 +603,10 @@ function ProblemCredibilityMockup() {
         {/* Miniature Address Bar */}
         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-neutral-100/90 border border-neutral-200 text-[10px] mb-2.5">
           <AlertTriangle className="w-3 h-3 text-red-500 shrink-0" />
-          <span className="text-red-600 font-mono truncate font-semibold">http://tokoanda.gratisan.net</span>
-          <span className="ml-auto text-[9px] font-bold bg-red-100 text-red-700 px-1 py-0.2 rounded shrink-0">
+          <span className="text-red-700 font-mono truncate font-semibold">
+            tokoanda.gratisan.net
+          </span>
+          <span className="ml-auto text-[9px] font-bold bg-red-100 text-red-800 px-1.5 py-0.5 rounded shrink-0">
             Tidak Aman
           </span>
         </div>
@@ -586,7 +617,8 @@ function ProblemCredibilityMockup() {
             !
           </div>
           <span className="text-[10px] sm:text-[11px] leading-snug">
-            <strong className="text-[#C23205]">78% pembeli ragu transfer</strong> dan langsung keluar halaman
+            <strong className="text-[#C23205]">78% pembeli ragu transfer</strong> dan langsung
+            keluar halaman
           </span>
         </div>
 
@@ -625,7 +657,7 @@ function SolutionDomainMockup() {
         <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-50 border border-neutral-200/80 shadow-xs">
           <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
           <span className="text-xs font-bold text-neutral-900 font-mono truncate">
-            https://tokosaya.com
+            tokosaya.com
           </span>
           <span className="ml-auto text-[9px] font-bold bg-neutral-200/70 text-neutral-700 px-1.5 py-0.2 rounded shrink-0">
             SSL Resmi
@@ -654,7 +686,7 @@ function SolutionDesignMockup() {
     <div className="relative w-full h-full flex flex-col justify-between">
       <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
         <span className="text-[11px] font-bold text-neutral-700">Preview Katalog HP</span>
-        <span className="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">
+        <span className="text-[10px] font-bold text-rose-800 bg-rose-100/90 border border-rose-200 px-2 py-0.5 rounded-full">
           Responsif 100%
         </span>
       </div>
@@ -664,10 +696,12 @@ function SolutionDesignMockup() {
           Foto
         </div>
         <div className="min-w-0 flex-1">
-          <div className="font-bold text-neutral-900 text-[11px] truncate">Kemeja Linen Signature</div>
+          <div className="font-bold text-neutral-900 text-[11px] truncate">
+            Kemeja Linen Signature
+          </div>
           <div className="text-[10px] text-neutral-600 font-medium">Rp 149.000 • Stok Ready</div>
         </div>
-        <span className="text-[9px] font-bold bg-[#FF5C28] text-white px-2 py-1 rounded-lg shrink-0">
+        <span className="text-[9px] font-bold bg-[#D13D00] text-white px-2 py-1 rounded-lg shrink-0">
           Order
         </span>
       </div>
@@ -757,7 +791,7 @@ function SolutionGoogleSeoMockup() {
 
       <div className="p-2 rounded-xl bg-neutral-50 border border-neutral-200/80 space-y-1">
         <div className="text-[9px] text-neutral-600 font-mono truncate">
-          https://tokosaya.com › katalog
+          tokosaya.com › katalog
         </div>
         <div className="text-[11px] font-bold text-blue-700 leading-tight">
           Toko Resmi Jualan Anda — Katalog &amp; Promo
@@ -840,7 +874,7 @@ export default function JasaPembuatanWebsitePage() {
           serviceSchema(
             'Jasa Pembuatan Website & Toko Online Profesional',
             'Jasa pembuatan website & toko online profesional untuk UMKM & bisnis di seluruh Indonesia. Terima beres tanpa ribet koding, order otomatis ke WhatsApp, dan 100% hak milik tanpa sewa bulanan.',
-            '/jasa-pembuatan-website'
+            '/jasa-pembuatan-website',
           ),
           faqSchema(faqs),
           breadcrumbSchema([
@@ -856,232 +890,227 @@ export default function JasaPembuatanWebsitePage() {
         {/* ============================================================== */}
         <div className="relative bg-paper-cream-glow bg-dot-fine pt-28 sm:pt-36 pb-16 sm:pb-24">
           <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <link
-            rel="preload"
-            as="image"
-            href="/images/hero-illustration-mobile.avif"
-            type="image/avif"
-            media="(max-width: 640px)"
-            fetchPriority="high"
-          />
-          <link
-            rel="preload"
-            as="image"
-            href="/images/hero-illustration.avif"
-            type="image/avif"
-            media="(min-width: 641px)"
-            fetchPriority="high"
-          />
+            <link
+              rel="preload"
+              as="image"
+              href="/images/hero-illustration.avif"
+              type="image/avif"
+              media="(min-width: 641px)"
+              fetchPriority="high"
+            />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
-            <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs hover:border-orange-200 transition-colors">
-                <Store className="w-3.5 h-3.5 text-[#C23605]" />
-                <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-                  Agency Boutique — Fokus Maksimal 10 Klien/Bulan • Melayani Seluruh Indonesia
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+              <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFF5F0] border border-orange-200/80 shadow-xs">
+                  <Store className="w-3.5 h-3.5 text-[#C23605]" />
+                  <span className="text-xs font-semibold text-[#C23605] tracking-tight">
+                    Jasa Pembuatan Website &amp; Toko Online • Melayani Seluruh Indonesia
+                  </span>
+                </div>
+
+                <h1
+                  aria-label="Miliki Website Bisnis & Toko Online Profesional Tanpa Ribet Koding"
+                  className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.2] sm:leading-[1.14]"
+                >
+                  <span className="hidden sm:inline">Miliki </span>Website Bisnis &amp; Toko Online
+                  Profesional{' '}
+                  <span className="text-[#FF5C28]">
+                    Tanpa <span className="hidden sm:inline">Ribet </span>Koding
+                  </span>
+                </h1>
+
+                <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
+                  Bebas dari potongan komisi marketplace yang makin tinggi. Pajang produk Anda
+                  secara rapi, dan pembeli bisa langsung memesan via WhatsApp dalam satu klik.
+                  Terima beres, siap pakai dari HP tanpa perlu paham koding.
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="pt-2 flex flex-col items-start gap-3">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                    <a
+                      href={getWhatsAppDirectUrl(
+                        'Halo Admin MarketingCode.ID, saya mau konsultasi pembuatan website. Jenis usaha saya: ____',
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
+                    >
+                      <Image
+                        src="/icons/flaticon/whatsapp.svg"
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="w-5 h-5 shrink-0"
+                      />
+                      <span>Konsultasi via WhatsApp</span>
+                    </a>
+                    <a
+                      href="#paket-harga"
+                      className="inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300 text-center whitespace-nowrap"
+                    >
+                      <span>Lihat Paket &amp; Biaya</span>
+                    </a>
+                  </div>
+
+                  {/* Founder Personal Touch Card */}
+                  <div className="pt-3 border-t border-neutral-200/70 mt-2 flex items-center gap-3.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/70 max-w-xl">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#FF5C28] to-amber-500 text-white font-extrabold flex items-center justify-center text-sm shadow-sm ring-2 ring-white shrink-0">
+                      AK
+                    </div>
+                    <div className="text-left">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-bold text-xs sm:text-sm text-neutral-900">
+                          Dikerjakan Langsung oleh Ahmad Khairol M.
+                        </span>
+                        <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold">
+                          Lead Developer
+                        </span>
+                      </div>
+                      <p className="text-[11px] sm:text-xs text-neutral-600 mt-0.5 leading-snug">
+                        Full-stack web dev (5+ thn) • Ditangani personal &amp; terarah, bukan
+                        diserahkan ke tim lepas pemula.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 3 Real Guarantees Strip */}
+                  <div className="pt-1 flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1.5 text-xs text-neutral-700 font-medium">
+                    <span className="flex items-center gap-1 text-[11px] sm:text-xs">
+                      <Clock className="w-3.5 h-3.5 text-[#C23605]" /> Balas chat &lt; 10 menit
+                    </span>
+                    <span className="text-neutral-300">•</span>
+                    <span className="flex items-center gap-1 text-[11px] sm:text-xs">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" /> Garansi 7 hari uang
+                      kembali
+                    </span>
+                    <span className="text-neutral-300">•</span>
+                    <span className="flex items-center gap-1 text-[11px] sm:text-xs">
+                      <Sparkles className="w-3.5 h-3.5 text-[#C23605]" /> Revisi desain sampai puas
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hero Visual Image */}
+              <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
+                <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
+                  <div
+                    className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-3xl -z-10"
+                    aria-hidden="true"
+                  />
+                  <picture>
+                    <source
+                      media="(max-width: 640px)"
+                      srcSet="/images/hero-illustration-mobile.avif"
+                      type="image/avif"
+                    />
+                    <source
+                      media="(max-width: 640px)"
+                      srcSet="/images/hero-illustration-mobile.webp"
+                      type="image/webp"
+                    />
+                    <source srcSet="/images/hero-illustration.avif" type="image/avif" />
+                    <source srcSet="/images/hero-illustration.webp" type="image/webp" />
+                    <img
+                      src="/images/hero-illustration.png"
+                      alt="Layanan Pembuatan Website dan Toko Online MarketingCode.ID"
+                      title="Website Toko Online Profesional MarketingCode.ID"
+                      width={1024}
+                      height={682}
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
+                      className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
+
+            {/* Ecosystem Strip (Kanal Penjualan) Redesigned Banner */}
+            <div className="mt-8 sm:mt-12 bg-white/95 rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/90 shadow-md shadow-neutral-900/5 max-w-5xl mx-auto">
+              <div className="flex items-center justify-between gap-2 pb-3 mb-3.5 border-b border-neutral-100">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-neutral-800">
+                    Ekosistem Toko Mandiri Anda
+                  </span>
+                </div>
+                <span className="text-[10px] sm:text-xs font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/70 px-2.5 py-0.5 rounded-full">
+                  Multi-Kanal Terpadu
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.14]">
-                Miliki Website &amp; Toko Online Profesional{' '}
-                <span className="text-[#FF5C28]">Tanpa Ribet Koding</span>
-              </h1>
-
-              <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
-                Bebas dari potongan komisi marketplace yang makin tinggi. Pajang produk Anda secara rapi, dan pembeli bisa langsung memesan via WhatsApp dalam satu klik. Terima beres, siap pakai dari HP tanpa perlu paham koding.
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="pt-2 flex flex-col items-start gap-3">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-                  <a
-                    href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya mau konsultasi pembuatan website toko online. Usaha saya: ____')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    <Image
-                      src="/icons/flaticon/whatsapp.svg"
-                      alt=""
-                      width={22}
-                      height={22}
-                      className="w-5 h-5 shrink-0"
-                    />
-                    <span>Konsultasi Rencana Toko via WhatsApp</span>
-                  </a>
-                  <a
-                    href="#paket-harga"
-                    className="inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300 text-center"
-                  >
-                    <span>Lihat Pilihan Paket &amp; Biaya</span>
-                  </a>
-                </div>
-
-                {/* Trust Proof */}
-                <div className="pt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-700 font-medium">
-                  <span className="flex items-center gap-1.5">
-                    <Check className="w-4 h-4 text-[#FF5C28]" /> Domain &amp; Server 1 Tahun
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1.5">
-                    <Check className="w-4 h-4 text-[#FF5C28]" /> 100% Hak Milik Tanpa Sewa
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1.5">
-                    <Check className="w-4 h-4 text-[#FF5C28]" /> Diajari Sampai Bisa
-                  </span>
-                </div>
-
-                {/* Founder Personal Touch Card */}
-                <div className="pt-3 border-t border-neutral-200/70 mt-2 flex items-center gap-3.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/70 max-w-xl">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#FF5C28] to-amber-500 text-white font-extrabold flex items-center justify-center text-sm shadow-sm ring-2 ring-white shrink-0">
-                    AK
-                  </div>
-                  <div className="text-left">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-xs sm:text-sm text-neutral-900">
-                        Dikerjakan Langsung oleh Ahmad Khairol M.
-                      </span>
-                      <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold">
-                        Lead Developer
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                {/* Channel 1: Marketplace */}
+                <div className="bg-neutral-50/90 hover:bg-neutral-50 rounded-xl p-3 border border-neutral-200/70 flex flex-col justify-between transition-all group">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">
+                        <Store className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-md">
+                        Tetap Jalan
                       </span>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-neutral-600 mt-0.5 leading-snug">
-                      Full-stack web dev (5+ thn) • Ditangani personal &amp; terarah, bukan diserahkan ke tim lepas pemula.
+                    <div className="font-bold text-neutral-900 text-xs sm:text-sm">
+                      Shopee &amp; Tokopedia
+                    </div>
+                    <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
+                      Tetap aktif menjaring calon pembeli baru dari luar.
                     </p>
                   </div>
                 </div>
 
-                {/* 3 Real Guarantees Strip */}
-                <div className="pt-1 flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1.5 text-xs text-neutral-700 font-medium">
-                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                    <Clock className="w-3.5 h-3.5 text-[#C23605]" /> Balas chat &lt; 10 menit
-                  </span>
-                  <span className="text-neutral-300">•</span>
-                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" /> Garansi 7 hari uang kembali
-                  </span>
-                  <span className="text-neutral-300">•</span>
-                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                    <Sparkles className="w-3.5 h-3.5 text-[#C23605]" /> Revisi desain sampai puas
-                  </span>
+                {/* Channel 2: Social Media */}
+                <div className="bg-neutral-50/90 hover:bg-neutral-50 rounded-xl p-3 border border-neutral-200/70 flex flex-col justify-between transition-all group">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">
+                        <Smartphone className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-[9px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded-md">
+                        Kanal Promosi
+                      </span>
+                    </div>
+                    <div className="font-bold text-neutral-900 text-xs sm:text-sm">
+                      Instagram &amp; TikTok
+                    </div>
+                    <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
+                      Konten &amp; link bio diarahkan langsung ke web toko.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Channel 3: Official Store & WA (Hero Pillar) */}
+                <div className="bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5] rounded-xl p-3 border-2 border-[#FF5C28]/40 shadow-xs flex flex-col justify-between relative overflow-hidden group">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="w-6 h-6 rounded-lg bg-[#FF5C28] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-[9px] font-extrabold text-[#C23605] bg-white border border-orange-300 px-1.5 py-0.5 rounded-md shadow-xs">
+                        Order 0% Potongan
+                      </span>
+                    </div>
+                    <div className="font-extrabold text-[#C23605] text-xs sm:text-sm">
+                      Website &amp; WhatsApp
+                    </div>
+                    <p className="text-[11px] text-neutral-700 mt-1 leading-snug font-medium">
+                      Semua transaksi 100% masuk rekening Anda tanpa komisi.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Hero Visual Image */}
-            <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
-              <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
-                <div
-                  className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-3xl -z-10"
-                  aria-hidden="true"
-                />
-                <picture>
-                  <source
-                    media="(max-width: 640px)"
-                    srcSet="/images/hero-illustration-mobile.avif"
-                    type="image/avif"
-                  />
-                  <source
-                    media="(max-width: 640px)"
-                    srcSet="/images/hero-illustration-mobile.webp"
-                    type="image/webp"
-                  />
-                  <source srcSet="/images/hero-illustration.avif" type="image/avif" />
-                  <source srcSet="/images/hero-illustration.webp" type="image/webp" />
-                  <img
-                    src="/images/hero-illustration.png"
-                    alt="Layanan Pembuatan Website dan Toko Online MarketingCode.ID"
-                    title="Website Toko Online Profesional MarketingCode.ID"
-                    width={1024}
-                    height={682}
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out"
-                  />
-                </picture>
-              </div>
-            </div>
-          </div>
-
-          {/* Ecosystem Strip (Kanal Penjualan) Redesigned Banner */}
-          <div className="mt-8 sm:mt-12 bg-white/95 rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/90 shadow-md shadow-neutral-900/5 max-w-5xl mx-auto">
-            <div className="flex items-center justify-between gap-2 pb-3 mb-3.5 border-b border-neutral-100">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-neutral-800">
-                  Ekosistem Toko Mandiri Anda
+              <div className="mt-3.5 pt-2.5 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-600">
+                <span className="flex items-center gap-1.5 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  Kombinasi terbaik: pembeli tetap banyak, keuntungan 100% milik Anda
                 </span>
               </div>
-              <span className="text-[10px] sm:text-xs font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/70 px-2.5 py-0.5 rounded-full">
-                Multi-Kanal Terpadu
-              </span>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-              {/* Channel 1: Marketplace */}
-              <div className="bg-neutral-50/90 hover:bg-neutral-50 rounded-xl p-3 border border-neutral-200/70 flex flex-col justify-between transition-all group">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">
-                      <Store className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-md">
-                      Tetap Jalan
-                    </span>
-                  </div>
-                  <div className="font-bold text-neutral-900 text-xs sm:text-sm">Shopee &amp; Tokopedia</div>
-                  <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
-                    Tetap aktif menjaring calon pembeli baru dari luar.
-                  </p>
-                </div>
-              </div>
-
-              {/* Channel 2: Social Media */}
-              <div className="bg-neutral-50/90 hover:bg-neutral-50 rounded-xl p-3 border border-neutral-200/70 flex flex-col justify-between transition-all group">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">
-                      <Smartphone className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-[9px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded-md">
-                      Kanal Promosi
-                    </span>
-                  </div>
-                  <div className="font-bold text-neutral-900 text-xs sm:text-sm">Instagram &amp; TikTok</div>
-                  <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
-                    Konten &amp; link bio diarahkan langsung ke web toko.
-                  </p>
-                </div>
-              </div>
-
-              {/* Channel 3: Official Store & WA (Hero Pillar) */}
-              <div className="bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5] rounded-xl p-3 border-2 border-[#FF5C28]/40 shadow-xs flex flex-col justify-between relative overflow-hidden group">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="w-6 h-6 rounded-lg bg-[#FF5C28] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                    </div>
-                    <span className="text-[9px] font-extrabold text-[#C23605] bg-white border border-orange-300 px-1.5 py-0.5 rounded-md shadow-xs">
-                      Order 0% Potongan
-                    </span>
-                  </div>
-                  <div className="font-extrabold text-[#C23605] text-xs sm:text-sm">Website &amp; WhatsApp</div>
-                  <p className="text-[11px] text-neutral-700 mt-1 leading-snug font-medium">
-                    Semua transaksi 100% masuk rekening Anda tanpa komisi.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-3.5 pt-2.5 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-600">
-              <span className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                Kombinasi terbaik: pembeli tetap banyak, keuntungan 100% milik Anda
-              </span>
-            </div>
-          </div>
           </section>
         </div>
 
@@ -1092,43 +1121,44 @@ export default function JasaPembuatanWebsitePage() {
           <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
               <SectionMark num="02" icon={Percent} eyebrow="Tantangan Bisnis Saat Ini" />
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-              Sebagian Besar Pemilik Usaha Mengalami 4 Hal Ini
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
-              Jika Anda merasakan hal yang sama, memiliki website sendiri adalah langkah terbaik berikutnya untuk mengamankan keuntungan dan masa depan usaha Anda.
-            </p>
-          </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                Sebagian Besar Pemilik Usaha Mengalami 4 Hal Ini
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                Jika Anda merasakan hal yang sama, memiliki website sendiri adalah langkah terbaik
+                berikutnya untuk mengamankan keuntungan dan masa depan usaha Anda.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {problems.map((item, idx) => (
-              <div
-                key={item.number}
-                className="bg-white rounded-3xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col justify-between group"
-              >
-                {/* Visual Preview Area (Mockup with Circuit Wireframe - Reference Design) */}
-                <div className="relative h-64 sm:h-72 rounded-2xl bg-[#F8F9FB] border border-neutral-200/60 overflow-hidden flex flex-col items-center justify-center p-3 sm:p-4 select-none">
-                  {idx === 0 && <ProblemMarginMockup />}
-                  {idx === 1 && <ProblemCompetitorMockup />}
-                  {idx === 2 && <ProblemDataLockedMockup />}
-                  {idx === 3 && <ProblemCredibilityMockup />}
-                </div>
-
-                {/* Text Content Area */}
-                <div className="px-3 sm:px-4 pt-4 sm:pt-5 pb-2 sm:pb-3">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold mb-2.5">
-                    <span>Tantangan {item.number}</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {problems.map((item, idx) => (
+                <div
+                  key={item.number}
+                  className="bg-white rounded-3xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col justify-between group"
+                >
+                  {/* Visual Preview Area (Mockup with Circuit Wireframe - Reference Design) */}
+                  <div className="relative h-64 sm:h-72 rounded-2xl bg-[#F8F9FB] border border-neutral-200/60 overflow-hidden flex flex-col items-center justify-center p-3 sm:p-4 select-none">
+                    {idx === 0 && <ProblemMarginMockup />}
+                    {idx === 1 && <ProblemCompetitorMockup />}
+                    {idx === 2 && <ProblemDataLockedMockup />}
+                    {idx === 3 && <ProblemCredibilityMockup />}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
-                    {item.desc}
-                  </p>
+
+                  {/* Text Content Area */}
+                  <div className="px-3 sm:px-4 pt-4 sm:pt-5 pb-2 sm:pb-3">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold mb-2.5">
+                      <span>Tantangan {item.number}</span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           </section>
         </div>
 
@@ -1139,49 +1169,249 @@ export default function JasaPembuatanWebsitePage() {
           <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
               <SectionMark num="03" icon={Sparkles} eyebrow="Keuntungan Nyata Sejak Hari Pertama" />
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-              6 Hal yang Langsung Aktif di Website Toko Anda
-            </h2>
-            <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
-              Bukan janji kosong atau fitur tambahan berbayar. Seluruh fondasi ini kami siapkan lengkap sejak awal agar toko Anda langsung siap jualan.
-            </p>
-          </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                6 Hal yang Langsung Aktif di Website Toko Anda
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                Bukan janji kosong atau fitur tambahan berbayar. Seluruh fondasi ini kami siapkan
+                lengkap sejak awal agar toko Anda langsung siap jualan.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {solutions.map((item, idx) => (
-              <div
-                key={item.title}
-                className="bg-[#F8F7F4] rounded-3xl p-6 sm:p-7 border border-neutral-200/70 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 group flex flex-col justify-between"
-              >
-                <div>
-                  {/* Top Squircle Icon with 3D Gradient */}
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-md ${solutionGradients[idx]}`}>
-                    <item.icon className="w-6 h-6" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              {solutions.map((item, idx) => (
+                <div
+                  key={item.title}
+                  className="bg-[#F8F7F4] rounded-3xl p-6 sm:p-7 border border-neutral-200/70 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 group flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Top Squircle Icon with 3D Gradient */}
+                    <div
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-md ${solutionGradients[idx]}`}
+                    >
+                      <item.icon className="w-6 h-6" />
+                    </div>
+
+                    {/* Title directly below icon */}
+                    <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug tracking-tight mt-4 sm:mt-5 mb-5 sm:mb-6">
+                      {item.title}
+                    </h3>
+
+                    {/* Middle Elevated White Mockup */}
+                    <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-neutral-200/80 shadow-xs min-h-[200px] flex flex-col justify-between group-hover:scale-[1.01] transition-transform duration-300">
+                      {idx === 0 && <SolutionDomainMockup />}
+                      {idx === 1 && <SolutionDesignMockup />}
+                      {idx === 2 && <SolutionWhatsAppMockup />}
+                      {idx === 3 && <SolutionMobileAdminMockup />}
+                      {idx === 4 && <SolutionGoogleSeoMockup />}
+                      {idx === 5 && <SolutionSupportMockup />}
+                    </div>
                   </div>
 
-                  {/* Title directly below icon */}
-                  <h3 className="text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug tracking-tight mt-4 sm:mt-5 mb-5 sm:mb-6">
-                    {item.title}
-                  </h3>
+                  {/* Bottom Description */}
+                  <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mt-4 sm:mt-5">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
 
-                  {/* Middle Elevated White Mockup */}
-                  <div className="relative bg-white rounded-2xl p-4 sm:p-5 border border-neutral-200/80 shadow-xs min-h-[200px] flex flex-col justify-between group-hover:scale-[1.01] transition-transform duration-300">
-                    {idx === 0 && <SolutionDomainMockup />}
-                    {idx === 1 && <SolutionDesignMockup />}
-                    {idx === 2 && <SolutionWhatsAppMockup />}
-                    {idx === 3 && <SolutionMobileAdminMockup />}
-                    {idx === 4 && <SolutionGoogleSeoMockup />}
-                    {idx === 5 && <SolutionSupportMockup />}
+        {/* ============================================================== */}
+        {/* HASIL KARYA WEBSITE TERPILIH (PROVEN REAL RESULTS)             */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-warm section-rule py-16 sm:py-20 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2.5 mb-8 px-1">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[#C23605] text-[11px] font-bold">
+                  <ExternalLink className="w-3 h-3" />
+                  <span>Hasil Karya Website Nyata</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mt-2 tracking-tight">
+                  Contoh Website &amp; Toko Klien yang Sudah Mengudara
+                </h2>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-600 font-medium max-w-md">
+                Lintas industri: Travel &amp; Jasa, Portal Instansi, hingga Toko Online UMKM.
+                Didesain responsif mobile-first, cepat diakses dari HP, dan pesanan terhubung
+                langsung ke WhatsApp.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {/* Card 1: AGAN TRANS */}
+              <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col group">
+                <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
+                  <img
+                    src="/images/porto-2.webp"
+                    alt="Website Travel Bandung Bali AGAN TRANS"
+                    width={360}
+                    height={225}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 right-3">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-white/95 backdrop-blur-xs text-neutral-800 px-2.5 py-0.5 rounded-full border border-neutral-200 shadow-xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Live
+                    </span>
                   </div>
                 </div>
-
-                {/* Bottom Description */}
-                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mt-4 sm:mt-5">
-                  {item.desc}
-                </p>
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-[#C23605] uppercase tracking-wider block mb-1">
+                      Travel &amp; Booking WhatsApp
+                    </span>
+                    <h3 className="font-bold text-base text-neutral-900 leading-snug">
+                      AGAN TRANS (Travel Bandung Bali)
+                    </h3>
+                    <a
+                      href="https://travelbandungbali.id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-neutral-500 hover:text-[#C23605] mt-1.5 inline-flex items-center gap-1 transition-colors"
+                      title="Kunjungi travelbandungbali.id"
+                    >
+                      <span>travelbandungbali.id</span>
+                      <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                    </a>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
+                    <span className="text-emerald-800 font-bold bg-emerald-100/90 px-2.5 py-0.5 rounded-md">
+                      +320% Booking Tiket WA
+                    </span>
+                    <span className="text-neutral-500 font-medium">Google #1</span>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Card 2: Youthpreneur */}
+              <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col group">
+                <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
+                  <img
+                    src="/images/porto-1.webp"
+                    alt="Platform Inkubasi Wirausaha Dispora Tapin"
+                    width={360}
+                    height={225}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 right-3">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-white/95 backdrop-blur-xs text-neutral-800 px-2.5 py-0.5 rounded-full border border-neutral-200 shadow-xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Live
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-[#C23605] uppercase tracking-wider block mb-1">
+                      Portal Wirausaha &amp; UMKM
+                    </span>
+                    <h3 className="font-bold text-base text-neutral-900 leading-snug">
+                      Youthpreneur Dispora Kab. Tapin
+                    </h3>
+                    <a
+                      href="https://youthpreneur.tapinkab.go.id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-neutral-500 hover:text-[#C23605] mt-1.5 inline-flex items-center gap-1 transition-colors"
+                      title="Kunjungi youthpreneur.tapinkab.go.id"
+                    >
+                      <span>youthpreneur.tapinkab.go.id</span>
+                      <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                    </a>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
+                    <span className="text-emerald-800 font-bold bg-emerald-100/90 px-2.5 py-0.5 rounded-md">
+                      900+ Usaha Terdata
+                    </span>
+                    <span className="text-neutral-500 font-medium">Akses Cepat HP</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3: Si Akoor */}
+              <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col group">
+                <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
+                  <img
+                    src="/images/porto-3.webp"
+                    alt="Sistem Informasi Si Akoor Sekretariat DPRD"
+                    width={360}
+                    height={225}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 right-3">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-white/95 backdrop-blur-xs text-neutral-800 px-2.5 py-0.5 rounded-full border border-neutral-200 shadow-xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Live
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-[#C23605] uppercase tracking-wider block mb-1">
+                      Sistem Informasi &amp; Portal
+                    </span>
+                    <h3 className="font-bold text-base text-neutral-900 leading-snug">
+                      Si Akoor Sekretariat DPRD
+                    </h3>
+                    <a
+                      href="https://siakoor.tapinkab.go.id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-neutral-500 hover:text-[#C23605] mt-1.5 inline-flex items-center gap-1 transition-colors"
+                      title="Kunjungi siakoor.tapinkab.go.id"
+                    >
+                      <span>siakoor.tapinkab.go.id</span>
+                      <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                    </a>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
+                    <span className="text-emerald-800 font-bold bg-emerald-100/90 px-2.5 py-0.5 rounded-md">
+                      100% Akurat Presisi
+                    </span>
+                    <span className="text-neutral-500 font-medium">GPS Geofencing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* ============================================================== */}
+        {/* INDUSTRY FIT PILLS (SEO + Universal Target)                    */}
+        {/* ============================================================== */}
+        <div className="relative bg-paper-warm py-10 sm:py-12 border-y border-neutral-200/60">
+          <section className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200/80 text-[11px] font-bold text-neutral-700 mb-4">
+              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+              <span>Cocok untuk Berbagai Jenis Usaha</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
+              {[
+                'Toko Online & Ritel',
+                'Company Profile Perusahaan',
+                'Landing Page Iklan',
+                'Travel & Rental',
+                'Klinik & Jasa Profesional',
+                'Kuliner & F&B',
+                'Fashion & Beauty',
+                'Portal & Instansi',
+                'Pendidikan & Kursus',
+                'Properti & Developer',
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 text-neutral-700 font-semibold hover:border-[#C23605] hover:text-[#C23605] transition-colors shadow-xs"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </section>
         </div>
 
@@ -1201,13 +1431,17 @@ export default function JasaPembuatanWebsitePage() {
                   Investasi Transparan Sesuai Skala Usaha Anda
                 </h2>
                 <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
-                  Bayar sekali tanpa biaya sewa sistem bulanan. Sudah termasuk nama domain resmi (.com / .id), cloud server cepat 1 tahun pertama, dan garansi pemeliharaan resmi.
+                  Bayar sekali tanpa biaya sewa sistem bulanan. Sudah termasuk nama domain resmi
+                  (.com / .id), cloud server cepat 1 tahun pertama, dan garansi pemeliharaan resmi.
                 </p>
 
                 {/* Honest Boutique Scarcity Trigger */}
                 <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF5F0] border border-orange-200/80 text-xs sm:text-sm font-semibold text-[#C23605] shadow-xs text-left">
                   <span className="flex h-2 w-2 rounded-full bg-[#C23605] animate-pulse shrink-0" />
-                  <span>Slot Terbatas Bulan Ini: Maksimal 10 klien per bulan demi pengerjaan teliti &amp; pendampingan intensif.</span>
+                  <span>
+                    Slot Terbatas Bulan Ini: Maksimal 10 klien per bulan demi pengerjaan teliti
+                    &amp; pendampingan intensif.
+                  </span>
                 </div>
               </div>
 
@@ -1233,46 +1467,60 @@ export default function JasaPembuatanWebsitePage() {
                       )}
 
                       <div>
-                        {item.topHighlightNote && (
-                          <div className="mb-3 px-3 py-1.5 rounded-xl bg-orange-50 border border-orange-200/80 text-[11px] font-bold text-[#C23605] flex items-center gap-1.5">
-                            <Sparkles className="w-3.5 h-3.5 shrink-0" />
-                            <span>{item.topHighlightNote}</span>
-                          </div>
-                        )}
-
-                        {!isHighlight && item.badgeTop && (
-                          <div className="mb-3">
+                        <div className="h-8 flex items-center mb-3">
+                          {item.topHighlightNote ? (
+                            <div className="px-3 py-1 rounded-xl bg-orange-50 border border-orange-200/80 text-[11px] font-bold text-[#C23605] flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                              <span>{item.topHighlightNote}</span>
+                            </div>
+                          ) : item.badgeTop ? (
                             <span className="inline-flex items-center text-[11px] font-bold text-neutral-600 bg-neutral-100 border border-neutral-200/80 px-2.5 py-0.5 rounded-full">
                               {item.badgeTop}
                             </span>
-                          </div>
-                        )}
+                          ) : null}
+                        </div>
 
-                        <h3 className="text-xl font-extrabold text-neutral-900 tracking-tight">
+                        <h3 className="text-xl font-extrabold text-neutral-900 tracking-tight min-h-[3.25rem] flex items-center">
                           {item.tier}
                         </h3>
 
-                        <p className="text-xs sm:text-[13px] text-neutral-600 mt-2.5 leading-relaxed min-h-[44px]">
+                        <p className="text-xs sm:text-[13px] text-neutral-600 mt-2 leading-relaxed min-h-[58px]">
                           {item.desc}
                         </p>
 
                         {/* Price with anchoring */}
-                        <div className="mt-5 pt-4 border-t border-neutral-100">
-                          {item.originalPrice && (
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-xs sm:text-sm text-neutral-400 line-through font-medium">
-                                {item.originalPrice}
+                        <div className="mt-5 pt-4 border-t border-neutral-100 min-h-[120px] flex flex-col justify-between">
+                          <div>
+                            {item.originalPrice && (
+                              <div className="flex flex-col-reverse items-center gap-2 mb-1">
+                                <span className="text-xs sm:text-sm text-neutral-500 line-through font-medium">
+                                  {item.originalPrice}
+                                </span>
+                                <span className="text-[10px] font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/60 px-2 py-0.5 rounded-full">
+                                  Promo Bulan Ini (Maks. 10 Slot)
+                                </span>
+                              </div>
+                            )}
+                            <div className="flex items-baseline gap-1.5 flex-wrap">
+                              <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                                {item.price}
                               </span>
-                              <span className="text-[10px] font-bold text-[#C23605] bg-[#FFF5F0] border border-orange-200/60 px-2 py-0.5 rounded-full">
-                                Hemat Promo
+                              <span className="text-xs text-neutral-500 font-medium">
+                                {item.unit}
                               </span>
                             </div>
-                          )}
-                          <div className="flex items-baseline gap-1.5 flex-wrap">
-                            <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-                              {item.price}
-                            </span>
-                            <span className="text-xs text-neutral-500 font-medium">{item.unit}</span>
+                          </div>
+                          <div className="mt-2 min-h-[28px] flex items-center">
+                            {item.installmentNote ? (
+                              <div className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-lg flex items-center gap-1.5 w-full">
+                                <Check className="w-3 h-3 text-emerald-600 shrink-0" />
+                                <span className="leading-tight">{item.installmentNote}</span>
+                              </div>
+                            ) : (
+                              <span className="text-[11px] text-neutral-400 font-medium pl-0.5">
+                                Pembayaran bertahap DP 50% tersedia
+                              </span>
+                            )}
                           </div>
                         </div>
 
@@ -1282,7 +1530,7 @@ export default function JasaPembuatanWebsitePage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={item.ariaLabel || `Pesan Paket via WhatsApp (${item.tier})`}
-                          className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                          className={`mt-5 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer whitespace-nowrap ${
                             isHighlight
                               ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow hover:scale-[1.01]'
                               : 'bg-neutral-900 hover:bg-neutral-800 text-white hover:scale-[1.01]'
@@ -1297,6 +1545,16 @@ export default function JasaPembuatanWebsitePage() {
                           />
                           <span>{item.btnText}</span>
                         </a>
+
+                        {item.bonusStack && (
+                          <div className="mt-4 px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[11px] text-emerald-900 flex items-start gap-1.5 shadow-xs">
+                            <Sparkles className="w-3.5 h-3.5 shrink-0 mt-0.5 text-emerald-600" />
+                            <span>
+                              <strong className="font-bold">BONUS: </strong>
+                              {item.bonusStack}
+                            </span>
+                          </div>
+                        )}
 
                         {/* Feature Checklist */}
                         <div className="mt-6 pt-6 border-t border-neutral-100 space-y-3 text-xs sm:text-[13px] text-neutral-700">
@@ -1322,7 +1580,7 @@ export default function JasaPembuatanWebsitePage() {
                       <div className="mt-6 pt-4 border-t border-neutral-100 space-y-1.5">
                         {item.renewal && (
                           <div className="text-[11px] text-neutral-500 flex items-start gap-1.5 bg-neutral-50 p-2 rounded-xl border border-neutral-100">
-                            <Clock className="w-3.5 h-3.5 text-neutral-400 shrink-0 mt-0.5" />
+                            <Clock className="w-3.5 h-3.5 text-neutral-500 shrink-0 mt-0.5" />
                             <span className="leading-tight">{item.renewal}</span>
                           </div>
                         )}
@@ -1336,6 +1594,22 @@ export default function JasaPembuatanWebsitePage() {
                   )
                 })}
               </div>
+
+              {/* Flexible Payment Terms Banner (Section 3.2 point 3) */}
+              <div className="mt-6 max-w-4xl mx-auto p-4 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+                <div className="flex items-start sm:items-center gap-2.5">
+                  <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
+                  <div>
+                    <span className="font-bold text-neutral-900">
+                      Skema Pembayaran Fleksibel &amp; Aman:{' '}
+                    </span>
+                    <span className="text-neutral-600">
+                      Tersedia opsi pembayaran DP 50% di awal saat kesepakatan pengerjaan, dan sisa
+                      pelunasan 50% setelah website selesai diverifikasi serta siap mengudara.
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </div>
@@ -1344,7 +1618,7 @@ export default function JasaPembuatanWebsitePage() {
         {/* SUARA PENGGUNA (BUKTI & TESTIMONI KLIEN REAL)                  */}
         {/* ============================================================== */}
         <div className="relative bg-paper-warm section-rule py-20 sm:py-24 overflow-hidden">
-          <TestimonialsSection className="mt-0" />
+          <TestimonialsSection variant="website" className="mt-0" />
         </div>
 
         {/* ============================================================== */}
@@ -1356,7 +1630,7 @@ export default function JasaPembuatanWebsitePage() {
               <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
                 <span aria-hidden="true">§ 05 · </span>Alur Pengerjaan
               </span>
-              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-400">
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-300">
                 Proses Mudah &amp; Terima Beres
               </span>
             </div>
@@ -1367,11 +1641,12 @@ export default function JasaPembuatanWebsitePage() {
               </h2>
               <div className="lg:col-span-4 space-y-3">
                 <p className="font-medium text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                  Tidak ada proses rumit yang menyita waktu Anda. Cukup sediakan foto barang dan daftar harga, sisanya tim kami yang selesaikan sampai siap pakai.
+                  Tidak ada proses rumit yang menyita waktu Anda. Cukup sediakan foto barang dan
+                  daftar harga, sisanya tim kami yang selesaikan sampai siap pakai.
                 </p>
                 <div className="flex items-center gap-3 pt-1">
                   <span className="w-8 h-px bg-[#FF5C28]" />
-                  <span className="font-semibold text-[10px] tracking-[0.24em] uppercase text-neutral-400">
+                  <span className="font-semibold text-[10px] tracking-[0.24em] uppercase text-neutral-300">
                     Praktis, Cepat &amp; Transparan
                   </span>
                 </div>
@@ -1411,54 +1686,70 @@ export default function JasaPembuatanWebsitePage() {
         <div className="relative bg-paper-warm section-rule py-20 sm:py-24">
           <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="bg-gradient-to-br from-[#FFF5F0] via-white to-orange-50/50 rounded-3xl p-8 sm:p-12 border border-orange-200/80 shadow-card">
-            <div className="max-w-3xl">
-              <div className="mb-3 flex items-center gap-2.5 text-neutral-600">
-                <span
-                  aria-hidden="true"
-                  className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500"
-                >
-                  § 06
-                </span>
-                <span aria-hidden="true" className="h-px w-8 bg-neutral-300" />
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
-                  <Users aria-hidden="true" className="h-3.5 w-3.5 text-[#C23605]" />
-                  <span>Komitmen Layanan Purna Jual</span>
-                </span>
+              <div className="max-w-3xl">
+                <div className="mb-3 flex items-center gap-2.5 text-neutral-600">
+                  <span
+                    aria-hidden="true"
+                    className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500"
+                  >
+                    § 06
+                  </span>
+                  <span aria-hidden="true" className="h-px w-8 bg-neutral-300" />
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
+                    <Users aria-hidden="true" className="h-3.5 w-3.5 text-[#C23605]" />
+                    <span>Komitmen Layanan Purna Jual</span>
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                  Setelah Website Live, Anda Tidak Ditinggal Sendirian
+                </h2>
+                <p className="text-sm sm:text-base text-neutral-600 mt-3 leading-relaxed">
+                  Banyak pemilik usaha ragu membuat website karena takut tidak bisa
+                  mengoperasikannya atau ditinggal begitu saja oleh pembuatnya. Di MarketingCode.ID,
+                  kami mendampingi Anda sampai benar-benar lancar.
+                </p>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-                Setelah Website Live, Anda Tidak Ditinggal Sendirian
-              </h2>
-              <p className="text-sm sm:text-base text-neutral-600 mt-3 leading-relaxed">
-                Banyak pemilik usaha ragu membuat website karena takut tidak bisa mengoperasikannya atau ditinggal begitu saja oleh pembuatnya. Di MarketingCode.ID, kami mendampingi Anda sampai benar-benar lancar.
-              </p>
 
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
-                  <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
-                    01
-                  </span>
-                  <h3 className="font-bold text-sm text-neutral-900">Jalur Chat WhatsApp Langsung</h3>
-                  <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-                    Terhubung langsung dengan developer &amp; tim teknis. Bukan bot otomatis atau antrean tiket yang lama dibalas.
-                  </p>
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+                <div className="bg-white p-6 rounded-2xl border border-neutral-200/80 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
+                      01
+                    </span>
+                    <h3 className="font-bold text-base text-neutral-900">
+                      Jalur Chat WhatsApp Langsung
+                    </h3>
+                    <p className="text-xs sm:text-[13px] text-neutral-500 mt-2 leading-relaxed">
+                      Terhubung langsung dengan developer &amp; tim teknis. Bukan bot otomatis atau
+                      antrean tiket yang lama dibalas.
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
-                  <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
-                    02
-                  </span>
-                  <h3 className="font-bold text-sm text-neutral-900">Bantuan Update Ringan</h3>
-                  <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-                    Mau ganti banner promo, ubah info kontak, atau update harga? Cukup chat kami, kami bantu pengerjaannya.
-                  </p>
+                <div className="bg-white p-6 rounded-2xl border border-neutral-200/80 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
+                      02
+                    </span>
+                    <h3 className="font-bold text-base text-neutral-900">Bantuan Update Ringan</h3>
+                    <p className="text-xs sm:text-[13px] text-neutral-500 mt-2 leading-relaxed">
+                      Mau ganti banner promo, ubah info kontak, atau update harga? Cukup chat kami,
+                      kami bantu pengerjaannya.
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs">
-                  <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
-                    03
-                  </span>
-                  <h3 className="font-bold text-sm text-neutral-900">Garansi 1 Tahun &amp; 7 Hari Uang Kembali</h3>
-                  <p className="text-xs text-neutral-500 mt-1.5 leading-relaxed">
-                    Garansi pemeliharaan 1 tahun penuh, monitoring server, dan garansi 7 hari uang kembali jika konsep awal tidak sesuai brief.
-                  </p>
+                <div className="bg-white p-6 rounded-2xl border border-neutral-200/80 shadow-xs flex flex-col justify-between">
+                  <div>
+                    <span className="w-8 h-8 rounded-xl bg-orange-100 text-[#C23605] font-bold text-xs flex items-center justify-center mb-3">
+                      03
+                    </span>
+                    <h3 className="font-bold text-base text-neutral-900">
+                      Garansi 1 Tahun &amp; 7 Hari Uang Kembali
+                    </h3>
+                    <p className="text-xs sm:text-[13px] text-neutral-500 mt-2 leading-relaxed">
+                      Garansi pemeliharaan 1 tahun penuh, monitoring server, dan garansi 7 hari uang
+                      kembali jika konsep awal tidak sesuai brief.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -1473,11 +1764,13 @@ export default function JasaPembuatanWebsitePage() {
                   </p>
                 </div>
                 <a
-                  href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya ingin tanya detail garansi dan layanan purna jual website.')}
+                  href={getWhatsAppDirectUrl(
+                    'Halo Admin MarketingCode.ID, saya ingin tanya detail garansi dan layanan purna jual website.',
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Tanya Garansi dan Purna Jual via WhatsApp"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-orange-50 border border-neutral-300 hover:border-[#C23605] text-[#C23605] text-xs font-bold transition-all shadow-xs shrink-0"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-orange-50 border border-neutral-300 hover:border-[#C23605] text-[#C23605] text-xs font-bold transition-all shadow-xs shrink-0 whitespace-nowrap"
                 >
                   <Image
                     src="/icons/flaticon/whatsapp.svg"
@@ -1490,7 +1783,6 @@ export default function JasaPembuatanWebsitePage() {
                 </a>
               </div>
             </div>
-          </div>
           </section>
         </div>
 
@@ -1508,144 +1800,177 @@ export default function JasaPembuatanWebsitePage() {
               </span>
             </div>
 
-          <div className="mt-8 sm:mt-12 mb-8 sm:mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
-            <div className="lg:col-span-8 space-y-3">
-              <h2 className="text-3xl sm:text-4xl lg:text-[3rem] font-extrabold text-neutral-900 leading-[1.2] tracking-tight">
-                Kenapa website toko sendiri jauh lebih menguntungkan jangka panjang.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 space-y-3">
-              <p className="font-medium text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Marketplace cocok untuk pelengkap. Tapi untuk membangun aset bisnis yang kuat dan bebas potongan komisi, website sendiri adalah investasi paling aman.
-              </p>
-            </div>
-          </div>
-
-          {/* Desktop Table View */}
-          <div className="hidden md:block bg-white border border-neutral-200/90 rounded-3xl overflow-hidden shadow-card">
-            <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] border-b-2 border-neutral-900">
-              <div className="p-5 lg:p-6 font-semibold text-[11px] tracking-[0.28em] uppercase text-neutral-500 flex items-center">
-                Kriteria Pembanding
+            <div className="mt-8 sm:mt-12 mb-8 sm:mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
+              <div className="lg:col-span-8 space-y-3">
+                <h2 className="text-3xl sm:text-4xl lg:text-[3rem] font-extrabold text-neutral-900 leading-[1.2] tracking-tight">
+                  Kenapa website toko sendiri jauh lebih menguntungkan jangka panjang.
+                </h2>
               </div>
-              <div className="p-5 lg:p-6 border-l border-neutral-200 bg-neutral-900 text-white">
-                <div className="font-extrabold text-lg lg:text-xl leading-tight text-white">
-                  MarketingCode.ID
-                </div>
-                <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-[#FF5C28]">
-                  Website Milik Sendiri
-                </div>
-              </div>
-              <div className="p-5 lg:p-6 border-l border-neutral-200">
-                <div className="font-extrabold text-lg lg:text-xl leading-tight text-neutral-900">
-                  Marketplace
-                </div>
-                <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-neutral-500">
-                  Shopee / Tokopedia
-                </div>
-              </div>
-              <div className="p-5 lg:p-6 border-l border-neutral-200">
-                <div className="font-extrabold text-lg lg:text-xl leading-tight text-neutral-900">
-                  Bikin Sendiri (DIY)
-                </div>
-                <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-neutral-500">
-                  Wix / WordPress Gratisan
-                </div>
+              <div className="lg:col-span-4 space-y-3">
+                <p className="font-medium text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                  Marketplace cocok untuk pelengkap. Tapi untuk membangun aset bisnis yang kuat dan
+                  bebas potongan komisi, website sendiri adalah investasi paling aman.
+                </p>
               </div>
             </div>
 
-            {comparisonRows.map((row, idx) => (
-              <div
-                key={row.number}
-                className={`grid grid-cols-[1.4fr_1fr_1fr_1fr] ${
-                  idx !== comparisonRows.length - 1 ? 'border-b border-neutral-200/80' : ''
-                }`}
-              >
-                <div className="p-5 lg:p-6 flex items-center gap-3">
-                  <span className="font-semibold text-[10px] tracking-[0.22em] uppercase text-[#FF5C28] min-w-[2rem]">
-                    {row.number}
-                  </span>
-                  <span className="font-semibold text-sm lg:text-base text-neutral-900">
-                    {row.criteria}
-                  </span>
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white border border-neutral-200/90 rounded-3xl overflow-hidden shadow-card">
+              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] border-b-2 border-neutral-900">
+                <div className="p-5 lg:p-6 font-semibold text-[11px] tracking-[0.28em] uppercase text-neutral-500 flex items-center">
+                  Kriteria Pembanding
                 </div>
-
-                <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5 bg-[#FF5C28]/5">
-                  <StatusIcon status={row.marketingCode.status as 'check' | 'cross' | 'neutral'} />
-                  <span className="text-sm leading-snug font-semibold text-neutral-900">
-                    {row.marketingCode.text}
-                  </span>
-                </div>
-
-                <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5">
-                  <StatusIcon status={row.marketplace.status as 'check' | 'cross' | 'neutral'} />
-                  <span className="text-sm leading-snug font-medium text-neutral-600">
-                    {row.marketplace.text}
-                  </span>
-                </div>
-
-                <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5">
-                  <StatusIcon status={row.diy.status as 'check' | 'cross' | 'neutral'} />
-                  <span className="text-sm leading-snug font-medium text-neutral-600">
-                    {row.diy.text}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile Stacked View */}
-          <div className="md:hidden space-y-4">
-            <div className="rounded-3xl p-6 border bg-neutral-900 border-[#FF5C28] text-white shadow-xl">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/15">
-                <div>
-                  <div className="font-extrabold text-lg text-white">MarketingCode.ID</div>
-                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-[#FF5C28]">
-                    Website Milik Sendiri
+                <div className="p-5 lg:p-6 border-l border-neutral-200 bg-neutral-900 text-white">
+                  <div className="font-extrabold text-lg lg:text-xl leading-tight text-white">
+                    MarketingCode.ID
+                  </div>
+                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-[#FF5C28]">
+                    Website Milik Sendiri • Terima Beres
                   </div>
                 </div>
-                <span className="text-[10px] tracking-wider uppercase font-bold bg-[#C23605] text-white px-2.5 py-1 rounded-full">
-                  Pilihan Terbaik
-                </span>
-              </div>
-              <ul className="space-y-3.5">
-                {comparisonRows.map((row) => (
-                  <li key={row.number} className="flex items-start gap-3">
-                    <StatusIcon status={row.marketingCode.status as 'check' | 'cross' | 'neutral'} />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-xs text-white/60">{row.criteria}</div>
-                      <div className="font-medium text-sm text-white mt-0.5">
-                        {row.marketingCode.text}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-3xl p-6 border bg-white border-neutral-200 text-neutral-900 shadow-sm">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-200">
-                <div>
-                  <div className="font-extrabold text-lg text-neutral-900">Marketplace</div>
-                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-neutral-500">
-                    Shopee / Tokopedia
+                <div className="p-5 lg:p-6 border-l border-neutral-200">
+                  <div className="font-extrabold text-lg lg:text-xl leading-tight text-neutral-900">
+                    Marketplace
+                  </div>
+                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-neutral-500">
+                    Shopee / Tokopedia • Bagus Tes Pasar
+                  </div>
+                </div>
+                <div className="p-5 lg:p-6 border-l border-neutral-200">
+                  <div className="font-extrabold text-lg lg:text-xl leading-tight text-neutral-900">
+                    Bikin Sendiri (DIY)
+                  </div>
+                  <div className="font-semibold text-[10px] tracking-[0.22em] uppercase mt-1 text-neutral-500">
+                    WordPress / Wix • Bagus Belajar Koding
                   </div>
                 </div>
               </div>
-              <ul className="space-y-3.5">
-                {comparisonRows.map((row) => (
-                  <li key={row.number} className="flex items-start gap-3">
+
+              {comparisonRows.map((row, idx) => (
+                <div
+                  key={row.number}
+                  className={`grid grid-cols-[1.4fr_1fr_1fr_1fr] ${
+                    idx !== comparisonRows.length - 1 ? 'border-b border-neutral-200/80' : ''
+                  }`}
+                >
+                  <div className="p-5 lg:p-6 flex items-center gap-3">
+                    <span className="font-semibold text-[10px] tracking-[0.22em] uppercase text-[#FF5C28] min-w-[2rem]">
+                      {row.number}
+                    </span>
+                    <span className="font-semibold text-sm lg:text-base text-neutral-900">
+                      {row.criteria}
+                    </span>
+                  </div>
+
+                  <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5 bg-[#FF5C28]/5">
+                    <StatusIcon
+                      status={row.marketingCode.status as 'check' | 'cross' | 'neutral'}
+                    />
+                    <span className="text-sm leading-snug font-semibold text-neutral-900">
+                      {row.marketingCode.text}
+                    </span>
+                  </div>
+
+                  <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5">
                     <StatusIcon status={row.marketplace.status as 'check' | 'cross' | 'neutral'} />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-xs text-neutral-500">{row.criteria}</div>
-                      <div className="font-medium text-sm text-neutral-800 mt-0.5">
-                        {row.marketplace.text}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    <span className="text-sm leading-snug font-medium text-neutral-600">
+                      {row.marketplace.text}
+                    </span>
+                  </div>
+
+                  <div className="p-5 lg:p-6 border-l border-neutral-200 flex items-center gap-2.5">
+                    <StatusIcon status={row.diy.status as 'check' | 'cross' | 'neutral'} />
+                    <span className="text-sm leading-snug font-medium text-neutral-600">
+                      {row.diy.text}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+
+            {/* Mobile Stacked View */}
+            <div className="md:hidden space-y-4">
+              <div className="rounded-3xl p-6 border bg-neutral-900 border-[#FF5C28] text-white shadow-xl">
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/15">
+                  <div>
+                    <div className="font-extrabold text-lg text-white">MarketingCode.ID</div>
+                    <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-[#FF5C28]">
+                      Website Milik Sendiri
+                    </div>
+                  </div>
+                  <span className="text-[10px] tracking-wider uppercase font-bold bg-[#C23605] text-white px-2.5 py-1 rounded-full">
+                    Pilihan Terbaik
+                  </span>
+                </div>
+                <ul className="space-y-3.5">
+                  {comparisonRows.map((row) => (
+                    <li key={row.number} className="flex items-start gap-3">
+                      <StatusIcon
+                        status={row.marketingCode.status as 'check' | 'cross' | 'neutral'}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-xs text-white/60">{row.criteria}</div>
+                        <div className="font-medium text-sm text-white mt-0.5">
+                          {row.marketingCode.text}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-3xl p-6 border bg-white border-neutral-200 text-neutral-900 shadow-sm">
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-200">
+                  <div>
+                    <div className="font-extrabold text-lg text-neutral-900">Marketplace</div>
+                    <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-neutral-500">
+                      Shopee / Tokopedia • Bagus Tes Pasar
+                    </div>
+                  </div>
+                </div>
+                <ul className="space-y-3.5">
+                  {comparisonRows.map((row) => (
+                    <li key={row.number} className="flex items-start gap-3">
+                      <StatusIcon
+                        status={row.marketplace.status as 'check' | 'cross' | 'neutral'}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-xs text-neutral-500">{row.criteria}</div>
+                        <div className="font-medium text-sm text-neutral-800 mt-0.5">
+                          {row.marketplace.text}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-3xl p-6 border bg-white border-neutral-200 text-neutral-900 shadow-sm">
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-200">
+                  <div>
+                    <div className="font-extrabold text-lg text-neutral-900">
+                      Bikin Sendiri (DIY)
+                    </div>
+                    <div className="font-semibold text-[10px] tracking-[0.22em] uppercase text-neutral-500">
+                      WordPress / Wix • Bagus Belajar Koding
+                    </div>
+                  </div>
+                </div>
+                <ul className="space-y-3.5">
+                  {comparisonRows.map((row) => (
+                    <li key={row.number} className="flex items-start gap-3">
+                      <StatusIcon status={row.diy.status as 'check' | 'cross' | 'neutral'} />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-xs text-neutral-500">{row.criteria}</div>
+                        <div className="font-medium text-sm text-neutral-800 mt-0.5">
+                          {row.diy.text}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </section>
         </div>
 
@@ -1654,38 +1979,99 @@ export default function JasaPembuatanWebsitePage() {
         {/* ============================================================== */}
         <div className="relative bg-ink-panel py-20 sm:py-24 overflow-hidden">
           <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="rounded-3xl p-8 sm:p-10 border border-white/15 bg-transparent text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="max-w-2xl space-y-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <span
-                  aria-hidden="true"
-                  className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-400"
+            <div className="rounded-3xl p-6 sm:p-10 border border-white/15 bg-transparent space-y-8">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="max-w-2xl space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-300"
+                    >
+                      § 08
+                    </span>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] border border-white/15 text-orange-200 text-xs font-semibold">
+                      <Globe aria-hidden="true" className="w-3.5 h-3.5" />
+                      <span>Melayani Klien Seluruh Indonesia</span>
+                    </div>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Solusi Website &amp; Toko Online untuk Pengusaha di Seluruh Indonesia
+                  </h2>
+                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed pt-1">
+                    Seluruh proses konsultasi, pengiriman materi produk, hingga serah terima website
+                    dapat dilakukan 100% online secara profesional dan transparan via WhatsApp.
+                  </p>
+                </div>
+                <a
+                  href={getWhatsAppDirectUrl(
+                    'Halo Admin MarketingCode.ID, saya ingin cek ketersediaan slot pengerjaan website untuk bulan ini.',
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Cek Ketersediaan Slot Bulan Ini via WhatsApp"
+                  className="inline-flex items-center px-7 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all whitespace-nowrap shrink-0 self-start lg:self-center"
                 >
-                  § 08
-                </span>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/15 text-orange-200 text-xs font-semibold">
-                  <Globe aria-hidden="true" className="w-3.5 h-3.5" />
-                  <span>Melayani Klien Seluruh Indonesia</span>
+                  <span>Cek Slot Pengerjaan Bulan Ini</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </div>
+
+              {/* 4 Region Coverage Grid (Section 3.10) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-4 border-t border-white/10 text-xs">
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                  <span className="font-bold text-orange-300 uppercase tracking-wider text-[10px] block">
+                    Wilayah Barat
+                  </span>
+                  <div className="font-extrabold text-white text-sm">Sumatera &amp; Kepulauan</div>
+                  <p className="text-[11px] text-neutral-300 leading-snug">
+                    Medan, Palembang, Pekanbaru, Padang, Lampung, Batam
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                  <span className="font-bold text-orange-300 uppercase tracking-wider text-[10px] block">
+                    Wilayah Utama
+                  </span>
+                  <div className="font-extrabold text-white text-sm">Jawa &amp; Bali</div>
+                  <p className="text-[11px] text-neutral-300 leading-snug">
+                    Jabodetabek, Bandung, Semarang, Jogja, Surabaya, Denpasar
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                  <span className="font-bold text-orange-300 uppercase tracking-wider text-[10px] block">
+                    Wilayah Tengah
+                  </span>
+                  <div className="font-extrabold text-white text-sm">Kalimantan</div>
+                  <p className="text-[11px] text-neutral-300 leading-snug">
+                    Banjarmasin, Balikpapan, Samarinda, Pontianak, IKN
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                  <span className="font-bold text-orange-300 uppercase tracking-wider text-[10px] block">
+                    Wilayah Timur
+                  </span>
+                  <div className="font-extrabold text-white text-sm">Sulawesi, NTB &amp; Papua</div>
+                  <p className="text-[11px] text-neutral-300 leading-snug">
+                    Makassar, Manado, Mataram, Kupang, Ambon, Jayapura
+                  </p>
                 </div>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Solusi Website &amp; Toko Online untuk Pengusaha di Seluruh Indonesia
-              </h2>
-              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed pt-1">
-                Seluruh alur diskusi, pengiriman materi produk, hingga serah terima website dapat dilakukan 100% online dengan cepat dan transparan via WhatsApp. Kami siap mendampingi UMKM dan perintis bisnis dari Sumatra, Jawa, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Maluku, hingga Papua untuk memiliki kehadiran digital yang mandiri dan terpercaya.
-              </p>
+
+              {/* 3 Process Assurance Badges */}
+              <div className="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-neutral-300 font-medium">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Pengerjaan 100%
+                  Online &amp; Terpantau
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Review Preview
+                  Interaktif Sebelum Rilis
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Garansi
+                  Pemeliharaan 1 Tahun Penuh
+                </span>
+              </div>
             </div>
-            <a
-              href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya ingin cek ketersediaan slot pengerjaan website untuk bulan ini.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Cek Ketersediaan Slot Bulan Ini via WhatsApp"
-              className="inline-flex items-center px-7 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all whitespace-nowrap shrink-0"
-            >
-              <span>Cek Slot Pengerjaan Bulan Ini</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-          </div>
           </section>
         </div>
 
@@ -1696,30 +2082,30 @@ export default function JasaPembuatanWebsitePage() {
           <section className="relative max-w-3xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-10">
               <SectionMark num="09" icon={HelpCircle} eyebrow="Tanya Jawab Seputar Layanan" />
-            <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Pertanyaan yang Sering Diajukan Pemilik Usaha
-            </h2>
-          </div>
+              <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+                Pertanyaan yang Sering Diajukan Pemilik Usaha
+              </h2>
+            </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq) => (
-              <details
-                key={faq.q}
-                className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs group"
-              >
-                <summary className="w-full px-5 py-4 text-left flex items-center justify-between gap-3 text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer list-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5C28]">
-                  <h3 className="font-bold min-w-0 flex-1">{faq.q}</h3>
-                  <ChevronDown
-                    aria-hidden="true"
-                    className="h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 group-open:rotate-180"
-                  />
-                </summary>
-                <div className="px-5 pb-5 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
-                  {faq.a}
-                </div>
-              </details>
-            ))}
-          </div>
+            <div className="space-y-3">
+              {faqs.map((faq) => (
+                <details
+                  key={faq.q}
+                  className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs group"
+                >
+                  <summary className="w-full px-5 py-4 text-left flex items-center justify-between gap-3 text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer list-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5C28]">
+                    <h3 className="font-bold min-w-0 flex-1">{faq.q}</h3>
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 group-open:rotate-180"
+                    />
+                  </summary>
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
           </section>
         </div>
 
@@ -1735,48 +2121,53 @@ export default function JasaPembuatanWebsitePage() {
           </div>
           <section className="relative max-w-4xl mx-auto px-4 sm:px-6">
             <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 max-w-xl mx-auto space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Siap Bikin Usaha Anda Naik Kelas &amp; Terlihat Lebih Profesional?
-              </h2>
-              <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
-                Diskusikan rencana toko online Anda bersama tim kami sekarang secara gratis. Dapatkan saran paket yang paling pas dengan anggaran usaha Anda tanpa komitmen awal.
-              </p>
+              <div className="relative z-10 max-w-xl mx-auto space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Siap Bikin Usaha Anda Naik Kelas &amp; Terlihat Lebih Profesional?
+                </h2>
+                <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+                  Diskusikan rencana toko online Anda bersama tim kami sekarang secara gratis.
+                  Dapatkan saran paket yang paling pas dengan anggaran usaha Anda tanpa komitmen
+                  awal.
+                </p>
 
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a
-                  href={getWhatsAppDirectUrl('Halo Admin MarketingCode.ID, saya ingin diskusi rencana pembuatan website toko saya secara gratis.')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Diskusi Rencana Toko via WhatsApp — 100% Gratis"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
-                >
-                  <Image
-                    src="/icons/flaticon/whatsapp.svg"
-                    alt=""
-                    width={18}
-                    height={18}
-                    className="w-4 h-4 shrink-0 object-contain"
-                  />
-                  <span>Diskusi Rencana Toko via WhatsApp — 100% Gratis</span>
-                </a>
-              </div>
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={getWhatsAppDirectUrl(
+                      'Halo Admin MarketingCode.ID, saya ingin diskusi rencana pembuatan website untuk usaha saya secara gratis.',
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Diskusi Kebutuhan Website via WhatsApp — 100% Gratis"
+                    className="w-full sm:w-auto px-8 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
+                  >
+                    <Image
+                      src="/icons/flaticon/whatsapp.svg"
+                      alt=""
+                      width={18}
+                      height={18}
+                      className="w-4 h-4 shrink-0 object-contain"
+                    />
+                    <span>Diskusi Kebutuhan Website via WhatsApp — 100% Gratis</span>
+                  </a>
+                </div>
 
-              <div className="pt-4 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] text-neutral-300">
-                <span className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Hak Milik Tanpa Sewa
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Gratis Domain &amp; Server 1 Tahun
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Garansi Pendampingan Resmi
-                </span>
+                <div className="pt-4 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] text-neutral-300">
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> 100% Hak Milik Tanpa Sewa
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Gratis Domain &amp; Server 1
+                    Tahun
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Garansi Pendampingan Resmi
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
           </section>
         </div>
       </main>

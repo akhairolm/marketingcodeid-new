@@ -24,7 +24,7 @@ export function PricingSection() {
     <section
       id="harga"
       aria-label="Paket Harga Investasi"
-      className="max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-24 pt-8"
+      className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6"
     >
       {/* Header */}
       <div className="text-center mb-10">

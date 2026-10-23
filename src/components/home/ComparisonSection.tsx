@@ -147,7 +147,7 @@ export function ComparisonSection() {
     <section
       id="perbandingan"
       aria-label="Perbandingan Solusi Website"
-      className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-28"
+      className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6"
     >
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-neutral-900">

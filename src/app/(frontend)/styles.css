@@ -51,6 +51,13 @@
     --sidebar-ring: 18 100% 58%;
     --sidebar-primary: 18 100% 58%;
     --sidebar-primary-foreground: 240 6% 8%;
+    /* Section background system variables */
+    --ws-paper-cream: #f5f2ec;
+    --ws-paper-warm: #efebe2;
+    --ws-ink: #0f0f12;
+    --ws-rule: #e6e1d8;
+    --ws-dot: #ddd8cd;
+    --ws-accent: #ff5c28;
   }
 
   html {
@@ -138,7 +145,7 @@
   }
 }
 
-/* Section background system scoped to .website-service */
+/* Section background system — accessible globally and scoped */
 .website-service {
   --ws-paper-cream: #f5f2ec;
   --ws-paper-warm: #efebe2;
@@ -149,11 +156,13 @@
 }
 
 /* Warm cream — default paper band */
+.bg-paper-cream,
 .website-service .bg-paper-cream {
   background-color: var(--ws-paper-cream);
 }
 
 /* Hero variant: cream + two soft chromatic glows baked in (no blur divs) */
+.bg-paper-cream-glow,
 .website-service .bg-paper-cream-glow {
   background-color: var(--ws-paper-cream);
   background-image:
@@ -170,6 +179,7 @@
 }
 
 /* Centre variant: single warm radial glow baked in */
+.bg-paper-cream-center-glow,
 .website-service .bg-paper-cream-center-glow {
   background-color: var(--ws-paper-cream);
   background-image: radial-gradient(
@@ -180,6 +190,7 @@
 }
 
 /* Side variant: left-anchored warm radial glow */
+.bg-paper-cream-left-glow,
 .website-service .bg-paper-cream-left-glow {
   background-color: var(--ws-paper-cream);
   background-image: radial-gradient(
@@ -190,6 +201,7 @@
 }
 
 /* Deeper cream + faint diagonal hatch */
+.bg-paper-warm,
 .website-service .bg-paper-warm {
   background-color: var(--ws-paper-warm);
   background-image: repeating-linear-gradient(
@@ -200,6 +212,7 @@
 }
 
 /* Light paper + right-anchored warm radial glow */
+.bg-paper-right-glow,
 .website-service .bg-paper-right-glow {
   background-color: #fbfbfb;
   background-image: radial-gradient(
@@ -210,6 +223,7 @@
 }
 
 /* Ink band — high-contrast moment with warm glow */
+.bg-ink-panel,
 .website-service .bg-ink-panel {
   background-color: var(--ws-ink);
   background-image:
@@ -226,12 +240,14 @@
 }
 
 /* Fine dot field */
+.bg-dot-fine,
 .website-service .bg-dot-fine {
   background-size: 18px 18px;
   background-image: radial-gradient(circle, var(--ws-dot) 1px, transparent 1px);
 }
 
 /* Blueprint cross-hatch */
+.bg-blueprint,
 .website-service .bg-blueprint {
   background-image:
     linear-gradient(to right, rgba(255, 92, 40, 0.07) 1px, transparent 1px),
@@ -240,17 +256,21 @@
 }
 
 /* Band boundary hairlines */
+.section-rule,
 .website-service .section-rule {
   border-top: 1px solid var(--ws-rule);
   border-bottom: 1px solid var(--ws-rule);
 }
 
 /* Editorial frame with L-shaped corner ticks */
+.frame-ticks,
 .website-service .frame-ticks {
   position: relative;
   border: 1px solid var(--ws-rule);
 }
+.frame-ticks::before,
 .website-service .frame-ticks::before,
+.frame-ticks::after,
 .website-service .frame-ticks::after {
   content: '';
   position: absolute;
@@ -258,12 +278,14 @@
   height: 14px;
   pointer-events: none;
 }
+.frame-ticks::before,
 .website-service .frame-ticks::before {
   top: -1px;
   left: -1px;
   border-top: 2px solid var(--ws-accent);
   border-left: 2px solid var(--ws-accent);
 }
+.frame-ticks::after,
 .website-service .frame-ticks::after {
   bottom: -1px;
   right: -1px;

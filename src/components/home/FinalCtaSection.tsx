@@ -7,7 +7,7 @@ import { trackWhatsAppClick } from '@/lib/analytics'
 
 export function FinalCtaSection() {
   return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-28">
+    <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
       <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
 

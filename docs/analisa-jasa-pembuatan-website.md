@@ -53,7 +53,7 @@ Namun terdapat **beberapa kelemahan UX/UI dan CRO yang menahan konversi**, terut
 
 ## 3. Masalah UX/UI (dan Rekomendasi Perbaikan)
 
-### 3.1. 🔴 KRITIS — Hero Butuh Trust Signal, Tapi Agency Masih Baru (Belum Punya Angka Klien Besar)
+### 3.1.  KRITIS — Hero Butuh Trust Signal, Tapi Agency Masih Baru (Belum Punya Angka Klien Besar)
 
 **Konteks nyata:** Agency baru mulai. Klien masih sedikit (bisa jadi 3–10 klien). Membual "500+ klien" = fatal (user Indonesia pintar cross-check IG/portfolio, sekali ketahuan bohong, trust hancur permanen).
 
@@ -82,23 +82,23 @@ Fashion       F&B              Fashion
 #### C. **Transparansi Status Startup (Honest Positioning)**
 Terbalik dari intuisi, honesty **menjual**. Ganti badge hero jadi:
 ```
-🚀 Agency Boutique — Fokus Melayani 10 Klien UMKM per Bulan
+ Agency Boutique — Fokus Melayani 10 Klien UMKM per Bulan
 ```
 Angle: "sedikit klien = perhatian penuh ke tiap klien". Ini target UMKM yang **takut jadi klien ke-500 yang diabaikan**.
 
 #### D. **Guarantee Stack sebagai Pengganti Testimoni**
 Belum punya testimoni? Lawan dengan garansi yang berani:
 ```
-✓ Garansi Uang Kembali 7 Hari
-✓ Revisi Desain Hingga Anda Puas
-✓ Website Live atau Uang Kembali 100%
+ Garansi Uang Kembali 7 Hari
+ Revisi Desain Hingga Anda Puas
+ Website Live atau Uang Kembali 100%
 ```
 Risk reversal = conversion lift tanpa butuh social proof.
 
 #### E. **Response Time sebagai Social Proof Alternatif**
 Agency besar sering lambat respon. Jadikan ini keunggulan:
 ```
-⚡ Rata-rata Balas Chat < 10 menit (jam kerja)
+ Rata-rata Balas Chat < 10 menit (jam kerja)
 ```
 Mudah dibuktikan (user langsung chat & cek).
 
@@ -126,27 +126,27 @@ Borrow credibility dari teknologi, bukan dari klien.
 [Foto Founder]  Dikerjakan langsung oleh Ahmad Khairol M.
                 Full-stack Developer • 5+ tahun
 
-⚡ Balas chat < 10 menit  •  🛡️ Garansi 7 hari uang kembali  •  🎨 Revisi sampai puas
+ Balas chat < 10 menit  •   Garansi 7 hari uang kembali  •   Revisi sampai puas
 ```
 Lalu di section baru di bawah hero, tambahkan **"Karya Terbaru Kami"** = 3 thumbnail portfolio real.
 
 **Prioritas:** TINGGI. Dampak: +10–20% trust lift tanpa klaim palsu.
 
-**⚠️ WAJIB JUJUR:** Jangan pernah pakai angka klien/rating fiktif. Sekali ketahuan, Google review bisa dibanjiri 1-star dan recovery butuh 2+ tahun.
+** WAJIB JUJUR:** Jangan pernah pakai angka klien/rating fiktif. Sekali ketahuan, Google review bisa dibanjiri 1-star dan recovery butuh 2+ tahun.
 
 ---
 
-### 3.2. 🔴 KRITIS — Pricing Tengah (Decoy) Kurang Dominan
+### 3.2.  KRITIS — Pricing Tengah (Decoy) Kurang Dominan
 **Masalah:** Paket tengah "Web Katalog, Profil & Blog" sudah di-highlight dengan `scale-[1.02]` dan border `#FF5C28`, tapi harga paket Landing (Rp 1.190.000) jauh lebih murah → user price-sensitive akan tetap pilih landing. Decoy effect belum maksimal karena **selisih fitur paket Landing vs paket Katalog belum di-eksplisitkan secara visual**.
 
 **Rekomendasi:**
 1. Pada paket Landing, tambah **limitation note** halus di akhir fitur:
    ```
-   ⚠️ Tidak termasuk: Dashboard admin mandiri, multi-halaman, blog SEO
+    Tidak termasuk: Dashboard admin mandiri, multi-halaman, blog SEO
    ```
 2. Pada paket Katalog, tambah 1 bullet pembeda eksplisit di paling atas:
    ```
-   ✨ "Fitur paling lengkap dengan harga paling masuk akal — 70% klien UMKM pilih paket ini"
+    "Fitur paling lengkap dengan harga paling masuk akal — 70% klien UMKM pilih paket ini"
    ```
 3. Pertimbangkan **cicilan 2x** untuk paket tengah → "Rp 2.190.000 atau cicil 2x Rp 1.095.000".
 
@@ -154,7 +154,7 @@ Lalu di section baru di bawah hero, tambahkan **"Karya Terbaru Kami"** = 3 thumb
 
 ---
 
-### 3.3. 🟡 SEDANG — Section Problem Tidak Memiliki Agitation yang Kuat
+### 3.3.  SEDANG — Section Problem Tidak Memiliki Agitation yang Kuat
 **Masalah:** 4 problem card di section "Tantangan Bisnis Saat Ini" sudah bagus visualnya, tapi copy belum cukup **menyakitkan secara emosional**. Contoh:
 > "Komisi per transaksi makin tinggi (5–12%)..."
 
@@ -170,7 +170,7 @@ Angka harus **personal + recurring + tidak bisa di-reverse** (prinsip loss avers
 
 ---
 
-### 3.4. 🟡 SEDANG — Terlalu Banyak CTA Serupa, Hilang Niat
+### 3.4.  SEDANG — Terlalu Banyak CTA Serupa, Hilang Niat
 **Masalah:** Teks CTA "Konsultasi Gratis via WhatsApp" / "Konsultasi Gratis" muncul **minimal 7 kali** dengan micro-copy identik. User kelelahan (CTA blindness) + tidak paham perbedaan niat tiap CTA.
 
 **Rekomendasi — Variasi Niat sesuai Konteks:**
@@ -187,13 +187,13 @@ Angka harus **personal + recurring + tidak bisa di-reverse** (prinsip loss avers
 
 ---
 
-### 3.5. 🟡 SEDANG — Tidak Ada Scarcity / Urgency Trigger
+### 3.5.  SEDANG — Tidak Ada Scarcity / Urgency Trigger
 **Masalah:** Tidak ada elemen urgency sama sekali. Harga coret saja tidak cukup — user tidak tahu promo "sampai kapan".
 
 **Rekomendasi:**
 Tambah strip tipis di atas section pricing:
 ```
-🔥 Promo Spesial Oktober: Diskon Rp 660rb + Gratis Desain Logo (3 slot tersisa)
+ Promo Spesial Oktober: Diskon Rp 660rb + Gratis Desain Logo (3 slot tersisa)
 ```
 **Hati-hati:** harus jujur. Jangan pakai fake countdown. Pakai scarcity nyata (slot pengerjaan, limited bonus per bulan).
 
@@ -201,7 +201,7 @@ Tambah strip tipis di atas section pricing:
 
 ---
 
-### 3.6. 🟡 SEDANG — FAQ di Bawah Sendirian, Terlalu Dekat Final CTA
+### 3.6.  SEDANG — FAQ di Bawah Sendirian, Terlalu Dekat Final CTA
 **Masalah:** FAQ memakai `<details>` native (bagus untuk accessibility), tapi urutan nomor FAQ **belum di-prioritize by objection weight**. FAQ paling krusial ("Apakah ada sewa bulanan?") ada di nomor 5 — padahal ini objection terkuat yang menahan konversi.
 
 **Rekomendasi — Reorder FAQ by Decision Weight:**
@@ -218,7 +218,7 @@ Pertimbangkan juga **tambah FAQ "Garansi uang kembali?"** — ini objection diam
 
 ---
 
-### 3.7. 🟢 RINGAN — Kontras Beberapa Teks Berpotensi Gagal WCAG AA
+### 3.7.  RINGAN — Kontras Beberapa Teks Berpotensi Gagal WCAG AA
 **Masalah:**
 - `text-neutral-400` pada background putih (muncul di `item.time` dan harga coret) — contrast ratio diperkirakan < 4.5:1.
 - `text-neutral-500` pada background cream/dot — borderline.
@@ -233,7 +233,7 @@ Pertimbangkan juga **tambah FAQ "Garansi uang kembali?"** — ini objection diam
 
 ---
 
-### 3.8. 🟢 RINGAN — Hero H1 Terlalu Panjang di Mobile
+### 3.8.  RINGAN — Hero H1 Terlalu Panjang di Mobile
 **Masalah:**
 ```
 "Miliki Website & Toko Online Profesional Tanpa Ribet Koding"
@@ -249,7 +249,7 @@ Di mobile (`text-3xl`), heading ini pecah ke 3 baris → occupy terlalu banyak v
 
 ---
 
-### 3.9. 🟢 RINGAN — Section "Layanan Purna Jual" Terlalu Pasif
+### 3.9.  RINGAN — Section "Layanan Purna Jual" Terlalu Pasif
 **Masalah:** Section 6 (Komitmen Purna Jual) berisi 3 kartu generic ("Jalur Chat", "Bantuan Update", "Panduan"). Tidak ada CTA di akhir section. User baca → selesai → scroll ke bawah tanpa action.
 
 **Rekomendasi:**
@@ -263,7 +263,7 @@ Atau tambah **durasi garansi eksplisit** di salah satu kartu: *"Garansi pemeliha
 
 ---
 
-### 3.10. 🟢 RINGAN — Section "Jangkauan Nasional" Repetitif dengan Hero
+### 3.10.  RINGAN — Section "Jangkauan Nasional" Repetitif dengan Hero
 **Masalah:** Section 8 mengulang "melayani seluruh Indonesia" yang sudah ada di hero badge. Nilai tambahnya minim (hanya narasi).
 
 **Rekomendasi (pilih salah satu):**
@@ -279,7 +279,7 @@ Opsi (b) paling impactful.
 
 ## 4. Masalah Daya Jual (Copywriting/CRO)
 
-### 4.1. 🟡 SEDANG — Optimalkan WhatsApp Flow (Jangan Paksa Email)
+### 4.1.  SEDANG — Optimalkan WhatsApp Flow (Jangan Paksa Email)
 
 **Konteks nyata:** Orang Indonesia **tidak nyaman transaksi via email**. Email di Indonesia dipakai untuk kerja formal / notifikasi marketplace, bukan untuk tanya-tanya jasa. Mendorong email form = memaksa behavior yang tidak natural = bounce lebih tinggi, bukan lebih rendah.
 
@@ -300,7 +300,7 @@ Final CTA → `?text=Halo%20Admin,%20saya%20masih%20ragu/butuh%20konsultasi%20se
 WhatsApp Business API bisa auto-reply pesan pertama. Setup:
 ```
 Auto-reply:
-"Halo! Terima kasih chat MarketingCode.ID 🙏
+"Halo! Terima kasih chat MarketingCode.ID 
 Admin akan balas < 10 menit (jam 08:00–22:00 WIB).
 
 Sambil nunggu, nama kaka siapa & jenis usahanya apa?
@@ -343,7 +343,7 @@ Zero email, 100% konteks Indonesia-friendly.
 
 ---
 
-### 4.2. 🟡 SEDANG — Testimoni Section Numpang Komponen Homepage
+### 4.2.  SEDANG — Testimoni Section Numpang Komponen Homepage
 **Masalah:** Section testimoni memakai `<TestimonialsSection />` dari homepage — kemungkinan isi testimoni-nya generic/umum, bukan testimoni spesifik klien website.
 
 **Rekomendasi:**
@@ -358,22 +358,22 @@ Idealnya testimoni mengandung:
 
 ---
 
-### 4.3. 🟡 SEDANG — Garansi Lemah / Tidak Spesifik
+### 4.3.  SEDANG — Garansi Lemah / Tidak Spesifik
 **Masalah:** Istilah "Garansi Pemeliharaan Resmi" muncul di pricing tapi tidak ada halaman detail / tooltip menjelaskan garansi apa, berapa lama, apa saja yang di-cover.
 
 **Rekomendasi:**
 Tambah tooltip atau mini-section "Garansi" dengan spesifik:
 ```
-✓ Garansi 1 Tahun Pemeliharaan (Bug fix, update plugin)
-✓ Garansi 7 Hari Uang Kembali Jika Tidak Sesuai Brief
-✓ Garansi Keamanan SSL Resmi (Enkripsi data pembeli)
+ Garansi 1 Tahun Pemeliharaan (Bug fix, update plugin)
+ Garansi 7 Hari Uang Kembali Jika Tidak Sesuai Brief
+ Garansi Keamanan SSL Resmi (Enkripsi data pembeli)
 ```
 
 **Prioritas:** SEDANG. Risk reversal mengurangi friction pembelian.
 
 ---
 
-### 4.4. 🟡 SEDANG — "Pengerjaan 3–5 Hari" vs "7–14 Hari" Belum Dijelaskan Kenapa
+### 4.4.  SEDANG — "Pengerjaan 3–5 Hari" vs "7–14 Hari" Belum Dijelaskan Kenapa
 **Masalah:** User lihat selisih waktu dan selisih harga, tapi tidak paham **kenapa paket lebih mahal butuh lebih lama**. Secara psikologis: lama = ribet = mahal (negatif).
 
 **Rekomendasi:**
@@ -386,12 +386,12 @@ Reframe sebagai nilai, bukan beban:
 
 ---
 
-### 4.5. 🟢 RINGAN — Section Komparasi Kolom "DIY (Wix/WordPress)" Terlalu Negatif
+### 4.5.  RINGAN — Section Komparasi Kolom "DIY (Wix/WordPress)" Terlalu Negatif
 **Masalah:** Tabel komparasi menampilkan DIY sebagai kompetitor yang **selalu kalah** di 6/7 kriteria. User savvy akan curiga ini bias.
 
 **Rekomendasi:**
 Berikan **1 keunggulan DIY** untuk credibility (fair comparison):
-- Kriteria baru: "Kontrol 100% atas kode" → DIY ✓ check, MarketingCode.ID: ○ neutral (bisa request custom), Marketplace: ✗ cross.
+- Kriteria baru: "Kontrol 100% atas kode" → DIY  check, MarketingCode.ID: ○ neutral (bisa request custom), Marketplace:  cross.
 
 Lebih kredibel = lebih dipercaya.
 
@@ -399,7 +399,7 @@ Lebih kredibel = lebih dipercaya.
 
 ---
 
-### 4.6. 🟢 RINGAN — Harga "Hemat Promo" Tidak Punya Konteks
+### 4.6.  RINGAN — Harga "Hemat Promo" Tidak Punya Konteks
 **Masalah:** Badge "Hemat Promo" muncul tapi user tidak tahu promo sampai kapan atau untuk siapa.
 
 **Rekomendasi:**
@@ -414,7 +414,7 @@ Ganti badge → "Promo Bulan Ini" atau "Harga Launching" + tooltip menjelaskan h
 ### Sprint 1 (Dampak Tinggi, Effort Rendah, Realistis untuk Startup) — Target 1–2 hari kerja
 1. **Hero credibility stack tanpa klaim palsu (3.1):**
    - Tambah foto + nama founder + 1 kalimat positioning personal.
-   - Tambah 3 trust strip baru: `⚡ Balas < 10 menit` · `🛡️ Garansi 7 hari uang kembali` · `🎨 Revisi sampai puas`.
+   - Tambah 3 trust strip baru: ` Balas < 10 menit` · ` Garansi 7 hari uang kembali` · ` Revisi sampai puas`.
 2. **Setup WhatsApp pre-fill message terdiferensiasi per CTA (4.1-A)** — tinggal update parameter `?text=` di `getWhatsAppUrl`, zero effort development.
 3. **Setup auto-reply WhatsApp Business (4.1-B)** — 15 menit setup di app WhatsApp Business, langsung tangkap data lead silent.
 4. **Pastikan WhatsApp Business Profile professional (4.1-D)** — foto, bio, katalog paket terisi.

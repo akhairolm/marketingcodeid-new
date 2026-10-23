@@ -33,7 +33,7 @@ const services = [
 
 export function ServicesHub() {
   return (
-    <section id="layanan-utama" aria-label="Layanan Utama" className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
+    <section id="layanan-utama" aria-label="Layanan Utama" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
       <div className="text-center mb-10">
         <span className="text-xs font-bold text-neutral-600 uppercase tracking-wider">
           Pilihan Layanan Sesuai Kebutuhan

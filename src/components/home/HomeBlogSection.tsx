@@ -21,7 +21,7 @@ export function HomeBlogSection({ articles = [] }: { articles?: ArticleCardType[
         }))
 
   return (
-    <section id="blog-terbaru" aria-label="Artikel dan Edukasi Bisnis" className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-28">
+    <section id="blog-terbaru" aria-label="Artikel dan Edukasi Bisnis" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-neutral-200/80">
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#C23605] text-xs font-semibold mb-3">
