@@ -385,6 +385,56 @@ export default function JasaIklanAdsPage() {
             </div>
           </section>
         </div>
+        {/* 3. PANDUAN PILIH PLATFORM */}
+        <div className="relative bg-paper-right-glow bg-dot-fine py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <SectionMark num="03" icon={Target} eyebrow="Panduan Memilih Platform" />
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                Google Ads atau Meta Ads, Mana yang Lebih Tepat?
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                Keduanya bukan pengganti satu sama lain. Yang menentukan adalah niat pembeli pada tahap itu, bukan mana yang sedang ramai dibicarakan.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {platforms.map((item) => (
+                <div
+                  key={item.key}
+                  className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605] mb-4">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-neutral-900 leading-snug tracking-tight">
+                      {item.name}
+                    </h3>
+                    <p className="text-sm font-semibold text-[#C23605] mt-2 leading-snug">
+                      {item.fitTitle}
+                    </p>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
+                      {item.fitDesc}
+                    </p>
+                    <ul className="mt-5 pt-5 border-t border-neutral-100 space-y-2.5">
+                      {item.points.map((point) => (
+                        <li key={point} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-neutral-700">
+                          <Check className="w-4 h-4 shrink-0 text-[#FF5C28] mt-0.5" strokeWidth={2.5} />
+                          <span className="leading-snug">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-center text-xs sm:text-sm text-neutral-600 font-medium mt-8 max-w-2xl mx-auto">
+              Banyak bisnis memakai keduanya secara bergantian sesuai tahap funnel.
+            </p>
+          </section>
+        </div>
       </main>
     </div>
   )
