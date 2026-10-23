@@ -923,25 +923,25 @@ export default function JasaPembuatanAplikasiMobilePage() {
         {/* ============================================================== */}
         {/* SECTION 5: BUKTI PORTOFOLIO & STUDI KASUS NYATA                */}
         {/* ============================================================== */}
-        <div className="relative py-24 sm:py-32 bg-ink-panel text-white section-rule border-neutral-800 overflow-hidden">
-          {/* Top hairline amber glow */}
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF5C28]/40 to-transparent pointer-events-none" aria-hidden="true" />
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#FF5C28]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="relative py-24 sm:py-32 bg-gradient-to-b from-[#FBFBFB] via-[#F8F6F2] to-[#FAF8F5] section-rule overflow-hidden">
+          {/* Subtle ambient light */}
+          <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-orange-400/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-0 bg-dot-fine opacity-60 pointer-events-none" aria-hidden="true" />
 
           <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 mb-4 shadow-xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
-                <span className="text-xs font-bold uppercase tracking-wider text-orange-300">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFF5F0] border border-orange-200/80 mb-4 shadow-xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" />
+                <span className="text-xs font-bold uppercase tracking-wider text-[#C23605]">
                   04 / BUKTI NYATA DI LAPANGAN
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#111827] tracking-tight leading-tight">
                 Sistem &amp; Aplikasi yang Sudah Digunakan Ratusan Pengguna
               </h2>
 
-              <p className="mt-4 text-sm sm:text-base text-neutral-300 leading-relaxed">
+              <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
                 Kami telah membuktikan rekam jejak dalam membangun sistem operasional, presensi GPS, hingga pemesanan komersial di Kalimantan Selatan dan sekitarnya:
               </p>
             </div>
@@ -950,43 +950,43 @@ export default function JasaPembuatanAplikasiMobilePage() {
               {caseStudies.map((study) => (
                 <div
                   key={study.title}
-                  className="bg-neutral-900/90 rounded-3xl overflow-hidden border border-neutral-800 hover:border-neutral-700 shadow-2xl flex flex-col justify-between transition-all duration-300"
+                  className="bg-white rounded-3xl overflow-hidden border border-neutral-200/90 hover:border-orange-300 shadow-card hover:shadow-xl flex flex-col justify-between transition-all duration-300 group"
                 >
                   <div>
                     {/* Image Preview */}
-                    <div className="relative h-56 sm:h-64 w-full bg-neutral-950 overflow-hidden">
+                    <div className="relative h-56 sm:h-64 w-full bg-neutral-100 overflow-hidden">
                       <Image
                         src={study.image}
                         alt={study.imageAlt}
                         fill
-                        className="object-cover object-top hover:scale-105 transition-transform duration-500 opacity-90"
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                      <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/20">
+                      <div className="absolute top-3 left-3 bg-neutral-900/85 backdrop-blur-xs text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/20 shadow-xs">
                         {study.client}
                       </div>
                     </div>
 
                     {/* Content */}
                     <div className="p-6 sm:p-7">
-                      <span className="text-[11px] font-bold text-orange-400 uppercase tracking-wider block mb-1">
+                      <span className="text-[11px] font-bold text-[#C23605] uppercase tracking-wider block mb-1">
                         {study.category}
                       </span>
-                      <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                      <h3 className="text-lg sm:text-xl font-bold text-neutral-900 leading-snug group-hover:text-[#D13D00] transition-colors">
                         {study.title}
                       </h3>
-                      <p className="text-xs text-neutral-300 mt-2.5 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-neutral-600 mt-2.5 leading-relaxed">
                         {study.desc}
                       </p>
 
                       {/* Results Metrics */}
-                      <div className="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-neutral-800 text-center">
+                      <div className="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-neutral-100 text-center">
                         {study.results.map((res) => (
-                          <div key={res.label} className="p-2 rounded-xl bg-neutral-950/70 border border-neutral-800">
-                            <div className="text-xs sm:text-sm font-extrabold text-[#FF5C28]">
+                          <div key={res.label} className="p-2.5 rounded-xl bg-[#FFF9F5] border border-orange-100/80">
+                            <div className="text-xs sm:text-sm font-extrabold text-[#D13D00]">
                               {res.value}
                             </div>
-                            <div className="text-[9px] text-neutral-400 mt-0.5 leading-tight">
+                            <div className="text-[9px] sm:text-[10px] text-neutral-600 mt-0.5 leading-tight font-medium">
                               {res.label}
                             </div>
                           </div>
@@ -998,10 +998,10 @@ export default function JasaPembuatanAplikasiMobilePage() {
                   <div className="px-6 pb-6 pt-2">
                     <Link
                       href={study.link}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#D13D00] hover:text-[#B33400] transition-colors"
                     >
                       <span>Lihat Detail Studi Kasus</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -1010,14 +1010,14 @@ export default function JasaPembuatanAplikasiMobilePage() {
 
             {/* Industry Pills */}
             <div className="mt-12 text-center">
-              <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-4">
+              <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider block mb-4">
                 Sektor &amp; Industri yang Telah Kami Layani:
               </span>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 {industryPills.map((pill) => (
                   <span
                     key={pill}
-                    className="px-3.5 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300 text-xs font-medium shadow-xs"
+                    className="px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/80 text-neutral-700 hover:text-neutral-900 hover:border-orange-300 text-xs font-medium shadow-xs transition-colors"
                   >
                     {pill}
                   </span>
