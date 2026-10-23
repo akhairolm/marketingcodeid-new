@@ -435,6 +435,41 @@ export default function JasaIklanAdsPage() {
             </p>
           </section>
         </div>
+        {/* 4. KEUNTUNGAN KERJA SAMA */}
+        <div className="relative bg-paper-warm section-rule py-16 sm:py-20">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <SectionMark num="04" icon={TrendingUp} eyebrow="Yang Anda Dapatkan" />
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                Enam Pekerjaan yang Ditangani, Bukan Dilempar ke Anda
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                Semua poin di bawah ini adalah pekerjaan yang kami lakukan, bukan janji hasil. Hasil akhir tetap bergantung pada produk, harga, dan pasar Anda.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              {benefits.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#C23605] mb-4">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-bold text-neutral-900 leading-snug tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-3 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   )
