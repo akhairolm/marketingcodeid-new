@@ -18,11 +18,11 @@ describe('ServicesHub and Homepage layout', () => {
     const webLink = screen.getByRole('link', { name: /Lihat Layanan Website/i })
     expect(webLink.getAttribute('href')).toBe('/jasa-pembuatan-website')
 
-    // 2. Jasa Digital Marketing
-    const marketingHeading = screen.getByRole('heading', { level: 3, name: 'Jasa Digital Marketing' })
+    // 2. Jasa Iklan Google Ads & Meta Ads
+    const marketingHeading = screen.getByRole('heading', { level: 3, name: 'Jasa Iklan Google Ads & Meta Ads' })
     expect(marketingHeading).toBeTruthy()
-    const marketingLink = screen.getByRole('link', { name: /Lihat Layanan Digital Marketing/i })
-    expect(marketingLink.getAttribute('href')).toBe('/digital-marketing')
+    const marketingLink = screen.getByRole('link', { name: /Lihat Layanan Iklan Ads/i })
+    expect(marketingLink.getAttribute('href')).toBe('/jasa-iklan-ads')
 
     // 3. Jasa Pembuatan Mobile App
     const mobileHeading = screen.getByRole('heading', { level: 3, name: 'Jasa Pembuatan Mobile App' })

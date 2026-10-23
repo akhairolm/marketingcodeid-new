@@ -12,13 +12,13 @@ const services = [
     cta: 'Lihat Layanan Website',
   },
   {
-    href: '/digital-marketing',
+    href: '/jasa-iklan-ads',
     icon: TrendingUp,
     badge: 'Performance Ads & Leads',
-    title: 'Jasa Digital Marketing',
-    desc: 'Manajemen kampanye iklan berbayar Meta Ads (Facebook & Instagram) dan Google Ads terukur. Didukung riset audiens, materi kreatif persuasif, tracking pixel anti-bocor, dan optimasi konversi WhatsApp.',
-    target: 'Cocok untuk: Akuisisi leads berkualitas, akselerasi order produk/jasa, & scale-up omzet bisnis.',
-    cta: 'Lihat Layanan Digital Marketing',
+    title: 'Jasa Iklan Google Ads & Meta Ads',
+    desc: 'Pengelolaan kampanye iklan berbayar Google Ads dan Meta Ads (Facebook & Instagram) yang terukur. Didukung riset audiens dan kata kunci, materi kreatif, pemasangan tracking pixel, dan optimasi konversi ke WhatsApp.',
+    target: 'Cocok untuk: akuisisi leads berkualitas, akselerasi order produk/jasa, dan scale-up omzet bisnis.',
+    cta: 'Lihat Layanan Iklan Ads',
   },
   {
     href: '/jasa-pembuatan-aplikasi-mobile',
