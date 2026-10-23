@@ -634,14 +634,14 @@ export default function JasaIklanAdsPage() {
                     aria-hidden="true"
                   />
                   <Image
-                    src="/images/hero-ads-terukur.webp"
+                    src="/images/jasa-ads-hero.webp"
                     alt="Layanan Pengelolaan Iklan Google Ads dan Meta Ads Terukur MarketingCode.ID"
                     title="Jasa Iklan Google Ads & Meta Ads MarketingCode.ID"
-                    width={1264}
-                    height={848}
+                    width={1024}
+                    height={683}
                     priority
                     sizes="(max-width: 1024px) 100vw, 600px"
-                    className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out rounded-2xl"
+                    className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out"
                   />
                 </div>
               </div>
