@@ -688,13 +688,15 @@ export default function JasaIklanAdsPage() {
                 <p className="text-sm sm:text-base text-neutral-600 mt-3 leading-relaxed">
                   Kami tidak menampilkan klaim hasil kampanye yang belum bisa Anda verifikasi. Yang kami tawarkan adalah pemeriksaan akun lebih dulu, akses penuh ke akun Anda, dan laporan yang bisa dibaca sendiri.
                 </p>
+              </div>
 
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {guarantees.map((item) => (
-                    <div
-                      key={item.title}
-                      className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs"
-                    >
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                {guarantees.map((item) => (
+                  <div
+                    key={item.title}
+                    className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs flex flex-col justify-between"
+                  >
+                    <div>
                       <div className="w-9 h-9 rounded-xl bg-orange-100 text-[#C23605] flex items-center justify-center mb-3">
                         <item.icon className="w-4 h-4" />
                       </div>
@@ -703,37 +705,37 @@ export default function JasaIklanAdsPage() {
                         {item.desc}
                       </p>
                     </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-orange-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div>
-                    <div className="font-bold text-sm text-neutral-900">
-                      Mulai dari audit akun iklan Anda, tanpa biaya.
-                    </div>
-                    <p className="text-xs text-neutral-600 mt-0.5">
-                      Sebutkan platform yang dipakai dan kendala yang dirasakan.
-                    </p>
                   </div>
-                  <a
-                    href={getWhatsAppDirectUrl(
-                      'Halo Admin MarketingCode.ID, saya ingin audit gratis akun iklan Google Ads / Meta Ads saya.'
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Minta audit akun iklan gratis via WhatsApp"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-orange-50 border border-neutral-300 hover:border-[#C23605] text-[#C23605] text-xs font-bold transition-all shadow-xs shrink-0"
-                  >
-                    <Image
-                      src="/icons/flaticon/whatsapp.svg"
-                      alt=""
-                      width={16}
-                      height={16}
-                      className="w-4 h-4 shrink-0"
-                    />
-                    <span>Minta Audit Gratis</span>
-                  </a>
+                ))}
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-orange-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <div className="font-bold text-sm text-neutral-900">
+                    Mulai dari audit akun iklan Anda, tanpa biaya.
+                  </div>
+                  <p className="text-xs text-neutral-600 mt-0.5">
+                    Sebutkan platform yang dipakai dan kendala yang dirasakan.
+                  </p>
                 </div>
+                <a
+                  href={getWhatsAppDirectUrl(
+                    'Halo Admin MarketingCode.ID, saya ingin audit gratis akun iklan Google Ads / Meta Ads saya.'
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Minta audit akun iklan gratis via WhatsApp"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-orange-50 border border-neutral-300 hover:border-[#C23605] text-[#C23605] text-xs font-bold transition-all shadow-xs shrink-0 whitespace-nowrap"
+                >
+                  <Image
+                    src="/icons/flaticon/whatsapp.svg"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 shrink-0"
+                  />
+                  <span>Minta Audit Gratis</span>
+                </a>
               </div>
             </div>
           </section>
