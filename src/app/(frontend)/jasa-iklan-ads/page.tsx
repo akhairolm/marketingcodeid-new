@@ -609,6 +609,61 @@ export default function JasaIklanAdsPage() {
             </div>
           </section>
         </div>
+        {/* 7. ALUR KERJA */}
+        <div className="relative bg-ink-panel py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b-2 border-white/20">
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-[#FF5C28]">
+                <span aria-hidden="true">§ 06 · </span>Alur Kerja
+              </span>
+              <span className="font-semibold text-[11px] sm:text-xs tracking-[0.28em] uppercase text-neutral-300">
+                Dari Audit Sampai Scaling
+              </span>
+            </div>
+
+            <div className="mt-10 lg:mt-14 mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end text-left">
+              <h2 className="lg:col-span-8 font-extrabold text-3xl sm:text-4xl lg:text-[3rem] text-white leading-[1.2] tracking-tight">
+                Empat tahap, masing-masing punya angka yang dipantau.
+              </h2>
+              <div className="lg:col-span-4 space-y-3">
+                <p className="font-medium text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                  Tidak ada tahap yang dilewati. Setiap tahap punya keluaran yang bisa Anda periksa sebelum lanjut ke tahap berikutnya.
+                </p>
+                <div className="flex items-center gap-3 pt-1">
+                  <span className="w-8 h-px bg-[#FF5C28]" />
+                  <span className="font-semibold text-[10px] tracking-[0.24em] uppercase text-neutral-300">
+                    Terukur &amp; Transparan
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {steps.map((step, i) => (
+                <div
+                  key={step.number}
+                  className="bg-white border border-neutral-200/80 rounded-3xl p-6 shadow-card hover:border-[#FF5C28] hover:shadow-xl transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 text-[#C23605] font-extrabold text-base flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                      {step.number}
+                    </div>
+                    <h3 className="font-bold text-lg text-neutral-900 leading-snug group-hover:text-[#FF5C28] transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-2.5 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-neutral-100 flex items-center gap-1.5 text-[11px] font-semibold text-[#C23605]">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Tahap {i + 1} dari 4</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   )
