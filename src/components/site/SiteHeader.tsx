@@ -9,11 +9,9 @@ import { trackWhatsAppClick } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 export const SERVICE_LINKS = [
-  { href: '/jasa-pembuatan-website', label: 'Jasa Pembuatan Website', desc: 'Landing page, toko UMKM, & company profile' },
-  { href: '/company-profile', label: 'Website Company Profile', desc: 'Profil usaha kredibel & profesional' },
-  { href: '/landing-page', label: 'Landing Page Promosi', desc: 'Fokus konversi penawaran produk/jasa' },
+  { href: '/jasa-pembuatan-website', label: 'Jasa Pembuatan Website', desc: 'Landing page, katalog UMKM, & profil usaha' },
   { href: '/jasa-pembuatan-aplikasi-mobile', label: 'Aplikasi Mobile Android & iOS', desc: 'Sistem aplikasi native & cross-platform' },
-  { href: '/jasa-iklan-meta-ads', label: 'Iklan Meta Ads (FB & IG)', desc: 'Manajemen kampanye iklan berorientasi konversi' },
+  { href: '/jasa-iklan-ads', label: 'Iklan Google Ads & Meta Ads', desc: 'Kampanye iklan terukur & konversi WhatsApp' },
 ]
 
 export const NAV_LINKS = [
