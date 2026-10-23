@@ -349,6 +349,42 @@ export default function JasaIklanAdsPage() {
             </div>
           </section>
         </div>
+
+        {/* 2. MASALAH PENGIKLAN PEMULA */}
+        <div className="relative bg-paper-warm section-rule py-20 sm:py-24">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <SectionMark num="02" icon={AlertTriangle} eyebrow="Masalah Umum Pengiklan" />
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                Anggaran Habis, Tapi Tidak Ada Percakapan Masuk
+              </h2>
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                Empat penyebab paling sering kami temukan saat memeriksa akun iklan pemilik usaha. Jika salah satunya terasa familiar, audit gratis bisa jadi langkah pertama.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {problems.map((item) => (
+                <div
+                  key={item.number}
+                  className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold mb-3">
+                      <span>Masalah {item.number}</span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   )
