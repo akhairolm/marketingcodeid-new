@@ -11,7 +11,7 @@ vi.mock('next/navigation', () => ({
 // Import after mock registration.
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { SiteFooter } from '@/components/site/SiteFooter'
-import DigitalMarketingPage from '@/app/(frontend)/digital-marketing/page'
+import JasaIklanAdsPage from '@/app/(frontend)/jasa-iklan-ads/page'
 import VideoEditingPage from '@/app/(frontend)/video-editing/page'
 import HomePageClient from '@/components/home/home-client'
 
@@ -74,7 +74,7 @@ describe('SiteHeader unified public nav', () => {
     expect(document.querySelectorAll('header').length).toBe(1)
   })
 
-  it.each([DigitalMarketingPage, VideoEditingPage])('uses only the shared footer for %s', (Page) => {
+  it.each([JasaIklanAdsPage, VideoEditingPage])('uses only the shared footer for %s', (Page) => {
     render(React.createElement(React.Fragment, null,
       React.createElement(Page),
       React.createElement(SiteFooter),
