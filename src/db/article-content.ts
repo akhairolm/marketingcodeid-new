@@ -79,7 +79,7 @@ Pernah coba pasang iklan di Facebook atau Instagram, yang klik dan chat ke Whats
 
 Itu terjadi karena orang yang klik iklan belum tahu detail produk Anda, tapi sudah langsung dilempar ke WhatsApp. Nah, para pengiklan yang iklannya selalu untung punya trik khusus: mereka mengarahkan iklan ke **Landing Page (Website Promosi)** dulu yang sudah dipasang kode **Meta Pixel**.
 
-Di halaman website itu, calon pembeli bisa baca penjelasan lengkap, lihat testimoni, dan tahu kisaran harganya. Jadi, orang yang akhirnya memencet tombol WhatsApp di website adalah **orang yang memang sudah cocok dan serius mau beli**. Ditambah lagi, tim [Jasa Iklan Meta Ads](/jasa-iklan-meta-ads) bisa menggunakan data dari website tersebut untuk mengejar ulang (*retargeting*) pengunjung yang tadinya baru sekadar lihat-lihat sampai akhirnya jadi beli.
+Di halaman website itu, calon pembeli bisa baca penjelasan lengkap, lihat testimoni, dan tahu kisaran harganya. Jadi, orang yang akhirnya memencet tombol WhatsApp di website adalah **orang yang memang sudah cocok dan serius mau beli**. Ditambah lagi, tim [Jasa Iklan Google Ads & Meta Ads](/jasa-iklan-ads) bisa menggunakan data dari website tersebut untuk mengejar ulang (*retargeting*) pengunjung yang tadinya baru sekadar lihat-lihat sampai akhirnya jadi beli.
 
 ---
 
@@ -252,7 +252,7 @@ Kalau selama ini Anda merasa iklan Facebook dan Instagram Anda jalan di tempat a
 Jangan biarkan uang iklan Anda habis diklik orang yang cuma iseng. Bangun satu **Landing Page promosi yang persuasif**, pasang pelacak **Meta Pixel**, lalu jalankan kampanye iklan yang terarah. Dengan kombinasi dua senjata ini, admin WhatsApp Anda bakal jauh lebih bahagia karena setiap bunyi notifikasi chat yang masuk adalah calon pembeli yang sudah siap transfer!
 
 > **Mau Iklan Meta Ads Jalan Sekaligus Dibuatkan Landing Page yang Siap Closing?**
-> Nggak perlu repot cari dua vendor berbeda! Tim kami siap membantu merancang halaman promosi lewat layanan **[Jasa Pembuatan Landing Page & Website](/jasa-pembuatan-website)** sekaligus mengelola kampanye iklan Anda melalui **[Jasa Kelola Iklan Meta Ads Berbasis Konversi](/jasa-iklan-meta-ads)**. Mulai dari riset audiens, pemasangan Meta Pixel, pembuatan video iklan, sampai optimasi chat WhatsApp—semua kami tangani secara terukur. Yuk, konsultasikan bisnis Anda gratis lewat WhatsApp kami!
+> Nggak perlu repot cari dua vendor berbeda! Tim kami siap membantu merancang halaman promosi lewat layanan **[Jasa Pembuatan Landing Page & Website](/jasa-pembuatan-website)** sekaligus mengelola kampanye iklan Anda melalui **[Jasa Kelola Iklan Google Ads & Meta Ads Berbasis Konversi](/jasa-iklan-ads)**. Mulai dari riset audiens, pemasangan Meta Pixel, pembuatan video iklan, sampai optimasi chat WhatsApp—semua kami tangani secara terukur. Yuk, konsultasikan bisnis Anda gratis lewat WhatsApp kami!
 
 ---
 
@@ -381,7 +381,7 @@ Harga bahan baku lagi naik? Atau ada menu yang hari ini sudah ludes terjual? Lew
 Berbeda dengan *marketplace* yang memotong komisi 8% sampai 15% dari setiap barang yang terjual, pesanan yang masuk lewat website katalog ke WhatsApp adalah **100% bebas potongan**. Seluruh margin keuntungan masuk utuh ke rekening usaha Anda.
 
 ### 4. Siap Dipadukan dengan Iklan Meta Ads Biar Banjir Orderan
-Kalau suatu saat Anda ingin mempromosikan katalog produk tersebut ke ribuan warga di kota Anda lewat [Jasa Iklan Meta Ads](/jasa-iklan-meta-ads) (Facebook & Instagram Ads), website katalog Anda sudah siap dipasangi kode pelacak **Meta Pixel**. Algoritma iklan bisa mendeteksi produk mana yang paling sering dilihat pengunjung dan mengejar ulang (*retargeting*) orang-orang yang sudah sempat pilih barang di katalog tapi lupa menekan tombol pesan!
+Kalau suatu saat Anda ingin mempromosikan katalog produk tersebut ke ribuan warga di kota Anda lewat [Jasa Iklan Google Ads & Meta Ads](/jasa-iklan-ads) (Google Ads & Facebook/Instagram Ads), website katalog Anda sudah siap dipasangi kode pelacak **Meta Pixel**. Algoritma iklan bisa mendeteksi produk mana yang paling sering dilihat pengunjung dan mengejar ulang (*retargeting*) orang-orang yang sudah sempat pilih barang di katalog tapi lupa menekan tombol pesan!
 
 ---
 
