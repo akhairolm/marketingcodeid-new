@@ -3,10 +3,8 @@ import Link from 'next/link'
 
 const FOOTER_LINKS = [
   { href: '/jasa-pembuatan-website', label: 'Jasa Pembuatan Website' },
-  { href: '/company-profile', label: 'Company Profile' },
-  { href: '/landing-page', label: 'Landing Page' },
   { href: '/jasa-pembuatan-aplikasi-mobile', label: 'Aplikasi Mobile' },
-  { href: '/jasa-iklan-meta-ads', label: 'Iklan Meta Ads' },
+  { href: '/jasa-iklan-ads', label: 'Iklan Google Ads & Meta Ads' },
   { href: '/portfolio', label: 'Portofolio' },
   { href: '/blog', label: 'Blog' },
   { href: '/pertanyaan', label: 'Pertanyaan (FAQ)' },
