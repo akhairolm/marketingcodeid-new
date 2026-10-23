@@ -572,7 +572,7 @@ export default function JasaIklanAdsPage() {
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs">
                     <Megaphone className="w-3.5 h-3.5 text-[#C23605]" />
                     <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-                      Agency Boutique — Fokus Maksimal 10 Klien/Bulan
+                      MarketingCode.ID — Fokus Maksimal 10 Klien/Bulan
                     </span>
                   </div>
                 </div>
