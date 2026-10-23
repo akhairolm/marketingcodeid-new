@@ -8,7 +8,7 @@ test.describe('Jasa Pembuatan Website UX & Responsiveness', () => {
     // Page title and H1
     await expect(page).toHaveTitle(/Jasa Pembuatan Website & Toko Online Profesional/i)
     const h1 = page.locator('h1')
-    await expect(h1).toContainText('Miliki Website & Toko Online Profesional')
+    await expect(h1).toContainText('Miliki Website Bisnis & Toko Online Profesional')
     await expect(h1).toContainText('Tanpa Ribet Koding')
 
     // No horizontal scroll overflow

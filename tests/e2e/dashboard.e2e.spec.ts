@@ -28,6 +28,18 @@ test.describe('Custom Dashboard', () => {
     const editorBody = page.locator('.tiptap-content')
     await editorBody.click()
     await page.keyboard.type(`Konten e2e ${unique}.`)
+
+    // Select required thumbnail
+    const pickThumbBtn = page.getByRole('button', { name: /Pilih Thumbnail/i })
+    if (await pickThumbBtn.isVisible()) {
+      await pickThumbBtn.click()
+      const mediaOption = page.locator('[role="dialog"] button').filter({ has: page.locator('img') }).first()
+      await mediaOption.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {})
+      if (await mediaOption.isVisible()) {
+        await mediaOption.click()
+      }
+    }
+
     await page.getByRole('button', { name: 'Simpan Artikel' }).click()
 
     await page.waitForURL(`${BASE}/dashboard/artikel`)
