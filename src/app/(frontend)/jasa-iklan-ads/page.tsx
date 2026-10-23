@@ -560,9 +560,9 @@ export default function JasaIklanAdsPage() {
       <main className="relative overflow-hidden">
         {/* 1. HERO */}
         <div className="relative bg-paper-cream-glow bg-dot-fine pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
-          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
+          <section className="relative max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
+              <div className="lg:col-span-5 xl:col-span-5 space-y-6 text-left">
                 <div className="space-y-2">
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FFF5F0] border border-orange-300/60">
                     <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#C23605]">
@@ -577,7 +577,7 @@ export default function JasaIklanAdsPage() {
                   </div>
                 </div>
 
-                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.2] sm:leading-[1.14]">
+                <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.2] sm:leading-[1.12]">
                   Iklan Anda Harus Mendatangkan Percakapan,{' '}
                   <span className="text-[#FF5C28]">Bukan Hanya Klik</span>
                 </h1>
@@ -627,8 +627,8 @@ export default function JasaIklanAdsPage() {
                 </div>
               </div>
 
-              <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
-                <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
+              <div className="lg:col-span-7 xl:col-span-7 flex justify-center lg:justify-end items-center">
+                <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-2xl xl:max-w-none lg:scale-105 xl:scale-110 lg:origin-right">
                   <div
                     className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-3xl -z-10"
                     aria-hidden="true"
@@ -640,7 +640,7 @@ export default function JasaIklanAdsPage() {
                     width={1024}
                     height={683}
                     priority
-                    sizes="(max-width: 1024px) 100vw, 600px"
+                    sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 60vw, 750px"
                     className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out"
                   />
                 </div>
