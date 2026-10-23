@@ -738,6 +738,94 @@ export default function JasaIklanAdsPage() {
             </div>
           </section>
         </div>
+        {/* 9. FAQ */}
+        <div className="relative bg-paper-cream-left-glow bg-dot-fine py-20 sm:py-24 overflow-hidden">
+          <section className="relative max-w-3xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-10">
+              <SectionMark num="08" icon={HelpCircle} eyebrow="Tanya Jawab" />
+              <h2 className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+                Pertanyaan yang Sering Diajukan Pemilik Usaha
+              </h2>
+            </div>
+
+            <div className="space-y-3">
+              {faqs.map((faq) => (
+                <details
+                  key={faq.q}
+                  className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-xs group"
+                >
+                  <summary className="w-full px-5 py-4 text-left flex items-center justify-between gap-3 text-xs sm:text-sm font-bold text-neutral-900 hover:text-[#FF5C28] cursor-pointer list-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5C28]">
+                    <h3 className="font-bold min-w-0 flex-1">{faq.q}</h3>
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 group-open:rotate-180"
+                    />
+                  </summary>
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* 10. FINAL CTA */}
+        <div className="relative bg-paper-warm py-20 sm:py-24 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 font-mono text-[18rem] font-bold text-neutral-900/[0.025] select-none leading-none tracking-tighter"
+          >
+            §
+          </div>
+          <section className="relative max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 max-w-xl mx-auto space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Punya Anggaran Iklan yang Ingin Dikelola Lebih Rapi?
+                </h2>
+                <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+                  Diskusikan jenis usaha, target pasar, dan anggaran yang tersedia. Kami akan memberi gambaran realistis tentang apa yang bisa diukur dari anggaran tersebut, tanpa komitmen awal.
+                </p>
+
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={getWhatsAppDirectUrl(
+                      'Halo Admin MarketingCode.ID, saya ingin diskusi rencana iklan untuk usaha saya secara gratis.'
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Diskusi rencana iklan via WhatsApp"
+                    className="w-full sm:w-auto px-8 py-3.5 bg-[#D13D00] hover:bg-[#B33400] text-white font-bold text-xs sm:text-sm rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
+                  >
+                    <Image
+                      src="/icons/flaticon/whatsapp.svg"
+                      alt=""
+                      width={18}
+                      height={18}
+                      className="w-4 h-4 shrink-0 object-contain"
+                    />
+                    <span>Diskusi Rencana Iklan via WhatsApp</span>
+                  </a>
+                </div>
+
+                <div className="pt-4 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] text-neutral-300">
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Google Ads &amp; Meta Ads
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Audit Akun Gratis
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Akun Tetap Milik Anda
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   )
