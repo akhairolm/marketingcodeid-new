@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { getWhatsAppDirectUrl } from '@/lib/whatsapp'
 import { JsonLd, faqSchema, serviceSchema, breadcrumbSchema } from '@/lib/seo'
+import { pricingData } from '@/components/home/home-data'
 
 export const metadata: Metadata = {
   title: 'Jasa Iklan Google Ads & Meta Ads Terukur | MarketingCode.ID',
@@ -486,6 +487,125 @@ export default function JasaIklanAdsPage() {
                   {item}
                 </span>
               ))}
+            </div>
+          </section>
+        </div>
+        {/* 6. PRICING */}
+        <div className="relative bg-paper-cream py-20 sm:py-24 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-blueprint opacity-70"
+          />
+          <section id="paket-iklan" className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="frame-ticks bg-[#FBFBFB]/70 px-3 sm:px-8 lg:px-10 py-10 sm:py-14">
+              <div className="text-center mb-10">
+                <SectionMark num="05" icon={CircleDollarSign} eyebrow="Paket Pengelolaan Iklan" />
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                  Pilih Intensitas Pengelolaan Sesuai Tahap Bisnis
+                </h2>
+                <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto leading-relaxed">
+                  Biaya ini adalah jasa pengelolaan. Anggaran iklan dibayarkan terpisah langsung dari akun iklan milik Anda.
+                </p>
+
+                <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF5F0] border border-orange-200/80 text-xs sm:text-sm font-semibold text-[#C23605] shadow-xs text-left">
+                  <span className="flex h-2 w-2 rounded-full bg-[#C23605] animate-pulse shrink-0" />
+                  <span>Slot Terbatas Bulan Ini: Maksimal 10 klien agar pemantauan kampanye tetap intensif.</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch text-left">
+                {pricingData.ads.map((item) => {
+                  const isHighlight = item.isPopular
+                  const waMessage = `Halo Admin MarketingCode.ID, saya tertarik ${item.tier} (${item.price}${item.unit}). Jenis usaha saya: ____`
+
+                  return (
+                    <div
+                      key={item.tier}
+                      className={`bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
+                        isHighlight
+                          ? 'border-2 border-[#FF5C28] shadow-xl shadow-orange-500/10 lg:-translate-y-2 lg:scale-[1.02] z-10'
+                          : 'border border-neutral-200/80 shadow-card hover:border-orange-200/80 hover:shadow-lg'
+                      }`}
+                    >
+                      {isHighlight && (
+                        <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#FF5C28] to-[#EA4510] text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap z-20">
+                          <Sparkles className="w-3 h-3" />
+                          <span>Paling Diminati</span>
+                        </div>
+                      )}
+
+                      <div>
+                        {!isHighlight && (
+                          <div className="mb-3">
+                            <span className="inline-flex items-center text-[11px] font-bold text-neutral-600 bg-neutral-100 border border-neutral-200/80 px-2.5 py-0.5 rounded-full">
+                              {item.tier === 'Growth Campaign' ? 'Mulai Dari' : 'Fitur Terlengkap'}
+                            </span>
+                          </div>
+                        )}
+
+                        <h3 className="text-xl font-extrabold text-neutral-900 tracking-tight">
+                          {item.tier}
+                        </h3>
+
+                        <p className="text-xs sm:text-[13px] text-neutral-600 mt-2.5 leading-relaxed min-h-[44px]">
+                          {item.desc}
+                        </p>
+
+                        <div className="mt-5 pt-4 border-t border-neutral-100">
+                          <div className="flex items-baseline gap-1.5 flex-wrap">
+                            <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                              {item.price}
+                            </span>
+                            <span className="text-xs text-neutral-500 font-medium">{item.unit}</span>
+                          </div>
+                        </div>
+
+                        <a
+                          href={getWhatsAppDirectUrl(waMessage)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Konsultasi ${item.tier} via WhatsApp`}
+                          className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                            isHighlight
+                              ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow hover:scale-[1.01]'
+                              : 'bg-neutral-900 hover:bg-neutral-800 text-white hover:scale-[1.01]'
+                          }`}
+                        >
+                          <Image
+                            src="/icons/flaticon/whatsapp.svg"
+                            alt=""
+                            width={16}
+                            height={16}
+                            className="w-4 h-4 shrink-0 object-contain"
+                          />
+                          <span>{item.btnText}</span>
+                        </a>
+
+                        <div className="mt-6 pt-6 border-t border-neutral-100 space-y-3 text-xs sm:text-[13px] text-neutral-700">
+                          {item.features.map((feat, idx) => (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <div className="w-4 h-4 rounded-full bg-orange-100 text-[#C23605] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-2.5 h-2.5 stroke-[3]" />
+                              </div>
+                              <span className="leading-snug">
+                                {typeof feat === 'string' ? feat : feat.text}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="mt-6 pt-4 border-t border-neutral-100">
+                        {item.time && (
+                          <div className="text-[11px] text-neutral-600 text-center font-semibold pt-1">
+                            {item.time}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </section>
         </div>
