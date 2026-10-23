@@ -559,70 +559,91 @@ export default function JasaIklanAdsPage() {
 
       <main className="relative overflow-hidden">
         {/* 1. HERO */}
-        <div className="relative bg-paper-cream-glow bg-dot-fine pt-28 sm:pt-36 pb-16 sm:pb-24">
+        <div className="relative bg-paper-cream-glow bg-dot-fine pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
           <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="max-w-3xl space-y-6 text-left">
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FFF5F0] border border-orange-300/60">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#C23605]">
-                    Jasa Iklan Google Ads &amp; Meta Ads Terukur
-                  </span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FFF5F0] border border-orange-300/60">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#C23605]">
+                      Jasa Iklan Google Ads &amp; Meta Ads Terukur
+                    </span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs">
+                    <Megaphone className="w-3.5 h-3.5 text-[#C23605]" />
+                    <span className="text-xs font-semibold text-neutral-700 tracking-tight">
+                      Agency Boutique — Fokus Maksimal 10 Klien/Bulan
+                    </span>
+                  </div>
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-200/80 shadow-xs">
-                  <Megaphone className="w-3.5 h-3.5 text-[#C23605]" />
-                  <span className="text-xs font-semibold text-neutral-700 tracking-tight">
-                    Agency Boutique — Fokus Maksimal 10 Klien/Bulan
+
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.2] sm:leading-[1.14]">
+                  Iklan Anda Harus Mendatangkan Percakapan,{' '}
+                  <span className="text-[#FF5C28]">Bukan Hanya Klik</span>
+                </h1>
+
+                <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
+                  Pengelolaan iklan Google Ads dan Meta Ads untuk bisnis yang ingin mengukur hasilnya dengan angka: biaya per percakapan, jumlah leads, dan laporan yang bisa dibaca. Bukan sekadar menyalakan kampanye lalu ditinggal.
+                </p>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <a
+                    href={getWhatsAppDirectUrl(
+                      'Halo Admin MarketingCode.ID, saya mau konsultasi jasa iklan Google Ads / Meta Ads. Jenis usaha saya: ____'
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <Image
+                      src="/icons/flaticon/whatsapp.svg"
+                      alt=""
+                      width={22}
+                      height={22}
+                      className="w-5 h-5 shrink-0"
+                    />
+                    <span>Konsultasi Iklan via WhatsApp</span>
+                  </a>
+                  <a
+                    href="#paket-iklan"
+                    className="inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300 text-center"
+                  >
+                    <span>Lihat Paket &amp; Biaya</span>
+                  </a>
+                </div>
+
+                <div className="pt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-700 font-medium">
+                  <span className="flex items-center gap-1">
+                    <Check className="w-4 h-4 text-[#FF5C28]" /> Google Ads &amp; Meta Ads
+                  </span>
+                  <span className="text-neutral-300">•</span>
+                  <span className="flex items-center gap-1">
+                    <Check className="w-4 h-4 text-[#FF5C28]" /> Tracking Pixel Terpasang
+                  </span>
+                  <span className="text-neutral-300">•</span>
+                  <span className="flex items-center gap-1">
+                    <Check className="w-4 h-4 text-[#FF5C28]" /> Laporan Transparan
                   </span>
                 </div>
               </div>
 
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.2] sm:leading-[1.14]">
-                Iklan Anda Harus Mendatangkan Percakapan,{' '}
-                <span className="text-[#FF5C28]">Bukan Hanya Klik</span>
-              </h1>
-
-              <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
-                Pengelolaan iklan Google Ads dan Meta Ads untuk bisnis yang ingin mengukur hasilnya dengan angka: biaya per percakapan, jumlah leads, dan laporan yang bisa dibaca. Bukan sekadar menyalakan kampanye lalu ditinggal.
-              </p>
-
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <a
-                  href={getWhatsAppDirectUrl(
-                    'Halo Admin MarketingCode.ID, saya mau konsultasi jasa iklan Google Ads / Meta Ads. Jenis usaha saya: ____'
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm sm:text-base font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <Image
-                    src="/icons/flaticon/whatsapp.svg"
-                    alt=""
-                    width={22}
-                    height={22}
-                    className="w-5 h-5 shrink-0"
+              <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
+                <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
+                  <div
+                    className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/10 to-transparent rounded-full blur-3xl -z-10"
+                    aria-hidden="true"
                   />
-                  <span>Konsultasi Iklan via WhatsApp</span>
-                </a>
-                <a
-                  href="#paket-iklan"
-                  className="inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all duration-300 text-center"
-                >
-                  <span>Lihat Paket &amp; Biaya</span>
-                </a>
-              </div>
-
-              <div className="pt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-700 font-medium">
-                <span className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-[#FF5C28]" /> Google Ads &amp; Meta Ads
-                </span>
-                <span className="text-neutral-300">•</span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-[#FF5C28]" /> Tracking Pixel Terpasang
-                </span>
-                <span className="text-neutral-300">•</span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-4 h-4 text-[#FF5C28]" /> Laporan Transparan
-                </span>
+                  <Image
+                    src="/images/hero-ads-terukur.webp"
+                    alt="Layanan Pengelolaan Iklan Google Ads dan Meta Ads Terukur MarketingCode.ID"
+                    title="Jasa Iklan Google Ads & Meta Ads MarketingCode.ID"
+                    width={1264}
+                    height={848}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                    className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500 ease-out rounded-2xl"
+                  />
+                </div>
               </div>
             </div>
           </section>
