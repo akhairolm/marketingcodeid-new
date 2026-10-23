@@ -3,6 +3,7 @@ import Image from 'next/image'
 import {
   Target,
   TrendingUp,
+  TrendingDown,
   Search,
   Megaphone,
   BarChart3,
@@ -18,6 +19,10 @@ import {
   Settings2,
   Users,
   CheckCircle2,
+  MousePointerClick,
+  ZapOff,
+  Activity,
+  Coins,
   type LucideIcon,
 } from 'lucide-react'
 import { getWhatsAppDirectUrl } from '@/lib/whatsapp'
@@ -262,6 +267,278 @@ function SectionMark({
   )
 }
 
+function ProblemFunnelLeakMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Floating Metrics Badges */}
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+          Tayangan: 12.400
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          Klik Iklan: 480
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-red-600">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+          Chat Masuk: 0
+        </span>
+      </div>
+
+      {/* Connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Elevated Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-lg bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28]">
+              <TrendingDown className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-xs font-bold text-neutral-800">Alur Konversi Iklan</span>
+          </div>
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 border border-red-200/70 text-red-600 text-[10px] font-bold">
+            <AlertTriangle className="w-2.5 h-2.5" />
+            Bocor di Alur
+          </span>
+        </div>
+
+        <div className="bg-neutral-50 rounded-xl p-2.5 border border-neutral-100 space-y-2">
+          <div className="flex items-center justify-between text-[11px]">
+            <span className="text-neutral-500 font-medium">Pengunjung Mengklik</span>
+            <span className="font-bold text-neutral-800">480 Orang</span>
+          </div>
+          <div className="h-1.5 w-full rounded-full bg-neutral-200 overflow-hidden">
+            <div className="h-full w-full bg-blue-500 rounded-full" />
+          </div>
+
+          <div className="flex items-center justify-between text-[11px] pt-1">
+            <span className="text-neutral-500 font-medium">Halaman Tujuan Terbuka</span>
+            <span className="font-bold text-amber-700">120 Orang (Lambat)</span>
+          </div>
+          <div className="h-1.5 w-full rounded-full bg-neutral-200 overflow-hidden">
+            <div className="h-full w-[25%] bg-amber-500 rounded-full" />
+          </div>
+
+          <div className="flex items-center justify-between text-[11px] pt-1">
+            <span className="text-neutral-500 font-medium">Tombol Chat Ditekan</span>
+            <span className="font-bold text-red-600">0 Percakapan</span>
+          </div>
+          <div className="h-1.5 w-full rounded-full bg-neutral-200 overflow-hidden">
+            <div className="h-full w-[2%] bg-red-500 rounded-full" />
+          </div>
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-neutral-100 flex items-center justify-center">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-neutral-50 border border-neutral-200/60 text-neutral-700 text-[10px] font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            Anggaran habis, kontak WhatsApp tetap sunyi
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProblemPlatformMismatchMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Search & Browse Pills */}
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <Search className="w-3 h-3 text-[#FF5C28]" />
+          Niat Cari Cepat
+        </span>
+        <span className="text-neutral-400 text-xs">vs</span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <Megaphone className="w-3 h-3 text-blue-600" />
+          Scroll Santai
+        </span>
+      </div>
+
+      {/* Connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Comparison Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-2.5 sm:p-3 border border-neutral-200/80 shadow-md space-y-1.5 transition-transform duration-300 group-hover:scale-[1.02]">
+        {/* Skenario Salah Saluran */}
+        <div className="p-2 rounded-xl bg-red-50/60 border border-red-200/60">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] font-bold text-red-700 uppercase tracking-wider flex items-center gap-1">
+              <AlertTriangle className="w-3 h-3 text-red-500" />
+              Salah: Jasa Darurat di Feed
+            </span>
+            <span className="text-[9px] bg-red-200/80 text-red-800 font-bold px-1.5 py-0.2 rounded">
+              Feed Sosmed
+            </span>
+          </div>
+          <p className="text-[10px] text-neutral-600 leading-tight">
+            Orang sedang scroll santai, tidak butuh tukang darurat. Biaya klik terbuang percuma.
+          </p>
+        </div>
+
+        {/* Skenario Saluran Tepat */}
+        <div className="p-2 rounded-xl bg-emerald-50/60 border border-emerald-200/60">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1">
+              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+              Tepat: Google Search
+            </span>
+            <span className="text-[9px] bg-emerald-200/80 text-emerald-800 font-bold px-1.5 py-0.2 rounded">
+              High Intent
+            </span>
+          </div>
+          <p className="text-[10px] text-neutral-600 leading-tight">
+            Muncul persis saat orang mencari solusi darurat. Niat beli tinggi dan siap hubungi.
+          </p>
+        </div>
+
+        <div className="pt-1 flex items-center justify-between text-[10px] text-neutral-500 px-1">
+          <span className="flex items-center gap-1 text-red-600 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            Biaya klik terbuang sia-sia
+          </span>
+          <span className="text-neutral-500">Miskomunikasi Audiens</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProblemBoostPostMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Floating Badges */}
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <MousePointerClick className="w-3 h-3 text-[#FF5C28]" />
+          Tombol Bawaan Aplikasi
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-amber-700">
+          <AlertTriangle className="w-3 h-3 text-amber-500" />
+          Tanpa Ads Manager
+        </span>
+      </div>
+
+      {/* Connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Elevated Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-100">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-lg bg-orange-100 text-[#FF5C28] flex items-center justify-center">
+              <ZapOff className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-xs font-bold text-neutral-800">Setelan Boost Post</span>
+          </div>
+          <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200/70 px-2 py-0.5 rounded-full">
+            Fitur Terbatas
+          </span>
+        </div>
+
+        <div className="space-y-1.5 text-xs">
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Target Audiens:</span>
+            <span className="font-semibold text-neutral-700 text-[11px] flex items-center gap-1">
+              Otomatis
+              <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.2 rounded font-bold">
+                Acak
+              </span>
+            </span>
+          </div>
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Tracking Pixel:</span>
+            <span className="font-semibold text-red-600 text-[11px] flex items-center gap-1">
+              Tidak Ada
+              <span className="text-[9px] bg-neutral-200/80 text-neutral-700 px-1.5 py-0.2 rounded font-bold">
+                0 Data
+              </span>
+            </span>
+          </div>
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Hasil Iklan:</span>
+            <span className="font-semibold text-neutral-700 text-[11px]">Banyak Likes, Nol Order</span>
+          </div>
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-neutral-100 flex items-center justify-center">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-neutral-50 border border-neutral-200/60 text-neutral-700 text-[10px] font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+            Hanya membakar uang demi metrik semu
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProblemNoDataMockup() {
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
+      {/* Top Floating Badges */}
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-2 w-full px-2">
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-neutral-700">
+          <HelpCircle className="w-3 h-3 text-amber-500" />
+          Evaluasi Tanpa Data
+        </span>
+        <span className="bg-white px-2.5 py-1 rounded-full border border-neutral-200/90 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-red-600">
+          <Coins className="w-3 h-3 text-red-500" />
+          Biaya per Chat: Buta
+        </span>
+      </div>
+
+      {/* Connector stem */}
+      <div className="w-px h-3 bg-neutral-300 mx-auto mb-1.5" />
+
+      {/* Central Elevated Card */}
+      <div className="relative z-10 w-full max-w-[270px] xs:max-w-[285px] sm:max-w-[320px] bg-white rounded-2xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-100">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-lg bg-red-50 border border-red-200/60 flex items-center justify-center text-red-600">
+              <Activity className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-xs font-bold text-neutral-800">Laporan Akun Tanpa Tracking</span>
+          </div>
+          <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
+            DATA KOSONG
+          </span>
+        </div>
+
+        <div className="space-y-1.5 text-xs">
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Biaya per Percakapan:</span>
+            <span className="font-mono text-neutral-400 text-[11px] font-bold">
+              Tidak Terukur (—)
+            </span>
+          </div>
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Iklan Mana yang Cuan:</span>
+            <span className="font-semibold text-neutral-700 text-[11px] flex items-center gap-1">
+              Hanya Perasaan
+              <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.2 rounded font-bold">
+                Firasat
+              </span>
+            </span>
+          </div>
+          <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-neutral-50 border border-neutral-200/50">
+            <span className="text-neutral-600 text-[11px] font-medium">Aksi Selanjutnya:</span>
+            <span className="font-semibold text-red-600 text-[11px]">Ragu Lanjut / Matikan</span>
+          </div>
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-neutral-100 flex items-center justify-center">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-neutral-50 border border-neutral-200/60 text-neutral-700 text-[10px] font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            Keputusan bisnis bergantung pada tebakan
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function JasaIklanAdsPage() {
   return (
     <div className="website-service min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
@@ -365,13 +642,23 @@ export default function JasaIklanAdsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {problems.map((item) => (
+              {problems.map((item, idx) => (
                 <div
                   key={item.number}
-                  className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 group flex flex-col justify-between"
+                  className="bg-white rounded-3xl p-3.5 sm:p-4 border border-neutral-200/80 shadow-card hover:border-[#FF5C28] hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col justify-between group"
                 >
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold mb-3">
+                  {/* Visual Preview Area */}
+                  <div className="relative h-64 sm:h-72 rounded-2xl bg-[#F8F9FB] border border-neutral-200/60 overflow-hidden flex flex-col items-center justify-center p-3 sm:p-4 select-none">
+                    {idx === 0 && <ProblemFunnelLeakMockup />}
+                    {idx === 1 && <ProblemPlatformMismatchMockup />}
+                    {idx === 2 && <ProblemBoostPostMockup />}
+                    {idx === 3 && <ProblemNoDataMockup />}
+                  </div>
+
+                  {/* Text Content Area */}
+                  <div className="px-3 sm:px-4 pt-4 sm:pt-5 pb-2 sm:pb-3">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-50 border border-red-200/70 text-red-700 text-[11px] font-bold mb-2.5">
+                      <AlertTriangle className="w-3 h-3 text-red-500" />
                       <span>Masalah {item.number}</span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-neutral-900 group-hover:text-[#C23205] transition-colors leading-snug">
