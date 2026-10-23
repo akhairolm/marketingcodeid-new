@@ -664,6 +664,80 @@ export default function JasaIklanAdsPage() {
             </div>
           </section>
         </div>
+        {/* 8. GARANSI + AUDIT GRATIS (pengganti testimoni) */}
+        <div className="relative bg-paper-warm section-rule py-20 sm:py-24">
+          <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="bg-gradient-to-br from-[#FFF5F0] via-white to-orange-50/50 rounded-3xl p-8 sm:p-12 border border-orange-200/80 shadow-card">
+              <div className="max-w-3xl">
+                <div className="mb-3 flex items-center gap-2.5 text-neutral-600">
+                  <span
+                    aria-hidden="true"
+                    className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500"
+                  >
+                    § 07
+                  </span>
+                  <span aria-hidden="true" className="h-px w-8 bg-neutral-300" />
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
+                    <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5 text-[#C23605]" />
+                    <span>Garansi &amp; Audit Gratis</span>
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+                  Bisa Diperiksa Sebelum Memutuskan Kerja Sama
+                </h2>
+                <p className="text-sm sm:text-base text-neutral-600 mt-3 leading-relaxed">
+                  Kami tidak menampilkan klaim hasil kampanye yang belum bisa Anda verifikasi. Yang kami tawarkan adalah pemeriksaan akun lebih dulu, akses penuh ke akun Anda, dan laporan yang bisa dibaca sendiri.
+                </p>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {guarantees.map((item) => (
+                    <div
+                      key={item.title}
+                      className="bg-white p-5 rounded-2xl border border-neutral-200/80 shadow-xs"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-orange-100 text-[#C23605] flex items-center justify-center mb-3">
+                        <item.icon className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-bold text-sm text-neutral-900">{item.title}</h3>
+                      <p className="text-xs text-neutral-600 mt-1.5 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-orange-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="font-bold text-sm text-neutral-900">
+                      Mulai dari audit akun iklan Anda, tanpa biaya.
+                    </div>
+                    <p className="text-xs text-neutral-600 mt-0.5">
+                      Sebutkan platform yang dipakai dan kendala yang dirasakan.
+                    </p>
+                  </div>
+                  <a
+                    href={getWhatsAppDirectUrl(
+                      'Halo Admin MarketingCode.ID, saya ingin audit gratis akun iklan Google Ads / Meta Ads saya.'
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Minta audit akun iklan gratis via WhatsApp"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-orange-50 border border-neutral-300 hover:border-[#C23605] text-[#C23605] text-xs font-bold transition-all shadow-xs shrink-0"
+                  >
+                    <Image
+                      src="/icons/flaticon/whatsapp.svg"
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 shrink-0"
+                    />
+                    <span>Minta Audit Gratis</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   )
