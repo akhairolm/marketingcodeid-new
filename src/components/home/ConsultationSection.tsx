@@ -11,7 +11,7 @@ const SERVICE_OPTIONS = [
   { value: 'company', label: 'Website Company Profile Bisnis', name: 'Website Company Profile Bisnis' },
   { value: 'landing', label: 'Landing Page Promosi & Iklan', name: 'Landing Page Promosi' },
   { value: 'custom', label: 'Sistem Informasi Kustom / Portal Instansi', name: 'Sistem Kustom / Instansi' },
-  { value: 'other', label: 'Layanan Lain (Aplikasi Mobile / Meta Ads)', name: 'Layanan Digital Lainnya' },
+  { value: 'other', label: 'Layanan Lain (Aplikasi Mobile / Google Ads / Meta Ads)', name: 'Layanan Digital Lainnya' },
 ]
 
 const inputClass =
