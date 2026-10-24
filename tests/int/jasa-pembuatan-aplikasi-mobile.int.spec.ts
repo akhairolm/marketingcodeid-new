@@ -69,6 +69,15 @@ describe('Halaman /jasa-pembuatan-aplikasi-mobile', () => {
     }
   })
 
+  it('menampilkan hero showcase image dan floating cards yang disesuaikan', () => {
+    const { container, getByText } = render(React.createElement(JasaPembuatanAplikasiMobilePage))
+    const img = container.querySelector('img[src="/images/jasa-aplikasi-mobile-hero.png"]')
+    expect(img).toBeTruthy()
+    expect(getByText(/1 Aplikasi untuk Semua Tipe HP/i)).toBeTruthy()
+    expect(getByText(/Pemesanan Cepat & Hitung Otomatis/i)).toBeTruthy()
+    expect(getByText(/Terhubung Panel Admin Web/i)).toBeTruthy()
+  })
+
   it('mematuhi aturan mutlak tanpa emoji Unicode', () => {
     const { container } = render(React.createElement(JasaPembuatanAplikasiMobilePage))
     const text = container.textContent ?? ''

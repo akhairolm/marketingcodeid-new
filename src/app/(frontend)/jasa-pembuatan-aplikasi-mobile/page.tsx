@@ -333,7 +333,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
           serviceSchema(
             'Jasa Pembuatan Aplikasi Mobile (Android, iOS & PWA)',
             'Jasa pembuatan aplikasi mobile Android, iOS, & PWA profesional. Lengkap dengan Web Admin Dashboard, UI/UX Prototype, pendampingan Google Play Store, & garansi pemeliharaan 1 tahun.',
-            '/jasa-pembuatan-aplikasi-mobile'
+            '/jasa-pembuatan-aplikasi-mobile',
           ),
           faqSchema(faqs),
           breadcrumbSchema([
@@ -359,9 +359,27 @@ export default function JasaPembuatanAplikasiMobilePage() {
           />
 
           <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Preload hero images for instant LCP discovery */}
+            <link
+              rel="preload"
+              as="image"
+              href="/images/jasa-aplikasi-mobile-hero-mobile.avif"
+              type="image/avif"
+              media="(max-width: 640px)"
+              fetchPriority="high"
+            />
+            <link
+              rel="preload"
+              as="image"
+              href="/images/jasa-aplikasi-mobile-hero.avif"
+              type="image/avif"
+              media="(min-width: 641px)"
+              fetchPriority="high"
+            />
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
               {/* Left Column: Copy & Actions */}
-              <div className="lg:col-span-6 xl:col-span-7 space-y-6 text-left">
+              <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
                 {/* Eyebrow Badge */}
                 <div className="space-y-2">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFF5F0] border border-orange-200/80 shadow-xs">
@@ -380,14 +398,17 @@ export default function JasaPembuatanAplikasiMobilePage() {
 
                 {/* Sub-headline */}
                 <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal max-w-xl">
-                  Bangun aplikasi Android, iOS, atau Web-App kustom yang cepat, mudah digunakan, dan langsung terhubung dengan Dashboard Admin pusat. Mulai dari aplikasi booking, katalog &amp; order pelanggan, hingga presensi GPS dan layanan instansi—terima beres tanpa perlu tim IT sendiri.
+                  Bangun aplikasi Android, iOS, atau Web-App kustom yang cepat, mudah digunakan, dan
+                  langsung terhubung dengan Dashboard Admin pusat. Mulai dari aplikasi booking,
+                  katalog &amp; order pelanggan, hingga presensi GPS dan layanan instansi—terima
+                  beres tanpa perlu tim IT sendiri.
                 </p>
 
                 {/* Dual CTA Buttons */}
                 <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                   <a
                     href={getWhatsAppDirectUrl(
-                      'Halo MarketingCode.ID, saya ingin konsultasi rencana pembuatan aplikasi mobile (Android/iOS/PWA) untuk bisnis/instansi saya.'
+                      'Halo MarketingCode.ID, saya ingin konsultasi rencana pembuatan aplikasi mobile (Android/iOS/PWA) untuk bisnis/instansi saya.',
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -425,147 +446,106 @@ export default function JasaPembuatanAplikasiMobilePage() {
                       </span>
                     </div>
                     <p className="text-[11px] sm:text-xs text-neutral-600 mt-0.5 leading-snug">
-                      Arsitektur aplikasi dirancang rapi sejak awal, didampingi dari perancangan alur tampilan (UI/UX) hingga siap diunduh pengguna.
+                      Arsitektur aplikasi dirancang rapi sejak awal, didampingi dari perancangan
+                      alur tampilan (UI/UX) hingga siap diunduh pengguna.
                     </p>
                   </div>
                 </div>
 
                 {/* 3 Real Trust Points */}
-                <div className="pt-1 flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1.5 text-xs text-neutral-700 font-medium">
-                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                    <Check className="w-3.5 h-3.5 text-[#C23605]" /> Termasuk Dashboard Admin Web
+                <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:gap-x-3.5 xl:gap-x-5 gap-y-2 text-[11px] sm:text-xs text-neutral-700 font-medium">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <Check className="w-3.5 h-3.5 text-[#C23605] shrink-0" />
+                    <span>Dashboard Admin Web</span>
                   </span>
-                  <span className="text-neutral-300">•</span>
-                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                    <Check className="w-3.5 h-3.5 text-[#C23605]" /> Pendampingan Rilis Play Store
+                  <span className="hidden sm:inline text-neutral-300" aria-hidden="true">
+                    •
                   </span>
-                  <span className="text-neutral-300">•</span>
-                  <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" /> Garansi Pemeliharaan 1 Tahun
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <Check className="w-3.5 h-3.5 text-[#C23605] shrink-0" />
+                    <span>Pendampingan Play Store</span>
+                  </span>
+                  <span className="hidden sm:inline text-neutral-300" aria-hidden="true">
+                    •
+                  </span>
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#C23605] shrink-0" />
+                    <span>Garansi Resmi 1 Tahun</span>
                   </span>
                 </div>
               </div>
 
-              {/* Right Column: Interactive Smartphone Mockup & Floating Cards */}
-              <div className="lg:col-span-6 xl:col-span-5 flex justify-center lg:justify-end items-center">
-                <div className="relative w-full max-w-[340px] sm:max-w-[380px] py-6">
-                  {/* Background Ambient Glow */}
+              {/* Right Column: Hero Showcase Visual & Floating Badges */}
+              <div className="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end items-center">
+                <div className="relative w-full max-w-lg sm:max-w-xl lg:max-w-none">
+                  {/* Ambient Chromatic Glow */}
                   <div
-                    className="absolute -inset-4 bg-gradient-to-tr from-[#FF5C28]/20 via-amber-500/15 to-transparent rounded-full blur-3xl -z-10"
+                    className="absolute -inset-6 bg-gradient-to-tr from-[#38bdf8]/15 via-[#FF5C28]/12 to-transparent rounded-full blur-3xl -z-10"
                     aria-hidden="true"
                   />
 
-                  {/* Smartphone Frame Container */}
-                  <div className="relative mx-auto w-[280px] sm:w-[310px] bg-neutral-900 rounded-[44px] p-3 shadow-2xl border-4 border-neutral-800 ring-1 ring-white/20">
-                    {/* Speaker & Dynamic Island */}
-                    <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-30 flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 bg-neutral-800 rounded-full mr-2" />
-                      <div className="w-2 h-2 bg-neutral-900 rounded-full" />
-                    </div>
+                  {/* Image Container with Floating Badges (Positioned cleanly without blocking phones) */}
+                  <div className="relative lg:pt-16 lg:pb-14">
+                    <picture>
+                      <source
+                        media="(max-width: 640px)"
+                        srcSet="/images/jasa-aplikasi-mobile-hero-mobile.avif"
+                        type="image/avif"
+                      />
+                      <source
+                        media="(max-width: 640px)"
+                        srcSet="/images/jasa-aplikasi-mobile-hero-mobile.webp"
+                        type="image/webp"
+                      />
+                      <source srcSet="/images/jasa-aplikasi-mobile-hero.avif" type="image/avif" />
+                      <source srcSet="/images/jasa-aplikasi-mobile-hero.webp" type="image/webp" />
+                      <img
+                        src="/images/jasa-aplikasi-mobile-hero.png"
+                        alt="Tampilan Antarmuka Aplikasi Mobile Android dan iOS Kustom MarketingCode.ID"
+                        title="Jasa Pembuatan Aplikasi Mobile Android & iOS MarketingCode.ID"
+                        width={1024}
+                        height={682}
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                        className="w-full h-auto object-contain drop-shadow-2xl hover:scale-[1.01] transition-transform duration-500 ease-out rounded-2xl sm:rounded-3xl"
+                      />
+                    </picture>
 
-                    {/* Smartphone Screen Content */}
-                    <div className="relative bg-white rounded-[36px] overflow-hidden pt-8 pb-5 px-4 text-left border border-neutral-100 flex flex-col justify-between min-h-[440px]">
-                      {/* Top Bar Mockup */}
-                      <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-6 h-6 rounded-lg bg-[#FF5C28] text-white flex items-center justify-center text-[10px] font-bold">
-                            MC
-                          </div>
-                          <div>
-                            <div className="text-[11px] font-extrabold text-neutral-900 leading-tight">
-                              Si Akoor Mobile
-                            </div>
-                            <div className="text-[9px] text-neutral-500">Presensi &amp; Layanan</div>
-                          </div>
+                    {/* Floating Badges Container: Grid below mockup on mobile/tablet, floating crown & anchor around mockup on desktop */}
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2.5 lg:contents">
+                      {/* Floating Card 1: Multiplatform Android & iOS */}
+                      <div className="bg-white/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-neutral-200/90 shadow-md text-left lg:absolute lg:top-0 lg:-left-6 xl:-left-10 lg:max-w-[195px] z-20 hover:scale-105 transition-transform duration-300">
+                        <div className="flex items-center gap-1.5 text-[#C23605] text-[10px] font-extrabold uppercase">
+                          <Smartphone className="w-3.5 h-3.5 text-[#FF5C28]" />
+                          <span>Android &amp; iOS</span>
                         </div>
-                        <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                          Online
-                        </span>
-                      </div>
-
-                      {/* Map Geofencing Card Mockup */}
-                      <div className="mt-3 p-3 rounded-2xl bg-gradient-to-b from-orange-50/70 to-neutral-50 border border-orange-200/60 space-y-2">
-                        <div className="flex items-center justify-between text-[10px]">
-                          <span className="font-semibold text-neutral-700 flex items-center gap-1">
-                            <MapPin className="w-3 h-3 text-[#FF5C28]" />
-                            Radius GPS Kantor: 25m
-                          </span>
-                          <span className="font-bold text-emerald-600 bg-emerald-100/80 px-1.5 py-0.2 rounded text-[9px]">
-                            Akurat
-                          </span>
-                        </div>
-                        <div className="h-16 w-full rounded-xl bg-neutral-200/80 relative overflow-hidden flex items-center justify-center border border-neutral-300/50">
-                          <div className="w-10 h-10 rounded-full bg-[#FF5C28]/20 animate-ping absolute" />
-                          <div className="w-5 h-5 rounded-full bg-[#FF5C28] text-white flex items-center justify-center z-10 shadow-sm">
-                            <MapPin className="w-3 h-3" />
-                          </div>
-                          <span className="absolute bottom-1 right-1.5 text-[8px] bg-black/60 text-white px-1.5 py-0.2 rounded font-mono">
-                            Lat: -2.9351 | Long: 115.1482
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between text-[10px] pt-0.5">
-                          <span className="text-neutral-500">Status Kehadiran:</span>
-                          <span className="font-bold text-neutral-900">100% Terverifikasi</span>
+                        <div className="text-[11px] sm:text-xs font-bold text-neutral-900 mt-0.5 leading-tight">
+                          1 Aplikasi untuk Semua Tipe HP
                         </div>
                       </div>
 
-                      {/* Micro Quick Actions */}
-                      <div className="grid grid-cols-2 gap-2 mt-3">
-                        <div className="p-2 rounded-xl bg-neutral-50 border border-neutral-200/70 text-left">
-                          <div className="w-6 h-6 rounded-lg bg-orange-100 text-[#C23605] flex items-center justify-center mb-1">
-                            <Camera className="w-3.5 h-3.5" />
-                          </div>
-                          <div className="text-[10px] font-bold text-neutral-800">Foto Kerja</div>
-                          <div className="text-[8px] text-neutral-500">Real-time kamera</div>
+                      {/* Floating Card 2: Katalog & Checkout Cepat */}
+                      <div className="bg-white/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-neutral-200/90 shadow-md text-left lg:absolute lg:top-0 lg:-right-6 xl:-right-10 lg:max-w-[200px] z-20 hover:scale-105 transition-transform duration-300">
+                        <div className="flex items-center gap-1.5 text-emerald-700 text-[10px] font-extrabold uppercase">
+                          <ShoppingBag className="w-3.5 h-3.5 text-emerald-600" />
+                          <span>Katalog &amp; Order</span>
                         </div>
-                        <div className="p-2 rounded-xl bg-neutral-50 border border-neutral-200/70 text-left">
-                          <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center mb-1">
-                            <Bell className="w-3.5 h-3.5" />
-                          </div>
-                          <div className="text-[10px] font-bold text-neutral-800">Push Notif</div>
-                          <div className="text-[8px] text-neutral-500">Info pimpinan</div>
+                        <div className="text-[11px] sm:text-xs font-bold text-neutral-900 mt-0.5 leading-tight">
+                          Pemesanan Cepat &amp; Hitung Otomatis
                         </div>
                       </div>
 
-                      {/* Bottom Button inside phone */}
-                      <div className="mt-3 pt-2 border-t border-neutral-100">
-                        <div className="w-full py-2 rounded-xl bg-[#D13D00] text-white text-[11px] font-bold text-center shadow-xs">
-                          Kirim Laporan &amp; Presensi
+                      {/* Floating Card 3: Dashboard Web Sync */}
+                      <div className="bg-white/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-neutral-200/90 shadow-md text-left lg:absolute lg:bottom-0 lg:right-0 xl:-right-4 lg:max-w-[205px] z-20 hover:scale-105 transition-transform duration-300">
+                        <div className="flex items-center gap-1.5 text-blue-700 text-[10px] font-extrabold uppercase">
+                          <Database className="w-3.5 h-3.5 text-blue-600" />
+                          <span>Sync Real-Time</span>
+                        </div>
+                        <div className="text-[11px] sm:text-xs font-bold text-neutral-900 mt-0.5 leading-tight">
+                          Terhubung Panel Admin Web
                         </div>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Floating Card 1: Android & iOS Ready */}
-                  <div className="absolute -top-1 -right-2 sm:-right-6 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-neutral-200/90 shadow-lg text-left max-w-[170px] z-20">
-                    <div className="flex items-center gap-1.5 text-[#FF5C28] text-[10px] font-extrabold uppercase">
-                      <Smartphone className="w-3 h-3" />
-                      <span>Android &amp; iOS</span>
-                    </div>
-                    <div className="text-[11px] font-bold text-neutral-900 mt-0.5 leading-tight">
-                      1 Pengembangan untuk Semua HP
-                    </div>
-                  </div>
-
-                  {/* Floating Card 2: Akses Fitur HP Aktif */}
-                  <div className="absolute top-1/2 -left-3 sm:-left-8 -translate-y-1/2 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-neutral-200/90 shadow-lg text-left max-w-[175px] z-20">
-                    <div className="flex items-center gap-1.5 text-emerald-700 text-[10px] font-extrabold uppercase">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                      <span>Fitur Hardware HP</span>
-                    </div>
-                    <div className="text-[11px] font-bold text-neutral-900 mt-0.5 leading-tight">
-                      Kamera, GPS Geofencing, &amp; Push Notif
-                    </div>
-                  </div>
-
-                  {/* Floating Card 3: Dashboard Web Sync */}
-                  <div className="absolute -bottom-2 -right-2 sm:-right-4 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-neutral-200/90 shadow-lg text-left max-w-[175px] z-20">
-                    <div className="flex items-center gap-1.5 text-blue-700 text-[10px] font-extrabold uppercase">
-                      <Database className="w-3 h-3 text-blue-600" />
-                      <span>Sync Real-Time</span>
-                    </div>
-                    <div className="text-[11px] font-bold text-neutral-900 mt-0.5 leading-tight">
-                      Terhubung Dashboard Admin Pusat
                     </div>
                   </div>
                 </div>
@@ -596,7 +576,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
                     </span>
                   </div>
                   <p className="text-[11px] text-neutral-600 leading-relaxed">
-                    Langsung dipasang dari browser ke layar HP tanpa antrean review toko aplikasi. Ideal untuk katalog toko, komunitas, atau prototipe awal usaha.
+                    Langsung dipasang dari browser ke layar HP tanpa antrean review toko aplikasi.
+                    Ideal untuk katalog toko, komunitas, atau prototipe awal usaha.
                   </p>
                 </div>
 
@@ -609,7 +590,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
                     </span>
                   </div>
                   <p className="text-[11px] text-neutral-700 leading-relaxed">
-                    Satu basis kode Flutter / React Native untuk Android &amp; iPhone sekaligus. Akses fitur kamera/GPS penuh dan siap rilis resmi di Play Store.
+                    Satu basis kode Flutter / React Native untuk Android &amp; iPhone sekaligus.
+                    Akses fitur kamera/GPS penuh dan siap rilis resmi di Play Store.
                   </p>
                 </div>
 
@@ -622,7 +604,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
                     </span>
                   </div>
                   <p className="text-[11px] text-neutral-600 leading-relaxed">
-                    Dirancang untuk beban transaksi ribuan pengguna, payment gateway otomatis, proteksi geofencing presisi, dan regulasi kepatuhan data SPBE instansi.
+                    Dirancang untuk beban transaksi ribuan pengguna, payment gateway otomatis,
+                    proteksi geofencing presisi, dan regulasi kepatuhan data SPBE instansi.
                   </p>
                 </div>
               </div>
@@ -635,8 +618,14 @@ export default function JasaPembuatanAplikasiMobilePage() {
         {/* ============================================================== */}
         <section className="relative py-24 sm:py-32 bg-paper-cream-center-glow bg-dot-fine section-rule overflow-hidden">
           {/* Top Hairline Gradient & Ambient Light */}
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF5C28]/40 to-transparent pointer-events-none" aria-hidden="true" />
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-60 bg-red-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#FF5C28]/40 to-transparent pointer-events-none"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-60 bg-red-500/5 rounded-full blur-3xl pointer-events-none"
+            aria-hidden="true"
+          />
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
@@ -652,180 +641,199 @@ export default function JasaPembuatanAplikasiMobilePage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                Banyak pemilik usaha dan instansi menunda pembuatan aplikasi—atau kecewa setelah keluar biaya puluhan juta—karena empat kendala klasik di bawah ini:
+                Banyak pemilik usaha dan instansi menunda pembuatan aplikasi—atau kecewa setelah
+                keluar biaya puluhan juta—karena empat kendala klasik di bawah ini:
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            {/* Problem 1: Software House Mahal */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
-                    Masalah 01
-                  </span>
-                  <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
-                    Biaya Membengkak
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900 leading-snug">
-                  Harga Software House Melambung karena Dihitung 2 Kali
-                </h3>
-                <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
-                  Banyak agensi konvensional memisahkan biaya koding Android dan iPhone dengan dua tim programmer berbeda sehingga penawaran meroket hingga Rp 75 Juta+. Padahal dengan arsitektur cross-platform modern, aplikasi Android &amp; iOS bisa dibangun sekaligus dengan biaya jauh lebih hemat.
-                </p>
-              </div>
-
-              {/* Micro-UI 1 */}
-              <div className="mt-6 pt-4 border-t border-neutral-100 bg-neutral-50 rounded-2xl p-4 border border-neutral-200/60 space-y-2">
-                <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-neutral-500 font-medium">Koding Android Terpisah:</span>
-                  <span className="font-bold text-neutral-800">Rp 30.000.000</span>
-                </div>
-                <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-neutral-500 font-medium">Koding iOS Terpisah:</span>
-                  <span className="font-bold text-neutral-800">Rp 30.000.000</span>
-                </div>
-                <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-neutral-500 font-medium">Backend &amp; Dashboard:</span>
-                  <span className="font-bold text-neutral-800">Rp 15.000.000</span>
-                </div>
-                <div className="pt-2 border-t border-neutral-200 flex items-center justify-between text-xs">
-                  <span className="font-bold text-red-600">Total Software House:</span>
-                  <span className="font-extrabold text-red-600">Rp 75.000.000 (Overbudget)</span>
-                </div>
-                <div className="pt-1 text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
-                  <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
-                  <span>Solusi Kami: 1 Basis Kode Modern Mulai Rp 3.490.000</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Problem 2: Ditolak Toko Aplikasi */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
-                    Masalah 02
-                  </span>
-                  <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
-                    Gagal Tayang
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900 leading-snug">
-                  Aplikasi Sudah Jadi, Tapi Ditolak Google Play Store &amp; App Store
-                </h3>
-                <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
-                  Banyak jasa murah yang sekadar membungkus website biasa ke file APK (WebView kasar). Akibatnya aplikasi langsung ditolak mentah-mentah saat peninjauan Google &amp; Apple karena melanggar kebijakan &apos;Minimum Functionality&apos; atau &apos;WebView Spam&apos;.
-                </p>
-              </div>
-
-              {/* Micro-UI 2 */}
-              <div className="mt-6 pt-4 border-t border-neutral-100 bg-red-50/70 rounded-2xl p-4 border border-red-200/70 space-y-2">
-                <div className="flex items-center justify-between text-[11px]">
-                  <span className="font-bold text-red-800 flex items-center gap-1.5">
-                    <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
-                    Status Peninjauan Toko Aplikasi:
-                  </span>
-                  <span className="font-extrabold text-red-700 bg-red-200/80 px-2 py-0.5 rounded text-[10px]">
-                    REJECTED
-                  </span>
-                </div>
-                <p className="text-[10px] text-red-700 leading-tight">
-                  Alasan: Policy 4.2 Minimum Functionality. Aplikasi hanya memuat tautan web tanpa fungsi mobile native.
-                </p>
-                <div className="pt-1 text-[10px] text-emerald-800 font-semibold flex items-center gap-1">
-                  <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
-                  <span>Solusi Kami: Standar Kode Native &amp; Pendampingan Sampai Lolos</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Problem 3: Lemot & Sulit Dipakai */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
-                    Masalah 03
-                  </span>
-                  <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200/70 px-2 py-0.5 rounded-full">
-                    Pengguna Kabur
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900 leading-snug">
-                  Tampilan Rumit &amp; Berat Saat Dibuka di HP Spesifikasi Rendah
-                </h3>
-                <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
-                  Aplikasi yang memakan RAM tinggi dan memiliki menu berbelit-belit membuat pelanggan malas memesan dan pegawai lapangan kembali mencatat manual di kertas atau grup WhatsApp. Pengguna akhirnya memilih uninstal.
-                </p>
-              </div>
-
-              {/* Micro-UI 3 */}
-              <div className="mt-6 pt-4 border-t border-neutral-100 bg-neutral-50 rounded-2xl p-4 border border-neutral-200/60 space-y-2">
-                <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-neutral-600 font-medium">Durasi Membuka Aplikasi:</span>
-                  <span className="font-bold text-amber-700">12 Detik (Terlalu Lambat)</span>
-                </div>
-                <div className="h-2 w-full rounded-full bg-neutral-200 overflow-hidden">
-                  <div className="h-full w-[85%] bg-amber-500 rounded-full" />
-                </div>
-                <div className="flex items-center justify-between text-[10px] text-neutral-500">
-                  <span>Dampak: Staf mengeluh bingung</span>
-                  <span className="text-red-600 font-bold">Uninstal Rate 64%</span>
-                </div>
-                <div className="pt-1 text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
-                  <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
-                  <span>Solusi Kami: Desain UI/UX Ringan &amp; Prototipe Sebelum Koding</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Problem 4: Ditinggal Pengembang */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
-                    Masalah 04
-                  </span>
-                  <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
-                    Tanpa Garansi
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900 leading-snug">
-                  Ditinggal Developer Saat Ada Pembaruan OS Android / iOS
-                </h3>
-                <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
-                  Sistem operasi smartphone diperbarui setiap tahun. Tanpa dokumentasi rapi, akun server milik Anda sendiri, dan garansi pemeliharaan, aplikasi berisiko macet (crash) total dan pengembang lepas tidak bisa dihubungi lagi.
-                </p>
-              </div>
-
-              {/* Micro-UI 4 */}
-              <div className="mt-6 pt-4 border-t border-neutral-100 bg-neutral-50 rounded-2xl p-4 border border-neutral-200/60 space-y-2">
-                <div className="p-2 rounded-xl bg-white border border-neutral-200 text-left space-y-1">
-                  <div className="text-[10px] text-neutral-500">Chat ke Developer Lama:</div>
-                  <div className="text-[11px] font-medium text-neutral-800">
-                    &quot;Mas, aplikasinya error force close di Android terbaru, bisa dibantu?&quot;
+              {/* Problem 1: Software House Mahal */}
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
+                      Masalah 01
+                    </span>
+                    <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
+                      Biaya Membengkak
+                    </span>
                   </div>
-                  <div className="text-[9px] text-neutral-400 flex items-center justify-end gap-1">
-                    <span>Centang Satu • Tidak Dibalas</span>
+                  <h3 className="text-lg font-bold text-neutral-900 leading-snug">
+                    Harga Software House Melambung karena Dihitung 2 Kali
+                  </h3>
+                  <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
+                    Banyak agensi konvensional memisahkan biaya koding Android dan iPhone dengan dua
+                    tim programmer berbeda sehingga penawaran meroket hingga Rp 75 Juta+. Padahal
+                    dengan arsitektur cross-platform modern, aplikasi Android &amp; iOS bisa
+                    dibangun sekaligus dengan biaya jauh lebih hemat.
+                  </p>
+                </div>
+
+                {/* Micro-UI 1 */}
+                <div className="mt-6 pt-4 border-t border-neutral-100 bg-neutral-50 rounded-2xl p-4 border border-neutral-200/60 space-y-2">
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="text-neutral-500 font-medium">Koding Android Terpisah:</span>
+                    <span className="font-bold text-neutral-800">Rp 30.000.000</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="text-neutral-500 font-medium">Koding iOS Terpisah:</span>
+                    <span className="font-bold text-neutral-800">Rp 30.000.000</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="text-neutral-500 font-medium">Backend &amp; Dashboard:</span>
+                    <span className="font-bold text-neutral-800">Rp 15.000.000</span>
+                  </div>
+                  <div className="pt-2 border-t border-neutral-200 flex items-center justify-between text-xs">
+                    <span className="font-bold text-red-600">Total Software House:</span>
+                    <span className="font-extrabold text-red-600">Rp 75.000.000 (Overbudget)</span>
+                  </div>
+                  <div className="pt-1 text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
+                    <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                    <span>Solusi Kami: 1 Basis Kode Modern Mulai Rp 3.490.000</span>
                   </div>
                 </div>
-                <div className="pt-1 text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
-                  <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
-                  <span>Solusi Kami: Garansi 1 Tahun Penuh &amp; 100% Hak Milik Akses</span>
+              </div>
+
+              {/* Problem 2: Ditolak Toko Aplikasi */}
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
+                      Masalah 02
+                    </span>
+                    <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
+                      Gagal Tayang
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 leading-snug">
+                    Aplikasi Sudah Jadi, Tapi Ditolak Google Play Store &amp; App Store
+                  </h3>
+                  <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
+                    Banyak jasa murah yang sekadar membungkus website biasa ke file APK (WebView
+                    kasar). Akibatnya aplikasi langsung ditolak mentah-mentah saat peninjauan Google
+                    &amp; Apple karena melanggar kebijakan &apos;Minimum Functionality&apos; atau
+                    &apos;WebView Spam&apos;.
+                  </p>
+                </div>
+
+                {/* Micro-UI 2 */}
+                <div className="mt-6 pt-4 border-t border-neutral-100 bg-red-50/70 rounded-2xl p-4 border border-red-200/70 space-y-2">
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="font-bold text-red-800 flex items-center gap-1.5">
+                      <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
+                      Status Peninjauan Toko Aplikasi:
+                    </span>
+                    <span className="font-extrabold text-red-700 bg-red-200/80 px-2 py-0.5 rounded text-[10px]">
+                      REJECTED
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-red-700 leading-tight">
+                    Alasan: Policy 4.2 Minimum Functionality. Aplikasi hanya memuat tautan web tanpa
+                    fungsi mobile native.
+                  </p>
+                  <div className="pt-1 text-[10px] text-emerald-800 font-semibold flex items-center gap-1">
+                    <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                    <span>Solusi Kami: Standar Kode Native &amp; Pendampingan Sampai Lolos</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Problem 3: Lemot & Sulit Dipakai */}
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
+                      Masalah 03
+                    </span>
+                    <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200/70 px-2 py-0.5 rounded-full">
+                      Pengguna Kabur
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 leading-snug">
+                    Tampilan Rumit &amp; Berat Saat Dibuka di HP Spesifikasi Rendah
+                  </h3>
+                  <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
+                    Aplikasi yang memakan RAM tinggi dan memiliki menu berbelit-belit membuat
+                    pelanggan malas memesan dan pegawai lapangan kembali mencatat manual di kertas
+                    atau grup WhatsApp. Pengguna akhirnya memilih uninstal.
+                  </p>
+                </div>
+
+                {/* Micro-UI 3 */}
+                <div className="mt-6 pt-4 border-t border-neutral-100 bg-neutral-50 rounded-2xl p-4 border border-neutral-200/60 space-y-2">
+                  <div className="flex items-center justify-between text-[11px]">
+                    <span className="text-neutral-600 font-medium">Durasi Membuka Aplikasi:</span>
+                    <span className="font-bold text-amber-700">12 Detik (Terlalu Lambat)</span>
+                  </div>
+                  <div className="h-2 w-full rounded-full bg-neutral-200 overflow-hidden">
+                    <div className="h-full w-[85%] bg-amber-500 rounded-full" />
+                  </div>
+                  <div className="flex items-center justify-between text-[10px] text-neutral-500">
+                    <span>Dampak: Staf mengeluh bingung</span>
+                    <span className="text-red-600 font-bold">Uninstal Rate 64%</span>
+                  </div>
+                  <div className="pt-1 text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
+                    <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                    <span>Solusi Kami: Desain UI/UX Ringan &amp; Prototipe Sebelum Koding</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Problem 4: Ditinggal Pengembang */}
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200/90 shadow-card flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-extrabold text-[#C23605] tracking-wider uppercase bg-[#FFF5F0] px-2.5 py-1 rounded-md border border-orange-200/60">
+                      Masalah 04
+                    </span>
+                    <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-200/70 px-2 py-0.5 rounded-full">
+                      Tanpa Garansi
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-neutral-900 leading-snug">
+                    Ditinggal Developer Saat Ada Pembaruan OS Android / iOS
+                  </h3>
+                  <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
+                    Sistem operasi smartphone diperbarui setiap tahun. Tanpa dokumentasi rapi, akun
+                    server milik Anda sendiri, dan garansi pemeliharaan, aplikasi berisiko macet
+                    (crash) total dan pengembang lepas tidak bisa dihubungi lagi.
+                  </p>
+                </div>
+
+                {/* Micro-UI 4 */}
+                <div className="mt-6 pt-4 border-t border-neutral-100 bg-neutral-50 rounded-2xl p-4 border border-neutral-200/60 space-y-2">
+                  <div className="p-2 rounded-xl bg-white border border-neutral-200 text-left space-y-1">
+                    <div className="text-[10px] text-neutral-500">Chat ke Developer Lama:</div>
+                    <div className="text-[11px] font-medium text-neutral-800">
+                      &quot;Mas, aplikasinya error force close di Android terbaru, bisa
+                      dibantu?&quot;
+                    </div>
+                    <div className="text-[9px] text-neutral-400 flex items-center justify-end gap-1">
+                      <span>Centang Satu • Tidak Dibalas</span>
+                    </div>
+                  </div>
+                  <div className="pt-1 text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
+                    <Check className="w-3 h-3 text-emerald-600 stroke-[3]" />
+                    <span>Solusi Kami: Garansi 1 Tahun Penuh &amp; 100% Hak Milik Akses</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* ============================================================== */}
         {/* SECTION 3: 4 SOLUSI APLIKASI TEPAT GUNA (USE-CASE CARDS)       */}
         {/* ============================================================== */}
         <section className="relative py-24 sm:py-32 bg-gradient-to-b from-[#FFFDFB] via-[#FFF8F2] to-[#FFFDFB] section-rule overflow-hidden">
-          <div className="absolute inset-0 bg-dot-fine opacity-70 pointer-events-none" aria-hidden="true" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-orange-400/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute inset-0 bg-dot-fine opacity-70 pointer-events-none"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-orange-400/5 rounded-full blur-3xl pointer-events-none"
+            aria-hidden="true"
+          />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFF5F0] border border-orange-200/80 mb-4 shadow-xs">
@@ -840,7 +848,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                Kami tidak sekadar membuat koding, kami merancang solusi operasional nyata yang langsung menjawab kendala di lapangan:
+                Kami tidak sekadar membuat koding, kami merancang solusi operasional nyata yang
+                langsung menjawab kendala di lapangan:
               </p>
             </div>
 
@@ -880,7 +889,10 @@ export default function JasaPembuatanAplikasiMobilePage() {
         {/* SECTION 4: 6 KOMPONEN ALL-IN-ONE DELIVERABLES                  */}
         {/* ============================================================== */}
         <div className="relative py-24 sm:py-32 bg-paper-warm section-rule overflow-hidden">
-          <div className="absolute inset-0 bg-blueprint opacity-35 pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute inset-0 bg-blueprint opacity-35 pointer-events-none"
+            aria-hidden="true"
+          />
           <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFF5F0] border border-orange-200/80 mb-4 shadow-xs">
@@ -895,7 +907,9 @@ export default function JasaPembuatanAplikasiMobilePage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                Seluruh proyek aplikasi yang kami bangun dilengkapi dengan fondasi teknis lengkap agar bisnis dan operasional Anda bisa langsung melangkah tanpa pusing urusan server atau koding:
+                Seluruh proyek aplikasi yang kami bangun dilengkapi dengan fondasi teknis lengkap
+                agar bisnis dan operasional Anda bisa langsung melangkah tanpa pusing urusan server
+                atau koding:
               </p>
             </div>
 
@@ -911,9 +925,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
                   <h3 className="text-base font-bold text-neutral-900 leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
-                    {item.desc}
-                  </p>
+                  <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -925,8 +937,14 @@ export default function JasaPembuatanAplikasiMobilePage() {
         {/* ============================================================== */}
         <div className="relative py-24 sm:py-32 bg-gradient-to-b from-[#FBFBFB] via-[#F8F6F2] to-[#FAF8F5] section-rule overflow-hidden">
           {/* Subtle ambient light */}
-          <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-orange-400/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-          <div className="absolute inset-0 bg-dot-fine opacity-60 pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute top-12 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-orange-400/5 rounded-full blur-3xl pointer-events-none"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 bg-dot-fine opacity-60 pointer-events-none"
+            aria-hidden="true"
+          />
 
           <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
@@ -942,7 +960,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                Kami telah membuktikan rekam jejak dalam membangun sistem operasional, presensi GPS, hingga pemesanan komersial di Kalimantan Selatan dan sekitarnya:
+                Kami telah membuktikan rekam jejak dalam membangun sistem operasional, presensi GPS,
+                hingga pemesanan komersial di Kalimantan Selatan dan sekitarnya:
               </p>
             </div>
 
@@ -982,7 +1001,10 @@ export default function JasaPembuatanAplikasiMobilePage() {
                       {/* Results Metrics */}
                       <div className="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-neutral-100 text-center">
                         {study.results.map((res) => (
-                          <div key={res.label} className="p-2.5 rounded-xl bg-[#FFF9F5] border border-orange-100/80">
+                          <div
+                            key={res.label}
+                            className="p-2.5 rounded-xl bg-[#FFF9F5] border border-orange-100/80"
+                          >
                             <div className="text-xs sm:text-sm font-extrabold text-[#D13D00]">
                               {res.value}
                             </div>
@@ -1036,7 +1058,10 @@ export default function JasaPembuatanAplikasiMobilePage() {
         {/* SECTION 7: ALUR KERJA 4 LANGKAH TRANSPARAN (ANTI-DRAMA)        */}
         {/* ============================================================== */}
         <div className="relative py-24 sm:py-32 bg-gradient-to-b from-[#FAF7F2] via-[#F6F3EC] to-[#F2EFE7] section-rule overflow-hidden">
-          <div className="absolute inset-0 bg-dot-fine opacity-60 pointer-events-none" aria-hidden="true" />
+          <div
+            className="absolute inset-0 bg-dot-fine opacity-60 pointer-events-none"
+            aria-hidden="true"
+          />
           <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFF5F0] border border-orange-200/80 mb-4 shadow-xs">
@@ -1051,7 +1076,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                Kami menerapkan proses yang terstruktur dan transparan agar Anda tidak perlu cemas hasil akhir melenceng dari kesepakatan:
+                Kami menerapkan proses yang terstruktur dan transparan agar Anda tidak perlu cemas
+                hasil akhir melenceng dari kesepakatan:
               </p>
             </div>
 
@@ -1068,9 +1094,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
                     <h3 className="text-base font-bold text-neutral-900 leading-snug">
                       {step.title}
                     </h3>
-                    <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">
-                      {step.desc}
-                    </p>
+                    <p className="text-xs text-neutral-600 mt-2.5 leading-relaxed">{step.desc}</p>
                   </div>
                   <div className="mt-5 pt-3 border-t border-neutral-100 flex items-center gap-1.5 text-[10px] text-[#C23605] font-semibold">
                     <Check className="w-3 h-3 stroke-[3]" />
@@ -1100,7 +1124,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
-                Bandingkan langsung standar pengerjaan kami dengan agensi software house konvensional maupun pengembang lepas biasa:
+                Bandingkan langsung standar pengerjaan kami dengan agensi software house
+                konvensional maupun pengembang lepas biasa:
               </p>
             </div>
 
@@ -1135,12 +1160,8 @@ export default function JasaPembuatanAplikasiMobilePage() {
                           <span>{row.marketingCode}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-5 text-neutral-600 align-top">
-                        {row.softwareHouse}
-                      </td>
-                      <td className="py-4 px-5 text-neutral-500 align-top">
-                        {row.freelancer}
-                      </td>
+                      <td className="py-4 px-5 text-neutral-600 align-top">{row.softwareHouse}</td>
+                      <td className="py-4 px-5 text-neutral-500 align-top">{row.freelancer}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1198,13 +1219,15 @@ export default function JasaPembuatanAplikasiMobilePage() {
                   Wujudkan Aplikasi Mobile Impian Bisnis atau Instansi Anda
                 </h2>
                 <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
-                  Diskusikan masalah operasional atau konsep aplikasi Anda langsung bersama Ahmad Khairol M. Kami siap membantu memetakan modul, membuat prototype alur, dan memberikan rekomendasi teknologi yang paling efisien.
+                  Diskusikan masalah operasional atau konsep aplikasi Anda langsung bersama Ahmad
+                  Khairol M. Kami siap membantu memetakan modul, membuat prototype alur, dan
+                  memberikan rekomendasi teknologi yang paling efisien.
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
                     href={getWhatsAppDirectUrl(
-                      'Halo MarketingCode.ID, saya ingin diskusi rencana pembuatan aplikasi mobile. Bisnis/instansi saya: ____'
+                      'Halo MarketingCode.ID, saya ingin diskusi rencana pembuatan aplikasi mobile. Bisnis/instansi saya: ____',
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
