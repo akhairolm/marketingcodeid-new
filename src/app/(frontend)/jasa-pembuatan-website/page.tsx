@@ -1271,7 +1271,7 @@ export default function JasaPembuatanWebsitePage() {
                       Travel &amp; Booking WhatsApp
                     </span>
                     <h3 className="font-bold text-base text-neutral-900 leading-snug">
-                      AGAN TRANS (Travel Bandung Bali)
+                      Bisnis Owner (Travel Bandung Bali)
                     </h3>
                     <a
                       href="https://travelbandungbali.id/"

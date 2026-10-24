@@ -45,7 +45,7 @@ const STORIES: TestimonialStory[] = [
   },
   {
     id: 'agan-trans-travel',
-    clientName: 'AGAN TRANS (Travel Bandung Bali)',
+    clientName: 'Bisnis Owner (Travel Bandung Bali)',
     businessType: 'Layanan Transportasi & Sewa Hiace',
     location: 'Bandung & Denpasar',
     serviceTag: 'Website Booking & SEO Travel',
@@ -56,6 +56,7 @@ const STORIES: TestimonialStory[] = [
     authorName: 'Muhammad Abdul Gani',
     authorRole: 'Pemilik Bisnis Travel',
     authorInitials: 'MG',
+    authorAvatar: '/images/avatars/agan-trans.webp',
     rating: 5,
     statValue: '+320%',
     statLabel: 'Kenaikan Booking Tiket via WhatsApp',

@@ -46,7 +46,7 @@ describe('TestimonialsSection (Suara Pengguna)', () => {
     expect(screen.getByText('10x Lebih Cepat')).toBeTruthy()
   })
 
-  it('renders author profile avatar images when provided and initials fallback when absent', () => {
+  it('renders author profile avatar images for all client stories', () => {
     render(React.createElement(TestimonialsSection))
 
     // Avatars with images
@@ -59,7 +59,7 @@ describe('TestimonialsSection (Suara Pengguna)', () => {
     const riniAvatar = screen.getByRole('img', { name: 'Rini Yusnita, S.STP, MM' })
     expect(riniAvatar).toBeTruthy()
 
-    // Fallback initials for Muhammad Abdul Gani
-    expect(screen.getByText('MG')).toBeTruthy()
+    const aganAvatar = screen.getByRole('img', { name: 'Muhammad Abdul Gani' })
+    expect(aganAvatar).toBeTruthy()
   })
 })
