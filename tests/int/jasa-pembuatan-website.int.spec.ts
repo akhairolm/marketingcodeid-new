@@ -105,7 +105,7 @@ describe('JasaPembuatanWebsitePage', () => {
     const expectedFaq: Array<[RegExp, RegExp]> = [
       [/Apakah ada sistem sewa bulanan yang mengikat/i, /Sama sekali tidak ada biaya sewa bulanan/i],
       [/Apakah biaya paket sudah termasuk nama domain/i, /pendaftaran nama domain resmi/i],
-      [/Bagaimana dengan jaminan kepuasan & garansi purna jual/i, /garansi 7 hari uang kembali/i],
+      [/Bagaimana dengan jaminan kepuasan & garansi purna jual/i, /garansi pemeliharaan resmi/i],
       [/Berapa lama waktu yang dibutuhkan hingga website siap digunakan/i, /3 - 5 hari kerja/i],
       [/Saya gaptek dan tidak paham koding/i, /panel admin yang sangat simpel/i],
       [/Bagaimana alur pemesanan produk oleh pembeli/i, /tombol pesan WhatsApp/i],

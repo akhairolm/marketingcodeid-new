@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     q: 'Bagaimana dengan jaminan kepuasan & garansi purna jual?',
-    a: 'Kami memberikan garansi pemeliharaan resmi selama 1 tahun penuh yang mencakup perbaikan bug, pembaruan keamanan, dan monitoring server. Selain itu, kami memberikan garansi 7 hari uang kembali jika konsep awal website terbukti tidak sesuai dengan kesepakatan brief. Anda aman 100% tanpa risiko.',
+    a: 'Kami memberikan garansi pemeliharaan resmi selama 1 tahun penuh yang mencakup perbaikan bug, pembaruan keamanan, dan monitoring server. Memberikan rasa tenang dan kepastian pengerjaan yang transparan sesuai kesepakatan brief.',
   },
   {
     q: 'Berapa lama waktu yang dibutuhkan hingga website siap digunakan?',
@@ -987,12 +987,11 @@ export default function JasaPembuatanWebsitePage() {
                     </span>
                     <span className="text-neutral-300">•</span>
                     <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" /> Garansi 7 hari uang
-                      kembali
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#C23605]" /> Garansi pemeliharaan 1 tahun
                     </span>
                     <span className="text-neutral-300">•</span>
                     <span className="flex items-center gap-1 text-[11px] sm:text-xs">
-                      <Sparkles className="w-3.5 h-3.5 text-[#C23605]" /> Revisi desain sampai puas
+                      <Sparkles className="w-3.5 h-3.5 text-[#C23605]" /> Revisi terarah hingga sesuai brief
                     </span>
                   </div>
                 </div>
@@ -1287,7 +1286,7 @@ export default function JasaPembuatanWebsitePage() {
                     <span className="text-emerald-800 font-bold bg-emerald-100/90 px-2.5 py-0.5 rounded-md">
                       +320% Booking Tiket WA
                     </span>
-                    <span className="text-neutral-500 font-medium">Google #1</span>
+                    <span className="text-neutral-500 font-medium">Halaman 1 Google</span>
                   </div>
                 </div>
               </div>
@@ -1746,11 +1745,11 @@ export default function JasaPembuatanWebsitePage() {
                       03
                     </span>
                     <h3 className="font-bold text-base text-neutral-900">
-                      Garansi 1 Tahun &amp; 7 Hari Uang Kembali
+                      Garansi Pemeliharaan Resmi 1 Tahun
                     </h3>
                     <p className="text-xs sm:text-[13px] text-neutral-500 mt-2 leading-relaxed">
-                      Garansi pemeliharaan 1 tahun penuh, monitoring server, dan garansi 7 hari uang
-                      kembali jika konsep awal tidak sesuai brief.
+                      Garansi pemeliharaan teknis 1 tahun penuh, monitoring server, dan pendampingan
+                      perbaikan bug jika terjadi kendala teknis.
                     </p>
                   </div>
                 </div>

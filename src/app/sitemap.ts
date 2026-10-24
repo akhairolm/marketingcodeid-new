@@ -17,7 +17,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/jasa-pembuatan-website'), lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: absoluteUrl('/jasa-pembuatan-aplikasi-mobile'), lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: absoluteUrl('/jasa-iklan-ads'), lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: absoluteUrl('/video-editing'), lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: absoluteUrl('/portfolio'), lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: absoluteUrl('/blog'), lastModified: now, changeFrequency: 'daily', priority: 0.8 },
   ]

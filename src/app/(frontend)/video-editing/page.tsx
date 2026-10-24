@@ -5,35 +5,22 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Film,
+  Clock,
+  Globe,
   Sparkles,
-  Smartphone,
-  Play,
-  CheckCircle2,
-  Check,
 } from 'lucide-react'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
-import { JsonLd, serviceSchema, breadcrumbSchema } from '@/lib/seo'
+import { JsonLd, breadcrumbSchema } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Jasa Video Editing & Motion Ads Profesional | MarketingCode.ID',
+  title: 'Layanan Video Editing & Motion Ads (Dalam Tahap Pengembangan) | MarketingCode.ID',
   description:
-    'Jasa video editing iklan, reels, dan motion graphics untuk bisnis di Kalimantan Selatan. Materi iklan yang meningkatkan konversi Meta Ads dan konten sosial media Anda.',
+    'Layanan video editing dan motion ads saat ini sedang dalam tahap pengembangan. Silakan jelajahi layanan pembuatan website dan aplikasi mobile profesional kami.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: { canonical: '/video-editing' },
-  openGraph: {
-    title: 'Jasa Video Editing & Motion Ads Profesional',
-    description:
-      'Jasa video editing iklan, reels, dan motion graphics untuk bisnis di Kalimantan Selatan. Materi iklan yang meningkatkan konversi Meta Ads.',
-    url: '/video-editing',
-    siteName: 'MarketingCode.ID',
-    locale: 'id_ID',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Jasa Video Editing & Motion Ads Profesional | MarketingCode.ID',
-    description:
-      'Jasa video editing iklan, reels, dan motion graphics untuk bisnis di Kalimantan Selatan.',
-  },
 }
 
 export default function VideoEditingPage() {
@@ -41,163 +28,67 @@ export default function VideoEditingPage() {
     <div className="min-h-screen font-sans bg-[#FBFBFB] text-[#18181B] antialiased selection:bg-[#FF5C28] selection:text-white">
       <JsonLd
         data={[
-          serviceSchema(
-            'Jasa Video Editing & Motion Ads',
-            'Produksi dan editing materi video kreatif untuk iklan Reels, TikTok, dan video profil korporat dengan daya pikat tinggi.',
-            '/video-editing',
-          ),
           breadcrumbSchema([
             { name: 'Beranda', path: '/' },
-            { name: 'Video Editing', path: '/video-editing' },
+            { name: 'Video Editing (Pengembangan)', path: '/video-editing' },
           ]),
         ]}
       />
 
-      <main className="relative bg-grid-pattern pt-32 pb-24 overflow-hidden">
-        {/* Hero Section */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center pt-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/50 text-[#EA4510] text-xs font-semibold mb-4">
-            <Film className="w-3.5 h-3.5" />
-            <span>Creative Video & Motion Production</span>
+      <main className="relative bg-grid-pattern pt-32 pb-24 overflow-hidden flex items-center justify-center min-h-[75vh]">
+        <section className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF5F0] border border-orange-200/70 text-[#C23605] text-xs font-semibold mb-6">
+            <Clock className="w-3.5 h-3.5" />
+            <span>Sedang Dalam Tahap Pengembangan</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight leading-[1.15]">
-            Konten Video Kreatif dengan <span className="text-[#FF5C28]">Retensi & Hook Tinggi</span>
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-white border border-neutral-200/80 shadow-md flex items-center justify-center text-[#FF5C28] mx-auto mb-6">
+            <Film className="w-8 h-8 sm:w-10 sm:h-10" />
+          </div>
+
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#111827] tracking-tight leading-[1.2]">
+            Layanan Video Editing &amp; Motion Ads Sedang Dipersiapkan
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-            Ubah penonton media sosial menjadi pembeli setia. Cukup kirimkan video rekaman dari kamera HP Anda, tim kami yang menyulapnya menjadi materi video iklan vertikal berkualitas tinggi lengkap dengan teks animasi dinamis, efek suara, dan pesan jualan yang memikat.
+          <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed max-w-xl mx-auto">
+            Saat ini tim teknis MarketingCode.ID sedang memfokuskan kapasitas penuh pada layanan inti
+            Pembuatan Website, Aplikasi Mobile, dan Iklan Digital (Meta &amp; Google Ads).
+            Layanan video editing akan segera kami luncurkan secara bertahap.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/jasa-pembuatan-website"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-[#D13D00] hover:bg-[#B33400] rounded-full shadow-glow transition-all"
+            >
+              <Globe className="w-4 h-4" />
+              <span>Lihat Layanan Website</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+
             <a
-              href={getWhatsAppUrl('video')}
+              href={getWhatsAppUrl('website')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold text-white bg-[#FF5C28] hover:bg-[#EA4510] rounded-full shadow-glow transition-all transform hover:-translate-y-0.5"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-neutral-800 bg-white hover:border-[#D13D00] border border-neutral-200 rounded-full transition-all text-center"
             >
-              <Image src="/icons/flaticon/clapperboard.svg" alt="" width={18} height={18} className="w-4 h-4 shrink-0" />
-              <span>Kirim Contoh Bahan Video &amp; Tanya Harga via WhatsApp</span>
-              <ArrowRight className="w-4 h-4 ml-1" />
+              <Image
+                src="/icons/flaticon/whatsapp.svg"
+                alt=""
+                width={18}
+                height={18}
+                className="w-4 h-4 shrink-0"
+              />
+              <span>Tanya Ketersediaan via WhatsApp</span>
             </a>
-            <div className="flex items-center gap-1.5 text-xs text-neutral-500">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-              <span>Bisa mulai dari rekaman kamera smartphone</span>
-            </div>
           </div>
-        </section>
 
-        {/* 4 Video Services Pillars */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
-                <Smartphone className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900">Short-Form Ads (TikTok, Reels &amp; Shorts)</h3>
-              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Format 9:16 vertikal dengan hook 3 detik anti-skip. Cukup kirim video produk mentah dari HP, kami racik dengan kinetic text, sound effects, dan copywriting yang memicu klik beli.
-              </p>
-              <div className="mt-4 space-y-2 text-xs text-neutral-600">
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Hook 3 Detik Pertama Anti-Skip
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Caption Dinamis &amp; Sound Effects SFX
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
-                <Play className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900">Company Showreel & Explainer</h3>
-              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Video profil perusahaan dan demonstrasi produk berstandar sinematik yang membangun rasa percaya instan bagi calon klien korporat Anda.
-              </p>
-              <div className="mt-4 space-y-2 text-xs text-neutral-600">
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Color Grading Sinematik Pro
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Voice Over & Audio Mastering Jernih
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900">Motion Graphics & 2D Animation</h3>
-              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Animasi logo, infografis data produk bergerak, dan visualisasi fitur aplikasi yang membuat materi promosi Anda terlihat sangat modern.
-              </p>
-              <div className="mt-4 space-y-2 text-xs text-neutral-600">
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> UI Mockup Screencast Animation
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Custom Brand Element Animation
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-card">
-              <div className="w-12 h-12 rounded-2xl bg-[#FFF5F0] border border-orange-200/60 flex items-center justify-center text-[#FF5C28] mb-4">
-                <Film className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900">Social Media Content Retainer</h3>
-              <p className="text-xs text-neutral-500 mt-2 leading-relaxed">
-                Paket bulanan rutin (15-30 video/bulan) siap posting untuk menjaga konsistensi kehadiran brand Anda di algoritma TikTok dan Instagram.
-              </p>
-              <div className="mt-4 space-y-2 text-xs text-neutral-600">
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Batch Recording & Rapid Editing
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-[#FF5C28]" /> Thumbnail Cover & Copywriting Caption
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Card */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-20">
-          <div className="bg-[#121214] rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl border border-neutral-800">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#FF5C28]/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10 max-w-xl mx-auto space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Mulai Buat Video yang Mengubah Penonton Jadi Pembeli
-              </h2>
-              <p className="text-neutral-400 text-xs sm:text-sm">
-                Kirimkan materi mentah (raw footage) atau diskusikan konsep kreatif bersama video editor kami.
-              </p>
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a
-                  href={getWhatsAppUrl('video')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-8 py-3 bg-[#FF5C28] hover:bg-[#EA4510] text-white font-bold text-xs rounded-full shadow-glow transition-all flex items-center justify-center gap-2"
-                >
-                  <Image src="/icons/flaticon/clapperboard.svg" alt="" width={16} height={16} className="w-4 h-4 shrink-0" />
-                  Kirim Bahan Video via WhatsApp
-                </a>
-
-                <Link
-                  href="/"
-                  className="w-full sm:w-auto px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-full border border-white/15 transition-all"
-                >
-                  Kembali ke Home
-                </Link>
-              </div>
-            </div>
+          <div className="mt-10 pt-6 border-t border-neutral-200/60 flex items-center justify-center gap-2 text-xs text-neutral-500">
+            <Sparkles className="w-3.5 h-3.5 text-[#FF5C28]" />
+            <span>Fokus pada kualitas eksekusi terbaik untuk setiap proyek aktif</span>
           </div>
         </section>
       </main>
-
     </div>
   )
 }

@@ -140,11 +140,11 @@ const feeOnlyTiers: AdsTierItem[] = [
     unit: '/ bulan',
     badgeTop: 'Fitur Terlengkap',
     isPopular: false,
-    desc: 'Pengelolaan gabungan Google Search dan Meta Ads untuk mendominasi pasar dari dua arah.',
+    desc: 'Pengelolaan gabungan Google Search dan Meta Ads untuk menjangkau calon pelanggan potensial dari dua arah.',
     adSpendNotice: 'Rekomendasi saldo: mulai Rp 100.000+/hari',
     features: [
       'Pengelolaan 2 Platform: Meta Ads (FB/IG) + Google Ads',
-      'Strategi retargeting & funnel terpadu (menghantui prospek)',
+      'Strategi retargeting & funnel terpadu untuk menjangkau kembali prospek',
       'Setup server-side tracking (Meta CAPI / GA4)',
       '6 variasi visual ad creative & copywriting variatif',
       'Audit kecepatan & rekomendasi konversi landing page',

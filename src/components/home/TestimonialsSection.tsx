@@ -52,7 +52,7 @@ const STORIES: TestimonialStory[] = [
     domain: 'travelbandungbali.id',
     projectUrl: 'https://travelbandungbali.id/',
     quote:
-      'Website travel kami mendominasi pencarian Google untuk rute antar pulau Bandung - Bali. Alur reservasi armada Hiace door-to-door langsung terhubung ke WhatsApp admin, membuat konversi pemesanan tiket naik pesat tanpa kendala teknis.',
+      'Website travel kami tampil di halaman utama pencarian Google untuk rute antar pulau Bandung - Bali. Alur reservasi armada Hiace door-to-door langsung terhubung ke WhatsApp admin, membuat konversi pemesanan tiket naik pesat tanpa kendala teknis.',
     authorName: 'Muhammad Abdul Gani',
     authorRole: 'Pemilik Bisnis Travel',
     authorInitials: 'MG',
@@ -138,30 +138,30 @@ export function TestimonialsSection({ className, variant = 'default' }: Testimon
             : 'Dengarkan langsung bagaimana website dan aplikasi sistem informasi yang cepat, aman, dan tepat guna membantu instansi pemerintah daerah serta pelaku bisnis berkembang lebih efisien.'}
         </p>
 
-        {/* Highlight Stats Strip */}
+        {/* Highlight Value Metrics Strip */}
         <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-6 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-neutral-200/80 shadow-soft max-w-2xl mx-auto">
           <div className="text-center">
-            <span className="block text-2xl sm:text-3xl font-extrabold text-neutral-900">
-              {isWebsite ? '100%' : '50+'}
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-900">
+              100%
             </span>
             <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
-              {isWebsite ? 'Hak Milik Tanpa Sewa Bulanan' : 'Proyek Selesai & Online'}
+              Hak Milik Tanpa Sewa Bulanan
             </span>
           </div>
           <div className="text-center border-x border-neutral-100">
-            <span className="block text-2xl sm:text-3xl font-extrabold text-[#C23605]">
-              {isWebsite ? '0%' : '98%'}
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#C23605]">
+              1 Tahun
             </span>
             <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
-              {isWebsite ? 'Potongan Komisi Marketplace' : 'Tingkat Kepuasan Klien'}
+              Garansi Pemeliharaan Resmi
             </span>
           </div>
           <div className="text-center">
-            <span className="block text-2xl sm:text-3xl font-extrabold text-neutral-900">
-              4.9/5
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-900">
+              1-on-1
             </span>
             <span className="text-[11px] sm:text-xs text-neutral-500 font-medium">
-              Rating Kualitas Layanan
+              Ditangani Lead Developer
             </span>
           </div>
         </div>

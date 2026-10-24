@@ -20,10 +20,13 @@ describe('TestimonialsSection (Suara Pengguna)', () => {
       }),
     ).toBeTruthy()
 
-    // Key stats
-    expect(screen.getByText('50+')).toBeTruthy()
-    expect(screen.getByText('98%')).toBeTruthy()
-    expect(screen.getByText('4.9/5')).toBeTruthy()
+    // Key value metrics
+    expect(screen.getAllByText('100%').length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByText('1 Tahun')).toBeTruthy()
+    expect(screen.getByText('1-on-1')).toBeTruthy()
+    expect(screen.getByText('Hak Milik Tanpa Sewa Bulanan')).toBeTruthy()
+    expect(screen.getByText('Garansi Pemeliharaan Resmi')).toBeTruthy()
+    expect(screen.getByText('Ditangani Lead Developer')).toBeTruthy()
   })
 
   it('renders all client stories with author details, verified badge, and stats', () => {
@@ -42,7 +45,7 @@ describe('TestimonialsSection (Suara Pengguna)', () => {
     // Stat outcomes
     expect(screen.getByText('900+')).toBeTruthy()
     expect(screen.getByText('+320%')).toBeTruthy()
-    expect(screen.getByText('100%')).toBeTruthy()
+    expect(screen.getAllByText('100%').length).toBeGreaterThanOrEqual(2)
     expect(screen.getByText('10x Lebih Cepat')).toBeTruthy()
   })
 
