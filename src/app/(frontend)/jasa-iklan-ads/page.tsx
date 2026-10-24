@@ -13,7 +13,6 @@ import {
   Clock,
   Sparkles,
   AlertTriangle,
-  CircleDollarSign,
   HelpCircle,
   ChevronDown,
   Settings2,

@@ -954,7 +954,7 @@ export default function JasaPembuatanWebsitePage() {
                   </div>
 
                   {/* Founder Personal Touch Card */}
-                  <div className="pt-3 border-t border-neutral-200/70 mt-2 flex items-center gap-3.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/70 max-w-xl">
+                  <div className="pt-3 mt-2 flex items-center gap-3.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/70 max-w-xl">
                     <div className="relative w-11 h-11 rounded-full overflow-hidden shadow-sm ring-2 ring-white shrink-0 bg-neutral-100">
                       <Image
                         src="/images/avatars/ahmad-khairol-m.webp"
@@ -1250,13 +1250,12 @@ export default function JasaPembuatanWebsitePage() {
               {/* Card 1: AGAN TRANS */}
               <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col group">
                 <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
-                  <img
+                  <Image
                     src="/images/porto-2.webp"
                     alt="Website Travel Bandung Bali AGAN TRANS"
                     width={360}
                     height={225}
                     loading="lazy"
-                    decoding="async"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
@@ -1296,13 +1295,12 @@ export default function JasaPembuatanWebsitePage() {
               {/* Card 2: Youthpreneur */}
               <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col group">
                 <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
-                  <img
+                  <Image
                     src="/images/porto-1.webp"
                     alt="Platform Inkubasi Wirausaha Dispora Tapin"
                     width={360}
                     height={225}
                     loading="lazy"
-                    decoding="async"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
@@ -1342,13 +1340,12 @@ export default function JasaPembuatanWebsitePage() {
               {/* Card 3: Si Akoor */}
               <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col group">
                 <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
-                  <img
+                  <Image
                     src="/images/porto-3.webp"
                     alt="Sistem Informasi Si Akoor Sekretariat DPRD"
                     width={360}
                     height={225}
                     loading="lazy"
-                    decoding="async"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">

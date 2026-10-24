@@ -4,28 +4,22 @@ import Link from 'next/link'
 import {
   Smartphone,
   Check,
-  X,
   ArrowRight,
   ShieldCheck,
   Clock,
   Sparkles,
   MapPin,
   Camera,
-  Bell,
   Sliders,
   Database,
   Globe,
-  Layers,
   ShoppingBag,
   CalendarCheck,
   Landmark,
-  FileCheck,
-  ExternalLink,
   ChevronDown,
   AlertTriangle,
   Monitor,
   CheckCircle2,
-  Lock,
   Headphones,
   Zap,
 } from 'lucide-react'
@@ -93,33 +87,6 @@ const faqs = [
   {
     q: 'Apakah melayani pembuatan aplikasi untuk perusahaan atau instansi di luar Kalimantan Selatan?',
     a: 'Tentu saja. Kami melayani klien bisnis, UMKM, korporasi, hingga instansi pemerintah di seluruh wilayah Indonesia secara profesional. Seluruh koordinasi alur, presentasi prototype desain layar, hingga serah terima dapat dilakukan secara terstruktur via Google Meet, Zoom, dan WhatsApp grup khusus proyek.',
-  },
-]
-
-const problemCards = [
-  {
-    number: '01',
-    title: 'Harga Software House Melambung karena Dihitung 2 Kali',
-    desc: 'Banyak vendor memisahkan biaya koding Android dan iOS ke dalam dua tim berbeda sehingga biaya membengkak hingga puluhan juta rupiah. Padahal dengan teknologi cross-platform modern, keduanya bisa dibangun sekaligus dengan biaya jauh lebih hemat.',
-    badge: 'Biaya Tak Wajar',
-  },
-  {
-    number: '02',
-    title: 'Aplikasi Sudah Jadi, Tapi Ditolak Google Play Store / App Store',
-    desc: 'Sekadar membungkus website biasa menjadi file APK murahan akan langsung ditolak oleh sistem keamanan Google dan Apple dengan alasan pelanggaran kebijakan WebView Spam. Aplikasi wajib memiliki fungsi native nyata dan standar arsitektur resmi.',
-    badge: 'Gagal Tayang',
-  },
-  {
-    number: '03',
-    title: 'Tampilan Rumit & Berat Saat Dibuka di HP Spesifikasi Rendah',
-    desc: 'Aplikasi yang memakan memori berlebih dan memiliki menu berbelit-belit membuat pelanggan malas memesan dan staf lapangan kembali menggunakan cara manual di kertas atau grup WhatsApp. Pengguna akhirnya memilih uninstal.',
-    badge: 'Pengguna Frustrasi',
-  },
-  {
-    number: '04',
-    title: 'Ditinggal Developer Saat Ada Pembaruan OS Android / iOS',
-    desc: 'Sistem operasi smartphone diperbarui secara berkala setiap tahun. Tanpa dokumentasi kode yang bersih, akses server milik sendiri, dan garansi pemeliharaan, aplikasi Anda berisiko rusak total hanya dalam hitungan beberapa bulan.',
-    badge: 'Tanpa Jaminan',
   },
 ]
 
@@ -432,7 +399,7 @@ export default function JasaPembuatanAplikasiMobilePage() {
                 </div>
 
                 {/* Founder Personal Touch Card */}
-                <div className="pt-3 border-t border-neutral-200/70 mt-2 flex items-center gap-3.5 bg-white/80 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/80 max-w-xl shadow-xs">
+                <div className="pt-3 mt-2 flex items-center gap-3.5 bg-white/80 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/80 max-w-xl shadow-xs">
                   <div className="relative w-11 h-11 rounded-full overflow-hidden shadow-sm ring-2 ring-white shrink-0 bg-neutral-100">
                     <Image
                       src="/images/avatars/ahmad-khairol-m.webp"
