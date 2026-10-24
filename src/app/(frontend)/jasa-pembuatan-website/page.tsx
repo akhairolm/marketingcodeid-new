@@ -955,8 +955,14 @@ export default function JasaPembuatanWebsitePage() {
 
                   {/* Founder Personal Touch Card */}
                   <div className="pt-3 border-t border-neutral-200/70 mt-2 flex items-center gap-3.5 bg-white/70 backdrop-blur-xs p-3.5 rounded-2xl border border-neutral-200/70 max-w-xl">
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#FF5C28] to-amber-500 text-white font-extrabold flex items-center justify-center text-sm shadow-sm ring-2 ring-white shrink-0">
-                      AK
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden shadow-sm ring-2 ring-white shrink-0 bg-neutral-100">
+                      <Image
+                        src="/images/avatars/ahmad-khairol-m.webp"
+                        alt="Ahmad Khairol M. - Lead Developer & Founder"
+                        width={44}
+                        height={44}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="text-left">
                       <div className="flex items-center gap-2 flex-wrap">

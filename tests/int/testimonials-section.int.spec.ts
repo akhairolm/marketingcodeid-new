@@ -45,4 +45,21 @@ describe('TestimonialsSection (Suara Pengguna)', () => {
     expect(screen.getByText('100%')).toBeTruthy()
     expect(screen.getByText('10x Lebih Cepat')).toBeTruthy()
   })
+
+  it('renders author profile avatar images when provided and initials fallback when absent', () => {
+    render(React.createElement(TestimonialsSection))
+
+    // Avatars with images
+    const ekoAvatar = screen.getByRole('img', { name: 'EKO HARYONO, S.E., M.M' })
+    expect(ekoAvatar).toBeTruthy()
+
+    const padlianAvatar = screen.getByRole('img', { name: 'Dr. Padlian Noor, S.Sos., M.A.P.' })
+    expect(padlianAvatar).toBeTruthy()
+
+    const riniAvatar = screen.getByRole('img', { name: 'Rini Yusnita, S.STP, MM' })
+    expect(riniAvatar).toBeTruthy()
+
+    // Fallback initials for Muhammad Abdul Gani
+    expect(screen.getByText('MG')).toBeTruthy()
+  })
 })

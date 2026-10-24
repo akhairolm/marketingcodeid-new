@@ -12,6 +12,7 @@ export interface TestimonialStory {
   authorName: string
   authorRole: string
   authorInitials: string
+  authorAvatar?: string
   rating: number
   statValue: string
   statLabel: string
@@ -35,6 +36,7 @@ const STORIES: TestimonialStory[] = [
     authorName: 'EKO HARYONO, S.E., M.M',
     authorRole: 'Kepala Dinas Pemuda dan Olahraga Kabupaten Tapin',
     authorInitials: 'EH',
+    authorAvatar: '/images/avatars/eko-haryono.webp',
     rating: 5,
     statValue: '900+',
     statLabel: 'Pemuda & Wirausaha Terfasilitasi',
@@ -73,6 +75,7 @@ const STORIES: TestimonialStory[] = [
     authorName: 'Dr. Padlian Noor, S.Sos., M.A.P.',
     authorRole: 'Sekretaris DPRD (Sekwan) Kabupaten Tapin',
     authorInitials: 'PN',
+    authorAvatar: '/images/avatars/padlian-noor.webp',
     rating: 5,
     statValue: '100%',
     statLabel: 'Akurasi Presensi GPS & Disposisi Cepat',
@@ -92,6 +95,7 @@ const STORIES: TestimonialStory[] = [
     authorName: 'Rini Yusnita, S.STP, MM',
     authorRole: 'Kepala Bagian Organisasi',
     authorInitials: 'RY',
+    authorAvatar: '/images/avatars/rini-yusnita.webp',
     rating: 5,
     statValue: '10x Lebih Cepat',
     statLabel: 'Rekapitulasi Evaluasi Kinerja Pegawai',
@@ -173,9 +177,21 @@ export function TestimonialsSection({ className, variant = 'default' }: Testimon
               <div>
                 <div className="flex items-start justify-between gap-3 mb-3.5">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF5C28] to-[#EA4510] text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
-                      {story.authorInitials}
-                    </div>
+                    {story.authorAvatar ? (
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 shadow-xs ring-1 ring-neutral-200/80 bg-neutral-100">
+                        <Image
+                          src={story.authorAvatar}
+                          alt={story.authorName}
+                          width={40}
+                          height={40}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF5C28] to-[#EA4510] text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
+                        {story.authorInitials}
+                      </div>
+                    )}
                     <div>
                       <div className="font-bold text-sm text-neutral-900 leading-snug">
                         {story.clientName}
@@ -334,9 +350,21 @@ export function TestimonialsSection({ className, variant = 'default' }: Testimon
 
                 {/* Author Profile */}
                 <div className="mt-6 pt-5 border-t border-neutral-100 flex items-center gap-3.5 relative z-10">
-                  <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] text-white font-extrabold text-sm flex items-center justify-center shadow-xs shrink-0">
-                    {story.authorInitials}
-                  </div>
+                  {story.authorAvatar ? (
+                    <div className="relative w-11 h-11 rounded-2xl overflow-hidden shrink-0 shadow-xs ring-1 ring-neutral-200/80 bg-neutral-100">
+                      <Image
+                        src={story.authorAvatar}
+                        alt={story.authorName}
+                        width={44}
+                        height={44}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#FF5C28] to-[#EA4510] text-white font-extrabold text-sm flex items-center justify-center shadow-xs shrink-0">
+                      {story.authorInitials}
+                    </div>
+                  )}
                   <div>
                     <h4 className="text-sm font-bold text-neutral-900 leading-snug">
                       {story.authorName}
