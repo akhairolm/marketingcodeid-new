@@ -10,12 +10,12 @@ interface MaskedPhoneCellProps {
  */
 export function MaskedPhoneCell({ phone }: MaskedPhoneCellProps) {
   if (!phone) {
-    return <span className="text-zinc-500 text-xs italic">Belum terhubung</span>
+    return <span className="text-muted-foreground text-xs italic">Belum terhubung</span>
   }
 
   const clean = phone.trim()
   if (clean.length < 8) {
-    return <span className="font-mono text-xs text-zinc-300">{clean}</span>
+    return <span className="font-mono text-xs text-foreground font-semibold">{clean}</span>
   }
 
   const prefix = clean.slice(0, 6)
@@ -23,7 +23,7 @@ export function MaskedPhoneCell({ phone }: MaskedPhoneCellProps) {
   const masked = `${prefix}****${suffix}`
 
   return (
-    <span className="font-mono text-xs text-zinc-200 tracking-tight" title={clean}>
+    <span className="font-mono text-xs text-foreground font-semibold tracking-tight" title={clean}>
       {masked}
     </span>
   )

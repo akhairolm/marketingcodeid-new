@@ -60,35 +60,37 @@ export function TriggerClosingModal({ session, open, onOpenChange }: TriggerClos
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md bg-zinc-900 border-zinc-800 text-white">
-        <form onSubmit={handleSubmit}>
+      <DialogContent className="sm:max-w-md bg-card border-border text-foreground rounded-[20px] p-6 shadow-xl">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <DialogHeader>
-            <DialogTitle className="text-lg font-bold">Catat Closing Prospek (Meta CAPI)</DialogTitle>
-            <DialogDescription className="text-zinc-400 text-xs">
+            <DialogTitle className="font-display text-lg font-bold tracking-tight text-foreground">
+              Catat Closing Prospek (Meta CAPI)
+            </DialogTitle>
+            <DialogDescription className="text-muted-foreground text-xs leading-relaxed mt-1">
               Menandai sesi prospek ini sebagai transaksi berhasil (Purchase) dan menembakkan event ke Meta Conversions API secara real-time.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4 py-4 text-xs">
-            <div className="rounded-xl bg-zinc-800/60 p-3 border border-zinc-700/60 space-y-1.5">
-              <div className="flex justify-between">
-                <span className="text-zinc-400">Kode Referensi:</span>
+          <div className="space-y-4 py-2 text-xs">
+            <div className="rounded-xl bg-accent/40 p-4 border border-border space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground font-medium">Kode Referensi:</span>
                 <span className="font-mono font-bold text-primary">{session.refCode}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-zinc-400">Nomor WhatsApp:</span>
-                <span className="font-mono text-zinc-200">{session.phoneNumber || 'Belum terhubung'}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground font-medium">Nomor WhatsApp:</span>
+                <span className="font-mono font-semibold text-foreground">{session.phoneNumber || 'Belum terhubung'}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-zinc-400">Parameter fbc (Meta):</span>
-                <span className="font-mono text-zinc-300 truncate max-w-[200px]" title={session.fbc || '-'}>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground font-medium">Parameter fbc (Meta):</span>
+                <span className="font-mono text-muted-foreground truncate max-w-[200px]" title={session.fbc || '-'}>
                   {session.fbc ? `${session.fbc.slice(0, 24)}...` : 'Tidak ada'}
                 </span>
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="conversionValue" className="text-zinc-200 text-xs font-semibold">
+              <Label htmlFor="conversionValue" className="text-foreground text-xs font-bold">
                 Nilai Transaksi (IDR)
               </Label>
               <Input
@@ -100,21 +102,21 @@ export function TriggerClosingModal({ session, open, onOpenChange }: TriggerClos
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="1190000"
                 required
-                className="bg-zinc-800 border-zinc-700 text-white"
+                className="bg-background border-border text-foreground font-semibold"
               />
-              <p className="text-[11px] text-zinc-400">
+              <p className="text-[11px] text-muted-foreground">
                 Nilai ini akan dilaporkan ke Meta Events Manager sebagai nilai omset (Purchase value).
               </p>
             </div>
           </div>
 
-          <DialogFooter className="gap-2 sm:gap-0">
+          <DialogFooter className="gap-2 sm:gap-0 pt-2">
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={() => onOpenChange(false)}
-              className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 cursor-pointer"
+              className="rounded-full border-border text-muted-foreground hover:text-foreground hover:bg-accent cursor-pointer"
             >
               Batal
             </Button>
@@ -122,7 +124,7 @@ export function TriggerClosingModal({ session, open, onOpenChange }: TriggerClos
               type="submit"
               size="sm"
               disabled={loading}
-              className="bg-primary text-zinc-950 font-bold hover:bg-primary/90 cursor-pointer"
+              className="rounded-full bg-primary text-zinc-950 font-bold hover:bg-primary/90 cursor-pointer"
             >
               {loading ? 'Mengirim ke Meta...' : 'Konfirmasi Closing'}
             </Button>

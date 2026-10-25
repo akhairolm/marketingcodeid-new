@@ -8,6 +8,22 @@ import { Button } from '@/components/ui/button'
 import { CheckCircle2, Copy } from 'lucide-react'
 import { toast } from 'sonner'
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+
 interface GoogleConversionItem {
   id: string
   refCode: string
@@ -38,92 +54,105 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
 
   return (
     <>
-      <div className="overflow-x-auto rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-xs">
-        <table className="w-full text-left text-xs">
-          <thead className="border-b border-zinc-800 bg-zinc-950/40 text-zinc-400 font-semibold uppercase tracking-wider text-[11px]">
-            <tr>
-              <th className="py-3.5 px-4">Waktu Klik</th>
-              <th className="py-3.5 px-4">Ref Code</th>
-              <th className="py-3.5 px-4">Nomor WhatsApp</th>
-              <th className="py-3.5 px-4">Google Click ID (GCLID / WBRAID)</th>
-              <th className="py-3.5 px-4">Status</th>
-              <th className="py-3.5 px-4 text-right">Aksi Konversi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-zinc-800/60 text-zinc-300">
-            {items.length === 0 ? (
-              <tr>
-                <td colSpan={6} className="py-8 text-center text-zinc-500 text-xs">
-                  Belum ada data sesi klik Google Ads yang tercatat. Sesi akan otomatis muncul ketika ada pengunjung yang mengklik tombol WhatsApp dari landing page.
-                </td>
-              </tr>
-            ) : (
-              items.map((item) => {
-                const dateStr = new Date(item.createdAt).toLocaleString('id-ID', {
-                  day: '2-digit',
-                  month: 'short',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })
-                const isWon = item.status === 'WON'
-                const clickId = item.gclid || item.wbraid || item.gbraid
+      <Card className="bg-card border-border rounded-[20px] overflow-hidden shadow-xs">
+        <CardHeader className="pb-3 border-b border-border px-6 py-4 flex flex-row items-center justify-between">
+          <div>
+            <CardTitle className="font-display text-base font-bold tracking-tight">
+              Riwayat GCLID & Status Konversi
+            </CardTitle>
+            <CardDescription className="text-xs text-muted-foreground mt-0.5">
+              Menampilkan {items.length} sesi terbaru yang terekam
+            </CardDescription>
+          </div>
+        </CardHeader>
 
-                return (
-                  <tr key={item.id} className="hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-3 px-4 font-mono text-zinc-400 whitespace-nowrap">
-                      {dateStr}
-                    </td>
-                    <td className="py-3 px-4 font-mono font-bold text-primary">
-                      {item.refCode}
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <MaskedPhoneCell phone={item.phoneNumber} />
-                    </td>
-                    <td className="py-3 px-4 font-mono text-[11px] text-zinc-300 max-w-xs">
-                      {clickId ? (
-                        <div className="flex items-center gap-1.5">
-                          <span className="truncate max-w-[180px]" title={clickId}>
-                            {clickId.slice(0, 18)}...
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => handleCopyGclid(clickId)}
-                            className="text-zinc-500 hover:text-zinc-300 cursor-pointer p-0.5"
-                            title="Salin GCLID"
+        <CardContent className="p-0 overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow className="border-border hover:bg-transparent">
+                <TableHead className="pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">Waktu Klik</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Ref Code</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Nomor WhatsApp</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Google Click ID (GCLID / WBRAID)</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Status</TableHead>
+                <TableHead className="pr-6 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider">Aksi Konversi</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {items.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="py-12 text-center text-muted-foreground text-xs">
+                    Belum ada data sesi klik Google Ads yang tercatat. Sesi akan otomatis muncul ketika ada pengunjung yang mengklik tombol WhatsApp dari landing page.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                items.map((item) => {
+                  const dateStr = new Date(item.createdAt).toLocaleString('id-ID', {
+                    day: '2-digit',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })
+                  const isWon = item.status === 'WON'
+                  const clickId = item.gclid || item.wbraid || item.gbraid
+
+                  return (
+                    <TableRow key={item.id} className="border-border hover:bg-accent/40 transition-colors">
+                      <TableCell className="py-3.5 pl-6 font-mono text-xs text-muted-foreground whitespace-nowrap">
+                        {dateStr}
+                      </TableCell>
+                      <TableCell className="py-3.5 font-mono font-bold text-xs text-primary">
+                        {item.refCode}
+                      </TableCell>
+                      <TableCell className="py-3.5 whitespace-nowrap">
+                        <MaskedPhoneCell phone={item.phoneNumber} />
+                      </TableCell>
+                      <TableCell className="py-3.5 font-mono text-[11px] text-foreground max-w-xs">
+                        {clickId ? (
+                          <div className="flex items-center gap-1.5">
+                            <span className="truncate max-w-[180px] font-medium" title={clickId}>
+                              {clickId.slice(0, 18)}...
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleCopyGclid(clickId)}
+                              className="text-muted-foreground hover:text-foreground cursor-pointer p-0.5 rounded-sm"
+                              title="Salin GCLID"
+                            >
+                              <Copy className="h-3 w-3" />
+                            </button>
+                          </div>
+                        ) : (
+                          <span className="text-muted-foreground/60 italic">Tidak ada GCLID</span>
+                        )}
+                      </TableCell>
+                      <TableCell className="py-3.5 whitespace-nowrap">
+                        <ConversionStatusBadge status={item.status} />
+                      </TableCell>
+                      <TableCell className="py-3.5 pr-6 text-right whitespace-nowrap">
+                        {isWon ? (
+                          <div className="inline-flex items-center gap-1.5 text-chip-live-foreground text-xs font-bold">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                            <span>Closing Tersimpan</span>
+                          </div>
+                        ) : (
+                          <Button
+                            size="sm"
+                            onClick={() => handleOpenClosing(item)}
+                            className="h-8 text-xs px-3 rounded-full font-bold bg-accent text-accent-foreground hover:bg-primary hover:text-zinc-950 transition-all cursor-pointer"
                           >
-                            <Copy className="h-3 w-3" />
-                          </button>
-                        </div>
-                      ) : (
-                        <span className="text-zinc-500 italic">Tidak ada GCLID</span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <ConversionStatusBadge status={item.status} />
-                    </td>
-                    <td className="py-3 px-4 text-right whitespace-nowrap">
-                      {isWon ? (
-                        <div className="inline-flex items-center gap-1.5 text-emerald-400 text-[11px] font-semibold">
-                          <CheckCircle2 className="h-3.5 w-3.5" />
-                          <span>Closing Tersimpan</span>
-                        </div>
-                      ) : (
-                        <Button
-                          size="sm"
-                          onClick={() => handleOpenClosing(item)}
-                          className="h-7 text-[11px] px-2.5 font-bold bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-zinc-950 transition-all cursor-pointer"
-                        >
-                          Catat Closing
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                )
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
+                            Catat Closing
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  )
+                })
+              )}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
 
       <TriggerGoogleClosingModal
         session={selectedSession}

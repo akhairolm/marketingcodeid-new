@@ -7,6 +7,7 @@ import { ConversionStatCard } from '@/components/dashboard/offline-conversion/Co
 import { GoogleConversionTableClient } from './GoogleConversionTableClient'
 import { TrendingUp, Settings, Download, Search, MessageSquare, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export const dynamic = 'force-dynamic'
 
@@ -48,92 +49,85 @@ export default async function GoogleOfflineConversionPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
+    <main className="w-full max-w-[1240px] mx-auto p-4 sm:p-8 flex flex-col gap-6">
+      {/* ── Header ─────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-1 border border-emerald-500/20">
-            <TrendingUp className="w-3.5 h-3.5" />
-            <span>Google Ads Offline Conversion Imports (OCI)</span>
+          <div className="flex items-center gap-2 mb-2">
+            <Badge variant="outline" className="gap-1.5 px-3 py-1 text-xs font-semibold bg-accent/40 border-border">
+              <TrendingUp className="w-3.5 h-3.5 text-primary" />
+              <span>Google Ads Offline Conversion Imports (OCI)</span>
+            </Badge>
           </div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white">
+          <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
             Google Ads Offline Conversion
           </h1>
-          <p className="text-xs text-zinc-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1 max-w-2xl leading-relaxed">
             Rekam GCLID otomatis saat klik tombol WhatsApp, catat transaksi closing penjualan, dan unggah konversi ke Google Ads untuk optimasi Smart Bidding (Target ROAS).
           </p>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
-          <a href="/api/offline-conversion/google/export-csv" download>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-zinc-700 bg-zinc-900 text-zinc-300 hover:text-white flex items-center gap-2 cursor-pointer text-xs"
-            >
-              <Download className="w-3.5 h-3.5" />
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="rounded-full border-border font-bold hover:bg-accent text-xs h-9 px-4"
+          >
+            <a href="/api/offline-conversion/google/export-csv" download>
+              <Download className="w-3.5 h-3.5 mr-1.5" />
               <span>Ekspor CSV Google Ads</span>
-            </Button>
-          </a>
+            </a>
+          </Button>
 
-          <Link href="/dashboard/offline-conversion/google/settings">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-zinc-700 bg-zinc-900 text-zinc-300 hover:text-white flex items-center gap-2 cursor-pointer text-xs"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>Pengaturan Google Ads</span>
-            </Button>
-          </Link>
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="rounded-full border-border font-bold hover:bg-accent text-xs h-9 px-4"
+          >
+            <Link href="/dashboard/offline-conversion/google/settings">
+              <Settings className="w-3.5 h-3.5 mr-1.5" />
+              <span>Pengaturan Akun</span>
+            </Link>
+          </Button>
         </div>
       </div>
 
-      {/* KPI Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* ── KPI Stats Cards ────────────────────────────────── */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <ConversionStatCard
-          label="Total GCLID Tertangkap"
+          label="TOTAL GCLID TERCATAT"
           value={totalGclid}
           sublabel="Pengunjung dari Google Ads"
           icon={Search}
-          accent="emerald"
+          delay="0ms"
         />
         <ConversionStatCard
-          label="Lead WhatsApp Masuk"
+          label="LEAD WA MASUK"
           value={totalLeads}
           sublabel="Tercatat bersama nomor HP"
           icon={MessageSquare}
-          accent="blue"
+          delay="80ms"
         />
         <ConversionStatCard
-          label="Closing Transaksi"
+          label="CLOSING TRANSAKSI"
           value={totalWon}
           sublabel="Siap diimpor ke Google Ads"
           icon={CheckCircle}
-          accent="primary"
+          delay="160ms"
         />
         <ConversionStatCard
-          label="Enhanced Conversions"
+          label="ENHANCED CONVERSIONS"
           value="Aktif"
           sublabel="SHA-256 E.164 phone matching"
           icon={TrendingUp}
-          accent="purple"
+          delay="240ms"
         />
-      </div>
+      </section>
 
-      {/* Interactive Table Client */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-300">
-            Riwayat GCLID & Status Konversi
-          </h2>
-          <span className="text-xs text-zinc-500">
-            Menampilkan {items.length} sesi terbaru
-          </span>
-        </div>
-
-        <GoogleConversionTableClient items={items} />
-      </div>
-    </div>
+      {/* ── Table Container ────────────────────────────────── */}
+      <GoogleConversionTableClient items={items} />
+    </main>
   )
 }

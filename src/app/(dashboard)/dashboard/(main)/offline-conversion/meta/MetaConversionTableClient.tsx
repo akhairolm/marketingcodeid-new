@@ -9,6 +9,22 @@ import { CheckCircle2, RotateCw } from 'lucide-react'
 import { retryMetaCapiEventAction } from './actions'
 import { toast } from 'sonner'
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+
 interface MetaConversionItem {
   id: string
   refCode: string
@@ -51,93 +67,106 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
 
   return (
     <>
-      <div className="overflow-x-auto rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-xs">
-        <table className="w-full text-left text-xs">
-          <thead className="border-b border-zinc-800 bg-zinc-950/40 text-zinc-400 font-semibold uppercase tracking-wider text-[11px]">
-            <tr>
-              <th className="py-3.5 px-4">Waktu Klik</th>
-              <th className="py-3.5 px-4">Ref Code</th>
-              <th className="py-3.5 px-4">Nomor WhatsApp</th>
-              <th className="py-3.5 px-4">Parameter Meta (fbc / fbp)</th>
-              <th className="py-3.5 px-4">Status Sesi</th>
-              <th className="py-3.5 px-4 text-right">Aksi CAPI</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-zinc-800/60 text-zinc-300">
-            {items.length === 0 ? (
-              <tr>
-                <td colSpan={6} className="py-8 text-center text-zinc-500 text-xs">
-                  Belum ada data sesi klik Meta Ads yang tercatat. Sesi akan otomatis muncul ketika ada pengunjung yang mengklik tombol WhatsApp dari landing page.
-                </td>
-              </tr>
-            ) : (
-              items.map((item) => {
-                const dateStr = new Date(item.createdAt).toLocaleString('id-ID', {
-                  day: '2-digit',
-                  month: 'short',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })
-                const isWon = item.status === 'WON'
+      <Card className="bg-card border-border rounded-[20px] overflow-hidden shadow-xs">
+        <CardHeader className="pb-3 border-b border-border px-6 py-4 flex flex-row items-center justify-between">
+          <div>
+            <CardTitle className="font-display text-base font-bold tracking-tight">
+              Riwayat Sesi Klik & Status Closing
+            </CardTitle>
+            <CardDescription className="text-xs text-muted-foreground mt-0.5">
+              Menampilkan {items.length} sesi terbaru yang terekam
+            </CardDescription>
+          </div>
+        </CardHeader>
 
-                return (
-                  <tr key={item.id} className="hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-3 px-4 font-mono text-zinc-400 whitespace-nowrap">
-                      {dateStr}
-                    </td>
-                    <td className="py-3 px-4 font-mono font-bold text-primary">
-                      {item.refCode}
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <MaskedPhoneCell phone={item.phoneNumber} />
-                    </td>
-                    <td className="py-3 px-4 font-mono text-[11px] text-zinc-400 max-w-xs truncate">
-                      {item.fbc ? (
-                        <span className="text-zinc-200" title={`fbc: ${item.fbc}\nfbp: ${item.fbp || '-'}`}>
-                          {item.fbc.slice(0, 20)}...
-                        </span>
-                      ) : (
-                        <span className="text-zinc-500 italic">Tidak ada fbclid</span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <ConversionStatusBadge status={item.status} />
-                    </td>
-                    <td className="py-3 px-4 text-right whitespace-nowrap">
-                      {isWon ? (
-                        <div className="inline-flex items-center gap-1.5 text-emerald-400 text-[11px] font-semibold">
-                          <CheckCircle2 className="h-3.5 w-3.5" />
-                          <span>Closing Tercatat</span>
-                          {item.conversionId && (
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-6 w-6 text-zinc-400 hover:text-white"
-                              title="Kirim ulang ke Meta CAPI"
-                              disabled={retryingId === item.conversionId}
-                              onClick={() => handleRetry(item.conversionId!)}
-                            >
-                              <RotateCw className={`h-3 w-3 ${retryingId === item.conversionId ? 'animate-spin' : ''}`} />
-                            </Button>
-                          )}
-                        </div>
-                      ) : (
-                        <Button
-                          size="sm"
-                          onClick={() => handleOpenClosing(item)}
-                          className="h-7 text-[11px] px-2.5 font-bold bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-zinc-950 transition-all cursor-pointer"
-                        >
-                          Catat Closing
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                )
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
+        <CardContent className="p-0 overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow className="border-border hover:bg-transparent">
+                <TableHead className="pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">Waktu Klik</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Ref Code</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Nomor WhatsApp</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Parameter Meta (fbc / fbp)</TableHead>
+                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Status Sesi</TableHead>
+                <TableHead className="pr-6 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider">Aksi CAPI</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {items.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="py-12 text-center text-muted-foreground text-xs">
+                    Belum ada data sesi klik Meta Ads yang tercatat. Sesi akan otomatis muncul ketika ada pengunjung yang mengklik tombol WhatsApp dari landing page.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                items.map((item) => {
+                  const dateStr = new Date(item.createdAt).toLocaleString('id-ID', {
+                    day: '2-digit',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })
+                  const isWon = item.status === 'WON'
+
+                  return (
+                    <TableRow key={item.id} className="border-border hover:bg-accent/40 transition-colors">
+                      <TableCell className="py-3.5 pl-6 font-mono text-xs text-muted-foreground whitespace-nowrap">
+                        {dateStr}
+                      </TableCell>
+                      <TableCell className="py-3.5 font-mono font-bold text-xs text-primary">
+                        {item.refCode}
+                      </TableCell>
+                      <TableCell className="py-3.5 whitespace-nowrap">
+                        <MaskedPhoneCell phone={item.phoneNumber} />
+                      </TableCell>
+                      <TableCell className="py-3.5 font-mono text-[11px] text-muted-foreground max-w-xs truncate">
+                        {item.fbc ? (
+                          <span className="text-foreground font-medium" title={`fbc: ${item.fbc}\nfbp: ${item.fbp || '-'}`}>
+                            {item.fbc.slice(0, 20)}...
+                          </span>
+                        ) : (
+                          <span className="text-muted-foreground/60 italic">Tidak ada fbclid</span>
+                        )}
+                      </TableCell>
+                      <TableCell className="py-3.5 whitespace-nowrap">
+                        <ConversionStatusBadge status={item.status} />
+                      </TableCell>
+                      <TableCell className="py-3.5 pr-6 text-right whitespace-nowrap">
+                        {isWon ? (
+                          <div className="inline-flex items-center gap-1.5 text-chip-live-foreground text-xs font-bold">
+                            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                            <span>Closing Tercatat</span>
+                            {item.conversionId && (
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-6 w-6 text-muted-foreground hover:text-foreground rounded-full"
+                                title="Kirim ulang ke Meta CAPI"
+                                disabled={retryingId === item.conversionId}
+                                onClick={() => handleRetry(item.conversionId!)}
+                              >
+                                <RotateCw className={`h-3 w-3 ${retryingId === item.conversionId ? 'animate-spin' : ''}`} />
+                              </Button>
+                            )}
+                          </div>
+                        ) : (
+                          <Button
+                            size="sm"
+                            onClick={() => handleOpenClosing(item)}
+                            className="h-8 text-xs px-3 rounded-full font-bold bg-accent text-accent-foreground hover:bg-primary hover:text-zinc-950 transition-all cursor-pointer"
+                          >
+                            Catat Closing
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  )
+                })
+              )}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
 
       <TriggerClosingModal
         session={selectedSession}
