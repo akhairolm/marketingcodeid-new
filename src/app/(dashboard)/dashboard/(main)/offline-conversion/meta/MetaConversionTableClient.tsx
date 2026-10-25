@@ -5,8 +5,9 @@ import { ConversionStatusBadge } from '@/components/dashboard/offline-conversion
 import { MaskedPhoneCell } from '@/components/dashboard/offline-conversion/MaskedPhoneCell'
 import { TriggerClosingModal } from '@/components/dashboard/offline-conversion/TriggerClosingModal'
 import { Button } from '@/components/ui/button'
-import { CheckCircle2, RotateCw } from 'lucide-react'
-import { retryMetaCapiEventAction } from './actions'
+import { CheckCircle2, RotateCw, Trash2 } from 'lucide-react'
+import { deleteAdClickSessionAction, retryMetaCapiEventAction } from './actions'
+import { DeleteDialog } from '@/components/dashboard/DeleteDialog'
 import { toast } from 'sonner'
 
 import {
@@ -132,32 +133,58 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                         <ConversionStatusBadge status={item.status} />
                       </TableCell>
                       <TableCell className="py-3.5 pr-6 text-right whitespace-nowrap">
-                        {isWon ? (
-                          <div className="inline-flex items-center gap-1.5 text-chip-live-foreground text-xs font-bold">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                            <span>Closing Tercatat</span>
-                            {item.conversionId && (
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-6 w-6 text-muted-foreground hover:text-foreground rounded-full ml-1"
-                                title="Kirim ulang ke Meta CAPI"
-                                disabled={retryingId === item.conversionId}
-                                onClick={() => handleRetry(item.conversionId!)}
-                              >
-                                <RotateCw className={`h-3 w-3 ${retryingId === item.conversionId ? 'animate-spin' : ''}`} />
-                              </Button>
-                            )}
-                          </div>
-                        ) : (
-                          <Button
-                            size="sm"
-                            onClick={() => handleOpenClosing(item)}
-                            className="h-8 text-xs px-3.5 rounded-full font-bold bg-primary text-white hover:bg-primary/90 transition-all cursor-pointer shadow-xs"
+                        <div className="flex items-center justify-end gap-2">
+                          {isWon ? (
+                            <div className="inline-flex items-center gap-1.5 text-chip-live-foreground text-xs font-bold">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+                              <span>Closing Tercatat</span>
+                              {item.conversionId && (
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-6 w-6 text-muted-foreground hover:text-foreground rounded-full ml-1"
+                                  title="Kirim ulang ke Meta CAPI"
+                                  disabled={retryingId === item.conversionId}
+                                  onClick={() => handleRetry(item.conversionId!)}
+                                >
+                                  <RotateCw className={`h-3 w-3 ${retryingId === item.conversionId ? 'animate-spin' : ''}`} />
+                                </Button>
+                              )}
+                            </div>
+                          ) : (
+                            <Button
+                              size="sm"
+                              onClick={() => handleOpenClosing(item)}
+                              className="h-8 text-xs px-3.5 rounded-full font-bold bg-primary text-white hover:bg-primary/90 transition-all cursor-pointer shadow-xs"
+                            >
+                              Catat Closing
+                            </Button>
+                          )}
+
+                          <DeleteDialog
+                            action={async (formData) => {
+                              try {
+                                await deleteAdClickSessionAction(formData)
+                                toast.success('Sesi berhasil dihapus.')
+                              } catch {
+                                toast.error('Gagal menghapus sesi.')
+                              }
+                            }}
+                            id={item.id}
+                            label={`Sesi ${item.refCode}`}
+                            description="Data sesi klik iklan dan riwayat konversi terkait akan dihapus secara permanen dari database."
                           >
-                            Catat Closing
-                          </Button>
-                        )}
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full cursor-pointer transition-colors"
+                              aria-label={`Hapus sesi ${item.refCode}`}
+                              title="Hapus sesi"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </Button>
+                          </DeleteDialog>
+                        </div>
                       </TableCell>
                     </TableRow>
                   )

@@ -1,11 +1,12 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { eq } from 'drizzle-orm'
+import { eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import {
   adClickSessions,
   adPlatformConfigs,
+  conversionApiLogs,
   offlineConversions,
 } from '@/db/schema'
 import { requireAdmin } from '@/lib/auth'
@@ -142,5 +143,35 @@ export async function saveGoogleConfigAction(formData: FormData): Promise<{
     return { success: true }
   } catch (error: any) {
     return { success: false, error: error?.message || 'Gagal menyimpan pengaturan Google Ads.' }
+  }
+}
+
+export async function deleteAdClickSessionAction(formData: FormData): Promise<void> {
+  await requireAdmin()
+
+  const id = String(formData.get('id') || '').trim()
+  if (!id) return
+
+  try {
+    const relatedConversions = await db
+      .select({ id: offlineConversions.id })
+      .from(offlineConversions)
+      .where(eq(offlineConversions.sessionId, id))
+
+    const convIds = relatedConversions.map((c) => c.id)
+
+    if (convIds.length > 0) {
+      await db.delete(conversionApiLogs).where(inArray(conversionApiLogs.conversionId, convIds))
+      await db.delete(offlineConversions).where(eq(offlineConversions.sessionId, id))
+    }
+
+    await db.delete(adClickSessions).where(eq(adClickSessions.id, id))
+
+    revalidatePath('/dashboard/offline-conversion/google')
+    revalidatePath('/dashboard/offline-conversion/meta')
+    revalidatePath('/dashboard')
+  } catch (error) {
+    console.error('[google/actions] deleteAdClickSessionAction error:', error)
+    throw new Error('Gagal menghapus data sesi iklan.')
   }
 }
