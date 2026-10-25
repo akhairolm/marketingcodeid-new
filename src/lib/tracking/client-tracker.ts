@@ -64,6 +64,21 @@ export async function prepareTrackedWhatsAppUrl(
         // Abaikan
       }
     }
+
+    // Picu event generate_lead pada Google Analytics 4
+    if (typeof (window as any).gtag === 'function') {
+      try {
+        ;(window as any).gtag('event', 'generate_lead', {
+          event_category: 'engagement',
+          event_label: 'WhatsApp Click',
+          value: 0,
+          currency: 'IDR',
+          ref_code: refCode,
+        })
+      } catch {
+        // Abaikan
+      }
+    }
   }
 
   const finalMessage = appendRefCodeToMessage(baseMessage, refCode)
