@@ -79,11 +79,11 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
           </div>
         </CardHeader>
 
-        <CardContent className="p-0 overflow-x-auto">
+        <CardContent className="p-0 overflow-x-auto bg-card">
           <Table>
-            <TableHeader>
+            <TableHeader className="bg-muted/30 border-b border-border">
               <TableRow className="border-border hover:bg-transparent">
-                <TableHead className="pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">Waktu Klik</TableHead>
+                <TableHead className="py-3.5 pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">Waktu Klik</TableHead>
                 <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Ref Code</TableHead>
                 <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Nomor WhatsApp</TableHead>
                 <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Parameter Meta (fbc / fbp)</TableHead>
@@ -91,7 +91,7 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                 <TableHead className="pr-6 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider">Aksi CAPI</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-card">
               {items.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="py-12 text-center text-muted-foreground text-xs">
@@ -109,7 +109,7 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                   const isWon = item.status === 'WON'
 
                   return (
-                    <TableRow key={item.id} className="border-border hover:bg-accent/40 transition-colors">
+                    <TableRow key={item.id} className="border-border hover:bg-muted/30 transition-colors">
                       <TableCell className="py-3.5 pl-6 font-mono text-xs text-muted-foreground whitespace-nowrap">
                         {dateStr}
                       </TableCell>
@@ -119,7 +119,7 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                       <TableCell className="py-3.5 whitespace-nowrap">
                         <MaskedPhoneCell phone={item.phoneNumber} />
                       </TableCell>
-                      <TableCell className="py-3.5 font-mono text-[11px] text-muted-foreground max-w-xs truncate">
+                      <TableCell className="py-3.5 font-mono text-xs text-foreground max-w-xs truncate">
                         {item.fbc ? (
                           <span className="text-foreground font-medium" title={`fbc: ${item.fbc}\nfbp: ${item.fbp || '-'}`}>
                             {item.fbc.slice(0, 20)}...
@@ -134,13 +134,13 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                       <TableCell className="py-3.5 pr-6 text-right whitespace-nowrap">
                         {isWon ? (
                           <div className="inline-flex items-center gap-1.5 text-chip-live-foreground text-xs font-bold">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                             <span>Closing Tercatat</span>
                             {item.conversionId && (
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-6 w-6 text-muted-foreground hover:text-foreground rounded-full"
+                                className="h-6 w-6 text-muted-foreground hover:text-foreground rounded-full ml-1"
                                 title="Kirim ulang ke Meta CAPI"
                                 disabled={retryingId === item.conversionId}
                                 onClick={() => handleRetry(item.conversionId!)}
@@ -153,7 +153,7 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                           <Button
                             size="sm"
                             onClick={() => handleOpenClosing(item)}
-                            className="h-8 text-xs px-3 rounded-full font-bold bg-accent text-accent-foreground hover:bg-primary hover:text-zinc-950 transition-all cursor-pointer"
+                            className="h-8 text-xs px-3.5 rounded-full font-bold bg-primary text-white hover:bg-primary/90 transition-all cursor-pointer shadow-xs"
                           >
                             Catat Closing
                           </Button>

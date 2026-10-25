@@ -66,19 +66,19 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
           </div>
         </CardHeader>
 
-        <CardContent className="p-0 overflow-x-auto">
+        <CardContent className="p-0 overflow-x-auto bg-card">
           <Table>
-            <TableHeader>
+            <TableHeader className="bg-muted/30 border-b border-border">
               <TableRow className="border-border hover:bg-transparent">
-                <TableHead className="pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">Waktu Klik</TableHead>
-                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Ref Code</TableHead>
-                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Nomor WhatsApp</TableHead>
-                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Google Click ID (GCLID / WBRAID)</TableHead>
-                <TableHead className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Status</TableHead>
-                <TableHead className="pr-6 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider">Aksi Konversi</TableHead>
+                <TableHead className="py-3.5 pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">Waktu Klik</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Ref Code</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Nomor WhatsApp</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Google Click ID (GCLID / WBRAID)</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Status</TableHead>
+                <TableHead className="py-3.5 pr-6 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider">Aksi Konversi</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-card">
               {items.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="py-12 text-center text-muted-foreground text-xs">
@@ -97,7 +97,7 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
                   const clickId = item.gclid || item.wbraid || item.gbraid
 
                   return (
-                    <TableRow key={item.id} className="border-border hover:bg-accent/40 transition-colors">
+                    <TableRow key={item.id} className="border-border hover:bg-muted/30 transition-colors">
                       <TableCell className="py-3.5 pl-6 font-mono text-xs text-muted-foreground whitespace-nowrap">
                         {dateStr}
                       </TableCell>
@@ -107,7 +107,7 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
                       <TableCell className="py-3.5 whitespace-nowrap">
                         <MaskedPhoneCell phone={item.phoneNumber} />
                       </TableCell>
-                      <TableCell className="py-3.5 font-mono text-[11px] text-foreground max-w-xs">
+                      <TableCell className="py-3.5 font-mono text-xs text-foreground max-w-xs">
                         {clickId ? (
                           <div className="flex items-center gap-1.5">
                             <span className="truncate max-w-[180px] font-medium" title={clickId}>
@@ -116,10 +116,10 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
                             <button
                               type="button"
                               onClick={() => handleCopyGclid(clickId)}
-                              className="text-muted-foreground hover:text-foreground cursor-pointer p-0.5 rounded-sm"
+                              className="text-muted-foreground hover:text-foreground cursor-pointer p-0.5 rounded-sm transition-colors"
                               title="Salin GCLID"
                             >
-                              <Copy className="h-3 w-3" />
+                              <Copy className="h-3.5 w-3.5" />
                             </button>
                           </div>
                         ) : (
@@ -132,14 +132,14 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
                       <TableCell className="py-3.5 pr-6 text-right whitespace-nowrap">
                         {isWon ? (
                           <div className="inline-flex items-center gap-1.5 text-chip-live-foreground text-xs font-bold">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                             <span>Closing Tersimpan</span>
                           </div>
                         ) : (
                           <Button
                             size="sm"
                             onClick={() => handleOpenClosing(item)}
-                            className="h-8 text-xs px-3 rounded-full font-bold bg-accent text-accent-foreground hover:bg-primary hover:text-zinc-950 transition-all cursor-pointer"
+                            className="h-8 text-xs px-3.5 rounded-full font-bold bg-primary text-white hover:bg-primary/90 transition-all cursor-pointer shadow-xs"
                           >
                             Catat Closing
                           </Button>

@@ -10,31 +10,31 @@ export function ConversionStatusBadge({ status }: ConversionStatusBadgeProps) {
   const config: Record<string, { label: string; className: string }> = {
     CLICKED: {
       label: 'Klik WhatsApp',
-      className: 'bg-secondary text-secondary-foreground',
+      className: 'bg-muted text-muted-foreground border border-border',
     },
     LEAD_RECEIVED: {
       label: 'Chat Masuk',
-      className: 'bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/20',
+      className: 'bg-sky-50 text-sky-700 border border-sky-200 font-bold',
     },
     WON: {
       label: 'Closing (Purchase)',
-      className: 'bg-chip-live text-chip-live-foreground font-bold',
+      className: 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold',
     },
     LOST: {
       label: 'Tidak Closing',
-      className: 'bg-destructive/15 text-destructive border border-destructive/20 font-bold',
+      className: 'bg-rose-50 text-rose-700 border border-rose-200 font-bold',
     },
     SUCCESS: {
       label: 'Terkirim CAPI',
-      className: 'bg-chip-live text-chip-live-foreground font-bold',
+      className: 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold',
     },
     FAILED: {
       label: 'Gagal Kirim',
-      className: 'bg-destructive/15 text-destructive border border-destructive/20 font-bold',
+      className: 'bg-rose-50 text-rose-700 border border-rose-200 font-bold',
     },
     PENDING: {
       label: 'Pending',
-      className: 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/20',
+      className: 'bg-amber-50 text-amber-700 border border-amber-200 font-bold',
     },
   }
 
