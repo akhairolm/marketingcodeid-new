@@ -197,6 +197,56 @@ export const adPlatformConfigs = pgTable('ad_platform_configs', {
     .defaultNow(),
 })
 
+export const orders = pgTable('orders', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  orderNumber: varchar('order_number', { length: 30 }).notNull().unique(),
+  clientName: varchar('client_name', { length: 255 }).notNull(),
+  clientPhone: varchar('client_phone', { length: 30 }).notNull(),
+  clientCompany: varchar('client_company', { length: 255 }),
+  serviceCategory: varchar('service_category', { length: 50 }).notNull(),
+  packageName: varchar('package_name', { length: 255 }).notNull(),
+  sellingPrice: integer('selling_price').notNull(),
+  totalHpp: integer('total_hpp').notNull(),
+  netProfit: integer('net_profit').notNull(),
+  profitMargin: numeric('profit_margin', { precision: 5, scale: 2 }).notNull(),
+  paymentStatus: varchar('payment_status', { length: 20 }).notNull().default('paid'),
+  paidAmount: integer('paid_amount').notNull().default(0),
+  projectStatus: varchar('project_status', { length: 30 }).notNull().default('in_progress'),
+  orderDate: timestamp('order_date', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  notes: text('notes'),
+  createdBy: uuid('created_by').references(() => users.id, { onDelete: 'set null' }),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}, (table) => [
+  index('orders_order_date_idx').on(table.orderDate),
+  index('orders_payment_status_idx').on(table.paymentStatus),
+])
+
+export const orderHppItems = pgTable('order_hpp_items', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  orderId: uuid('order_id')
+    .notNull()
+    .references(() => orders.id, { onDelete: 'cascade' }),
+  category: varchar('category', { length: 50 }).notNull(),
+  description: varchar('description', { length: 255 }).notNull(),
+  amount: integer('amount').notNull(),
+  notes: text('notes'),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+}, (table) => [
+  index('order_hpp_items_order_id_idx').on(table.orderId),
+])
+
 export type User = typeof users.$inferSelect
 export type Session = typeof sessions.$inferSelect
 export type MediaRow = typeof media.$inferSelect
@@ -211,6 +261,11 @@ export type ConversionApiLogRow = typeof conversionApiLogs.$inferSelect
 export type NewConversionApiLog = typeof conversionApiLogs.$inferInsert
 export type AdPlatformConfigRow = typeof adPlatformConfigs.$inferSelect
 export type NewAdPlatformConfig = typeof adPlatformConfigs.$inferInsert
+export type OrderRow = typeof orders.$inferSelect
+export type NewOrder = typeof orders.$inferInsert
+export type OrderHppItemRow = typeof orderHppItems.$inferSelect
+export type NewOrderHppItem = typeof orderHppItems.$inferInsert
 
 export const SESSION_COOKIE = 'mcid_session'
 export const SESSION_TTL_DAYS = 7
+
