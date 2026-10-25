@@ -9,6 +9,8 @@ import {
   FileText,
   Layers,
   Image as ImageIcon,
+  Target,
+  TrendingUp,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -33,6 +35,19 @@ const navItems = [
   },
   { title: 'Kategori', href: '/dashboard/kategori', icon: Layers, badgeKey: null },
   { title: 'Media', href: '/dashboard/media', icon: ImageIcon, badgeKey: null },
+]
+
+const conversionNavItems = [
+  {
+    title: 'Meta Ads Conversion',
+    href: '/dashboard/offline-conversion/meta',
+    icon: Target,
+  },
+  {
+    title: 'Google Ads Conversion',
+    href: '/dashboard/offline-conversion/google',
+    icon: TrendingUp,
+  },
 ]
 
 export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
@@ -79,6 +94,36 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
                   {badge}
                 </span>
               )}
+            </Link>
+          )
+        })}
+
+        <div className="pt-4 px-3 pb-2 text-[11px] tracking-[0.12em] font-semibold text-sidebar-foreground/70">
+          OFFLINE CONVERSION
+        </div>
+        {conversionNavItems.map((item) => {
+          const Icon = item.icon
+          const isActive = pathname.startsWith(item.href)
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                'flex items-center justify-between px-3 min-h-11 rounded-xl text-sm font-semibold transition-all hover:translate-x-1',
+                isActive
+                  ? 'bg-primary text-zinc-950'
+                  : 'text-sidebar-foreground hover:bg-sidebar-accent',
+              )}
+            >
+              <span className="flex items-center gap-3">
+                <Icon
+                  className={cn(
+                    'h-[18px] w-[18px]',
+                    isActive ? 'text-zinc-950' : 'text-sidebar-foreground/80',
+                  )}
+                />
+                {item.title}
+              </span>
             </Link>
           )
         })}

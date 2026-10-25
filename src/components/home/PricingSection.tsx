@@ -142,13 +142,21 @@ export function PricingSection() {
                   href={getWhatsAppUrl(item.ctaContext, `${item.tier} (${item.price})`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() =>
+                  onClick={async (e) => {
                     trackWhatsAppClick({
                       position: 'pricing_card',
                       packageTitle: item.tier,
                       service: item.ctaContext,
                     })
-                  }
+                    if (typeof window !== 'undefined') {
+                      e.preventDefault()
+                      const subject = `${item.tier} (${item.price})`
+                      const baseMsg = `Halo MarketingCode ID, saya ingin konsultasi terkait paket website: ${subject}.`
+                      const { prepareTrackedWhatsAppUrl } = await import('@/lib/tracking/client-tracker')
+                      const trackedUrl = await prepareTrackedWhatsAppUrl(baseMsg)
+                      window.open(trackedUrl, '_blank', 'noopener,noreferrer')
+                    }
+                  }}
                   className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
                     isHighlight
                       ? 'bg-[#FF5C28] hover:bg-[#EA4510] text-white shadow-glow hover:scale-[1.01]'

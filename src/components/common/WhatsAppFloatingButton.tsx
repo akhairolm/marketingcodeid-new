@@ -109,7 +109,18 @@ export function WhatsAppFloatingButton() {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackWhatsAppClick({ position: 'floating_button', service: 'floating' })}
+        onClick={async (e) => {
+          trackWhatsAppClick({ position: 'floating_button', service: 'floating' })
+          if (typeof window !== 'undefined') {
+            e.preventDefault()
+            const message = pathname?.includes('/jasa-pembuatan-website')
+              ? 'Halo Admin MarketingCode.ID, saya sedang melihat halaman jasa pembuatan website dan ingin konsultasi pembuatan website.'
+              : 'Halo Admin MarketingCode.ID, saya sedang melihat website Anda dan ingin konsultasi langsung via WhatsApp.'
+            const { prepareTrackedWhatsAppUrl } = await import('@/lib/tracking/client-tracker')
+            const trackedUrl = await prepareTrackedWhatsAppUrl(message)
+            window.open(trackedUrl, '_blank', 'noopener,noreferrer')
+          }
+        }}
         aria-label="Chat WhatsApp dengan Admin MarketingCode.ID"
         className={`flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 relative focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 rounded-full cursor-pointer ${
           isIdle ? 'animate-bounce' : ''
