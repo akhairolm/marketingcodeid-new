@@ -27,6 +27,9 @@ const TITLES: { match: (p: string) => boolean; title: string; parent?: string }[
   { match: (p) => p.startsWith('/dashboard/artikel'), title: 'Artikel Blog' },
   { match: (p) => p.startsWith('/dashboard/kategori'), title: 'Kategori' },
   { match: (p) => p.startsWith('/dashboard/media'), title: 'Media' },
+  { match: (p) => p.startsWith('/dashboard/keuangan'), title: 'Keuangan & Order', parent: 'Manajemen Bisnis' },
+  { match: (p) => p.startsWith('/dashboard/offline-conversion/meta'), title: 'Meta Ads Conversion', parent: 'Offline Conversion' },
+  { match: (p) => p.startsWith('/dashboard/offline-conversion/google'), title: 'Google Ads Conversion', parent: 'Offline Conversion' },
 ]
 
 function pageMeta(pathname: string): { title: string; parent?: string } {

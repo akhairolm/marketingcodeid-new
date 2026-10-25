@@ -5,7 +5,6 @@ import { db } from '@/db'
 import { articles, portfolios } from '@/db/schema'
 import { getSessionUser } from '@/lib/auth'
 import { DashboardSidebar } from '@/components/dashboard/DashboardSidebar'
-import { MobileSidebar } from '@/components/dashboard/MobileSidebar'
 import { Topbar } from '@/components/dashboard/Topbar'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -32,7 +31,6 @@ export default async function DashboardMainLayout({ children }: { children: Reac
         <Topbar user={user} draftCounts={draftCounts} />
         <div className="flex-1 min-w-0">{children}</div>
       </div>
-      <MobileSidebar draftCounts={draftCounts} />
       <Toaster position="top-center" richColors />
     </div>
   )
