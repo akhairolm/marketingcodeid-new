@@ -7,6 +7,7 @@ import './styles.css'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { WhatsAppFloatingButton } from '@/components/common/WhatsAppFloatingButton'
+import { MetaPixel } from '@/components/common/MetaPixel'
 import { SITE_URL } from '@/lib/site'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <SiteFooter />
         <WhatsAppFloatingButton />
+        <MetaPixel />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script

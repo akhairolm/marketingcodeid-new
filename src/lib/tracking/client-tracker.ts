@@ -52,6 +52,18 @@ export async function prepareTrackedWhatsAppUrl(
     } catch {
       // Fallback: gunakan refCode yang digenerate lokal jika fetch timeout atau offline
     }
+
+    // Picu event Contact pada Meta Pixel browser untuk pelacakan Lead WhatsApp instan
+    if (typeof (window as any).fbq === 'function') {
+      try {
+        ;(window as any).fbq('track', 'Contact', {
+          content_name: 'WhatsApp Click',
+          ref_code: refCode,
+        })
+      } catch {
+        // Abaikan
+      }
+    }
   }
 
   const finalMessage = appendRefCodeToMessage(baseMessage, refCode)
