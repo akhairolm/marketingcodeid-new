@@ -4,7 +4,7 @@ import { desc, eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { adClickSessions, offlineConversions } from '@/db/schema'
 import { ConversionStatCard } from '@/components/dashboard/offline-conversion/ConversionStatCard'
-import { GoogleConversionTableClient } from './GoogleConversionTableClient'
+import { GoogleConversionTableClient, type GoogleConversionItem } from './GoogleConversionTableClient'
 import { TrendingUp, Settings, Download, Search, MessageSquare, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge'
 export const dynamic = 'force-dynamic'
 
 export default async function GoogleOfflineConversionPage() {
-  let items: any[] = []
+  let items: GoogleConversionItem[] = []
   let totalGclid = 0
   let totalLeads = 0
   let totalWon = 0

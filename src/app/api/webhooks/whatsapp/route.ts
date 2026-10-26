@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { extractRefCodeFromMessage, normalizePhoneNumberE164 } from '@/lib/tracking/whatsapp-parser'
+import { extractRefCodeFromMessage } from '@/lib/tracking/whatsapp-parser'
 import { matchAndLinkIncomingLead } from '@/lib/tracking/session-updater'
 
 export async function POST(req: Request) {

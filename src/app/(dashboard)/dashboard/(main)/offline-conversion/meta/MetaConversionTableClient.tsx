@@ -26,7 +26,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-interface MetaConversionItem {
+export interface MetaConversionItem {
   id: string
   refCode: string
   sourceUrl: string | null

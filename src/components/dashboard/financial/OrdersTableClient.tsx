@@ -86,6 +86,12 @@ interface OrdersTableClientProps {
 export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
   const router = useRouter()
   const [orders, setOrders] = useState<OrderWithHppBreakdown[]>(initialOrders)
+  const [prevInitialOrders, setPrevInitialOrders] = useState<OrderWithHppBreakdown[]>(initialOrders)
+
+  if (initialOrders !== prevInitialOrders) {
+    setPrevInitialOrders(initialOrders)
+    setOrders(initialOrders)
+  }
   const [search, setSearch] = useState('')
   const [periodFilter, setPeriodFilter] = useState<'all' | 'month' | 'year'>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -106,10 +112,6 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
   const [orderToDelete, setOrderToDelete] = useState<OrderWithHppBreakdown | null>(null)
   const [isDeleting, setIsDeleting] = useState(false)
 
-  // Sync state if props change
-  React.useEffect(() => {
-    setOrders(initialOrders)
-  }, [initialOrders])
 
   // Client-side filtering
   const now = new Date()

@@ -89,11 +89,12 @@ export async function markGoogleLeadClosingAction(formData: FormData): Promise<{
       success: true,
       result,
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[google/actions] markGoogleLeadClosingAction error:', error)
+    const errMessage = error instanceof Error ? error.message : 'Gagal memproses closing Google Ads.'
     return {
       success: false,
-      error: error?.message || 'Gagal memproses closing Google Ads.',
+      error: errMessage,
     }
   }
 }
@@ -141,8 +142,9 @@ export async function saveGoogleConfigAction(formData: FormData): Promise<{
 
     revalidatePath('/dashboard/offline-conversion/google')
     return { success: true }
-  } catch (error: any) {
-    return { success: false, error: error?.message || 'Gagal menyimpan pengaturan Google Ads.' }
+  } catch (error: unknown) {
+    const errMessage = error instanceof Error ? error.message : 'Gagal menyimpan pengaturan Google Ads.'
+    return { success: false, error: errMessage }
   }
 }
 

@@ -125,7 +125,7 @@ export async function sendGoogleOfflineConversion(
   }
 
   let httpStatus = 0
-  let responseData: any = null
+  let responseData: Record<string, unknown> | null = null
   let isSuccess = false
   let errorMessage: string | null = null
 
@@ -149,15 +149,16 @@ export async function sendGoogleOfflineConversion(
       })
 
       httpStatus = response.status
-      responseData = await response.json().catch(() => ({}))
+      responseData = (await response.json().catch(() => ({}))) as Record<string, unknown>
       isSuccess = response.ok
 
       if (!response.ok) {
-        errorMessage = responseData?.error?.message || `Google Ads API error ${httpStatus}`
+        const errObj = responseData?.error as { message?: string } | undefined
+        errorMessage = errObj?.message || `Google Ads API error ${httpStatus}`
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       httpStatus = 500
-      errorMessage = err?.message || 'Gagal menghubungi Google Ads endpoint'
+      errorMessage = err instanceof Error ? err.message : 'Gagal menghubungi Google Ads endpoint'
     }
   }
 

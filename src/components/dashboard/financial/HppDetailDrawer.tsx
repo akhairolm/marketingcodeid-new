@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
   Sheet,
   SheetContent,
@@ -47,7 +47,13 @@ export function HppDetailDrawer({
   onOpenChange,
   onRefresh,
 }: HppDetailDrawerProps) {
-  const [items, setItems] = useState<OrderHppItemRow[]>([])
+  const [items, setItems] = useState<OrderHppItemRow[]>(() => order?.hppItems || [])
+  const [prevOrder, setPrevOrder] = useState<OrderWithHppBreakdown | null>(order)
+
+  if (order !== prevOrder) {
+    setPrevOrder(order)
+    setItems(order?.hppItems || [])
+  }
   const [loadingItemId, setLoadingItemId] = useState<string | null>(null)
   const [isAdding, setIsAdding] = useState(false)
 
@@ -64,11 +70,6 @@ export function HppDetailDrawer({
   const [editCategory, setEditCategory] = useState<HppCategory>('hosting')
   const [editNotes, setEditNotes] = useState('')
 
-  useEffect(() => {
-    if (order) {
-      setItems(order.hppItems || [])
-    }
-  }, [order])
 
   if (!order) return null
 

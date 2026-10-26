@@ -55,9 +55,9 @@ export async function prepareTrackedWhatsAppUrl(
     }
 
     // Picu event Contact pada Meta Pixel browser untuk pelacakan Lead WhatsApp instan
-    if (typeof (window as any).fbq === 'function') {
+    if (typeof window.fbq === 'function') {
       try {
-        ;(window as any).fbq('track', 'Contact', {
+        window.fbq('track', 'Contact', {
           content_name: 'WhatsApp Click',
           ref_code: refCode,
         })
@@ -67,9 +67,9 @@ export async function prepareTrackedWhatsAppUrl(
     }
 
     // Picu event generate_lead pada Google Analytics 4
-    if (typeof (window as any).gtag === 'function') {
+    if (typeof window.gtag === 'function') {
       try {
-        ;(window as any).gtag('event', 'generate_lead', {
+        window.gtag('event', 'generate_lead', {
           event_category: 'engagement',
           event_label: 'WhatsApp Click',
           value: 0,

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useId } from 'react'
+import React, { useState, useId } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -55,7 +55,17 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
   const [loading, setLoading] = useState(false)
 
   // Custom Packages State
-  const [customPackages, setCustomPackages] = useState<PackagePreset[]>([])
+  const [customPackages, setCustomPackages] = useState<PackagePreset[]>(() =>
+    typeof window !== 'undefined' ? getCustomPackagesFromStorage() : []
+  )
+  const [prevOpen, setPrevOpen] = useState(open)
+
+  if (open !== prevOpen) {
+    setPrevOpen(open)
+    if (open) {
+      setCustomPackages(getCustomPackagesFromStorage())
+    }
+  }
   const [isAddingCustomPackage, setIsAddingCustomPackage] = useState(false)
 
   // Form State untuk Tambah Paket Baru
@@ -85,13 +95,6 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
     PACKAGE_PRESETS[0].defaultHppItems
   )
 
-  // Muat custom packages dari localStorage saat modal terbuka
-  useEffect(() => {
-    if (open) {
-      const stored = getCustomPackagesFromStorage()
-      setCustomPackages(stored)
-    }
-  }, [open])
 
   // Saat kategori layanan diubah oleh user
   const handleCategoryChange = (category: ServiceCategory) => {
@@ -199,10 +202,10 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
   }
 
   // Update item HPP
-  const handleUpdateHppItem = (
+  const handleUpdateHppItem = <K extends keyof InitialHppItemInput>(
     index: number,
-    field: keyof InitialHppItemInput,
-    value: any
+    field: K,
+    value: InitialHppItemInput[K]
   ) => {
     const updated = [...hppItems]
     updated[index] = { ...updated[index], [field]: value }

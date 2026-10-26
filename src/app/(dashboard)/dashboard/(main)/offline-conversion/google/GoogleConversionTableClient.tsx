@@ -26,7 +26,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-interface GoogleConversionItem {
+export interface GoogleConversionItem {
   id: string
   refCode: string
   sourceUrl: string | null

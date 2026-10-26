@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { desc, eq, inArray, isNotNull, or, sql } from 'drizzle-orm'
+import { eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import {
   adClickSessions,
@@ -91,11 +91,12 @@ export async function markMetaLeadClosingAction(formData: FormData): Promise<{
       success: true,
       capiResult,
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[meta/actions] markMetaLeadClosingAction error:', error)
+    const errMessage = error instanceof Error ? error.message : 'Gagal memproses closing transaksi.'
     return {
       success: false,
-      error: error?.message || 'Gagal memproses closing transaksi.',
+      error: errMessage,
     }
   }
 }
@@ -152,8 +153,9 @@ export async function retryMetaCapiEventAction(conversionId: string): Promise<{
 
     revalidatePath('/dashboard/offline-conversion/meta')
     return { success: capiResult.success, error: capiResult.error }
-  } catch (error: any) {
-    return { success: false, error: error?.message || 'Gagal mengirim ulang CAPI' }
+  } catch (error: unknown) {
+    const errMessage = error instanceof Error ? error.message : 'Gagal mengirim ulang CAPI'
+    return { success: false, error: errMessage }
   }
 }
 
@@ -200,8 +202,9 @@ export async function saveMetaConfigAction(formData: FormData): Promise<{
 
     revalidatePath('/dashboard/offline-conversion/meta')
     return { success: true }
-  } catch (error: any) {
-    return { success: false, error: error?.message || 'Gagal menyimpan pengaturan Meta.' }
+  } catch (error: unknown) {
+    const errMessage = error instanceof Error ? error.message : 'Gagal menyimpan pengaturan Meta.'
+    return { success: false, error: errMessage }
   }
 }
 

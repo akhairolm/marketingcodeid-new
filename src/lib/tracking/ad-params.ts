@@ -19,7 +19,7 @@ export function formatMetaFbc(
  * Ekstraksi parameter iklan dari URL search parameters atau URL string.
  */
 export function extractAdParamsFromSearch(
-  search: URLSearchParams | string | Record<string, any> | null | undefined,
+  search: URLSearchParams | string | Record<string, unknown> | null | undefined,
   existingCookies?: { fbp?: string | null; fbc?: string | null }
 ): AdTrackingParams {
   let getVal: (key: string) => string | null = () => null

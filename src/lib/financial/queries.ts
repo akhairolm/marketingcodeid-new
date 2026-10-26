@@ -1,6 +1,6 @@
 import { db } from '@/db'
 import { orders, orderHppItems } from '@/db/schema'
-import { eq, desc, gte, and, sql, ilike, or } from 'drizzle-orm'
+import { eq, desc, gte, and, ilike, or } from 'drizzle-orm'
 import { calculateProfitAndMargin } from './calculator'
 import type {
   FinancialSummaryStats,
@@ -16,7 +16,7 @@ import type {
  */
 export async function recalculateOrderTotals(
   orderId: string,
-  executor: any = db
+  executor = db
 ): Promise<OrderRow | null> {
   const [order] = await executor
     .select()

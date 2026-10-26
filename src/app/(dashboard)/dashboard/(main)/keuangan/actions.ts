@@ -91,8 +91,9 @@ export async function createOrderAction(input: CreateOrderInput): Promise<{
     revalidatePath('/dashboard')
 
     return { success: true, orderId: newOrder.id }
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Gagal menyimpan transaksi order baru.' }
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err.message : 'Gagal menyimpan transaksi order baru.'
+    return { success: false, error }
   }
 }
 
@@ -130,8 +131,9 @@ export async function addHppItemAction(
     revalidatePath('/dashboard')
 
     return { success: true, itemId: item.id }
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Gagal menambahkan pos biaya HPP.' }
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err.message : 'Gagal menambahkan pos biaya HPP.'
+    return { success: false, error }
   }
 }
 
@@ -176,8 +178,9 @@ export async function updateHppItemAction(
     revalidatePath('/dashboard')
 
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Gagal memperbarui pos biaya HPP.' }
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err.message : 'Gagal memperbarui pos biaya HPP.'
+    return { success: false, error }
   }
 }
 
@@ -211,8 +214,9 @@ export async function deleteHppItemAction(
     revalidatePath('/dashboard')
 
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Gagal menghapus pos biaya HPP.' }
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err.message : 'Gagal menghapus pos biaya HPP.'
+    return { success: false, error }
   }
 }
 
@@ -252,8 +256,9 @@ export async function updateOrderStatusAction(
     revalidatePath('/dashboard')
 
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Gagal memperbarui status order.' }
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err.message : 'Gagal memperbarui status order.'
+    return { success: false, error }
   }
 }
 
@@ -275,7 +280,8 @@ export async function deleteOrderAction(
     revalidatePath('/dashboard')
 
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Gagal menghapus transaksi order.' }
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err.message : 'Gagal menghapus transaksi order.'
+    return { success: false, error }
   }
 }

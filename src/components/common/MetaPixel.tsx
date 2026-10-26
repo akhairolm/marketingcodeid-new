@@ -8,8 +8,9 @@ const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '2169748850271426
 
 declare global {
   interface Window {
-    fbq?: (...args: any[]) => void
-    _fbq?: (...args: any[]) => void
+    fbq?: (...args: unknown[]) => void
+    _fbq?: (...args: unknown[]) => void
+    gtag?: (...args: unknown[]) => void
   }
 }
 
@@ -70,6 +71,7 @@ export function MetaPixel() {
         `}
       </Script>
       <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           height="1"
           width="1"

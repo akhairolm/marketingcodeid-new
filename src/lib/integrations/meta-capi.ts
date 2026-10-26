@@ -70,8 +70,16 @@ export async function sendMetaCapiEvent(
     bodyData.test_event_code = testEventCode
   }
 
+interface MetaCapiApiResponse {
+  events_received?: number
+  fbtrace_id?: string
+  error?: {
+    message?: string
+  }
+}
+
   let httpStatus = 0
-  let responseData: any = null
+  let responseData: MetaCapiApiResponse | null = null
   let isSuccess = false
   let errorMessage: string | null = null
 
@@ -83,16 +91,16 @@ export async function sendMetaCapiEvent(
     })
 
     httpStatus = response.status
-    responseData = await response.json().catch(() => ({}))
+    responseData = (await response.json().catch(() => ({}))) as MetaCapiApiResponse
     isSuccess = response.ok
 
     if (!response.ok) {
       errorMessage =
         responseData?.error?.message || `Meta CAPI error dengan status HTTP ${httpStatus}`
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     httpStatus = 500
-    errorMessage = err?.message || 'Gagal menghubungi Meta Graph API endpoint'
+    errorMessage = err instanceof Error ? err.message : 'Gagal menghubungi Meta Graph API endpoint'
   }
 
   // Rekam pengiriman ke tabel log audit
