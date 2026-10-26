@@ -1,4 +1,5 @@
 import { generateRefCode } from './ref-code'
+import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp'
 
 function getCookie(name: string): string | null {
   if (typeof document === 'undefined') return null
@@ -19,7 +20,7 @@ export function appendRefCodeToMessage(baseMessage: string, refCode: string): st
  */
 export async function prepareTrackedWhatsAppUrl(
   baseMessage: string,
-  phoneNumber: string = '6285128038243'
+  phoneNumber: string = DEFAULT_WHATSAPP_NUMBER
 ): Promise<string> {
   const cleanPhone = phoneNumber.replace(/[^0-9]/g, '')
   let refCode: string = generateRefCode()

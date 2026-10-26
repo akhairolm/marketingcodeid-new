@@ -188,7 +188,7 @@ Mencatat setiap payload dan respons dari Meta Graph API dan Google Ads API untuk
    - `client_user_agent` & `client_ip_address`
    - `fbc`: Memastikan format `fb.1.{timestamp_ms}.{fbclid}`
    - `fbp`: Mengambil cookie `_fbp`
-   - `ph` (Phone Number): Normalisasi format internasional E.164 (misal: `+6281234567890`), bersihkan spasi/tanda hubung, lalu di-hash menggunakan algoritma SHA-256 huruf kecil.
+   - `ph` (Phone Number): Normalisasi format internasional E.164 (misal: `+6285128038243`), bersihkan spasi/tanda hubung, lalu di-hash menggunakan algoritma SHA-256 huruf kecil.
 2. **Event Match Quality (EMQ):**
    Dengan menyertakan `fbc` + `fbp` + IP + User Agent + Hashed Phone, skor EMQ di Meta Events Manager dijamin mencapai estimasi 8.0 - 9.3 dari 10.
 

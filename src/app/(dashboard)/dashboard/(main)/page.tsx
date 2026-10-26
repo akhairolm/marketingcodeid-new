@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { count, desc } from 'drizzle-orm'
 import { db } from '@/db'
 import { articles, categories, media, portfolios } from '@/db/schema'
-import { Plus, ArrowRight } from 'lucide-react'
+import { Plus, ArrowRight, Wallet } from 'lucide-react'
 import {
   Alert,
   AlertDescription,
@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/alert'
 import { Terminal } from 'lucide-react'
 import { QuickStart } from './QuickStart'
+import { getFinancialSummary } from '@/lib/financial/queries'
+import { formatRupiah, formatPercent } from '@/lib/financial/calculator'
 
 export const dynamic = 'force-dynamic'
 
@@ -198,7 +200,10 @@ function Panel({
 }
 
 export default async function DashboardPage() {
-  const stats = await loadStats()
+  const [stats, financialSummary] = await Promise.all([
+    loadStats(),
+    getFinancialSummary(),
+  ])
   const now = new Date()
   const hour = now.getHours()
   const hasContent = stats.p > 0 || stats.a > 0
@@ -252,10 +257,88 @@ export default async function DashboardPage() {
               <Plus className="h-4 w-4" />
               Tulis Artikel
             </Link>
+            <Link
+              href="/dashboard/keuangan"
+              className="inline-flex items-center gap-2 min-h-11 px-6 rounded-full bg-white/30 text-zinc-950 text-sm font-bold border-2 border-zinc-950/20 hover:bg-white/50 transition-colors"
+            >
+              <Wallet className="h-4 w-4" />
+              Catat Order
+            </Link>
           </div>
         </div>
 
         <QuickStart />
+      </section>
+
+      {/* ── Ringkasan Finansial Agensi ────────────────────── */}
+      <section className="bg-card border border-border rounded-[24px] p-5 sm:p-6 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">
+              RINGKASAN BISNIS & LABA BERSIH
+            </span>
+            <h2 className="text-lg font-bold text-foreground">
+              Performa Penjualan & Margin Profit Agensi
+            </h2>
+          </div>
+          <Link
+            href="/dashboard/keuangan"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+          >
+            Lihat Laporan Lengkap
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3.5">
+            <span className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 block">
+              Profit Bersih Bulan Ini
+            </span>
+            <span className="font-mono font-extrabold text-base sm:text-lg text-emerald-700 dark:text-emerald-300 block mt-1">
+              {formatRupiah(financialSummary.currentMonth.totalNetProfit)}
+            </span>
+            <span className="text-[10px] text-muted-foreground block mt-0.5">
+              Tahun ini: {formatRupiah(financialSummary.currentYear.totalNetProfit)}
+            </span>
+          </div>
+
+          <div className="rounded-xl bg-blue-500/10 border border-blue-500/20 p-3.5">
+            <span className="text-[11px] font-semibold text-blue-700 dark:text-blue-400 block">
+              Total Omset Bulan Ini
+            </span>
+            <span className="font-mono font-extrabold text-base sm:text-lg text-blue-700 dark:text-blue-300 block mt-1">
+              {formatRupiah(financialSummary.currentMonth.totalSellingPrice)}
+            </span>
+            <span className="text-[10px] text-muted-foreground block mt-0.5">
+              Tahun ini: {formatRupiah(financialSummary.currentYear.totalSellingPrice)}
+            </span>
+          </div>
+
+          <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-3.5">
+            <span className="text-[11px] font-semibold text-amber-700 dark:text-amber-400 block">
+              Modal HPP Bulan Ini
+            </span>
+            <span className="font-mono font-extrabold text-base sm:text-lg text-amber-700 dark:text-amber-300 block mt-1">
+              {formatRupiah(financialSummary.currentMonth.totalHpp)}
+            </span>
+            <span className="text-[10px] text-muted-foreground block mt-0.5">
+              Tahun ini: {formatRupiah(financialSummary.currentYear.totalHpp)}
+            </span>
+          </div>
+
+          <div className="rounded-xl bg-purple-500/10 border border-purple-500/20 p-3.5">
+            <span className="text-[11px] font-semibold text-purple-700 dark:text-purple-400 block">
+              Rata-rata Margin
+            </span>
+            <span className="font-mono font-extrabold text-base sm:text-lg text-purple-700 dark:text-purple-300 block mt-1">
+              {formatPercent(financialSummary.currentMonth.averageProfitMargin)}
+            </span>
+            <span className="text-[10px] text-muted-foreground block mt-0.5">
+              Rata-rata tahun ini: {formatPercent(financialSummary.currentYear.averageProfitMargin)}
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* ── KPI Cards ────────────────────────────────────── */}

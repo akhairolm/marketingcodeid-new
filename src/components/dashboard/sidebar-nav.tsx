@@ -11,6 +11,7 @@ import {
   Image as ImageIcon,
   Target,
   TrendingUp,
+  Wallet,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -97,6 +98,29 @@ export function SidebarNav({ draftCounts }: { draftCounts: DraftCounts }) {
             </Link>
           )
         })}
+
+        <div className="pt-4 px-3 pb-2 text-[11px] tracking-[0.12em] font-semibold text-sidebar-foreground/70">
+          MANAJEMEN BISNIS
+        </div>
+        <Link
+          href="/dashboard/keuangan"
+          className={cn(
+            'flex items-center justify-between px-3 min-h-11 rounded-xl text-sm font-semibold transition-all hover:translate-x-1',
+            pathname.startsWith('/dashboard/keuangan')
+              ? 'bg-primary text-zinc-950'
+              : 'text-sidebar-foreground hover:bg-sidebar-accent',
+          )}
+        >
+          <span className="flex items-center gap-3">
+            <Wallet
+              className={cn(
+                'h-[18px] w-[18px]',
+                pathname.startsWith('/dashboard/keuangan') ? 'text-zinc-950' : 'text-sidebar-foreground/80',
+              )}
+            />
+            Keuangan & Order
+          </span>
+        </Link>
 
         <div className="pt-4 px-3 pb-2 text-[11px] tracking-[0.12em] font-semibold text-sidebar-foreground/70">
           OFFLINE CONVERSION

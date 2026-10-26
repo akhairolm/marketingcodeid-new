@@ -23,7 +23,7 @@ flowchart TD
 
 Tujuan: Menambahkan tabel database relasional untuk menyimpan transaksi order penjualan agensi dan rincian item pos biaya HPP yang dapat disesuaikan.
 
-- [ ] **Task 1.1: Definisi Tabel `orders` dan `order_hpp_items` di Skema Drizzle**
+- [x] **Task 1.1: Definisi Tabel `orders` dan `order_hpp_items` di Skema Drizzle**
   - **Target File:** [src/db/schema.ts](file:///Users/ahmadkhairolmaulidi/Documents/Freelance/marketingcodeid-agency/project/src/db/schema.ts)
   - **Spesifikasi:**
     - Tambahkan tabel `orders` dengan kolom:
@@ -59,7 +59,7 @@ Tujuan: Menambahkan tabel database relasional untuk menyimpan transaksi order pe
       - Index: `order_hpp_items_order_id_idx` pada `orderId`.
   - **Acceptance Criteria:** Skema TypeScript valid, tipe relasi cascade delete terpasang benar, tidak ada error kompilasi.
 
-- [ ] **Task 1.2: Ekspor Tipe Data TypeScript Finansial Terpusat**
+- [x] **Task 1.2: Ekspor Tipe Data TypeScript Finansial Terpusat**
   - **Target File:** `src/types/financial.ts`
   - **Spesifikasi:**
     - Ekspor tipe inferensi Drizzle: `OrderRow`, `NewOrder`, `OrderHppItemRow`, `NewOrderHppItem`.
@@ -72,7 +72,7 @@ Tujuan: Menambahkan tabel database relasional untuk menyimpan transaksi order pe
     - Ekspor interface ringkasan statistik finansial: `FinancialSummaryStats`.
   - **Acceptance Criteria:** Tipe data dapat diimpor secara modular tanpa circular dependency.
 
-- [ ] **Task 1.3: Eksekusi Migrasi Database Drizzle Kit**
+- [x] **Task 1.3: Eksekusi Migrasi Database Drizzle Kit**
   - **Target Perintah:** `pnpm drizzle-kit push` (atau generate SQL migration).
   - **Spesifikasi:**
     - Jalankan sinkronisasi skema tabel `orders` dan `order_hpp_items` ke database PostgreSQL.
@@ -84,7 +84,7 @@ Tujuan: Menambahkan tabel database relasional untuk menyimpan transaksi order pe
 
 Tujuan: Membangun logika matematika finansial, fungsi pembantu kalkulasi HPP dan laba bersih, serta query agregasi database.
 
-- [ ] **Task 2.1: Modul Utilitas Kalkulasi Laba Bersih & Margin**
+- [x] **Task 2.1: Modul Utilitas Kalkulasi Laba Bersih & Margin**
   - **Target File:** `src/lib/financial/calculator.ts`
   - **Spesifikasi:**
     - Buat fungsi `calculateProfitAndMargin(sellingPrice: number, totalHpp: number): { netProfit: number, profitMargin: number }`:
@@ -94,7 +94,7 @@ Tujuan: Membangun logika matematika finansial, fungsi pembantu kalkulasi HPP dan
     - Buat fungsi pemformat mata uang rupiah: `formatRupiah(amount: number): string` (contoh: `Rp 1.190.000`).
   - **Acceptance Criteria:** Unit test kalkulasi angka negatif (rugi), angka 0, dan angka normal terverifikasi 100% akurat.
 
-- [ ] **Task 2.2: Preset Data Paket Layanan & Estimasi HPP Awal**
+- [x] **Task 2.2: Preset Data Paket Layanan & Estimasi HPP Awal**
   - **Target File:** `src/lib/financial/package-presets.ts`
   - **Spesifikasi:**
     - Definisikan konstanta daftar paket resmi agensi MarketingCode.ID:
@@ -112,7 +112,7 @@ Tujuan: Membangun logika matematika finansial, fungsi pembantu kalkulasi HPP dan
       - *Kustom:* Bebas masukkan nominal dan item HPP.
   - **Acceptance Criteria:** Menyediakan fungsi `getPackagePreset(category, name)` untuk pengisian otomatis form.
 
-- [ ] **Task 2.3: Modul Query Database Agregasi Finansial**
+- [x] **Task 2.3: Modul Query Database Agregasi Finansial**
   - **Target File:** `src/lib/financial/queries.ts`
   - **Spesifikasi:**
     - Buat fungsi `getFinancialSummary(period: 'current_month' | 'current_year' | 'all')`:
@@ -131,7 +131,7 @@ Tujuan: Membangun logika matematika finansial, fungsi pembantu kalkulasi HPP dan
 
 Tujuan: Membangun mutasi backend yang aman untuk mencatat order baru, mengupdate status, dan memodifikasi komponen biaya HPP secara dinamis.
 
-- [ ] **Task 3.1: Server Action Pembuatan Order Baru (`createOrderAction`)**
+- [x] **Task 3.1: Server Action Pembuatan Order Baru (`createOrderAction`)**
   - **Target File:** `src/app/(dashboard)/dashboard/(main)/keuangan/actions.ts`
   - **Spesifikasi:**
     - Memvalidasi otentikasi admin via `requireAdmin()`.
@@ -143,7 +143,7 @@ Tujuan: Membangun mutasi backend yang aman untuk mencatat order baru, mengupdate
     - Revalidasi path: `revalidatePath('/dashboard/keuangan')` dan `revalidatePath('/dashboard')`.
   - **Acceptance Criteria:** Order baru tersimpan beserta rincian HPP awalnya, kalkulasi profit otomatis tersimpan benar.
 
-- [ ] **Task 3.2: Server Actions Modifikasi Rincian HPP Dinamis**
+- [x] **Task 3.2: Server Actions Modifikasi Rincian HPP Dinamis**
   - **Target File:** `src/app/(dashboard)/dashboard/(main)/keuangan/actions.ts`
   - **Spesifikasi:**
     - `updateHppItemAction(itemId, data)`: Mengubah nominal pos biaya (misal saat dapat promo hosting murah dari Rp 200rb jadi Rp 100rb) atau mengubah keterangannya, lalu otomatis memicu `recalculateOrderTotals`.
@@ -152,7 +152,7 @@ Tujuan: Membangun mutasi backend yang aman untuk mencatat order baru, mengupdate
     - Revalidasi path terkait setelah mutasi.
   - **Acceptance Criteria:** Modifikasi item HPP langsung me-rekalkulasi total HPP, laba bersih, dan margin pada order utama secara real-time.
 
-- [ ] **Task 3.3: Server Actions Update Status & Hapus Order**
+- [x] **Task 3.3: Server Actions Update Status & Hapus Order**
   - **Target File:** `src/app/(dashboard)/dashboard/(main)/keuangan/actions.ts`
   - **Spesifikasi:**
     - `updateOrderStatusAction(orderId, { paymentStatus, paidAmount, projectStatus })`: Update status pembayaran (misal dari DP menjadi Lunas) atau status pengerjaan.
@@ -165,7 +165,7 @@ Tujuan: Membangun mutasi backend yang aman untuk mencatat order baru, mengupdate
 
 Tujuan: Menghubungkan modul baru ke sistem navigasi dashboard dan menyediakan komponen visual pendukung.
 
-- [ ] **Task 4.1: Pembaruan Navigasi Sidebar Dashboard**
+- [x] **Task 4.1: Pembaruan Navigasi Sidebar Dashboard**
   - **Target File:** [src/components/dashboard/sidebar-nav.tsx](file:///Users/ahmadkhairolmaulidi/Documents/Freelance/marketingcodeid-agency/project/src/components/dashboard/sidebar-nav.tsx) dan `src/components/dashboard/MobileSidebar.tsx`
   - **Spesifikasi:**
     - Tambahkan kategori menu baru: `MANAJEMEN BISNIS`.
@@ -174,7 +174,7 @@ Tujuan: Menghubungkan modul baru ke sistem navigasi dashboard dan menyediakan ko
     - Kepatuhan mutlak tanpa emoji.
   - **Acceptance Criteria:** Menu muncul sempurna di sidebar desktop dan mobile drawer tanpa merusak layout.
 
-- [ ] **Task 4.2: Komponen Kartu Ringkasan Finansial (`FinancialStatCard.tsx`)**
+- [x] **Task 4.2: Komponen Kartu Ringkasan Finansial (`FinancialStatCard.tsx`)**
   - **Target File:** `src/components/dashboard/financial/FinancialStatCard.tsx`
   - **Spesifikasi:**
     - Kartu metrik responsif:
@@ -185,7 +185,7 @@ Tujuan: Menghubungkan modul baru ke sistem navigasi dashboard dan menyediakan ko
       - Warna aksen indikator (hijau untuk laba, abu-abu/biru untuk omset/HPP).
   - **Acceptance Criteria:** Desain elegan, responsif, selaras dengan tema gelap/terang dashboard.
 
-- [ ] **Task 4.3: Komponen Badge Status Finansial & Proyek**
+- [x] **Task 4.3: Komponen Badge Status Finansial & Proyek**
   - **Target File:** `src/components/dashboard/financial/FinancialBadges.tsx`
   - **Spesifikasi:**
     - `PaymentStatusBadge`:
@@ -205,7 +205,7 @@ Tujuan: Menghubungkan modul baru ke sistem navigasi dashboard dan menyediakan ko
 
 Tujuan: Membangun formulir input order yang memudahkan admin memilih paket layanan dan secara otomatis mengisikan harga jual serta estimasi HPP awal.
 
-- [ ] **Task 5.1: Komponen Modal Form Input Order (`OrderFormModal.tsx`)**
+- [x] **Task 5.1: Komponen Modal Form Input Order (`OrderFormModal.tsx`)**
   - **Target File:** `src/components/dashboard/financial/OrderFormModal.tsx`
   - **Spesifikasi:**
     - Modal dialog dengan form:
@@ -226,7 +226,7 @@ Tujuan: Membangun formulir input order yang memudahkan admin memilih paket layan
 
 Tujuan: Membangun fitur inti yang diminta pemilik agensi untuk melihat rincian modal proyek dan memodifikasinya kapan saja (misalnya saat ada promo hosting atau diskon domain).
 
-- [ ] **Task 6.1: Komponen Slide-Over Drawer Detail HPP (`HppDetailDrawer.tsx`)**
+- [x] **Task 6.1: Komponen Slide-Over Drawer Detail HPP (`HppDetailDrawer.tsx`)**
   - **Target File:** `src/components/dashboard/financial/HppDetailDrawer.tsx`
   - **Spesifikasi:**
     - Komponen Slide-over Drawer (muncul dari kanan layar saat tombol "Rincian HPP" di baris tabel diklik).
@@ -253,7 +253,7 @@ Tujuan: Membangun fitur inti yang diminta pemilik agensi untuk melihat rincian m
 
 Tujuan: Mengintegrasikan seluruh modul ke dalam halaman `/dashboard/keuangan` dan menambahkan widget ringkasan finansial di halaman depan dashboard utama.
 
-- [ ] **Task 7.1: Halaman Utama Laporan Keuangan (`/dashboard/keuangan/page.tsx`)**
+- [x] **Task 7.1: Halaman Utama Laporan Keuangan (`/dashboard/keuangan/page.tsx`)**
   - **Target File:** `src/app/(dashboard)/dashboard/(main)/keuangan/page.tsx`
   - **Spesifikasi:**
     - Server Component dengan pre-fetching data statistik dan daftar order.
@@ -267,14 +267,14 @@ Tujuan: Mengintegrasikan seluruh modul ke dalam halaman `/dashboard/keuangan` da
     - Tabel Riwayat Order Transaktif dengan integrasi `HppDetailDrawer`.
   - **Acceptance Criteria:** Halaman termuat cepat (< 500ms), data teragregasi secara tepat, bebas error hidrasi.
 
-- [ ] **Task 7.2: Route Handler Ekspor CSV Laporan Finansial**
+- [x] **Task 7.2: Route Handler Ekspor CSV Laporan Finansial**
   - **Target File:** `src/app/api/financial/export-csv/route.ts`
   - **Spesifikasi:**
     - Endpoint download file CSV dengan header `Content-Type: text/csv` dan `Content-Disposition: attachment; filename="laporan-keuangan-marketingcode-{date}.csv"`.
     - Kolom CSV: No Order, Tanggal, Nama Klien, Nama Usaha, WhatsApp, Kategori, Paket, Harga Jual, Total HPP, Laba Bersih, Margin (%), Status Pembayaran, Status Proyek.
   - **Acceptance Criteria:** File CSV dapat diunduh dan dibuka langsung di Microsoft Excel atau Google Sheets tanpa masalah encoding karakter.
 
-- [ ] **Task 7.3: Integrasi Widget Ringkasan Finansial di Halaman Beranda Dashboard**
+- [x] **Task 7.3: Integrasi Widget Ringkasan Finansial di Halaman Beranda Dashboard**
   - **Target File:** [src/app/(dashboard)/dashboard/(main)/page.tsx](file:///Users/ahmadkhairolmaulidi/Documents/Freelance/marketingcodeid-agency/project/src/app/(dashboard)/dashboard/(main)/page.tsx)
   - **Spesifikasi:**
     - Tambahkan section ringkasan finansial di atas daftar artikel/portofolio:
@@ -288,7 +288,7 @@ Tujuan: Mengintegrasikan seluruh modul ke dalam halaman `/dashboard/keuangan` da
 
 Tujuan: Memastikan seluruh fungsionalitas baru bebas dari celah keamanan, lulus protokol pengetesan proyek, dan memiliki performa optimal.
 
-- [ ] **Task 8.1: Pembuatan Automated Integration Tests**
+- [x] **Task 8.1: Pembuatan Automated Integration Tests**
   - **Target File:** `tests/int/financial-orders.int.spec.ts`
   - **Spesifikasi:**
     - Test suite mencakup:
@@ -299,14 +299,14 @@ Tujuan: Memastikan seluruh fungsionalitas baru bebas dari celah keamanan, lulus 
       5. Uji hak akses: pastikan request tanpa sesi admin ditolak.
   - **Acceptance Criteria:** Seluruh pengujian baru pada `tests/int/financial-orders.int.spec.ts` lulus 100%.
 
-- [ ] **Task 8.2: Build Validation & Full Test Suite Pass**
+- [x] **Task 8.2: Build Validation & Full Test Suite Pass**
   - **Target Perintah:** `pnpm test:int` dan `pnpm build`
   - **Spesifikasi:**
     - Jalankan seluruh 85+ test integrasi yang ada + test baru.
     - Jalankan kompilasi produksi Next.js.
   - **Acceptance Criteria:** Seluruh test integrasi lulus 100% (exit code 0), build produksi lolos dengan exit code 0 tanpa error TypeScript atau kegagalan route generation.
 
-- [ ] **Task 8.3: Verifikasi Visual & UX (Strict Zero-Emoji)**
+- [x] **Task 8.3: Verifikasi Visual & UX (Strict Zero-Emoji)**
   - **Target:** Pemeriksaan tampilan Desktop (1280x800) dan Mobile (390x844).
   - **Spesifikasi:**
     - Pastikan drawer detail HPP dan modal order nyaman digunakan di mobile.
