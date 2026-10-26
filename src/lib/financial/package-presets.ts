@@ -129,6 +129,45 @@ export const PACKAGE_PRESETS: PackagePreset[] = [
     ],
   },
 
+  {
+    category: 'website',
+    name: 'Website Ruko Digital UMKM',
+    label: 'Website - Ruko Digital UMKM (Rp 1.500.000)',
+    defaultSellingPrice: 1500000,
+    description: 'Solusi website instan UMKM bebas potongan komisi, cloud server, dan tombol order WhatsApp',
+    defaultHppItems: [
+      {
+        category: 'hosting',
+        description: 'Hosting Cloud SSD 1 Tahun',
+        amount: 250000,
+      },
+      {
+        category: 'domain',
+        description: 'Registrasi Domain .com / .id 1 Tahun',
+        amount: 150000,
+      },
+    ],
+  },
+  {
+    category: 'website',
+    name: 'Pemeliharaan & Maintenance Web (1 Tahun)',
+    label: 'Website - Pemeliharaan & Maintenance (Rp 600.000)',
+    defaultSellingPrice: 600000,
+    description: 'Perpanjangan domain, server cloud, pemeliharaan teknis berkala, dan backup rutin',
+    defaultHppItems: [
+      {
+        category: 'hosting',
+        description: 'Perpanjangan Server Cloud & SSL 1 Tahun',
+        amount: 250000,
+      },
+      {
+        category: 'domain',
+        description: 'Perpanjangan Domain .com / .id 1 Tahun',
+        amount: 150000,
+      },
+    ],
+  },
+
   // Kategori: Mobile App
   {
     category: 'mobile',
@@ -168,6 +207,55 @@ export const PACKAGE_PRESETS: PackagePreset[] = [
       },
     ],
   },
+  {
+    category: 'mobile',
+    name: 'Custom Enterprise App',
+    label: 'Mobile App - Custom Enterprise App (Rp 65.000.000)',
+    defaultSellingPrice: 65000000,
+    description: 'Arsitektur skala besar, integrasi ERP/CRM internal perusahaan, biometrik & offline sync',
+    defaultHppItems: [
+      {
+        category: 'hosting',
+        description: 'Dedicated Cloud High-Availability Server (1 Tahun)',
+        amount: 5000000,
+      },
+      {
+        category: 'tools',
+        description: 'Integrasi API Enterprise, Keamanan & QA Spesifikasi',
+        amount: 3000000,
+      },
+    ],
+  },
+
+  // Kategori: Video & Konten Kreatif (Custom)
+  {
+    category: 'custom',
+    name: 'Video Editing & Motion Ads (5 Video)',
+    label: 'Video - Paket 5 Video Iklan (Rp 1.500.000)',
+    defaultSellingPrice: 1500000,
+    description: '5 Video iklan Reels/TikTok/Shorts konversi tinggi dengan hook 3 detik',
+    defaultHppItems: [
+      {
+        category: 'tools',
+        description: 'Lisensi Audio Berlisensi, Template Motion & Asset Stock',
+        amount: 300000,
+      },
+    ],
+  },
+  {
+    category: 'custom',
+    name: 'Video Editing Retainer Bulanan (15 Video)',
+    label: 'Video - Retainer Bulanan 15 Video (Rp 3.500.000)',
+    defaultSellingPrice: 3500000,
+    description: 'Pengelolaan 15 video konten dan iklan media sosial per bulan terstruktur',
+    defaultHppItems: [
+      {
+        category: 'tools',
+        description: 'Lisensi Audio Komersial, Render Cloud & Aset Efek Khusus',
+        amount: 700000,
+      },
+    ],
+  },
 
   // Kategori: Custom
   {
@@ -180,11 +268,64 @@ export const PACKAGE_PRESETS: PackagePreset[] = [
   },
 ]
 
-export function getPackagePresets(category?: ServiceCategory): PackagePreset[] {
-  if (!category) return PACKAGE_PRESETS
-  return PACKAGE_PRESETS.filter((p) => p.category === category)
+export const CUSTOM_PACKAGES_STORAGE_KEY = 'mc_custom_packages'
+
+export function getCustomPackagesFromStorage(): PackagePreset[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(CUSTOM_PACKAGES_STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
 }
 
-export function getPackagePreset(category: ServiceCategory, name: string): PackagePreset | undefined {
-  return PACKAGE_PRESETS.find((p) => p.category === category && p.name === name)
+export function saveCustomPackageToStorage(preset: PackagePreset): PackagePreset[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const current = getCustomPackagesFromStorage()
+    const filtered = current.filter((p) => p.name.trim().toLowerCase() !== preset.name.trim().toLowerCase())
+    const updated = [...filtered, preset]
+    window.localStorage.setItem(CUSTOM_PACKAGES_STORAGE_KEY, JSON.stringify(updated))
+    return updated
+  } catch {
+    return []
+  }
+}
+
+export function deleteCustomPackageFromStorage(packageName: string): PackagePreset[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const current = getCustomPackagesFromStorage()
+    const updated = current.filter((p) => p.name !== packageName)
+    window.localStorage.setItem(CUSTOM_PACKAGES_STORAGE_KEY, JSON.stringify(updated))
+    return updated
+  } catch {
+    return []
+  }
+}
+
+export function getPackagePresets(category?: ServiceCategory, customPackages: PackagePreset[] = []): PackagePreset[] {
+  const all = [...PACKAGE_PRESETS, ...customPackages]
+  if (!category) return all
+  return all.filter((p) => p.category === category)
+}
+
+export function getPackagePreset(
+  category: ServiceCategory,
+  name: string,
+  customPackages: PackagePreset[] = []
+): PackagePreset | undefined {
+  const all = [...PACKAGE_PRESETS, ...customPackages]
+  return all.find((p) => p.category === category && p.name === name)
+}
+
+export function findPackageByName(
+  name: string,
+  customPackages: PackagePreset[] = []
+): PackagePreset | undefined {
+  const all = [...PACKAGE_PRESETS, ...customPackages]
+  return all.find((p) => p.name === name)
 }

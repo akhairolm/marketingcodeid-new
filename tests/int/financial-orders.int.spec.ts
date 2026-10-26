@@ -9,6 +9,7 @@ import {
   PACKAGE_PRESETS,
   getPackagePresets,
   getPackagePreset,
+  findPackageByName,
 } from '@/lib/financial/package-presets'
 import { db } from '@/db'
 import { orders, orderHppItems } from '@/db/schema'
@@ -84,18 +85,49 @@ describe('Dashboard Keuangan & Modifikasi HPP Dinamis Suite', () => {
       expect(PACKAGE_PRESETS.length).toBeGreaterThan(0)
 
       const websitePresets = getPackagePresets('website')
-      expect(websitePresets.length).toBeGreaterThanOrEqual(3)
+      expect(websitePresets.length).toBeGreaterThanOrEqual(4)
 
       const landingPage = getPackagePreset('website', 'Landing Page & Iklan')
       expect(landingPage).toBeDefined()
       expect(landingPage?.defaultSellingPrice).toBe(1190000)
       expect(landingPage?.defaultHppItems.length).toBe(2)
+
+      const rukoDigital = getPackagePreset('website', 'Website Ruko Digital UMKM')
+      expect(rukoDigital).toBeDefined()
+      expect(rukoDigital?.defaultSellingPrice).toBe(1500000)
+
+      const enterpriseApp = getPackagePreset('mobile', 'Custom Enterprise App')
+      expect(enterpriseApp).toBeDefined()
+      expect(enterpriseApp?.defaultSellingPrice).toBe(65000000)
     })
 
     it('mengembalikan preset kustom jika diperlukan', () => {
       const custom = getPackagePreset('custom', 'Paket Kustom / Layanan Khusus')
       expect(custom).toBeDefined()
       expect(custom?.defaultSellingPrice).toBe(0)
+    })
+
+    it('mendukung pencarian paket lintas kategori via findPackageByName dan penggabungan paket kustom', () => {
+      const pkg = findPackageByName('MVP Mobile Starter')
+      expect(pkg).toBeDefined()
+      expect(pkg?.category).toBe('mobile')
+      expect(pkg?.defaultSellingPrice).toBe(18000000)
+
+      const userPackage = {
+        category: 'website' as const,
+        name: 'Paket Spesial Klien VIP',
+        label: 'WEBSITE - Paket Spesial Klien VIP',
+        defaultSellingPrice: 5000000,
+        description: 'Paket kustom buatan admin',
+        defaultHppItems: [{ category: 'hosting' as const, description: 'Dedicated', amount: 500000 }],
+      }
+
+      const allWebsite = getPackagePresets('website', [userPackage])
+      expect(allWebsite.some((p) => p.name === 'Paket Spesial Klien VIP')).toBe(true)
+
+      const foundCustom = findPackageByName('Paket Spesial Klien VIP', [userPackage])
+      expect(foundCustom).toBeDefined()
+      expect(foundCustom?.defaultSellingPrice).toBe(5000000)
     })
   })
 

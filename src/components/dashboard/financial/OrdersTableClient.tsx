@@ -20,14 +20,49 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+import { Label } from '@/components/ui/label'
+import {
   Plus,
   Download,
   Search,
   Receipt,
   FileSpreadsheet,
   Trash2,
-  Edit2,
   ExternalLink,
+  MoreHorizontal,
+  ReceiptText,
+  Edit3,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import {
@@ -37,7 +72,6 @@ import {
 } from './FinancialBadges'
 import { HppDetailDrawer } from './HppDetailDrawer'
 import { OrderFormModal } from './OrderFormModal'
-import { DeleteDialog } from '@/components/dashboard/DeleteDialog'
 import { formatRupiah, formatPercent } from '@/lib/financial/calculator'
 import {
   deleteOrderAction,
@@ -67,6 +101,10 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
   const [newPayStatus, setNewPayStatus] = useState<PaymentStatus>('paid')
   const [newProjStatus, setNewProjStatus] = useState<ProjectStatus>('in_progress')
   const [isUpdatingStatus, startStatusTransition] = useTransition()
+
+  // Delete Alert Dialog State
+  const [orderToDelete, setOrderToDelete] = useState<OrderWithHppBreakdown | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   // Sync state if props change
   React.useEffect(() => {
@@ -136,17 +174,23 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
     })
   }
 
-  const handleDeleteOrder = async (formData: FormData) => {
-    const orderId = String(formData.get('id') || '')
-    if (!orderId) return
-
-    const res = await deleteOrderAction(orderId)
-    if (res.success) {
-      toast.success('Transaksi order telah dihapus.')
-      setOrders(orders.filter((o) => o.id !== orderId))
-      router.refresh()
-    } else {
-      toast.error(res.error || 'Gagal menghapus order.')
+  const handleConfirmDelete = async () => {
+    if (!orderToDelete) return
+    setIsDeleting(true)
+    try {
+      const res = await deleteOrderAction(orderToDelete.id)
+      if (res.success) {
+        toast.success('Transaksi order telah dihapus.')
+        setOrders(orders.filter((o) => o.id !== orderToDelete.id))
+        setOrderToDelete(null)
+        router.refresh()
+      } else {
+        toast.error(res.error || 'Gagal menghapus order.')
+      }
+    } catch {
+      toast.error('Terjadi kesalahan jaringan saat menghapus order.')
+    } finally {
+      setIsDeleting(false)
     }
   }
 
@@ -196,26 +240,34 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <select
+            <Select
               value={periodFilter}
-              onChange={(e) => setPeriodFilter(e.target.value as any)}
-              className="h-9 rounded-xl border border-border bg-background px-3 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+              onValueChange={(val) => setPeriodFilter(val as 'all' | 'month' | 'year')}
             >
-              <option value="all">Semua Waktu</option>
-              <option value="month">Bulan Ini</option>
-              <option value="year">Tahun Ini</option>
-            </select>
+              <SelectTrigger className="w-[140px] h-9 text-xs bg-background">
+                <SelectValue placeholder="Semua Waktu" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Semua Waktu</SelectItem>
+                <SelectItem value="month">Bulan Ini</SelectItem>
+                <SelectItem value="year">Tahun Ini</SelectItem>
+              </SelectContent>
+            </Select>
 
-            <select
+            <Select
               value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="h-9 rounded-xl border border-border bg-background px-3 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+              onValueChange={(val) => setStatusFilter(val)}
             >
-              <option value="all">Semua Status Bayar</option>
-              <option value="paid">Lunas</option>
-              <option value="down_payment">DP Terbayar</option>
-              <option value="unpaid">Belum Bayar</option>
-            </select>
+              <SelectTrigger className="w-[165px] h-9 text-xs bg-background">
+                <SelectValue placeholder="Semua Status Bayar" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Semua Status Bayar</SelectItem>
+                <SelectItem value="paid">Lunas</SelectItem>
+                <SelectItem value="down_payment">DP Terbayar</SelectItem>
+                <SelectItem value="unpaid">Belum Bayar</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
@@ -224,15 +276,15 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
           <Table>
             <TableHeader className="bg-muted/30 border-b border-border">
               <TableRow className="border-border hover:bg-transparent">
-                <TableHead className="py-3.5 pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider">No. Order / Tgl</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Klien &amp; WhatsApp</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Paket Layanan</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-right">Harga Jual</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-right">Total HPP</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-right">Laba Bersih</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-center">Margin</TableHead>
-                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider">Status</TableHead>
-                <TableHead className="py-3.5 pr-6 text-xs font-bold text-muted-foreground uppercase tracking-wider text-center">Aksi</TableHead>
+                <TableHead className="py-3.5 pl-6 text-xs font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap">No. Order / Tgl</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap">Klien &amp; WhatsApp</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap">Paket Layanan</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-right whitespace-nowrap min-w-[130px]">Harga Jual</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-right whitespace-nowrap min-w-[130px]">Total HPP</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-right whitespace-nowrap min-w-[130px]">Laba Bersih</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider text-center whitespace-nowrap min-w-[80px]">Margin</TableHead>
+                <TableHead className="py-3.5 text-xs font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap">Status</TableHead>
+                <TableHead className="py-3.5 pr-6 text-xs font-bold text-muted-foreground uppercase tracking-wider text-center whitespace-nowrap w-[70px]">Aksi</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -269,25 +321,30 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
                       })
                     : '-'
 
+                  const hasDistinctCompany =
+                    order.clientCompany &&
+                    order.clientCompany.trim().length > 0 &&
+                    order.clientCompany.trim().toLowerCase() !== order.clientName.trim().toLowerCase()
+
                   return (
                     <TableRow key={order.id} className="border-border hover:bg-accent/40 transition-colors text-xs">
                       {/* No Order & Tanggal */}
-                      <TableCell className="py-3.5 pl-6 font-medium">
+                      <TableCell className="py-3.5 pl-6 font-medium whitespace-nowrap">
                         <span className="font-mono font-bold text-primary block">
                           {order.orderNumber}
                         </span>
-                        <span className="text-[11px] text-muted-foreground">
+                        <span className="text-[11px] text-muted-foreground block">
                           {orderDateStr}
                         </span>
                       </TableCell>
 
                       {/* Klien & WhatsApp */}
-                      <TableCell className="py-3.5">
-                        <div className="font-semibold text-foreground truncate max-w-[160px]">
+                      <TableCell className="py-3.5 whitespace-nowrap">
+                        <div className="font-semibold text-foreground truncate max-w-[180px]">
                           {order.clientName}
                         </div>
-                        {order.clientCompany && (
-                          <div className="text-[11px] text-muted-foreground truncate max-w-[160px]">
+                        {hasDistinctCompany && (
+                          <div className="text-[11px] text-muted-foreground truncate max-w-[180px]">
                             {order.clientCompany}
                           </div>
                         )}
@@ -303,41 +360,41 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
                       </TableCell>
 
                       {/* Paket Layanan */}
-                      <TableCell className="py-3.5">
+                      <TableCell className="py-3.5 whitespace-nowrap">
                         <div className="space-y-1">
                           <ServiceCategoryBadge category={order.serviceCategory} />
-                          <div className="font-medium text-foreground truncate max-w-[180px]">
+                          <div className="font-medium text-foreground">
                             {order.packageName}
                           </div>
                         </div>
                       </TableCell>
 
                       {/* Harga Jual */}
-                      <TableCell className="py-3.5 text-right font-mono font-bold text-foreground">
+                      <TableCell className="py-3.5 text-right font-mono font-bold text-foreground whitespace-nowrap">
                         {formatRupiah(order.sellingPrice)}
                       </TableCell>
 
                       {/* Total HPP (Bisa diklik untuk buka rincian) */}
-                      <TableCell className="py-3.5 text-right">
+                      <TableCell className="py-3.5 text-right whitespace-nowrap">
                         <button
                           type="button"
                           onClick={() => handleOpenDrawer(order)}
-                          className="group text-right inline-block"
+                          className="group text-right inline-block cursor-pointer"
                           title="Klik untuk melihat dan memodifikasi rincian HPP"
                         >
-                          <span className="font-mono font-semibold text-foreground group-hover:text-primary transition-colors block">
+                          <span className="font-mono font-semibold text-foreground group-hover:text-primary transition-colors block whitespace-nowrap">
                             {formatRupiah(order.totalHpp)}
                           </span>
-                          <span className="text-[10px] text-primary underline block">
+                          <span className="text-[10px] text-primary underline block whitespace-nowrap">
                             {order.hppItems?.length || 0} Pos Biaya
                           </span>
                         </button>
                       </TableCell>
 
                       {/* Laba Bersih */}
-                      <TableCell className="py-3.5 text-right">
+                      <TableCell className="py-3.5 text-right whitespace-nowrap">
                         <span
-                          className={`font-mono font-bold block ${
+                          className={`font-mono font-bold block whitespace-nowrap ${
                             order.netProfit >= 0
                               ? 'text-emerald-600 dark:text-emerald-400'
                               : 'text-rose-600'
@@ -348,9 +405,9 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
                       </TableCell>
 
                       {/* Margin */}
-                      <TableCell className="py-3.5 text-center font-mono">
+                      <TableCell className="py-3.5 text-center font-mono whitespace-nowrap">
                         <span
-                          className={`inline-block px-1.5 py-0.5 rounded text-[11px] font-bold ${
+                          className={`inline-block px-1.5 py-0.5 rounded text-[11px] font-bold whitespace-nowrap ${
                             marginNum >= 50
                               ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
                               : marginNum > 0
@@ -363,7 +420,7 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
                       </TableCell>
 
                       {/* Status Bayar & Proyek */}
-                      <TableCell className="py-3.5">
+                      <TableCell className="py-3.5 whitespace-nowrap">
                         <div className="space-y-1">
                           <PaymentStatusBadge status={order.paymentStatus} />
                           <div>
@@ -372,44 +429,44 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
                         </div>
                       </TableCell>
 
-                      {/* Aksi */}
-                      <TableCell className="py-3.5 pr-6 text-center">
-                        <div className="flex items-center justify-center gap-1">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleOpenDrawer(order)}
-                            className="h-7 px-2.5 rounded-full text-[11px] font-semibold border-border"
-                          >
-                            Rincian HPP
-                          </Button>
-
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => handleOpenStatusModal(order)}
-                            className="h-7 w-7 rounded-full text-muted-foreground hover:text-foreground"
-                            title="Ubah Status"
-                          >
-                            <Edit2 className="h-3.5 w-3.5" />
-                          </Button>
-
-                          <DeleteDialog
-                            action={handleDeleteOrder}
-                            id={order.id}
-                            label={order.orderNumber}
-                            description="Transaksi order ini beserta seluruh pos biaya HPP-nya akan dihapus permanen dari database."
-                          >
+                      {/* Aksi: Tombol Menu Titik 3 (Shadcn UI DropdownMenu) */}
+                      <TableCell className="py-3.5 pr-6 text-center whitespace-nowrap">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-7 w-7 rounded-full text-destructive hover:bg-destructive/10"
-                              title="Hapus Order"
+                              className="h-8 w-8 rounded-md text-muted-foreground hover:text-foreground"
                             >
-                              <Trash2 className="h-3.5 w-3.5" />
+                              <MoreHorizontal className="h-4 w-4" />
+                              <span className="sr-only">Buka menu aksi order</span>
                             </Button>
-                          </DeleteDialog>
-                        </div>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-48 shadow-lg">
+                            <DropdownMenuItem
+                              onClick={() => handleOpenDrawer(order)}
+                              className="cursor-pointer text-xs"
+                            >
+                              <ReceiptText className="h-4 w-4 mr-2 text-primary" />
+                              <span>Rincian Modal HPP</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => handleOpenStatusModal(order)}
+                              className="cursor-pointer text-xs"
+                            >
+                              <Edit3 className="h-4 w-4 mr-2 text-muted-foreground" />
+                              <span>Ubah Status</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              onClick={() => setOrderToDelete(order)}
+                              className="cursor-pointer text-xs text-destructive focus:text-destructive focus:bg-destructive/10"
+                            >
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              <span>Hapus Order</span>
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </TableCell>
                     </TableRow>
                   )
@@ -435,70 +492,116 @@ export function OrdersTableClient({ initialOrders }: OrdersTableClientProps) {
         onSuccess={() => router.refresh()}
       />
 
-      {/* Modal Quick Update Status */}
-      {statusModalOpen && orderToUpdate && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-sm rounded-[20px] bg-card border border-border p-5 shadow-xl space-y-4">
-            <div>
-              <h3 className="font-bold text-base text-foreground font-display">
-                Perbarui Status: {orderToUpdate.orderNumber}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Klien: {orderToUpdate.clientName}
-              </p>
+      {/* Modal Quick Update Status (Shadcn UI Dialog) */}
+      <Dialog open={statusModalOpen} onOpenChange={setStatusModalOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-base font-bold">
+              Perbarui Status Transaksi
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              {orderToUpdate
+                ? `Order ${orderToUpdate.orderNumber} - Klien: ${orderToUpdate.clientName}`
+                : 'Pilih status pembayaran dan status pengerjaan proyek terbaru.'}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-2 text-xs">
+            <div className="space-y-1.5">
+              <Label htmlFor="quick-payment-status" className="text-xs font-semibold">
+                Status Pembayaran
+              </Label>
+              <Select
+                value={newPayStatus}
+                onValueChange={(val) => setNewPayStatus(val as PaymentStatus)}
+              >
+                <SelectTrigger id="quick-payment-status" className="h-9 w-full text-xs">
+                  <SelectValue placeholder="Pilih status bayar" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="paid">Lunas (100%)</SelectItem>
+                  <SelectItem value="down_payment">Uang Muka (DP)</SelectItem>
+                  <SelectItem value="unpaid">Belum Bayar</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            <div className="space-y-3 text-xs">
-              <div className="space-y-1">
-                <label className="font-semibold text-foreground">Status Pembayaran</label>
-                <select
-                  value={newPayStatus}
-                  onChange={(e) => setNewPayStatus(e.target.value as PaymentStatus)}
-                  className="w-full h-9 rounded-xl border border-border bg-background px-3 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
-                >
-                  <option value="paid">Lunas (100%)</option>
-                  <option value="down_payment">Uang Muka (DP)</option>
-                  <option value="unpaid">Belum Bayar</option>
-                </select>
-              </div>
-
-              <div className="space-y-1">
-                <label className="font-semibold text-foreground">Status Pengerjaan Proyek</label>
-                <select
-                  value={newProjStatus}
-                  onChange={(e) => setNewProjStatus(e.target.value as ProjectStatus)}
-                  className="w-full h-9 rounded-xl border border-border bg-background px-3 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
-                >
-                  <option value="in_progress">Pengerjaan</option>
-                  <option value="revision">Revisi</option>
-                  <option value="completed">Selesai</option>
-                  <option value="cancelled">Dibatalkan</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex justify-end gap-2 pt-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setStatusModalOpen(false)}
-                disabled={isUpdatingStatus}
-                className="h-8 rounded-full text-xs border-border"
+            <div className="space-y-1.5">
+              <Label htmlFor="quick-project-status" className="text-xs font-semibold">
+                Status Pengerjaan Proyek
+              </Label>
+              <Select
+                value={newProjStatus}
+                onValueChange={(val) => setNewProjStatus(val as ProjectStatus)}
               >
-                Batal
-              </Button>
-              <Button
-                size="sm"
-                onClick={handleSaveStatus}
-                disabled={isUpdatingStatus}
-                className="h-8 rounded-full text-xs font-bold"
-              >
-                {isUpdatingStatus ? 'Menyimpan...' : 'Simpan Status'}
-              </Button>
+                <SelectTrigger id="quick-project-status" className="h-9 w-full text-xs">
+                  <SelectValue placeholder="Pilih status pengerjaan" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="in_progress">Pengerjaan</SelectItem>
+                  <SelectItem value="revision">Revisi</SelectItem>
+                  <SelectItem value="completed">Selesai</SelectItem>
+                  <SelectItem value="cancelled">Dibatalkan</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
-        </div>
-      )}
+
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setStatusModalOpen(false)}
+              disabled={isUpdatingStatus}
+              className="text-xs"
+            >
+              Batal
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={handleSaveStatus}
+              disabled={isUpdatingStatus}
+              className="text-xs font-bold"
+            >
+              {isUpdatingStatus ? 'Menyimpan...' : 'Simpan Status'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog Konfirmasi Hapus Order (Shadcn UI AlertDialog) */}
+      <AlertDialog
+        open={!!orderToDelete}
+        onOpenChange={(open) => !open && setOrderToDelete(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Hapus Transaksi Order?</AlertDialogTitle>
+            <AlertDialogDescription className="text-xs text-muted-foreground">
+              Transaksi order{' '}
+              <span className="font-mono font-bold text-foreground">
+                {orderToDelete?.orderNumber}
+              </span>{' '}
+              (Klien: {orderToDelete?.clientName}) beserta seluruh rincian pos biaya
+              modal HPP terkait akan dihapus permanen dari database. Tindakan ini tidak dapat dibatalkan.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isDeleting} className="text-xs">
+              Batal
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmDelete}
+              disabled={isDeleting}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold"
+            >
+              {isDeleting ? 'Menghapus...' : 'Ya, Hapus Permanen'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }

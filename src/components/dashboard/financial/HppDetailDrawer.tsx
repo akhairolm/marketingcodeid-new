@@ -11,6 +11,13 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { toast } from 'sonner'
 import { Plus, Trash2, Check, Loader2, Sparkles, AlertCircle } from 'lucide-react'
 import { HppCategoryBadge } from './FinancialBadges'
@@ -303,18 +310,22 @@ export function HppDetailDrawer({
                       <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
                         <div className="sm:col-span-4">
                           <Label className="text-[11px]">Kategori</Label>
-                          <select
+                          <Select
                             value={editCategory}
-                            onChange={(e) => setEditCategory(e.target.value as HppCategory)}
-                            className="w-full h-8 rounded border border-input bg-background px-2 text-xs"
+                            onValueChange={(val) => setEditCategory(val as HppCategory)}
                           >
-                            <option value="hosting">Hosting/Server</option>
-                            <option value="domain">Domain</option>
-                            <option value="license">Lisensi</option>
-                            <option value="freelancer">Freelancer</option>
-                            <option value="tools">Tools/API</option>
-                            <option value="other">Lainnya</option>
-                          </select>
+                            <SelectTrigger className="w-full h-8 text-xs bg-background">
+                              <SelectValue placeholder="Pilih Kategori" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="hosting">Hosting/Server</SelectItem>
+                              <SelectItem value="domain">Domain</SelectItem>
+                              <SelectItem value="license">Lisensi</SelectItem>
+                              <SelectItem value="freelancer">Freelancer</SelectItem>
+                              <SelectItem value="tools">Tools/API</SelectItem>
+                              <SelectItem value="other">Lainnya</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </div>
 
                         <div className="sm:col-span-8">
@@ -455,18 +466,22 @@ export function HppDetailDrawer({
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
               <div className="sm:col-span-4">
                 <Label className="text-[11px]">Kategori</Label>
-                <select
+                <Select
                   value={newCategory}
-                  onChange={(e) => setNewCategory(e.target.value as HppCategory)}
-                  className="w-full h-8 rounded border border-input bg-background px-2 text-xs"
+                  onValueChange={(val) => setNewCategory(val as HppCategory)}
                 >
-                  <option value="hosting">Hosting/Server</option>
-                  <option value="domain">Domain</option>
-                  <option value="license">Lisensi</option>
-                  <option value="freelancer">Freelancer</option>
-                  <option value="tools">Tools/API</option>
-                  <option value="other">Lainnya</option>
-                </select>
+                  <SelectTrigger className="w-full h-8 text-xs bg-background">
+                    <SelectValue placeholder="Pilih Kategori" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="hosting">Hosting/Server</SelectItem>
+                    <SelectItem value="domain">Domain</SelectItem>
+                    <SelectItem value="license">Lisensi</SelectItem>
+                    <SelectItem value="freelancer">Freelancer</SelectItem>
+                    <SelectItem value="tools">Tools/API</SelectItem>
+                    <SelectItem value="other">Lainnya</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="sm:col-span-8">

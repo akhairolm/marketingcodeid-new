@@ -6,7 +6,7 @@ interface MaskedPhoneCellProps {
 
 /**
  * Menampilkan nomor WhatsApp dengan masking bagian tengah demi menjaga kepatuhan privasi (PII).
- * Contoh: "+6281234567890" -> "+62 812-****-7890"
+ * Contoh: "+6285128038243" -> "+62 851-****-8243"
  */
 export function MaskedPhoneCell({ phone }: MaskedPhoneCellProps) {
   if (!phone) {

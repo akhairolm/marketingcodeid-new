@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useId } from 'react'
+import React, { useState, useEffect, useId } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -12,9 +12,28 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { toast } from 'sonner'
-import { Plus, Trash2, Calculator, Loader2 } from 'lucide-react'
-import { PACKAGE_PRESETS, getPackagePresets } from '@/lib/financial/package-presets'
+import { Plus, Trash2, Calculator, Loader2, Package, X } from 'lucide-react'
+import {
+  PACKAGE_PRESETS,
+  getPackagePresets,
+  findPackageByName,
+  getCustomPackagesFromStorage,
+  saveCustomPackageToStorage,
+  deleteCustomPackageFromStorage,
+  type PackagePreset,
+} from '@/lib/financial/package-presets'
 import { calculateProfitAndMargin, formatRupiah, formatPercent } from '@/lib/financial/calculator'
 import { createOrderAction } from '@/app/(dashboard)/dashboard/(main)/keuangan/actions'
 import type {
@@ -35,7 +54,20 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
   const formId = useId()
   const [loading, setLoading] = useState(false)
 
-  // Form State
+  // Custom Packages State
+  const [customPackages, setCustomPackages] = useState<PackagePreset[]>([])
+  const [isAddingCustomPackage, setIsAddingCustomPackage] = useState(false)
+
+  // Form State untuk Tambah Paket Baru
+  const [newPkgName, setNewPkgName] = useState('')
+  const [newPkgCategory, setNewPkgCategory] = useState<ServiceCategory>('website')
+  const [newPkgPrice, setNewPkgPrice] = useState<number>(0)
+  const [newPkgDesc, setNewPkgDesc] = useState('')
+  const [newPkgHppItems, setNewPkgHppItems] = useState<InitialHppItemInput[]>([
+    { category: 'hosting', description: 'Biaya Server / Cloud', amount: 0 },
+  ])
+
+  // Form State Order
   const [serviceCategory, setServiceCategory] = useState<ServiceCategory>('website')
   const [packageName, setPackageName] = useState(PACKAGE_PRESETS[0].name)
   const [sellingPrice, setSellingPrice] = useState<number>(PACKAGE_PRESETS[0].defaultSellingPrice)
@@ -53,10 +85,18 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
     PACKAGE_PRESETS[0].defaultHppItems
   )
 
-  // Saat kategori layanan diubah
+  // Muat custom packages dari localStorage saat modal terbuka
+  useEffect(() => {
+    if (open) {
+      const stored = getCustomPackagesFromStorage()
+      setCustomPackages(stored)
+    }
+  }, [open])
+
+  // Saat kategori layanan diubah oleh user
   const handleCategoryChange = (category: ServiceCategory) => {
     setServiceCategory(category)
-    const available = getPackagePresets(category)
+    const available = getPackagePresets(category, customPackages)
     if (available.length > 0) {
       const first = available[0]
       setPackageName(first.name)
@@ -72,16 +112,77 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
     }
   }
 
-  // Saat paket layanan diubah
+  // Saat paket layanan diubah oleh user dari dropdown
   const handlePackageChange = (name: string) => {
+    if (name === '__add_custom_package__') {
+      setIsAddingCustomPackage(true)
+      return
+    }
     setPackageName(name)
-    const preset = PACKAGE_PRESETS.find((p) => p.category === serviceCategory && p.name === name)
+    const preset = findPackageByName(name, customPackages)
     if (preset) {
+      // Sinkronisasi kategori layanan otomatis jika paket berasal dari kategori lain
+      if (preset.category !== serviceCategory) {
+        setServiceCategory(preset.category)
+      }
       setSellingPrice(preset.defaultSellingPrice)
       setHppItems(preset.defaultHppItems)
       if (paymentStatus === 'paid') {
         setPaidAmount(preset.defaultSellingPrice)
       }
+    }
+  }
+
+  // Simpan paket baru ke localStorage dan terapkan ke form order
+  const handleSaveCustomPackage = (e: React.FormEvent) => {
+    e.preventDefault()
+    const trimmed = newPkgName.trim()
+    if (!trimmed) {
+      toast.error('Nama paket wajib diisi.')
+      return
+    }
+    if (newPkgPrice < 0) {
+      toast.error('Harga jual paket tidak valid.')
+      return
+    }
+
+    const created: PackagePreset = {
+      category: newPkgCategory,
+      name: trimmed,
+      label: `${newPkgCategory.toUpperCase()} - ${trimmed} (${formatRupiah(newPkgPrice)})`,
+      defaultSellingPrice: newPkgPrice,
+      description: newPkgDesc.trim() || 'Paket layanan kustom agensi',
+      defaultHppItems: newPkgHppItems.filter((it) => it.description.trim() !== '' || it.amount > 0),
+    }
+
+    const updated = saveCustomPackageToStorage(created)
+    setCustomPackages(updated)
+
+    // Terapkan langsung ke form order saat ini
+    setServiceCategory(created.category)
+    setPackageName(created.name)
+    setSellingPrice(created.defaultSellingPrice)
+    setHppItems(created.defaultHppItems)
+    if (paymentStatus === 'paid') {
+      setPaidAmount(created.defaultSellingPrice)
+    }
+
+    // Reset form tambah paket & sembunyikan
+    setNewPkgName('')
+    setNewPkgPrice(0)
+    setNewPkgDesc('')
+    setNewPkgHppItems([{ category: 'hosting', description: 'Biaya Server / Cloud', amount: 0 }])
+    setIsAddingCustomPackage(false)
+    toast.success(`Paket "${created.name}" berhasil ditambahkan dan dipilih.`)
+  }
+
+  // Hapus paket kustom buatan user
+  const handleDeleteCustomPackage = (pkgNameToDelete: string) => {
+    const updated = deleteCustomPackageFromStorage(pkgNameToDelete)
+    setCustomPackages(updated)
+    toast.success(`Paket "${pkgNameToDelete}" dihapus dari daftar.`)
+    if (packageName === pkgNameToDelete) {
+      handleCategoryChange(serviceCategory)
     }
   }
 
@@ -159,6 +260,7 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
         setClientPhone('')
         setClientCompany('')
         setNotes('')
+        setIsAddingCustomPackage(false)
         onSuccess?.()
       } else {
         toast.error(res.error || 'Gagal menyimpan order.')
@@ -177,7 +279,11 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
     { value: 'custom', label: 'Layanan Kustom' },
   ]
 
-  const currentPresets = getPackagePresets(serviceCategory)
+  // Kelompokkan seluruh paket yang dijual agensi (otomatis digabung dengan paket kustom pengguna)
+  const websitePackages = getPackagePresets('website', customPackages)
+  const adsPackages = getPackagePresets('ads', customPackages)
+  const mobilePackages = getPackagePresets('mobile', customPackages)
+  const customPresets = getPackagePresets('custom', customPackages)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -198,37 +304,325 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor={`${formId}-category`}>Kategori Layanan</Label>
-                <select
-                  id={`${formId}-category`}
+                <div className="min-h-[26px] flex items-center">
+                  <Label htmlFor={`${formId}-category`}>Kategori Layanan</Label>
+                </div>
+                <Select
                   value={serviceCategory}
-                  onChange={(e) => handleCategoryChange(e.target.value as ServiceCategory)}
-                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  onValueChange={(val) => handleCategoryChange(val as ServiceCategory)}
                 >
-                  {categoryOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger id={`${formId}-category`} className="w-full h-10">
+                    <SelectValue placeholder="Pilih Kategori" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categoryOptions.map((opt) => (
+                      <SelectItem key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor={`${formId}-package`}>Pilihan Paket</Label>
-                <select
-                  id={`${formId}-package`}
+                <div className="min-h-[26px] flex items-center justify-between">
+                  <Label htmlFor={`${formId}-package`}>Pilihan Paket</Label>
+                  <button
+                    type="button"
+                    onClick={() => setIsAddingCustomPackage((prev) => !prev)}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#D13D00] hover:text-[#B33400] transition-colors cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Tambah Paket</span>
+                  </button>
+                </div>
+                <Select
                   value={packageName}
-                  onChange={(e) => handlePackageChange(e.target.value)}
-                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  onValueChange={(val) => {
+                    if (val === '__add_custom_package__') {
+                      setIsAddingCustomPackage(true)
+                    } else {
+                      handlePackageChange(val)
+                    }
+                  }}
                 >
-                  {currentPresets.map((p) => (
-                    <option key={p.name} value={p.name}>
-                      {p.name}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger id={`${formId}-package`} className="w-full h-10">
+                    <SelectValue placeholder="Pilih Paket Layanan" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-72">
+                    <SelectGroup>
+                      <SelectLabel>Website Development</SelectLabel>
+                      {websitePackages.map((p) => (
+                        <SelectItem key={`web-${p.name}`} value={p.name}>
+                          {p.name} ({formatRupiah(p.defaultSellingPrice)})
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    <SelectSeparator />
+                    <SelectGroup>
+                      <SelectLabel>Digital Advertising (Ads)</SelectLabel>
+                      {adsPackages.map((p) => (
+                        <SelectItem key={`ads-${p.name}`} value={p.name}>
+                          {p.name} ({formatRupiah(p.defaultSellingPrice)})
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    <SelectSeparator />
+                    <SelectGroup>
+                      <SelectLabel>Mobile Application</SelectLabel>
+                      {mobilePackages.map((p) => (
+                        <SelectItem key={`mob-${p.name}`} value={p.name}>
+                          {p.name} ({formatRupiah(p.defaultSellingPrice)})
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    {customPresets.length > 0 && (
+                      <>
+                        <SelectSeparator />
+                        <SelectGroup>
+                          <SelectLabel>Layanan Kustom &amp; Kreatif</SelectLabel>
+                          {customPresets.map((p) => (
+                            <SelectItem key={`cust-${p.name}`} value={p.name}>
+                              {p.name} {p.defaultSellingPrice > 0 ? `(${formatRupiah(p.defaultSellingPrice)})` : ''}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </>
+                    )}
+                    <SelectSeparator />
+                    <SelectItem value="__add_custom_package__" className="text-primary font-semibold">
+                      + Tambah Paket Baru ke Daftar...
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
+
+            {/* Panel Form Tambah Paket Baru */}
+            {isAddingCustomPackage && (
+              <div className="rounded-xl border border-orange-200 bg-orange-50/50 p-4 space-y-4 animate-in fade-in-50 duration-200">
+                <div className="flex items-center justify-between border-b border-orange-200/70 pb-2">
+                  <div className="flex items-center gap-2 text-sm font-bold text-neutral-900">
+                    <Package className="w-4 h-4 text-[#D13D00]" />
+                    <span>Tambah Paket Layanan Baru ke Daftar</span>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsAddingCustomPackage(false)}
+                    className="h-7 px-2 text-xs text-neutral-500 hover:text-neutral-800"
+                  >
+                    <X className="w-3.5 h-3.5 mr-1" />
+                    Tutup
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-pkg-name" className="text-xs">
+                      Nama Paket Baru
+                    </Label>
+                    <Input
+                      id="new-pkg-name"
+                      placeholder="Contoh: Paket Maintenance & SEO Bulanan"
+                      value={newPkgName}
+                      onChange={(e) => setNewPkgName(e.target.value)}
+                      className="text-xs bg-white"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-pkg-category" className="text-xs">
+                      Kategori Layanan
+                    </Label>
+                    <Select
+                      value={newPkgCategory}
+                      onValueChange={(val) => setNewPkgCategory(val as ServiceCategory)}
+                    >
+                      <SelectTrigger id="new-pkg-category" className="w-full h-9 text-xs bg-white">
+                        <SelectValue placeholder="Pilih Kategori" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categoryOptions.map((opt) => (
+                          <SelectItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-pkg-price" className="text-xs">
+                      Harga Jual Standar (IDR)
+                    </Label>
+                    <Input
+                      id="new-pkg-price"
+                      type="number"
+                      min={0}
+                      value={newPkgPrice || ''}
+                      onChange={(e) => setNewPkgPrice(Math.max(0, parseInt(e.target.value) || 0))}
+                      className="text-xs font-mono font-bold bg-white"
+                      placeholder="Contoh: 1500000"
+                    />
+                    <p className="text-[11px] text-muted-foreground">
+                      Terformat: <span className="font-semibold text-foreground">{formatRupiah(newPkgPrice)}</span>
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-pkg-desc" className="text-xs">
+                      Deskripsi Ringkas (Opsional)
+                    </Label>
+                    <Input
+                      id="new-pkg-desc"
+                      placeholder="Ringkasan fitur &amp; cakupan paket"
+                      value={newPkgDesc}
+                      onChange={(e) => setNewPkgDesc(e.target.value)}
+                      className="text-xs bg-white"
+                    />
+                  </div>
+                </div>
+
+                {/* Pos HPP Awal untuk Paket Baru */}
+                <div className="space-y-2 border-t border-orange-200/70 pt-3 text-left">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-xs font-bold text-neutral-800">
+                      Pos Modal HPP Bawaan (Opsional)
+                    </Label>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setNewPkgHppItems([
+                          ...newPkgHppItems,
+                          { category: 'other', description: '', amount: 0 },
+                        ])
+                      }
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#D13D00] hover:text-[#B33400] cursor-pointer"
+                    >
+                      <Plus className="w-3 h-3" />
+                      <span>Tambah Pos HPP</span>
+                    </button>
+                  </div>
+
+                  <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
+                    {newPkgHppItems.map((item, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <Select
+                          value={item.category}
+                          onValueChange={(val) => {
+                            const updated = [...newPkgHppItems]
+                            updated[idx].category = val as HppCategory
+                            setNewPkgHppItems(updated)
+                          }}
+                        >
+                          <SelectTrigger className="w-28 h-8 text-xs bg-white">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="hosting">Hosting</SelectItem>
+                            <SelectItem value="domain">Domain</SelectItem>
+                            <SelectItem value="freelancer">Freelancer</SelectItem>
+                            <SelectItem value="license">Lisensi</SelectItem>
+                            <SelectItem value="tools">Tools / API</SelectItem>
+                            <SelectItem value="other">Lainnya</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Input
+                          placeholder="Deskripsi pengeluaran..."
+                          value={item.description}
+                          onChange={(e) => {
+                            const updated = [...newPkgHppItems]
+                            updated[idx].description = e.target.value
+                            setNewPkgHppItems(updated)
+                          }}
+                          className="text-xs h-8 bg-white flex-1"
+                        />
+                        <Input
+                          type="number"
+                          placeholder="Nominal"
+                          value={item.amount || ''}
+                          onChange={(e) => {
+                            const updated = [...newPkgHppItems]
+                            updated[idx].amount = Math.max(0, parseInt(e.target.value) || 0)
+                            setNewPkgHppItems(updated)
+                          }}
+                          className="w-28 text-xs font-mono h-8 bg-white"
+                        />
+                        {newPkgHppItems.length > 1 && (
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            onClick={() =>
+                              setNewPkgHppItems(newPkgHppItems.filter((_, i) => i !== idx))
+                            }
+                            className="h-8 w-8 text-neutral-400 hover:text-red-600"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </Button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer Tombol Simpan Paket */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-2 border-t border-orange-200/70">
+                  <span className="text-[11px] text-neutral-500">
+                    Paket baru akan tersimpan di daftar pilihan untuk order saat ini dan seterusnya.
+                  </span>
+                  <div className="flex items-center gap-2 self-end sm:self-auto">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setIsAddingCustomPackage(false)}
+                      className="text-xs h-8"
+                    >
+                      Batal
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      onClick={handleSaveCustomPackage}
+                      className="text-xs h-8 bg-[#D13D00] hover:bg-[#B33400] text-white font-semibold"
+                    >
+                      Simpan &amp; Terapkan Paket
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Pengelolaan Paket Kustom Tersimpan */}
+                {customPackages.length > 0 && (
+                  <div className="mt-2 pt-2 border-t border-orange-200/70 text-left">
+                    <p className="text-[11px] font-semibold text-neutral-700 mb-1.5">
+                      Paket Tambahan Buatan Anda ({customPackages.length}):
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {customPackages.map((pkg) => (
+                        <span
+                          key={pkg.name}
+                          className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white border border-neutral-200 text-[11px] text-neutral-800 shadow-2xs"
+                        >
+                          <span className="font-medium">{pkg.name}</span>
+                          <span className="text-neutral-500 font-mono">({formatRupiah(pkg.defaultSellingPrice)})</span>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteCustomPackage(pkg.name)}
+                            className="text-neutral-400 hover:text-red-600 transition-colors ml-0.5 cursor-pointer"
+                            title={`Hapus paket ${pkg.name}`}
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="space-y-2">
               <Label htmlFor={`${formId}-price`}>
@@ -283,18 +677,22 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
                     className="grid grid-cols-12 gap-2 items-center bg-background p-2.5 rounded-lg border text-sm"
                   >
                     <div className="col-span-3">
-                      <select
+                      <Select
                         value={item.category}
-                        onChange={(e) => handleUpdateHppItem(idx, 'category', e.target.value as HppCategory)}
-                        className="w-full h-8 rounded border border-input bg-background px-2 text-xs focus:outline-none"
+                        onValueChange={(val) => handleUpdateHppItem(idx, 'category', val as HppCategory)}
                       >
-                        <option value="hosting">Hosting</option>
-                        <option value="domain">Domain</option>
-                        <option value="license">Lisensi</option>
-                        <option value="freelancer">Freelancer</option>
-                        <option value="tools">Tools/API</option>
-                        <option value="other">Lainnya</option>
-                      </select>
+                        <SelectTrigger className="w-full h-8 text-xs bg-background">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="hosting">Hosting</SelectItem>
+                          <SelectItem value="domain">Domain</SelectItem>
+                          <SelectItem value="license">Lisensi</SelectItem>
+                          <SelectItem value="freelancer">Freelancer</SelectItem>
+                          <SelectItem value="tools">Tools/API</SelectItem>
+                          <SelectItem value="other">Lainnya</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
                     <div className="col-span-5">
@@ -427,12 +825,13 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="space-y-2">
-                <Label htmlFor={`${formId}-payment-status`}>Status Pembayaran</Label>
-                <select
-                  id={`${formId}-payment-status`}
+                <div className="min-h-[26px] flex items-center">
+                  <Label htmlFor={`${formId}-payment-status`}>Status Pembayaran</Label>
+                </div>
+                <Select
                   value={paymentStatus}
-                  onChange={(e) => {
-                    const status = e.target.value as PaymentStatus
+                  onValueChange={(val) => {
+                    const status = val as PaymentStatus
                     setPaymentStatus(status)
                     if (status === 'paid') {
                       setPaidAmount(sellingPrice)
@@ -440,17 +839,58 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
                       setPaidAmount(0)
                     }
                   }}
-                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none"
                 >
-                  <option value="paid">Lunas (100%)</option>
-                  <option value="down_payment">Uang Muka (DP)</option>
-                  <option value="unpaid">Belum Bayar</option>
-                </select>
+                  <SelectTrigger id={`${formId}-payment-status`} className="w-full h-10">
+                    <SelectValue placeholder="Pilih status bayar" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="paid">Lunas (100%)</SelectItem>
+                    <SelectItem value="down_payment">Uang Muka (DP)</SelectItem>
+                    <SelectItem value="unpaid">Belum Bayar</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
-              {paymentStatus === 'down_payment' && (
-                <div className="space-y-2">
-                  <Label htmlFor={`${formId}-paid-amount`}>Nominal DP (IDR)</Label>
+              <div className="space-y-2">
+                <div className="min-h-[26px] flex items-center">
+                  <Label htmlFor={`${formId}-project-status`}>Status Pengerjaan</Label>
+                </div>
+                <Select
+                  value={projectStatus}
+                  onValueChange={(val) => setProjectStatus(val as ProjectStatus)}
+                >
+                  <SelectTrigger id={`${formId}-project-status`} className="w-full h-10">
+                    <SelectValue placeholder="Pilih status pengerjaan" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="in_progress">Pengerjaan</SelectItem>
+                    <SelectItem value="revision">Revisi</SelectItem>
+                    <SelectItem value="completed">Selesai</SelectItem>
+                    <SelectItem value="cancelled">Dibatalkan</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <div className="min-h-[26px] flex items-center">
+                  <Label htmlFor={`${formId}-order-date`}>Tanggal Transaksi</Label>
+                </div>
+                <Input
+                  id={`${formId}-order-date`}
+                  type="date"
+                  value={orderDate}
+                  onChange={(e) => setOrderDate(e.target.value)}
+                  className="h-10 bg-background text-sm"
+                />
+              </div>
+            </div>
+
+            {paymentStatus === 'down_payment' && (
+              <div className="rounded-lg bg-orange-50/60 border border-orange-200/80 p-3 grid grid-cols-1 sm:grid-cols-2 gap-3 items-center animate-in fade-in-50">
+                <div className="space-y-1">
+                  <Label htmlFor={`${formId}-paid-amount`} className="text-xs font-semibold text-neutral-800">
+                    Nominal DP Terbayar (IDR)
+                  </Label>
                   <Input
                     id={`${formId}-paid-amount`}
                     type="number"
@@ -458,45 +898,26 @@ export function OrderFormModal({ open, onOpenChange, onSuccess }: OrderFormModal
                     max={sellingPrice}
                     value={paidAmount}
                     onChange={(e) => setPaidAmount(Math.max(0, parseInt(e.target.value) || 0))}
+                    className="h-10 font-mono font-bold bg-white text-sm"
+                    placeholder="Contoh: 500000"
                   />
                 </div>
-              )}
-
-              <div className="space-y-2">
-                <Label htmlFor={`${formId}-project-status`}>Status Pengerjaan</Label>
-                <select
-                  id={`${formId}-project-status`}
-                  value={projectStatus}
-                  onChange={(e) => setProjectStatus(e.target.value as ProjectStatus)}
-                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none"
-                >
-                  <option value="in_progress">Pengerjaan</option>
-                  <option value="revision">Revisi</option>
-                  <option value="completed">Selesai</option>
-                  <option value="cancelled">Dibatalkan</option>
-                </select>
+                <div className="text-xs space-y-1 text-muted-foreground sm:pt-4">
+                  <div>Terbayar: <span className="font-semibold text-foreground font-mono">{formatRupiah(paidAmount)}</span></div>
+                  <div>Sisa Tagihan: <span className="font-semibold text-rose-600 font-mono">{formatRupiah(Math.max(0, sellingPrice - paidAmount))}</span></div>
+                </div>
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor={`${formId}-order-date`}>Tanggal Transaksi</Label>
-                <Input
-                  id={`${formId}-order-date`}
-                  type="date"
-                  value={orderDate}
-                  onChange={(e) => setOrderDate(e.target.value)}
-                />
-              </div>
-            </div>
+            )}
 
             <div className="space-y-2">
               <Label htmlFor={`${formId}-notes`}>Catatan Internal (Opsional)</Label>
-              <textarea
+              <Textarea
                 id={`${formId}-notes`}
                 rows={2}
                 placeholder="Catatan tambahan mengenai proyek, diskon khusus, atau timeline pengerjaan..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full rounded-md border border-input bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full text-sm"
               />
             </div>
           </div>
