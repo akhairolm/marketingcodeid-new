@@ -154,7 +154,15 @@ export function PricingSection() {
                       const baseMsg = `Halo MarketingCode ID, saya ingin konsultasi terkait paket website: ${subject}.`
                       const { prepareTrackedWhatsAppUrl } = await import('@/lib/tracking/client-tracker')
                       const trackedUrl = await prepareTrackedWhatsAppUrl(baseMsg)
-                      window.open(trackedUrl, '_blank', 'noopener,noreferrer')
+                      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+                      if (isMobile) {
+                        window.location.href = trackedUrl
+                      } else {
+                        const win = window.open(trackedUrl, '_blank', 'noopener,noreferrer')
+                        if (!win || win.closed || typeof win.closed === 'undefined') {
+                          window.location.href = trackedUrl
+                        }
+                      }
                     }
                   }}
                   className={`mt-6 w-full py-3 px-5 font-bold text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${

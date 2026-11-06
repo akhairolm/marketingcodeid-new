@@ -137,4 +137,51 @@ describe('Offline Conversion Tracking Unit & Integration Suite', () => {
       expect(result).toBe(msgWithRef)
     })
   })
+
+  describe('Ad Params Local Persistence (Ad Storage)', () => {
+    it('menyimpan dan membaca gclid serta fbclid dari URL landing ke storage', async () => {
+      const { persistAdParamsFromUrl, getPersistedAdParams, clearPersistedAdParams } = await import(
+        '@/lib/tracking/ad-storage'
+      )
+
+      clearPersistedAdParams()
+
+      const testUrl =
+        'https://marketingcode.id/jasa-pembuatan-website?gclid=CjwKCAjw9_landing_gclid&fbclid=IwAR0_landing_fbclid&utm_source=google&utm_campaign=web_kalsel'
+      const persisted = persistAdParamsFromUrl(testUrl)
+
+      expect(persisted).toBeDefined()
+      expect(persisted?.gclid).toBe('CjwKCAjw9_landing_gclid')
+      expect(persisted?.fbclid).toBe('IwAR0_landing_fbclid')
+      expect(persisted?.utmSource).toBe('google')
+      expect(persisted?.utmCampaign).toBe('web_kalsel')
+      expect(persisted?.fbc).toMatch(/^fb\.1\.\d+\.IwAR0_landing_fbclid$/)
+
+      const readBack = getPersistedAdParams()
+      expect(readBack?.gclid).toBe('CjwKCAjw9_landing_gclid')
+      expect(readBack?.fbclid).toBe('IwAR0_landing_fbclid')
+
+      clearPersistedAdParams()
+    })
+
+    it('mempertahankan parameter lama jika pengunjung berpindah ke URL bersih tanpa query string', async () => {
+      const { persistAdParamsFromUrl, getPersistedAdParams, clearPersistedAdParams } = await import(
+        '@/lib/tracking/ad-storage'
+      )
+
+      clearPersistedAdParams()
+
+      // Langkah 1: Pengunjung mendarat dari Google Ads
+      persistAdParamsFromUrl('https://marketingcode.id/jasa-pembuatan-website?gclid=CjwKCAjw9_test_persistence')
+
+      // Langkah 2: Pengunjung klik menu navigasi atau scroll ke URL bersih
+      const cleanNavUrl = 'https://marketingcode.id/jasa-pembuatan-website#paket-harga'
+      const afterNav = persistAdParamsFromUrl(cleanNavUrl)
+
+      expect(afterNav?.gclid).toBe('CjwKCAjw9_test_persistence')
+      expect(getPersistedAdParams()?.gclid).toBe('CjwKCAjw9_test_persistence')
+
+      clearPersistedAdParams()
+    })
+  })
 })
