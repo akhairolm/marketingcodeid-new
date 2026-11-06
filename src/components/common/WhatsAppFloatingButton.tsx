@@ -118,7 +118,15 @@ export function WhatsAppFloatingButton() {
               : 'Halo Admin MarketingCode.ID, saya sedang melihat website Anda dan ingin konsultasi langsung via WhatsApp.'
             const { prepareTrackedWhatsAppUrl } = await import('@/lib/tracking/client-tracker')
             const trackedUrl = await prepareTrackedWhatsAppUrl(message)
-            window.open(trackedUrl, '_blank', 'noopener,noreferrer')
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+            if (isMobile) {
+              window.location.href = trackedUrl
+            } else {
+              const win = window.open(trackedUrl, '_blank', 'noopener,noreferrer')
+              if (!win || win.closed || typeof win.closed === 'undefined') {
+                window.location.href = trackedUrl
+              }
+            }
           }
         }}
         aria-label="Chat WhatsApp dengan Admin MarketingCode.ID"
