@@ -29,6 +29,18 @@ function AdTrackingCore() {
 
       const rawHref = target.href
 
+      // Jangan cegat tautan share artikel blog (wa.me/?text=... tanpa nomor WhatsApp tujuan)
+      try {
+        const parsed = new URL(rawHref)
+        const digits = parsed.pathname.replace(/[^0-9]/g, '')
+        const hasPhoneParam = parsed.searchParams.has('phone')
+        if (parsed.hostname.includes('wa.me') && digits.length < 5 && !hasPhoneParam) {
+          return
+        }
+      } catch {
+        // Abaikan jika parsing URL gagal
+      }
+
       // Jangan cegat jika URL sudah memuat kode referensi (sudah diproses sebelumnya)
       if (
         rawHref.includes('(Ref:') ||

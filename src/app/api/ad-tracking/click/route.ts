@@ -3,6 +3,8 @@ import { db } from '@/db'
 import { adClickSessions } from '@/db/schema'
 import { generateRefCode, isValidRefCode } from '@/lib/tracking/ref-code'
 import { extractAdParamsFromSearch, formatMetaFbc } from '@/lib/tracking/ad-params'
+import { normalizePhoneNumberE164 } from '@/lib/tracking/whatsapp-parser'
+import { hashSha256 } from '@/lib/tracking/hashing'
 
 export async function POST(req: Request) {
   try {
@@ -17,6 +19,7 @@ export async function POST(req: Request) {
       wbraid: clientWbraid = null,
       gbraid: clientGbraid = null,
       fbclid: clientFbclid = null,
+      phoneNumber = null,
     } = body
 
     // Ambil IP Address dan User-Agent
@@ -47,6 +50,17 @@ export async function POST(req: Request) {
           : `#${clientRefCode.trim().toUpperCase()}`
         : generateRefCode()
 
+    // Normalisasi dan hash nomor telepon jika dikirimkan langsung (misal dari form konsultasi)
+    let initialStatus: 'CLICKED' | 'LEAD_RECEIVED' = 'CLICKED'
+    let initialPhone: string | null = null
+    let initialPhoneHash: string | null = null
+
+    if (phoneNumber && typeof phoneNumber === 'string' && phoneNumber.trim().length >= 8) {
+      initialPhone = normalizePhoneNumberE164(phoneNumber.trim())
+      initialPhoneHash = hashSha256(initialPhone)
+      initialStatus = 'LEAD_RECEIVED'
+    }
+
     let insertedId: string | null = null
 
     try {
@@ -63,7 +77,9 @@ export async function POST(req: Request) {
           fbp: effectiveFbp,
           ipAddress: ipAddress ? ipAddress.slice(0, 45) : null,
           userAgent: userAgent ? userAgent.slice(0, 500) : null,
-          status: 'CLICKED',
+          phoneNumber: initialPhone,
+          phoneHash: initialPhoneHash,
+          status: initialStatus,
         })
         .returning({ id: adClickSessions.id, refCode: adClickSessions.refCode })
 
@@ -89,7 +105,9 @@ export async function POST(req: Request) {
             fbp: effectiveFbp,
             ipAddress: ipAddress ? ipAddress.slice(0, 45) : null,
             userAgent: userAgent ? userAgent.slice(0, 500) : null,
-            status: 'CLICKED',
+            phoneNumber: initialPhone,
+            phoneHash: initialPhoneHash,
+            status: initialStatus,
           })
           .returning({ id: adClickSessions.id, refCode: adClickSessions.refCode })
 

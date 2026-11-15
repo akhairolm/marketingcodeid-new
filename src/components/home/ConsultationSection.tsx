@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { MailCheck, Check, AlertCircle } from 'lucide-react'
 import { DEFAULT_WHATSAPP_NUMBER, getWhatsAppUrl } from '@/lib/whatsapp'
 import { trackWhatsAppClick } from '@/lib/analytics'
+import { generateRefCode } from '@/lib/tracking/ref-code'
+import { appendRefCodeToMessage, dispatchAdClickTracking } from '@/lib/tracking/client-tracker'
 
 const SERVICE_OPTIONS = [
   { value: 'umkm', label: 'Website UMKM & Katalog Produk', name: 'Website UMKM & Katalog Produk' },
@@ -51,7 +53,12 @@ export function ConsultationSection() {
     const waText = `Halo MarketingCode.ID, saya ${trimmedName}${business} (No. WA: ${formData.phone.trim()}). Saya ingin konsultasi terkait ${serviceName}.${notesText}`
 
     const cleanTargetPhone = DEFAULT_WHATSAPP_NUMBER.replace(/[^0-9]/g, '')
-    const targetUrl = `https://wa.me/${cleanTargetPhone}?text=${encodeURIComponent(waText)}`
+    const refCode = generateRefCode()
+    const finalWaText = appendRefCodeToMessage(waText, refCode)
+    const targetUrl = `https://wa.me/${cleanTargetPhone}?text=${encodeURIComponent(finalWaText)}`
+
+    // Dispatch pelacakan konversi iklan lengkap (Google Ads OCI + Enhanced Conversions + Meta CAPI / Pixel)
+    dispatchAdClickTracking(refCode, { phoneNumber: cleanPhoneDigits })
 
     trackWhatsAppClick({
       position: 'consultation_form',
@@ -60,8 +67,15 @@ export function ConsultationSection() {
 
     setSubmittedWaUrl(targetUrl)
 
-    // Direct synchronous navigation without timer
-    window.open(targetUrl, '_blank', 'noopener,noreferrer')
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    if (isMobile) {
+      window.location.href = targetUrl
+    } else {
+      const win = window.open(targetUrl, '_blank', 'noopener,noreferrer')
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        window.location.href = targetUrl
+      }
+    }
   }
 
   return (
