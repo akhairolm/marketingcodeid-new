@@ -15,6 +15,8 @@ import {
   formatGoogleAdsDateTime,
   type GoogleConversionResponse,
 } from '@/lib/integrations/google-ads'
+import { normalizePhoneNumberE164 } from '@/lib/tracking/whatsapp-parser'
+import { hashSha256 } from '@/lib/tracking/hashing'
 
 export async function markGoogleLeadClosingAction(formData: FormData): Promise<{
   success: boolean
@@ -25,6 +27,7 @@ export async function markGoogleLeadClosingAction(formData: FormData): Promise<{
 
   const sessionId = String(formData.get('sessionId') || '').trim()
   const conversionValue = Number(formData.get('conversionValue') || 0)
+  const rawPhone = String(formData.get('phoneNumber') || '').trim()
 
   if (!sessionId) {
     return { success: false, error: 'Sesi klik iklan tidak valid.' }
@@ -42,10 +45,23 @@ export async function markGoogleLeadClosingAction(formData: FormData): Promise<{
       return { success: false, error: 'Data sesi tidak ditemukan di database.' }
     }
 
-    // Update status sesi menjadi WON
+    let finalPhone = session.phoneNumber
+    let finalPhoneHash = session.phoneHash
+
+    if (rawPhone) {
+      finalPhone = normalizePhoneNumberE164(rawPhone)
+      finalPhoneHash = hashSha256(finalPhone)
+    }
+
+    // Update status sesi menjadi WON beserta nomor HP (jika diinput/diperbarui)
     await db
       .update(adClickSessions)
-      .set({ status: 'WON', updatedAt: new Date() })
+      .set({
+        status: 'WON',
+        phoneNumber: finalPhone,
+        phoneHash: finalPhoneHash,
+        updatedAt: new Date(),
+      })
       .where(eq(adClickSessions.id, sessionId))
 
     // Catat baris konversi offline
@@ -62,8 +78,8 @@ export async function markGoogleLeadClosingAction(formData: FormData): Promise<{
       .returning({ id: offlineConversions.id })
 
     // Siapkan identifier Enhanced Conversions
-    const userIdentifiers = session.phoneHash
-      ? [{ hashedPhoneNumber: session.phoneHash }]
+    const userIdentifiers = finalPhoneHash
+      ? [{ hashedPhoneNumber: finalPhoneHash }]
       : []
 
     // Kirim konversi ke Google Ads API
@@ -96,6 +112,61 @@ export async function markGoogleLeadClosingAction(formData: FormData): Promise<{
       success: false,
       error: errMessage,
     }
+  }
+}
+
+export async function linkGoogleSessionPhoneAction(formData: FormData): Promise<{
+  success: boolean
+  error?: string
+  formattedPhone?: string
+}> {
+  await requireAdmin()
+
+  const sessionId = String(formData.get('sessionId') || '').trim()
+  const rawPhone = String(formData.get('phoneNumber') || '').trim()
+
+  if (!sessionId) {
+    return { success: false, error: 'Sesi klik iklan tidak valid.' }
+  }
+  if (!rawPhone) {
+    return { success: false, error: 'Nomor WhatsApp wajib diisi.' }
+  }
+
+  try {
+    const formattedPhone = normalizePhoneNumberE164(rawPhone)
+    const phoneHash = hashSha256(formattedPhone)
+
+    const sessions = await db
+      .select({ id: adClickSessions.id, status: adClickSessions.status })
+      .from(adClickSessions)
+      .where(eq(adClickSessions.id, sessionId))
+      .limit(1)
+
+    if (!sessions[0]) {
+      return { success: false, error: 'Data sesi tidak ditemukan.' }
+    }
+
+    const currentStatus = sessions[0].status
+    const newStatus = currentStatus === 'CLICKED' ? 'LEAD_RECEIVED' : currentStatus
+
+    await db
+      .update(adClickSessions)
+      .set({
+        phoneNumber: formattedPhone,
+        phoneHash,
+        status: newStatus,
+        updatedAt: new Date(),
+      })
+      .where(eq(adClickSessions.id, sessionId))
+
+    revalidatePath('/dashboard/offline-conversion/google')
+    revalidatePath('/dashboard/offline-conversion/meta')
+    revalidatePath('/dashboard')
+
+    return { success: true, formattedPhone }
+  } catch (err) {
+    console.error('[google/actions] linkGoogleSessionPhoneAction error:', err)
+    return { success: false, error: 'Gagal menghubungkan nomor WhatsApp.' }
   }
 }
 

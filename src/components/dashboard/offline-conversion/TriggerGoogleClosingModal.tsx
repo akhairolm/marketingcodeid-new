@@ -35,6 +35,15 @@ export function TriggerGoogleClosingModal({
 }: TriggerGoogleClosingModalProps) {
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('1190000')
+  const [phone, setPhone] = useState('')
+
+  React.useEffect(() => {
+    if (session?.phoneNumber) {
+      setPhone(session.phoneNumber)
+    } else {
+      setPhone('')
+    }
+  }, [session])
 
   if (!session) return null
 
@@ -45,6 +54,9 @@ export function TriggerGoogleClosingModal({
     const formData = new FormData()
     formData.append('sessionId', session.id)
     formData.append('conversionValue', value)
+    if (phone.trim()) {
+      formData.append('phoneNumber', phone.trim())
+    }
 
     try {
       const res = await markGoogleLeadClosingAction(formData)
@@ -85,15 +97,28 @@ export function TriggerGoogleClosingModal({
                 <span className="font-mono font-bold text-primary">{session.refCode}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground font-medium">Nomor WhatsApp:</span>
-                <span className="font-mono font-semibold text-foreground">{session.phoneNumber || 'Belum terhubung'}</span>
-              </div>
-              <div className="flex justify-between items-center">
                 <span className="text-muted-foreground font-medium">Click ID (GCLID):</span>
                 <span className="font-mono text-muted-foreground truncate max-w-[200px]" title={activeClickId}>
                   {activeClickId.length > 24 ? `${activeClickId.slice(0, 24)}...` : activeClickId}
                 </span>
               </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="googleClientPhoneInput" className="text-foreground text-xs font-bold">
+                Nomor WhatsApp Klien (Enhanced Conversions)
+              </Label>
+              <Input
+                id="googleClientPhoneInput"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Contoh: 08123456789 atau +628123456789"
+                className="bg-background border-border text-foreground font-mono text-xs"
+              />
+              <p className="text-[11px] text-muted-foreground">
+                Opsional. Jika diisi, nomor telepon akan di-hash SHA-256 untuk pencocokan data Enhanced Conversions di Google Ads.
+              </p>
             </div>
 
             <div className="space-y-1.5">

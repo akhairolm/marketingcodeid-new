@@ -4,8 +4,9 @@ import React, { useState } from 'react'
 import { ConversionStatusBadge } from '@/components/dashboard/offline-conversion/ConversionStatusBadge'
 import { MaskedPhoneCell } from '@/components/dashboard/offline-conversion/MaskedPhoneCell'
 import { TriggerClosingModal } from '@/components/dashboard/offline-conversion/TriggerClosingModal'
+import { LinkPhoneModal } from '@/components/dashboard/offline-conversion/LinkPhoneModal'
 import { Button } from '@/components/ui/button'
-import { CheckCircle2, RotateCw, Trash2 } from 'lucide-react'
+import { CheckCircle2, Pencil, RotateCw, Trash2 } from 'lucide-react'
 import { deleteAdClickSessionAction, retryMetaCapiEventAction } from './actions'
 import { DeleteDialog } from '@/components/dashboard/DeleteDialog'
 import { toast } from 'sonner'
@@ -43,11 +44,18 @@ export interface MetaConversionItem {
 export function MetaConversionTableClient({ items }: { items: MetaConversionItem[] }) {
   const [selectedSession, setSelectedSession] = useState<MetaConversionItem | null>(null)
   const [modalOpen, setModalOpen] = useState(false)
+  const [linkPhoneSession, setLinkPhoneSession] = useState<MetaConversionItem | null>(null)
+  const [linkPhoneModalOpen, setLinkPhoneModalOpen] = useState(false)
   const [retryingId, setRetryingId] = useState<string | null>(null)
 
   const handleOpenClosing = (item: MetaConversionItem) => {
     setSelectedSession(item)
     setModalOpen(true)
+  }
+
+  const handleOpenLinkPhone = (item: MetaConversionItem) => {
+    setLinkPhoneSession(item)
+    setLinkPhoneModalOpen(true)
   }
 
   const handleRetry = async (conversionId: string) => {
@@ -118,7 +126,17 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
                         {item.refCode}
                       </TableCell>
                       <TableCell className="py-3.5 whitespace-nowrap">
-                        <MaskedPhoneCell phone={item.phoneNumber} />
+                        <div className="flex items-center gap-1.5">
+                          <MaskedPhoneCell phone={item.phoneNumber} />
+                          <button
+                            type="button"
+                            onClick={() => handleOpenLinkPhone(item)}
+                            className="text-muted-foreground hover:text-foreground cursor-pointer p-1 rounded-sm transition-colors hover:bg-muted"
+                            title={item.phoneNumber ? 'Ubah nomor WhatsApp' : 'Hubungkan nomor WhatsApp'}
+                          >
+                            <Pencil className="h-3 w-3" />
+                          </button>
+                        </div>
                       </TableCell>
                       <TableCell className="py-3.5 font-mono text-xs text-foreground max-w-xs truncate">
                         {item.fbc ? (
@@ -199,6 +217,12 @@ export function MetaConversionTableClient({ items }: { items: MetaConversionItem
         session={selectedSession}
         open={modalOpen}
         onOpenChange={setModalOpen}
+      />
+
+      <LinkPhoneModal
+        session={linkPhoneSession}
+        open={linkPhoneModalOpen}
+        onOpenChange={setLinkPhoneModalOpen}
       />
     </>
   )

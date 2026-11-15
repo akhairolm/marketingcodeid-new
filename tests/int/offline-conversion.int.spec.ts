@@ -184,4 +184,26 @@ describe('Offline Conversion Tracking Unit & Integration Suite', () => {
       clearPersistedAdParams()
     })
   })
+
+  describe('Enhanced Conversions & Phone Linking Logic', () => {
+    it('menghasilkan payload user identifiers Google Ads yang valid jika nomor telepon ada', () => {
+      const rawPhone = '0812 3456 7890'
+      const normalized = normalizePhoneNumberE164(rawPhone)
+      expect(normalized).toBe('+6281234567890')
+
+      const hashedPhone = hashSha256(normalized)
+      expect(hashedPhone).toHaveLength(64)
+
+      const userIdentifiers = hashedPhone ? [{ hashedPhoneNumber: hashedPhone }] : []
+      expect(userIdentifiers).toHaveLength(1)
+      expect(userIdentifiers[0].hashedPhoneNumber).toBe(hashedPhone)
+    })
+
+    it('menghasilkan user identifiers kosong jika nomor telepon tidak diberikan', () => {
+      const rawPhone = ''
+      const hashedPhone = hashSha256(rawPhone)
+      const userIdentifiers = hashedPhone ? [{ hashedPhoneNumber: hashedPhone }] : []
+      expect(userIdentifiers).toHaveLength(0)
+    })
+  })
 })

@@ -4,8 +4,9 @@ import React, { useState } from 'react'
 import { ConversionStatusBadge } from '@/components/dashboard/offline-conversion/ConversionStatusBadge'
 import { MaskedPhoneCell } from '@/components/dashboard/offline-conversion/MaskedPhoneCell'
 import { TriggerGoogleClosingModal } from '@/components/dashboard/offline-conversion/TriggerGoogleClosingModal'
+import { LinkPhoneModal } from '@/components/dashboard/offline-conversion/LinkPhoneModal'
 import { Button } from '@/components/ui/button'
-import { CheckCircle2, Copy, Trash2 } from 'lucide-react'
+import { CheckCircle2, Copy, Pencil, Trash2 } from 'lucide-react'
 import { deleteAdClickSessionAction } from './actions'
 import { DeleteDialog } from '@/components/dashboard/DeleteDialog'
 import { toast } from 'sonner'
@@ -43,10 +44,17 @@ export interface GoogleConversionItem {
 export function GoogleConversionTableClient({ items }: { items: GoogleConversionItem[] }) {
   const [selectedSession, setSelectedSession] = useState<GoogleConversionItem | null>(null)
   const [modalOpen, setModalOpen] = useState(false)
+  const [linkPhoneSession, setLinkPhoneSession] = useState<GoogleConversionItem | null>(null)
+  const [linkPhoneModalOpen, setLinkPhoneModalOpen] = useState(false)
 
   const handleOpenClosing = (item: GoogleConversionItem) => {
     setSelectedSession(item)
     setModalOpen(true)
+  }
+
+  const handleOpenLinkPhone = (item: GoogleConversionItem) => {
+    setLinkPhoneSession(item)
+    setLinkPhoneModalOpen(true)
   }
 
   const handleCopyGclid = (gclid: string) => {
@@ -107,7 +115,17 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
                         {item.refCode}
                       </TableCell>
                       <TableCell className="py-3.5 whitespace-nowrap">
-                        <MaskedPhoneCell phone={item.phoneNumber} />
+                        <div className="flex items-center gap-1.5">
+                          <MaskedPhoneCell phone={item.phoneNumber} />
+                          <button
+                            type="button"
+                            onClick={() => handleOpenLinkPhone(item)}
+                            className="text-muted-foreground hover:text-foreground cursor-pointer p-1 rounded-sm transition-colors hover:bg-muted"
+                            title={item.phoneNumber ? 'Ubah nomor WhatsApp' : 'Hubungkan nomor WhatsApp'}
+                          >
+                            <Pencil className="h-3 w-3" />
+                          </button>
+                        </div>
                       </TableCell>
                       <TableCell className="py-3.5 font-mono text-xs text-foreground max-w-xs">
                         {clickId ? (
@@ -186,6 +204,12 @@ export function GoogleConversionTableClient({ items }: { items: GoogleConversion
         session={selectedSession}
         open={modalOpen}
         onOpenChange={setModalOpen}
+      />
+
+      <LinkPhoneModal
+        session={linkPhoneSession}
+        open={linkPhoneModalOpen}
+        onOpenChange={setLinkPhoneModalOpen}
       />
     </>
   )
