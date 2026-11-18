@@ -40,10 +40,18 @@ export interface MetaCapiCustomData {
   order_id?: string
 }
 
+export type MetaActionSource =
+  | 'website'
+  | 'chat'
+  | 'system_generated'
+  | 'phone_call'
+  | 'physical_store'
+  | 'other'
+
 export interface MetaCapiEventPayload {
   event_name: ConversionEventName | string
   event_time: number
-  action_source: 'website' | 'system_generated' | 'other'
+  action_source: MetaActionSource
   event_source_url?: string
   user_data: MetaCapiUserData
   custom_data?: MetaCapiCustomData

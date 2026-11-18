@@ -13,6 +13,7 @@ import { requireAdmin } from '@/lib/auth'
 import { sendMetaCapiEvent, type MetaCapiResponse } from '@/lib/integrations/meta-capi'
 import { normalizePhoneNumberE164 } from '@/lib/tracking/whatsapp-parser'
 import { hashSha256 } from '@/lib/tracking/hashing'
+import { generateRefCode } from '@/lib/tracking/ref-code'
 
 export async function markMetaLeadClosingAction(formData: FormData): Promise<{
   success: boolean
@@ -170,6 +171,103 @@ export async function linkMetaSessionPhoneAction(formData: FormData): Promise<{
   } catch (err) {
     console.error('[meta/actions] linkMetaSessionPhoneAction error:', err)
     return { success: false, error: 'Gagal menghubungkan nomor WhatsApp.' }
+  }
+}
+
+export async function createManualClosingAction(formData: FormData): Promise<{
+  success: boolean
+  error?: string
+  refCode?: string
+}> {
+  await requireAdmin()
+
+  const rawPhone = String(formData.get('phoneNumber') || '').trim()
+  const conversionValue = Number(formData.get('conversionValue') || 0)
+  const channel = String(formData.get('channel') || 'CTWA').trim()
+  const note = String(formData.get('note') || '').trim()
+
+  if (!rawPhone) {
+    return { success: false, error: 'Nomor WhatsApp klien wajib diisi.' }
+  }
+
+  if (conversionValue <= 0) {
+    return { success: false, error: 'Nilai closing transaksi harus lebih dari 0.' }
+  }
+
+  try {
+    const formattedPhone = normalizePhoneNumberE164(rawPhone)
+    const phoneHash = hashSha256(formattedPhone)
+    const prefix = channel === 'CTWA' ? 'CTWA' : 'MC'
+    const refCode = generateRefCode(prefix, 4)
+
+    // Buat sesi baru langsung berstatus WON (Closing)
+    const [newSession] = await db
+      .insert(adClickSessions)
+      .values({
+        refCode,
+        sourceUrl:
+          channel === 'CTWA'
+            ? 'Iklan Meta CTWA (Click-to-WhatsApp)'
+            : 'Direct WhatsApp / Chat Klien',
+        phoneNumber: formattedPhone,
+        phoneHash,
+        status: 'WON',
+      })
+      .returning({ id: adClickSessions.id, refCode: adClickSessions.refCode })
+
+    if (!newSession) {
+      return { success: false, error: 'Gagal membuat sesi closing.' }
+    }
+
+    // Catat konversi offline di database
+    const [conversion] = await db
+      .insert(offlineConversions)
+      .values({
+        sessionId: newSession.id,
+        platform: 'META',
+        eventName: 'Purchase',
+        conversionValue: String(conversionValue),
+        currency: 'IDR',
+        conversionTime: new Date(),
+      })
+      .returning({ id: offlineConversions.id })
+
+    // Susun payload CAPI Meta untuk konversi berbasis chat
+    const userPhoneHash = phoneHash ? [phoneHash] : []
+    const capiPayload = {
+      event_name: 'Purchase' as const,
+      event_time: Math.floor(Date.now() / 1000),
+      action_source: 'chat' as const,
+      event_source_url: 'https://marketingcode.id',
+      user_data: {
+        ph: userPhoneHash,
+      },
+      custom_data: {
+        value: conversionValue,
+        currency: 'IDR',
+        content_name: note || 'Closing Layanan MarketingCode.ID',
+      },
+    }
+
+    // Kirim event Purchase ke Meta CAPI
+    await sendMetaCapiEvent({
+      conversionId: conversion?.id,
+      payload: capiPayload,
+    })
+
+    revalidatePath('/dashboard/offline-conversion/meta')
+    revalidatePath('/dashboard/offline-conversion/google')
+    revalidatePath('/dashboard')
+
+    return {
+      success: true,
+      refCode: newSession.refCode,
+    }
+  } catch (error: unknown) {
+    console.error('[meta/actions] createManualClosingAction error:', error)
+    const errMessage =
+      error instanceof Error ? error.message : 'Gagal memproses closing manual.'
+    return { success: false, error: errMessage }
   }
 }
 

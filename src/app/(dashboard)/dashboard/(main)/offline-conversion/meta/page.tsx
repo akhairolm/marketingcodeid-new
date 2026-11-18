@@ -5,6 +5,7 @@ import { db } from '@/db'
 import { adClickSessions, offlineConversions } from '@/db/schema'
 import { ConversionStatCard } from '@/components/dashboard/offline-conversion/ConversionStatCard'
 import { MetaConversionTableClient, type MetaConversionItem } from './MetaConversionTableClient'
+import { CreateManualClosingDialog } from '@/components/dashboard/offline-conversion/CreateManualClosingDialog'
 import { Target, Settings, MousePointerClick, MessageSquare, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -68,6 +69,7 @@ export default async function MetaOfflineConversionPage() {
         </div>
 
         <div className="flex items-center gap-2">
+          <CreateManualClosingDialog />
           <Button
             asChild
             variant="outline"
